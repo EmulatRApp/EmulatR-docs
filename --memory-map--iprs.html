@@ -132,21 +132,21 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Two IPR namespaces</span></h2>
 <p class="p_Normal">EmulatR follows the architecture's split between registers the operating system reaches through CALL_PAL and registers only PALcode can touch with HW_MFPR / HW_MTPR.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">1. PALcode-visible IPRs (0x0000 .. 0x00FF).</span> These are CALL_PAL function codes, not hardware registers. The OS executes a CALL_PAL (for example MFPR_PTBR = 0x0015, MTPR_TBIA = 0x001B, MFPR_WHAMI = 0x003F); the PAL handler at the matching entry vector performs the actual access. Numbering follows the OSF/1 PALcode specification rather than the silicon. In V6 these are the <span class="f_CodeExample">PAL_MFPR</span> / <span class="f_CodeExample">PAL_MTPR</span> enums.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">1. PALcode-visible IPRs (0x0000 .. 0x00FF).</span> These are CALL_PAL function codes, not hardware registers. The OS executes a CALL_PAL (for example MFPR_PTBR = 0x0015, MTPR_TBIA = 0x001B, MFPR_WHAMI = 0x003F); the PAL handler at the matching entry vector performs the actual access. Numbering follows the OSF/1 PALcode specification rather than the silicon. In V6 these are the <span class="f_CodeExample">PAL_MFPR</span> / <span class="f_CodeExample">PAL_MTPR</span> enums.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">2. EV6 hardware IPRs (0x0100 .. 0x02FF).</span> These are the real register indices encoded in the <span class="f_CodeExample">scbd</span> field of an HW_MFPR / HW_MTPR instruction; only PALcode running in PAL mode may execute them. Numbering follows the 21264 HRM. The 0x0100 offset is an emulator convention so the hardware range cannot collide numerically with the PALcode-visible range: the decoder adds 0x0100 to the raw <span class="f_CodeExample">scbd</span> value, except the PAL_TEMP block (raw 0x40..0x5F) which adds 0x01C0 so PT0 lands at 0x0200.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">2. EV6 hardware IPRs (0x0100 .. 0x02FF).</span> These are the real register indices encoded in the <span class="f_CodeExample">scbd</span> field of an HW_MFPR / HW_MTPR instruction; only PALcode running in PAL mode may execute them. Numbering follows the 21264 HRM. The 0x0100 offset is an emulator convention so the hardware range cannot collide numerically with the PALcode-visible range: the decoder adds 0x0100 to the raw <span class="f_CodeExample">scbd</span> value, except the PAL_TEMP block (raw 0x40..0x5F) which adds 0x01C0 so PT0 lands at 0x0200.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Hardware IPR map (the indices you see in a trace)</span></h2>
 <p class="p_Normal">The hardware IPRs are grouped by the box that owns them. Selected indices from <span class="f_CodeExample">HW_IPR.h</span>:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Index</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Index</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Name</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Name</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Box / role</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Box / role</span></p>
 </th>
 </tr>
 </thead>

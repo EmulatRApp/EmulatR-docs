@@ -131,16 +131,16 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The table below summarizes current status. &quot;Boots to <span class="f_CodeExample">&gt;&gt;&gt;</span>&quot; means the platform has been driven to the interactive SRM prompt in EmulatR; DS10, DS20 and ES40 additionally form a standing three-platform gate that must stay green before any shared change is committed.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Platform</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Manifest</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Manifest</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">CPU / Chipset</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">CPU / Chipset</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Status</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Status</span></p>
 </th>
 </tr>
 </thead>
@@ -201,7 +201,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The selection order is: the <span class="f_CodeExample">EMULATR_PLATFORM_CONFIG</span> environment variable if set, otherwise the name derived from the firmware image stem as described above.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">A missing or invalid manifest does NOT stop the run.</span> It falls back to the compiled-in default DS10 device tree, and the reason is printed, for example: <span class="f_CodeExample">PlatformConfig: using built-in default DS10 manifest -- &quot;unsupported manifest_version 999 (expected 1)&quot;</span>. This is worth knowing because a typo in the manifest name or a schema-version mismatch will not announce itself as a failure - the machine simply comes up as a DS10. If a platform behaves like the wrong model, check that line first.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">A missing or invalid manifest does NOT stop the run.</span> It falls back to the compiled-in default DS10 device tree, and the reason is printed, for example: <span class="f_CodeExample">PlatformConfig: using built-in default DS10 manifest -- &quot;unsupported manifest_version 999 (expected 1)&quot;</span>. This is worth knowing because a typo in the manifest name or a schema-version mismatch will not announce itself as a failure - the machine simply comes up as a DS10. If a platform behaves like the wrong model, check that line first.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--supported-systems.html" class="topiclink">Supported Systems</a></p>

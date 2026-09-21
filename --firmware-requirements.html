@@ -133,7 +133,7 @@
 <p class="p_NotesBox"><span class="f_NotesBox"> --firmware &lt;path&gt; on the command line (overrides the ini for a single run); or</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox"> the [ROM]/firmwareImage ini key. There is no default - an empty value is a hard configuration error (&quot;config invalid: ROM.firmwareImage is required but empty&quot;), and both examples in the shipped ini are commented out, so a run must name an image one way or the other.</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Path gotcha:</span> the ini value is a PATH resolved against the current working directory, not against the installation - the shipped examples read <span class="f_CodeExample">firmware/ds10_v7_3.exe</span>. Launch from the Emulatr root, or pass an explicit <span class="f_CodeExample">--firmware firmware/ds10_v7_3.exe</span>.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Path gotcha:</span> the ini value is a PATH resolved against the current working directory, not against the installation - the shipped examples read <span class="f_CodeExample">firmware/ds10_v7_3.exe</span>. Launch from the Emulatr root, or pass an explicit <span class="f_CodeExample">--firmware firmware/ds10_v7_3.exe</span>.</p>
 <p class="p_Normal">Optional integrity check: set <span class="f_CodeExample">[ROM]/firmwareSha256</span> to verify the image at load. When empty, the integrity check is skipped.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Provenance and licensing</span></h2>

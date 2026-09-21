@@ -127,12 +127,12 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Field</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Field</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Value</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Value</span></p>
 </th>
 </tr>
 </thead>
@@ -160,7 +160,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">1. One sentence</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX</span> is the <span style="font-size: 13px; font-weight: bold;">maximum number of instruction descriptors the block executor will place in a single block</span> -- i.e. the longest run of straight-line guest instructions EmulatR will execute before returning to the run loop to service time and interrupts.</p>
+<p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX</span> is the <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">maximum number of instruction descriptors the block executor will place in a single block</span> -- i.e. the longest run of straight-line guest instructions EmulatR will execute before returning to the run loop to service time and interrupts.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">It is a performance dial, not a correctness switch. That sentence is only true as of the F-1 fix; section 7 explains why it was not true before, and why that history matters when reading older measurements.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -172,7 +172,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_CodeExample">BLOCK_MAX</span> is the depth of one block. <span class="f_CodeExample">BLOCKCACHE_BLOCKS</span> is how many blocks are retained. They are independent, and confusing them produces nonsense conclusions about memory.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Both are read exactly once</span>, in a function-local <span class="f_CodeExample">static</span> initializer. Changing the variable mid-run has no effect, and the value is fixed for the life of the process. Per the SPEC-BATCH-001 Sec 7.2 ruling, every measurement pins them explicitly and a release ships one frozen default.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Both are read exactly once</span>, in a function-local <span class="f_CodeExample">static</span> initializer. Changing the variable mid-run has no effect, and the value is fixed for the life of the process. Per the SPEC-BATCH-001 Sec 7.2 ruling, every measurement pins them explicitly and a release ships one frozen default.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. What a block is</span></h2>
 <p class="p_Normal">A block is a bounded straight-line descriptor run: what the <span class="f_CodeExample">DecodedICache</span> already memoized per instruction, laid head-to-tail from a head PC.</p>
@@ -206,14 +206,14 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Fill stops at whichever comes first:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; width:117px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">#</span></p>
+<th style="vertical-align:top; width:117px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">#</span></p>
 </th>
-<th style="vertical-align:top; width:796px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Stop condition</span></p>
+<th style="vertical-align:top; width:796px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Stop condition</span></p>
 </th>
-<th style="vertical-align:top; width:682px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Disposition</span></p>
+<th style="vertical-align:top; width:682px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Disposition</span></p>
 </th>
 </tr>
 </thead>
@@ -221,7 +221,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Page edge</span> -- blocks never span an 8 KB page</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Page edge</span> -- blocks never span an 8 KB page</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop before</p>
 </td>
@@ -229,7 +229,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Cold icache slot</span> (not yet decoded under this gen/asn/mode)</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Cold icache slot</span> (not yet decoded under this gen/asn/mode)</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop before</p>
 </td>
@@ -237,7 +237,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">3</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">CALL_PAL</span> (<span class="f_CodeExample">S_PalFormat</span>)</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">CALL_PAL</span> (<span class="f_CodeExample">S_PalFormat</span>)</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop before</p>
 </td>
@@ -245,7 +245,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">HW-format family</span> (<span class="f_CodeExample">S_HwFormat</span>: 0x19/0x1B/0x1D/0x1E/0x1F)</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">HW-format family</span> (<span class="f_CodeExample">S_HwFormat</span>: 0x19/0x1B/0x1D/0x1E/0x1F)</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop before</p>
 </td>
@@ -253,7 +253,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">5</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Unconditional transfer</span> (<span class="f_CodeExample">S_Uncond</span>)</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Unconditional transfer</span> (<span class="f_CodeExample">S_Uncond</span>)</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">included, as terminal</p>
 </td>
@@ -261,7 +261,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">6</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">EMULATR_BLOCK_MAX</span> descriptors</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EMULATR_BLOCK_MAX</span> descriptors</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop at cap</p>
 </td>
@@ -272,13 +272,13 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Conditional branches do not stop fill: a taken conditional is an early exit at execute time, detected by the divergence check.</p>
 <p class="p_Normal">A fill producing fewer than 2 descriptors is discarded (<span class="f_CodeExample">count = 0</span>, &quot;not worth a frame&quot;), so the smallest real block is 2 instructions -- which is why the clamp floor is 2 and not 1.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">The practical consequence:</span> raising the cap only helps where conditions 1-5 do not already bind. On real Alpha code, basic blocks between unconditional transfers and page edges are short. This is the whole reason the dial saturates (section 6.2).</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">The practical consequence:</span> raising the cap only helps where conditions 1-5 do not already bind. On real Alpha code, basic blocks between unconditional transfers and page edges are short. This is the whole reason the dial saturates (section 6.2).</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">4.1 What terminates a running block</span></h3>
 <p class="p_Normal">Execution exits early -- before <span class="f_CodeExample">count</span> -- on any of:</p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cpu.halted</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Divergence</span><span class="f_NotesBox">: </span><span class="f_CodeExample">cpu.pc != slot.grain.pc + 4</span><span class="f_NotesBox"> (a taken branch, a divert, or a fault delivery)</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">F-2 interrupt break-out</span><span class="f_NotesBox"> (section 5.2)</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Divergence</span><span class="f_NotesBox">: </span><span class="f_CodeExample">cpu.pc != slot.grain.pc + 4</span><span class="f_NotesBox"> (a taken branch, a divert, or a fault delivery)</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">F-2 interrupt break-out</span><span class="f_NotesBox"> (section 5.2)</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">5. How it moves run time</span></h2>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">5.1 The mechanism: amortizing the boundary, not the instruction</span></h3>
@@ -298,12 +298,12 @@
 <p class="p_Normal"><span class="f_CodeExample">systemLib::Machine</span> pushes the Cchip's <span class="f_CodeExample">DRIR</span>/<span class="f_CodeExample">DIM</span> words and the mask into <span class="f_CodeExample">pipelineLib</span> at construction (a one-way push, so <span class="f_CodeExample">pipelineLib</span> gains no chipset dependency). The pointers default to a shared zero word rather than <span class="f_CodeExample">nullptr</span>, so the hot loop needs no null check -- unpushed, the test folds to false. Cost: two relaxed loads, two ANDs, one predicted-not-taken branch.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Three properties make this sound:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Breaking out early is always safe.</span><span class="f_NotesBox"> The loop returns; the caller's </span><span class="f_CodeExample">systemTick</span><span class="f_NotesBox"> runs exactly as at any block exit and decides delivery (IPL, DIM, PAL state). This relocates detection, never delivery.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Forward progress</span><span class="f_NotesBox"> is guaranteed by </span><span class="f_CodeExample">i != 0</span><span class="f_NotesBox">: every entry retires at least one instruction. Without that guard, an interrupt the CPU cannot yet accept (IPL masked) would break at </span><span class="f_CodeExample">i = 0</span><span class="f_NotesBox"> forever -- zero retires, livelock. With it, the degenerate case is one retire per </span><span class="f_CodeExample">tryRun</span><span class="f_NotesBox">: exactly the reference path's granularity and cost, never worse.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">No PC bookkeeping</span><span class="f_NotesBox"> is needed: the divergence check guarantees </span><span class="f_CodeExample">pc == head + 4*i</span><span class="f_NotesBox"> at the top of iteration </span><span class="f_CodeExample">i</span><span class="f_NotesBox">.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Breaking out early is always safe.</span><span class="f_NotesBox"> The loop returns; the caller's </span><span class="f_CodeExample">systemTick</span><span class="f_NotesBox"> runs exactly as at any block exit and decides delivery (IPL, DIM, PAL state). This relocates detection, never delivery.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Forward progress</span><span class="f_NotesBox"> is guaranteed by </span><span class="f_CodeExample">i != 0</span><span class="f_NotesBox">: every entry retires at least one instruction. Without that guard, an interrupt the CPU cannot yet accept (IPL masked) would break at </span><span class="f_CodeExample">i = 0</span><span class="f_NotesBox"> forever -- zero retires, livelock. With it, the degenerate case is one retire per </span><span class="f_CodeExample">tryRun</span><span class="f_NotesBox">: exactly the reference path's granularity and cost, never worse.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">No PC bookkeeping</span><span class="f_NotesBox"> is needed: the divergence check guarantees </span><span class="f_CodeExample">pc == head + 4*i</span><span class="f_NotesBox"> at the top of iteration </span><span class="f_CodeExample">i</span><span class="f_NotesBox">.</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox">&nbsp;</span></p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Net: device-interrupt latency is one instruction at any depth.</span></p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Do not raise </span><span class="f_CodeExample">kMaxCap</span> on a tree without F-2. There, depth N really does mean N-instruction device latency.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Net: device-interrupt latency is one instruction at any depth.</span></p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Do not raise </span><span class="f_CodeExample">kMaxCap</span> on a tree without F-2. There, depth N really does mean N-instruction device latency.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">5.3 Why depth does not lose timer ticks (F-1)</span></h3>
 <p class="p_Normal">The interval timer is tested on a crossed-edge predicate:</p>
@@ -319,18 +319,18 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is a settled design ruling with an expensive provenance. The S-3b experiment (2026-08-22, built and removed the same day) tried to skip the IRQ/timer section on retires where &quot;nothing can need service&quot;. The gate was self-referential: it tested <span class="f_CodeExample">pendingIrq1</span>, which reads <span class="f_CodeExample">drir &amp; dim</span>, but for every ISA-class device that DRIR bit is set by <span class="f_CodeExample">mirrorIsaIrqs()</span>, which lives inside <span class="f_CodeExample">evalDeviceIrqs()</span> -- inside the section being skipped. UART/FDC/8042 interrupts were invisible until a backstop fired. Measured cost: post-banner gap to <span class="f_CodeExample">%STDRV</span> went 174 s ungated to 502 s gated.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Method note worth carrying:</span> the full test suite passed 637/637 on every defective build. Only a boot-to-Username twin detects this class of defect.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Method note worth carrying:</span> the full test suite passed 637/637 on every defective build. Only a boot-to-Username twin detects this class of defect.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">6. Measured effect</span></h2>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">6.1 The DS10 ladder (boot to Username, cold boots)</span></h3>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Configuration</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Configuration</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Boot time</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Boot time</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Notes</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Notes</span></p>
 </th>
 </tr>
 </thead>
@@ -371,7 +371,7 @@
 </table>
 </div>
 <p class="p_Normal">Enabling blocks at all is the single largest step (77 to 48, about -38%). The 4 to 64 step is small (48 to 45.6). The 64 to 256 step is large again (45.6 to 29).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-style: italic;">These figures are first-boot-after-rebuild and carry that taint. A twin-grade pass is still owed. Treat the ordering as solid and the exact minutes as approximate.</span></p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">These figures are first-boot-after-rebuild and carry that taint. A twin-grade pass is still owed. Treat the ordering as solid and the exact minutes as approximate.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">6.2 Why 256 and not more</span></h3>
 <p class="p_Normal"><span class="f_CodeExample">kMaxCap</span> was raised 64 to 256 on 2026-08-26 after weighing 1024 and rejecting it. The reason is block population, not storage: blocks terminate at page edges, unconditional transfers, and PAL/HW-format instructions regardless of the cap, so above ~256 there is storage with no population to fill it. Revisit only with JRN-V2-BLOCKPHASE-001 data in hand.</p>
@@ -389,24 +389,24 @@
 <p class="p_Normal">Before F-1, depth 32 stalled at TDF (a TIME operation) / DECdtm, while depth 4 and blocks-off both booted. The dial was then a correctness hazard masquerading as a tuning knob: the exact-equality timer test lost ticks that a deep block stepped over.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">After F-1 (crossed-edge) and F-2 (in-loop break), depths 64 and 256 both boot with margin, and the dial became a pure performance dial.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Consequence for anyone reading pre-2026-08-26 measurements:</span> a stall or anomaly attributed to block depth in that era is very likely the timer defect, not a property of depth. Do not carry those conclusions forward.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Consequence for anyone reading pre-2026-08-26 measurements:</span> a stall or anomaly attributed to block depth in that era is very likely the timer defect, not a property of depth. Do not carry those conclusions forward.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">8. Interactions and caveats</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Overshoot.</span><span class="f_NotesBox"> With blocks on, </span><span class="f_CodeExample">--max-cycles</span><span class="f_NotesBox"> overshoot is bounded by </span><span class="f_CodeExample">BLOCK_MAX - 1</span><span class="f_NotesBox">. A run will not stop exactly on the requested cycle.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Retire shift.</span><span class="f_NotesBox"> Interrupt delivery may legitimately shift by up to </span><span class="f_CodeExample">BLOCK_MAX</span><span class="f_NotesBox"> cycles between runs; </span><span class="f_CodeExample">tools/cmp_retire_shift.py</span><span class="f_NotesBox"> takes this as a tolerance parameter. Its default still says 64 -- pass the depth you actually ran.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">PAL mode never enters a block</span><span class="f_NotesBox"> (</span><span class="f_CodeExample">(cpu.pc &amp; 1) != 0</span><span class="f_NotesBox"> returns false), so depth has no effect inside PALcode.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Flagged pages</span><span class="f_NotesBox"> run on the reference path. Today that set is exactly the UDELAYWARP anchor page: a block containing the anchor would hide the warp trigger. Other armed instruments (PC/value gates, DIAG PC windows) force the executor off globally -- the S-3b lesson, that a census which can be incomplete must fail safe rather than silent.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Snapshots start cold.</span><span class="f_NotesBox"> The cache is transient host state and is never serialised, so the first post-resume execution re-fills. Depth does not survive a resume; a resumed run's early throughput is not comparable to a warm one's.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">The spin census depends on blocks being on.</span><span class="f_NotesBox"> </span><span class="f_CodeExample">BlockExecutor::noteSpin</span><span class="f_NotesBox"> feeds </span><span class="f_CodeExample">traceLib::WarpProfile</span><span class="f_NotesBox"> and is the only detector that can see delay loops the 0xB740 RSCC anchor is blind to (the anchor page is deliberately kept off the block path, making the two complementary). With </span><span class="f_CodeExample">EMULATR_BLOCKEXEC=0</span><span class="f_NotesBox"> that census is silent.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Not a fidelity lever.</span><span class="f_NotesBox"> Depth changes when boundary work happens, never what an instruction does. If a guest-visible behaviour changes with depth, that is a defect in the boundary machinery -- as F-1 was -- and must be chased as one, not tuned around.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Overshoot.</span><span class="f_NotesBox"> With blocks on, </span><span class="f_CodeExample">--max-cycles</span><span class="f_NotesBox"> overshoot is bounded by </span><span class="f_CodeExample">BLOCK_MAX - 1</span><span class="f_NotesBox">. A run will not stop exactly on the requested cycle.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Retire shift.</span><span class="f_NotesBox"> Interrupt delivery may legitimately shift by up to </span><span class="f_CodeExample">BLOCK_MAX</span><span class="f_NotesBox"> cycles between runs; </span><span class="f_CodeExample">tools/cmp_retire_shift.py</span><span class="f_NotesBox"> takes this as a tolerance parameter. Its default still says 64 -- pass the depth you actually ran.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">PAL mode never enters a block</span><span class="f_NotesBox"> (</span><span class="f_CodeExample">(cpu.pc &amp; 1) != 0</span><span class="f_NotesBox"> returns false), so depth has no effect inside PALcode.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Flagged pages</span><span class="f_NotesBox"> run on the reference path. Today that set is exactly the UDELAYWARP anchor page: a block containing the anchor would hide the warp trigger. Other armed instruments (PC/value gates, DIAG PC windows) force the executor off globally -- the S-3b lesson, that a census which can be incomplete must fail safe rather than silent.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Snapshots start cold.</span><span class="f_NotesBox"> The cache is transient host state and is never serialised, so the first post-resume execution re-fills. Depth does not survive a resume; a resumed run's early throughput is not comparable to a warm one's.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">The spin census depends on blocks being on.</span><span class="f_NotesBox"> </span><span class="f_CodeExample">BlockExecutor::noteSpin</span><span class="f_NotesBox"> feeds </span><span class="f_CodeExample">traceLib::WarpProfile</span><span class="f_NotesBox"> and is the only detector that can see delay loops the 0xB740 RSCC anchor is blind to (the anchor page is deliberately kept off the block path, making the two complementary). With </span><span class="f_CodeExample">EMULATR_BLOCKEXEC=0</span><span class="f_NotesBox"> that census is silent.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Not a fidelity lever.</span><span class="f_NotesBox"> Depth changes when boundary work happens, never what an instruction does. If a guest-visible behaviour changes with depth, that is a defect in the boundary machinery -- as F-1 was -- and must be chased as one, not tuned around.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">9. Practical guidance</span></h2>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Goal</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Goal</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Setting</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Setting</span></p>
 </th>
 </tr>
 </thead>

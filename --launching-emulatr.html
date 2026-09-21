@@ -137,10 +137,10 @@
 <p class="p_Normal">Omit <span class="f_CodeExample">EMULATR_NO_AUTOLOAD</span> to restore the newest snapshot instead of cold-booting. Clear it afterwards as shown - unlike a shell prefix, <span class="f_CodeExample">$env:</span> persists for the rest of the session, so leaving it set makes every later run cold-boot too. Diagnostics go to stderr; see Capturing the run log below.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Common launch modes</span></h2>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Autoload to the prompt in seconds</span> -- drop <span class="f_CodeExample">--no-autoload</span> so the newest <span class="f_CodeExample">&gt;&gt;&gt;</span> snapshot is restored:</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Autoload to the prompt in seconds</span> -- drop <span class="f_CodeExample">--no-autoload</span> so the newest <span class="f_CodeExample">&gt;&gt;&gt;</span> snapshot is restored:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EmulatR\Emulatr.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe&nbsp;--autosnapshot&nbsp;off</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Bounded headless cold boot</span> -- determinism / step-correctness over a few minutes (covers decompression and early init):</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Bounded headless cold boot</span> -- determinism / step-correctness over a few minutes (covers decompression and early init):</p>
 <p class="p_CodeExample"><span class="f_CodeExample">$env:EMULATR_NO_PUTTY&nbsp;=&nbsp;'1'</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EmulatR\Emulatr.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe&nbsp;`</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;--no-autoload&nbsp;--autosnapshot&nbsp;off&nbsp;--max-cycles&nbsp;2000000000</span></p>

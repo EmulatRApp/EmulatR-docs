@@ -140,7 +140,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 1 -- Create the virtual system disk</span></h2>
 <p class="p_Normal">Use <span style="font-weight: bold;">Make Disk</span> in the EmulatR Launcher. It opens the Create Virtual Disk dialog, which writes the container into the SELECTED system's <span class="f_CodeExample">disks</span> folder -- placement is fixed, there is no free path selection, and that is deliberate: the manifest can then name the file by bare filename and the whole run directory stays portable.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">field</span></p>
@@ -185,7 +185,7 @@
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Choosing a drive profile</span></h3>
 <p class="p_Normal">The model list is read from the emulator's own storage catalog, <span class="f_CodeExample">config/disk_types.json</span>, found beside the emulator the system is set to launch. The key you pick here IS the <span class="f_CodeExample">model</span> value you will type into the manifest in Step 3 -- one name, one namespace, no translation. Retired profiles are never offered, so a name that reaches the dialog is a name the manifest accepts.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">profile</span></p>
@@ -258,7 +258,7 @@
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Manifest reference</span></h3>
 <p class="p_Normal">The manifest is strict JSON. Storage rows live in a <span class="f_CodeExample">storage</span> array inside the controller's entry under <span class="f_CodeExample">pci_devices</span>. SCSI disks hang off the NCR 53C810 HBA (console <span class="f_CodeExample">pka0</span>, disks <span class="f_CodeExample">dka*</span>); the CD-ROM is an ATAPI row on the Cypress 82C693 IDE function (console <span class="f_CodeExample">dqa*</span>).</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">field</span></p>

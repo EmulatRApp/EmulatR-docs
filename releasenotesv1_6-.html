@@ -164,12 +164,12 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Conditions — what this result requires</span></h3>
 <p class="p_Normal">The crash-dump result was produced under the configuration below; departing from it will not reproduce the result. One row has since been overtaken by a change - see <span class="f_CodeExample">EMULATR_2D_NOOP</span> below.</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Setting</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Setting</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Value and why</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Value and why</span></p>
 </th>
 </tr>
 </thead>
@@ -216,12 +216,12 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Boot command variants</span></h3>
 <p class="p_Normal">All three forms are accepted. The console echoes the normalized form it will act on.</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Command</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Command</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Effect</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Effect</span></p>
 </th>
 </tr>
 </thead>
@@ -305,9 +305,9 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Operator note — the LFU prompts during init</span></h3>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_BodyText">LFU&gt;</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #ffffff;">&gt; </span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #afafff;">update srm</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #ffffff;">.</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;"> </span>The running console is V7.3-2 (Feb 27 2007) — the same <span class="f_CodeExample">ds20_v7_3.exe</span> image EmulatR loads &nbsp;fresh on every launch. There's nothing newer to update to, and the loaded firmware always comes from that file, not from what an update would write. For now: <span class="f_CodeExample">LFU&gt;exit</span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span>The LFU write path is untested territory in EmulatR. An update attempt exercises the firmware-update utility's flash-programming sequence against the emulated TIG flash, whose backing file (ds20_v7_3.rom beside the firmware) is where SRM environment variables live — </p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span>auto_action, boot_osflags, controlp, the wwid entries, everything you saw in show *. A partial or misbehaving update could corrupt that store, and then every subsequent boot inherits scrambled env state.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span> The LFU prompts you see during init are noise, not a request. This firmware auto-enters the LFU during startup (sometimes twice, per the run-emulatr gotchas — &quot;Option firmware files were not found on CD or floppy...&quot;). The correct response is to &nbsp;exit/decline back to P00&gt;&gt;&gt; — the scripted console driver does exactly that. It's asking whether you want to load option firmware, not telling you an update is needed. If the prompt in front of you is the LFU asking for a device, just get back to P00&gt;&gt;&gt; and proceed with the boot. </p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Courier New';display:inline-block;width:13px;margin-left:-13px">o</span>The LFU write path is untested territory in EmulatR. An update attempt exercises the firmware-update utility's flash-programming sequence against the emulated TIG flash, whose backing file (ds20_v7_3.rom beside the firmware) is where SRM environment variables live — </p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Courier New';display:inline-block;width:13px;margin-left:-13px">o</span>auto_action, boot_osflags, controlp, the wwid entries, everything you saw in show *. A partial or misbehaving update could corrupt that store, and then every subsequent boot inherits scrambled env state.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Courier New';display:inline-block;width:13px;margin-left:-13px">o</span> The LFU prompts you see during init are noise, not a request. This firmware auto-enters the LFU during startup (sometimes twice, per the run-emulatr gotchas — &quot;Option firmware files were not found on CD or floppy...&quot;). The correct response is to &nbsp;exit/decline back to P00&gt;&gt;&gt; — the scripted console driver does exactly that. It's asking whether you want to load option firmware, not telling you an update is needed. If the prompt in front of you is the LFU asking for a device, just get back to P00&gt;&gt;&gt; and proceed with the boot. </p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">v1.4.4 (Beta) — 2026-07-23</span></h2>

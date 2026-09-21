@@ -127,20 +127,20 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal"><span class="f_CodeExample">&lt;firmware&gt;_warp.json</span> is the calibrated-delay census: a run product, stem-keyed beside the firmware image it was measured against. It records every delay loop the RSCC anchor collapses, plus the spin candidates the block executor finds, and it accumulates: each boot of the same image loads it, adds what that run observed, and rewrites it at clean exit. Since 2026-09-19 the file is also read back. A caller the RSCC anchor has already recorded confirms its warp after 8 tight re-reads instead of the full spin depth, so most of the discovery tax is paid once. A block loop that a human has audited (<span class="f_CodeExample">audited</span>) is warped at a work-paced rate: at most one timer tick per 12000 executed instructions, which keeps an idle guest near real time and every run reproducible. No block loop has been audited yet, so no tick-step warp is armed by default. The census is always on and has no configuration knob (architect ruling D-2). One bisection switch exists so the warp can be A/B tested in two runs rather than two builds: <span class="f_CodeExample">EMULATR_UDELAYWARP=0</span> turns the warp off, while the census is still loaded and saved. The platform manifest key <span class="f_CodeExample">warp_spin_depth</span> sets how many consecutive tight RSCC re-reads confirm a spin. See JRN-V2-WARPPROF-001 and the run-products discussion in <span style="font-size: 13px; font-weight: bold; color: #b00000;"><a href="block-max-internals.html" class="topiclink">Block-MAX-Internals</a></span>.</p>
+<p class="p_Normal"><span class="f_CodeExample">&lt;firmware&gt;_warp.json</span> is the calibrated-delay census: a run product, stem-keyed beside the firmware image it was measured against. It records every delay loop the RSCC anchor collapses, plus the spin candidates the block executor finds, and it accumulates: each boot of the same image loads it, adds what that run observed, and rewrites it at clean exit. Since 2026-09-19 the file is also read back. A caller the RSCC anchor has already recorded confirms its warp after 8 tight re-reads instead of the full spin depth, so most of the discovery tax is paid once. A block loop that a human has audited (<span class="f_CodeExample">audited</span>) is warped at a work-paced rate: at most one timer tick per 12000 executed instructions, which keeps an idle guest near real time and every run reproducible. No block loop has been audited yet, so no tick-step warp is armed by default. The census is always on and has no configuration knob (architect ruling D-2). One bisection switch exists so the warp can be A/B tested in two runs rather than two builds: <span class="f_CodeExample">EMULATR_UDELAYWARP=0</span> turns the warp off, while the census is still loaded and saved. The platform manifest key <span class="f_CodeExample">warp_spin_depth</span> sets how many consecutive tight RSCC re-reads confirm a spin. See JRN-V2-WARPPROF-001 and the run-products discussion in <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #b00000;"><a href="block-max-internals.html" class="topiclink">Block-MAX-Internals</a></span>.</p>
 <p class="p_Normal">The file is content-bound to the exact firmware image: <span class="f_CodeExample">firmware_bytes</span> and <span class="f_CodeExample">firmware_fnv64</span> together are the binding key. A consumer that computes a different FNV-1a hash for the firmware it is about to run must treat the file as stale -- refuse it loudly and regenerate at clean exit, never consume it silently. The stale file is not overwritten: it is renamed to <span class="f_CodeExample">&lt;firmware&gt;_warp.stale-&lt;fnv64&gt;.json</span>, keeping any hand-set flags. A read-only file is used but never rewritten, which is how to run timing twins from the same census.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Like the flash NVRAM, this file never ships and is never copied between machines. A fresh install generates its own on first boot.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Top-level fields</span></h2>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; width:190px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Field</span></p>
+<th style="vertical-align:top; width:190px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Field</span></p>
 </th>
-<th style="vertical-align:top; width:77px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Type</span></p>
+<th style="vertical-align:top; width:77px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Type</span></p>
 </th>
-<th style="vertical-align:top; width:1328px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+<th style="vertical-align:top; width:1328px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
 </th>
 </tr>
 </thead>
@@ -219,14 +219,14 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Site record fields</span></h2>
 <p class="p_Normal">Each entry in <span class="f_CodeExample">sites</span> describes one program-counter address the census discovered:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; width:188px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Field</span></p>
+<th style="vertical-align:top; width:188px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Field</span></p>
 </th>
-<th style="vertical-align:top; width:135px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Type</span></p>
+<th style="vertical-align:top; width:135px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Type</span></p>
 </th>
-<th style="vertical-align:top; width:1275px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+<th style="vertical-align:top; width:1275px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
 </th>
 </tr>
 </thead>
@@ -342,14 +342,14 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The src field</span></h2>
 <p class="p_Normal">Per the file's own <span class="f_CodeExample">comment</span> field, <span class="f_CodeExample">src</span> is a bitmask:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Bit</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Bit</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Observed src value</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Observed src value</span></p>
 </th>
 </tr>
 </thead>
