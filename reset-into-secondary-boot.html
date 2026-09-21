@@ -152,7 +152,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The reset re-entry path</span></h2>
 <p class="p_Normal">To reach a correct START, <span class="f_CodeExample">sys__reset</span> must complete. After the decompressor inflates the console/PAL image, its final <span class="f_CodeExample">hw_ret</span> is routed to the PAL power-up vector, NOT the console entry. The power-up vector branches to <span class="f_CodeExample">sys__reset</span>, which flushes the translation buffers and programs the Ibox/Mbox control registers before reaching the scaffold instruction.</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Address / instruction</span></p>
@@ -209,7 +209,7 @@
 <p class="p_Normal"><span class="f_CodeExample">hw_stq/p r2, PT__IMPURE(p_temp) ; link impure base @ +0x88</span></p>
 <p class="p_Normal">EmulatR observes <span class="f_CodeExample">p_temp</span> built at runtime by <span class="f_CodeExample">0x138b8 LDAH r21,0</span> ; <span class="f_CodeExample">0x138bc LDA r21,0x7000(r21)</span>, giving <span class="f_CodeExample">PAL__TEMPS_BASE = 0x7000</span> for DS20 <span class="f_CodeExample">ds20_v7_3</span>. The PC264 def files list <span class="f_CodeExample">0xF000</span> / <span class="f_CodeExample">0x5000</span> -- the WRONG variant for DS20; trust the runtime <span class="f_CodeExample">0x7000</span>. It sits below <span class="f_CodeExample">palBase 0x8000</span> in free low DRAM (HWRPB at <span class="f_CodeExample">0x2000</span>, impure near <span class="f_CodeExample">0x5000</span>, PAL temps at <span class="f_CodeExample">0x7000</span> -- distinct, all below the Tsunami MMIO gate <span class="f_CodeExample">0x80000000000</span>), so there is no image overlap. On the default (2D-faulting) path <span class="f_CodeExample">r21</span> instead stays the decompressor scratch <span class="f_CodeExample">0xf01</span> (<span class="f_CodeExample">LDA R21,0xf01(R31) @0x600594</span>), so <span class="f_CodeExample">PT__IMPURE(0xf01)</span> reads garbage at the OS restart.</p>
 <p class="p_Normal">Selected CNS / PT frame offsets (from <span class="f_CodeExample">ev6_pal_impure.mar</span> / <span class="f_CodeExample">ev6_pal_temps.mar</span>):</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Field</span></p>
@@ -293,7 +293,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">boot0 disassembly and the mode gap</span></h2>
 <p class="p_Normal">boot0 at VA <span class="f_CodeExample">0x20000000</span> (PA <span class="f_CodeExample">0x5bc000</span>, leaf pfn <span class="f_CodeExample">0x2de</span>) is REAL VMB / APB code. Its first five instructions are position-independent setup that computes the HWRPB address and issues the first data load:</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Address encoding instruction</span></p>
@@ -349,7 +349,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The guest CSERVE dispatcher and the AXPBox reference</span></h2>
 <p class="p_Normal">The guest dispatcher is <span class="f_CodeExample">sys__cserve</span> (<span class="f_CodeExample">ev6_vms_pc264_pal.mar:3852</span>): it reads r16 (the function code) and branches to a per-function handler. Two handlers seen so far: <span class="f_CodeExample">cfw_start</span> (:3956 = <span class="f_CodeExample">br sys__exit_console</span>, the 0x42 START), and <span class="f_CodeExample">cfw_mp_work_request</span> (:4017, saves r18 -&gt; <span class="f_CodeExample">CNS__WORK_REQUEST</span>, the 0x65 MP_WORK_REQUEST). <span class="f_CodeExample">CNS__WORK_REQUEST</span> (checked at :886) is the console-to-CPU work mailbox; stubbing 0x65 means the item is never saved, so the coordination never completes and the console re-inits.</p>
 <p class="p_Normal">AXPBox (<span class="f_CodeExample">axpbox-1.1.2/src/AlphaCPU_vmspal.cpp</span>, <span class="f_CodeExample">vmspal_call_cserve</span>) is literally this: its FIRST line saves the CALL_PAL return PC into the PAL linkage register (<span class="f_CodeExample">p23 = state.pc</span>), then a <span class="f_CodeExample">switch(r16)</span> does <span class="f_CodeExample">set_pc(&lt;guest PAL handler addr&gt;)</span> and lets the firmware execute the full faithful path (<span class="f_CodeExample">restore_state -&gt; mode/vptb/IPL/TBIA -&gt; hw_ret_stall(p23)</span>). Its r16 -&gt; handler map (ES40 layout; DS20 addresses differ, locate by scan):</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">CSERVE r16</span></p>
@@ -474,7 +474,7 @@
 <p class="p_Normal">FIX 1 (2D no-op) and FIX 2 (delay warp) are CONFIRMED; the wall is broken and boot0 executes. Option B (C++ replicate) is a proven dead end (the seed is clobbered by console re-entry -- the mode gap). Option A (route START to the guest PAL, mirroring AXPBox's <span class="f_CodeExample">p23</span> save) is in flight and removes the <span class="f_CodeExample">0xA</span> crash. The well-scoped next step is to route CSERVE <span class="f_CodeExample">0x65</span> (MP_WORK_REQUEST) to the guest PAL under the same invariant -- or, preferred, to locate the <span class="f_CodeExample">sys__cserve</span> entry and route ALL currently-stubbed CSERVE functions there, so the guest dispatcher handles 0x65 and every future one. Then iterate <span class="f_CodeExample">b dqa0</span> and surface the next guest-PAL requirement. Diagnostics to remove once Option A lands: the CSERVE-DISASM dump, PTWALK BOOT0DATA/BOOT0VPTE, the CSERVE-START-BPLUS seeding, and the PA_WATCH default in the wrapper.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Key addresses and values (DS20 ds20_v7_3)</span></h2>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Name</span></p>
@@ -591,7 +591,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Diagnostic knobs</span></h2>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Environment variable</span></p>

@@ -154,7 +154,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Epoch invalidation</span></h2>
 <p class="p_Normal">A naive TLB would walk every entry on a flush. V6 instead keeps two counters in the manager and stamps both into every entry at insert time. A flush of all entries is then a single counter bump; entries become stale the instant their stamped value fails to match the live counter on the next lookup. The mapping from PALcode flush operations is:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Operation</span></p>

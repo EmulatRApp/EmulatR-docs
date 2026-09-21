@@ -142,7 +142,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Architected reason-for-halt codes (AARM Table 26–4)</span></h2>
 <p class="p_Normal">These are the values the architecture defines for the REASON FOR HALT quadword. Codes <span class="f_CodeExample">0x8</span>..<span class="f_CodeExample">0xFFF</span> are reserved; values above that are implementation-specific (the EV6 realization is in the next table).</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Code</span></p>
@@ -241,7 +241,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EV6 (21264) PALcode realization</span></h2>
 <p class="p_Normal">The apisrm EV6 PALcode (<span class="f_CodeExample">ev6_alpha_defs.mar</span>, macro <span class="f_CodeExample">HALT_DEFS</span>) names the architected codes as <span class="f_CodeExample">HALT__*</span> symbols and adds implementation-specific ones for the D-cache tag-parity halt and the several console-entry dispatch reasons. These are the codes EmulatR's PAL layer works with; <span class="f_CodeExample">0x8</span> and everything at <span class="f_CodeExample">0x20</span> and above fall in the architected &quot;implementation-specific&quot; range.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Code</span></p>
@@ -380,7 +380,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Halt-request codes (the requested action)</span></h2>
 <p class="p_Normal">Distinct from the reason-for-halt is the HALT REQUESTED field carried in the per-CPU slot STATE. System software (or firmware) writes it to tell the console what to do when the processor next halts; the console clears it after acting. The apisrm HWRPB definition (<span class="f_CodeExample">hwrpb_def.sdl</span>, <span class="f_CodeExample">HALT_REQUEST$</span> prefix) enumerates:</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Code</span></p>

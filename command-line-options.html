@@ -136,7 +136,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Configuration precedence</span></h2>
 <p class="p_Normal">Settings resolve in this order, later winning: built-in defaults, then <span class="f_CodeExample">Emulatr.ini</span>, then the command line -- so <span class="f_CodeExample">CLI &gt; ini</span>. Environment variables (<span class="f_CodeExample">EMULATR_*</span>) are a SEPARATE, orthogonal layer: most are ENV-only diagnostic / trace toggles with no CLI or ini equivalent (see Environment Variables). The two that overlap a CLI flag -- <span class="f_CodeExample">--no-autoload</span> / <span class="f_CodeExample">EMULATR_NO_AUTOLOAD</span> and <span class="f_CodeExample">--autosnapshot</span> / <span class="f_CodeExample">EMULATR_AUTOSNAP</span> -- are combined so either source can set them, rather than one overriding the other. A single unified order (<span class="f_CodeExample">ini &lt; CLI &lt; ENV</span>, ENV winning) is planned but NOT yet in effect (Known Gaps G-25). For run examples, background/detached execution, and the tools/ .sh helpers, see Running EmulatR from the Shell.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Command Line &nbsp;/ Qualifier</span></p>

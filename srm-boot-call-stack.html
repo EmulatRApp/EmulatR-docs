@@ -135,7 +135,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The ordered path</span></h2>
 <p class="p_Normal">The first three stages run before the console has a working output path, so they are invisible unless a trace is armed. Everything from the banner down is observable on the console.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Stage</span></p>
@@ -220,7 +220,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The CSERVE seam</span></h2>
 <p class="p_Normal">CSERVE is the call gate between the console and PALcode, and it is where most boot-path work actually lands. The console loads a function code into <span class="f_CodeExample">R16</span> and traps; EmulatR dispatches it in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span>. The architecture is run-the-guest-PAL: wherever possible a CSERVE call is routed into the guest's own handler rather than replicated in C++.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Code</span></p>
@@ -299,7 +299,7 @@
 <p class="p_Normal">Two failure shapes look like hangs but are not. A long pause during self-decompression is the guest doing several million cycles of real work. And a memory geometry the machine cannot support does not fail -- it churns its memory configuration indefinitely, alive but never converging; see <a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Source</span></p>

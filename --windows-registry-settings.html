@@ -146,7 +146,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">launch_systems -- one subkey per named system</span></h2>
 <p class="p_Normal">Each system is a subkey <span class="f_CodeExample">launch_systems\&lt;guid&gt;\</span>. The GUID is assigned at creation and is immutable: renames and run-directory moves never change it, so per-system settings can never be orphaned. Deleting a system in the launcher removes the entire subtree in one operation, because all per-system state keys off that GUID by design.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">value</span></p>
@@ -229,7 +229,7 @@
 <p class="p_Normal">The console port is deliberately NOT here. It lives in the profile's <span class="f_CodeExample">Emulatr.ini</span> under <span class="f_CodeExample">[SRMConsole] port</span>, because the emulator itself reads it from there. The registry never duplicates a fact the ini owns.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">launch_ui -- launcher UI state</span></h2>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">value</span></p>
@@ -272,7 +272,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">launch_paths -- operator override paths</span></h2>
 <p class="p_Normal">All three are optional. When one is absent, discovery runs instead, in this order: explicit override, then the installed location <span class="f_CodeExample">C:\Program Files\eNVy Systems, Inc\ASA-EmulatR</span>, then the newest development-tree build.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">value</span></p>
@@ -321,7 +321,7 @@
 <p class="p_Normal">The legacy hive is left untouched and can be deleted by hand once you have confirmed the migration. The gate -- that the product hive must not already have <span class="f_CodeExample">launch_systems</span> -- guarantees the migration can never overwrite real state.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What survives what</span></h2>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">event</span></p>

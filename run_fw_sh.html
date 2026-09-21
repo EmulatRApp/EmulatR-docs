@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><p style="line-height: 1.20;"><span class="f_Heading1">run_fw.sh</span></p>
+<div id="printheader"><p><span class="f_Heading1">run_fw.sh</span></p>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -107,7 +107,7 @@
       
       <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
    
-      <p style="line-height: 1.20;"><span class="f_Heading1">run_fw.sh</span></p>
+      <p><span class="f_Heading1">run_fw.sh</span></p>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,20 +127,20 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p style="line-height: 1.20;">Launches EmulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/Emulatr.ini for the run (backing up and restoring the ini on exit), copies the firmware into the build-dir firmware/ directory, and launches Emulatr.exe with console and stderr teed to fw_&lt;name&gt;_&lt;ts&gt;.out. Git Bash on Windows; anchors to the script's own directory as the build dir.</p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
-<p style="line-height: 1.20;"><span class="f_Heading2">Usage</span></p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif;">./run_fw.sh &lt;ds10|ds20|ds25|es40|es45&gt; [cold] [extra Emulatr args...]</span></p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
-<p style="line-height: 1.20;"><span class="f_Heading2">Arguments</span></p>
-<p style="line-height: 1.20;"><span style="font-style: italic;">model</span> (required): one of ds10, ds20, ds25, es40, es45 -- maps to the [System] model written into the ini.</p>
-<p style="line-height: 1.20;"><span style="font-style: italic;">cold</span> (optional 2nd arg): forces a genuine cold boot -- passes --no-autoload and purges <span style="font-style: italic;">stale auto_*.axpsnap</span> (predig_* fast-forward anchors are preserved). Without it the run is <span style="font-style: italic;">warm</span>: autoloads the newest snapshot and keeps writing periodic autosnaps.</p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
-<p style="line-height: 1.20;">extra: any further arguments are passed through verbatim to Emulatr.exe (e.g. --max-cycles 0x10000000).</p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
-<p style="line-height: 1.20;"><span class="f_Heading2">Notes</span></p>
-<p style="line-height: 1.20;">Memory is fixed at 4 GiB. The model is ini-driven; there is no --model flag. The SRM console listens on TCP 10023 -- connect with PuTTY/plink in raw mode to reach the &gt;&gt;&gt; prompt.</p>
-<p style="line-height: 1.20;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p>Launches EmulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/Emulatr.ini for the run (backing up and restoring the ini on exit), copies the firmware into the build-dir firmware/ directory, and launches Emulatr.exe with console and stderr teed to fw_&lt;name&gt;_&lt;ts&gt;.out. Git Bash on Windows; anchors to the script's own directory as the build dir.</p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p><span class="f_Heading2">Usage</span></p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif;">./run_fw.sh &lt;ds10|ds20|ds25|es40|es45&gt; [cold] [extra Emulatr args...]</span></p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p><span class="f_Heading2">Arguments</span></p>
+<p><span style="font-style: italic;">model</span> (required): one of ds10, ds20, ds25, es40, es45 -- maps to the [System] model written into the ini.</p>
+<p><span style="font-style: italic;">cold</span> (optional 2nd arg): forces a genuine cold boot -- passes --no-autoload and purges <span style="font-style: italic;">stale auto_*.axpsnap</span> (predig_* fast-forward anchors are preserved). Without it the run is <span style="font-style: italic;">warm</span>: autoloads the newest snapshot and keeps writing periodic autosnaps.</p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p>extra: any further arguments are passed through verbatim to Emulatr.exe (e.g. --max-cycles 0x10000000).</p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p><span class="f_Heading2">Notes</span></p>
+<p>Memory is fixed at 4 GiB. The model is ini-driven; there is no --model flag. The SRM console listens on TCP 10023 -- connect with PuTTY/plink in raw mode to reach the &gt;&gt;&gt; prompt.</p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">bash - Examples</span></h3>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMULATR_FLASH_ROM=ds20_v7_3.rom</span></p>

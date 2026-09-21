@@ -109,7 +109,6 @@ p, p.p_Normal, div.p_Normal, li.p_Normal /* Normal */
 {
  text-align: left;
  text-indent: 0;
- line-height: 1.80;
  padding: 0 0 0 0;
  margin: 0 0 0 0;
 }
@@ -126,7 +125,7 @@ p, p.p_Normal, div.p_Normal, li.p_Normal /* Normal */
 .p_CodeExample /* Code Example */
 {
  font-size: 13px;
- line-height: 1.50;
+ line-height: 1.0;
  white-space: nowrap;
 }
 .p_Comment /* Comment */
@@ -140,7 +139,6 @@ p, p.p_Normal, div.p_Normal, li.p_Normal /* Normal */
  font-weight: normal;
  text-align: left;
  text-indent: 0;
- line-height: 1.80;
  page-break-after: avoid;
  padding: 0 0 0 0;
  margin: 0 0 0 0;
@@ -151,7 +149,6 @@ p, p.p_Normal, div.p_Normal, li.p_Normal /* Normal */
  font-weight: normal;
  text-align: left;
  text-indent: 0;
- line-height: 1.80;
  page-break-after: avoid;
  padding: 0 0 0 0;
  margin: 0 0 0 0;
@@ -162,7 +159,6 @@ p, p.p_Normal, div.p_Normal, li.p_Normal /* Normal */
  font-weight: normal;
  text-align: left;
  text-indent: 0;
- line-height: 1.80;
  page-break-after: avoid;
  padding: 0 0 0 0;
  margin: 0 0 0 0;

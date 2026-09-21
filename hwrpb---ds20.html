@@ -156,7 +156,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">HWRPB header offset keys (AARM Table 26-1)</span></h2>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Key</span></p>
@@ -577,7 +577,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Per-CPU slot offset keys (AARM Table 26-4)</span></h2>
 <p class="p_Normal">The slot stride is 0x280 (640 bytes): the AARM fields end at Cycle Counter Frequency (+624, last byte +631), padded to an octaword. This matches the live DS20 SRM. The five fields at +592..+624 were previously hidden in an opaque filler, and an in-slot DSRDB had inflated the slot to 0x400 (corrected 2026-06-29).</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Key</span></p>
@@ -902,7 +902,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">DSRDB section offset keys</span></h2>
 <p class="p_Normal">The DSRDB (Dynamic System Recognition Data Block) is a separate top-level HWRPB section reached via kHwrpbDsrdbOffset (+312), found live on DS20 at PA 0x2ac0. It is NOT part of the per-CPU slot (it was incorrectly embedded there before 2026-06-29). Validate this layout field-by-field against the live 0x2ac0 dump before relying on it.</p>
 <p class="p_Normal">&nbsp;</p>
-<div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Key</span></p>
