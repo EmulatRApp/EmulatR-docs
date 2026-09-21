@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>1. Introduction &gt; Current Development Status</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="b dqa1,boot milestone,Cypress 82C693,development status,dka,dva0,LFU,NVRAM,OS boot,PCI enumeration,roadmap,snapshot,SRM prompt,SROM" />
+   <meta name="description" content="This page is a plain-language snapshot of where EmulatR stands as of August 2026 -- what works end to end, the milestone the project is working toward next, and the known rough..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "--current-development-status--.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Current Development Status</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--current-development-status--.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="1_-introduction.html">1. Introduction</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Current Development Status</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--feature-matrix.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="known-gaps.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">This page is a plain-language snapshot of where EmulatR stands as of August 2026 -- what works end to end, the milestone the project is working toward next, and the known rough edges. It is deliberately a moving target; the authoritative day-to-day record lives in the engineering journals and the dated CHECKPOINT notes. For a per-subsystem breakdown see the Feature Matrix.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What works today</span></h2>
+<p class="p_Normal">A clean cold boot runs the original, unmodified DEC SRM console firmware all the way to the interactive <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, fully usable over a serial terminal. The commands <span class="f_CodeExample">show config</span>, <span class="f_CodeExample">show memory</span>, <span class="f_CodeExample">show pal</span> and <span class="f_CodeExample">show version</span> all return correct output. Firmware is a real SRM 7.3-1 image carried in emulated flash; the LFU <span class="f_CodeExample">update srm</span> path works, and machine-state snapshots have been captured for both the firmware-update (<span class="f_CodeExample">UPD&gt;</span>) and console (<span class="f_CodeExample">&gt;&gt;&gt;</span>) states. An entry-snapshot boot-acceleration lever (<span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span>) was designed on top of snapshots but is NOT implemented; booting the pre-decompressed <span class="f_CodeExample">.rom</span> image is the working way to skip self-decompression. ES40 (Typhoon) silicon-mode bring-up is in progress alongside the DS10 / DS20 line.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The current frontier: mounting the system disk</span></h2>
+<p class="p_Normal">The frontier has moved. Both gaps that previously stood between the console prompt and an OS boot are CLOSED: on-board PCI devices are now walked and enumerated (the SCSI adapter and the Ethernet controller are modeled and appear in <span class="f_CodeExample">show config</span>), and a bootable SCSI disk is enumerated - <span class="f_CodeExample">show device</span> lists a <span class="f_CodeExample">dka</span> drive carrying a genuine DEC identity, and <span class="f_CodeExample">boot dka0</span> loads and transfers to the operating system bootstrap.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">OpenVMS Alpha V8.3 now boots from that disk to its startup banner reliably, and its device drivers initialize against the emulated adapter and drive: the adapter is identified correctly as a SCSI port, the drive's identity strings and capacity reach the guest byte-exact, and the power-on attention handshake completes.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">That blocker is cleared, and the boot now goes considerably further than a prompt. A cold boot reaches the OpenVMS <span class="f_CodeExample">Username:</span> prompt with no human at the console, and the startup behind it is healthy: LANACP, IPCACP, ERRFMT, OPCOM, JOB_CONTROL and TP_SERVER all settle at their real priorities, no process parks in <span class="f_CodeExample">WTTQE</span>, QUEUE_MANAGER runs, TCPIP comes up with an active interface and an address, and <span class="f_CodeExample">NCP SET EXECUTOR ALL</span> returns - that is the guest's own stack configuring itself, not reachability: no host network backend is attached, so nothing leaves the machine - and a full orderly <span class="f_CodeExample">SHUTDOWN</span> completes. Everything on that path was measured working rather than assumed. What remains open is tracked per-item in the gap rows rather than as a single frontier - see EmulatR - Known Gaps.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Known cosmetic issues</span></h2>
+<p class="p_Normal">Two harmless display quirks are still open. Neither affects operation.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Garbled SROM revision, and a stray &quot;PuTTY&quot; at the prompt.</span> EmulatR does not populate the SROM revision field, so when the console prints it the firmware formats an uninitialized buffer and emits a short run of garbage characters. That garbage happens to contain an ENQ control byte (<span class="f_CodeExample">0x05</span>), and PuTTY answers ENQ by transmitting its answerback string - which is literally the word <span class="f_CodeExample">PuTTY</span> - back to the host, where the console echoes it. That is why <span class="f_CodeExample">show config</span> can leave you looking at <span class="f_CodeExample">P00&gt;&gt;&gt;PuTTY</span>. It is a round trip through your terminal emulator, not the emulator inventing text, and it is specific to clients that implement answerback. WORKAROUND: clear PuTTY's &quot;Answerback to ^E&quot; setting. The real fix is to populate the field, or to strip control bytes on the console transmit path so every client benefits.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Line-doubling.</span> <span class="f_CodeExample">show device</span> can print each line twice, also seen at the firmware-update <span class="f_CodeExample">UPD&gt;</span> prompt. The leading hypothesis is that this is not a per-command bug but the console transport echoing input that the guest firmware already echoes; the test is to default terminal echo off and see whether the doubling clears. That test has not been run yet, so the cause is not confirmed.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What is planned next</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> DONE - the system volume mounts and the OpenVMS boot reaches the DCL login prompt on the DS20.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> Complete the SCSI CD-ROM target so an OS can be installed from CD media, not only booted from a prepared disk.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> Give the IDE channel an interrupt path, a write path and DMA, so an IDE disk can serve as a system disk on DS10.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> Finish ES40 </span><span class="f_CodeExample">init</span><span class="f_NotesBox">, and drive the Titan machines (DS25, ES45) to the console prompt.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Completed since the previous revision of this page: SRM environment persistence (<span class="f_CodeExample">set</span> now survives reset and cold boot via emulated flash), PCI bus enumeration with on-board Ethernet and SCSI device models, and a bootable SCSI disk with real DEC drive identities.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-style: italic;">Snapshot date: August 2026. Because status changes frequently, treat this page as orientation and confirm specifics against the current build and the latest CHECKPOINT journal.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--boot-acceleration-entry-snap.html" class="topiclink">Boot Acceleration - Entry Snapshot</a></p>
+<p class="p_Normal"><a href="--feature-matrix.html" class="topiclink">Feature Matrix</a></p>
+<p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Architecture Overview</a></p>
+<p class="p_Normal"><a href="--halt-button-is-in_-boot-not-.html" class="topiclink">Halt Button is IN, BOOT NOT POSSIBLE</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?--current-development-status--.html" target="_top">'+baseurl+'index.html?--current-development-status--.html</a></p>');
+
+</script>
+</body>
+</html>

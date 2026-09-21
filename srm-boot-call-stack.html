@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; SRM Boot Call-Stack</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="apisrm,boot call stack,CNS__WORK_REQUEST,cpuSlot,CSERVE,CSERVE$HALT,CSERVE$IIC_WRITE,CSERVE$START,CSERVE$WHAMI,dq_driver.c,EMULATR_CSERVE_AUDIT,EMULATR_CSERVE_START_MODE,ev6_defs.mar,ev6_huf_decom.m64,ev6_ipr_driver.c,FRU,GCT,Hwrpb.h,JUMP_TO_ARC,kernel executive,LFU,memory sizing,MP_WORK_REQUEST,MTPR_EXC_ADDR,option firmware,PalEntries.cpp,PCI probe,secondary start,SmpHarness.h,SRM boot,sys__cserve,sys__exit_console,sys__reset,sys__reset_init,TsunamiCchip.h" />
+   <meta name="description" content="This appendix names the ordered path from power-up to the &gt;&gt;&gt; prompt, and where each stage lives. Its practical use is localization: when a boot goes quiet, the last line the..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "srm-boot-call-stack.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Boot Call-Stack</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?srm-boot-call-stack.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Boot Call-Stack</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="platform-memory-reference.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="8_1-platform-appendices.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="pipeline-execution-(internals).html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">This appendix names the ordered path from power-up to the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, and where each stage lives. Its practical use is localization: when a boot goes quiet, the last line the console printed identifies the stage it died in, and the stage identifies the file to open.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Where the console sources actually are</span></h2>
+<p class="p_Normal">One scope correction saves most of the hunting. <span class="f_CodeExample">apisrm/ref</span> is the platform and chip reference LEAF -- device drivers (<span class="f_CodeExample">dq_driver.c</span>), PAL macros (<span class="f_CodeExample">ev6_huf_decom.m64</span>), the definition files (<span class="f_CodeExample">ev6_defs.mar</span>, <span class="f_CodeExample">osfalpha_defs.mar</span>) and the IPR examine / deposit driver (<span class="f_CodeExample">ev6_ipr_driver.c</span>). The boot-to-prompt SPINE -- the kernel executive, the secondary-start logic, and the shell that actually prints <span class="f_CodeExample">&gt;&gt;&gt;</span> -- lives in the shared apisrm source directories, not under <span class="f_CodeExample">ref/</span>. A call stack confined to <span class="f_CodeExample">ref/</span> is therefore incomplete by construction. <a href="boot-sequences.html" class="topiclink">Source Cross Reference</a> covers the tree layout.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The ordered path</span></h2>
+<p class="p_Normal">The first three stages run before the console has a working output path, so they are invisible unless a trace is armed. Everything from the banner down is observable on the console.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Stage</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">What happens</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Evidence that it completed</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PAL reset entry</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Power-up enters PALcode at <span class="f_CodeExample">sys__reset</span>. No console output exists yet.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">None -- arm a trace</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Self-decompression</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The shipped SRM image is compressed and decompresses itself on the emulated CPU (<span class="f_CodeExample">ev6_huf_decom.m64</span>). Roughly four million cycles on a cold boot.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">None -- arm a trace</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Reset init</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sys__reset_init</span> builds <span class="f_CodeExample">p_temp</span> and the impure frame, establishing the per-CPU state the console will run on.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">None -- arm a trace</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Banner and memory sizing</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The console prints its banner and sizes guest memory.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">1024 Meg of system memory</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Device probe</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PCI and ISA enumeration, then GCT / FRU initialization at <span class="f_CodeExample">3f32000</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The probe listing</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Option-firmware scan</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CD and floppy devices are scanned for option firmware.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Scan lines for <span class="f_CodeExample">dqa</span> devices</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LFU</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Loadable Firmware Update utility runs. <span class="f_CodeExample">exit</span> returns to the console; <span class="f_CodeExample">update srm</span> refreshes firmware.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">UPD&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Test and prompt</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">System and disk testing, then the interactive console shell.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&gt;&gt;&gt;</span> (or <span class="f_CodeExample">P00&gt;&gt;&gt;</span> on a multiprocessor build)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">By default the console halts at the prompt rather than booting an operating system (<span class="f_CodeExample">auto_action = HALT</span>). A full annotated transcript is in <a href="--example---performance.html" class="topiclink">Example - Performance</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The CSERVE seam</span></h2>
+<p class="p_Normal">CSERVE is the call gate between the console and PALcode, and it is where most boot-path work actually lands. The console loads a function code into <span class="f_CodeExample">R16</span> and traps; EmulatR dispatches it in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span>. The architecture is run-the-guest-PAL: wherever possible a CSERVE call is routed into the guest's own handler rather than replicated in C++.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Code</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Name</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">What it does</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x40</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE$HALT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Machine halt</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x41</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE$WHAMI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Returns the executing agent's real SMP slot (<span class="f_CodeExample">cpuSlot</span>). With a single agent that is 0, which is byte-identical to the hardcoded 0 it replaced, and becomes per-CPU as soon as SMP lands.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x42</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE$START</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Releases a secondary CPU -- and carries the PRIMARY operating-system boot transfer, which routes through the same path. See below.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x44</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE$MTPR_EXC_ADDR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The console hand-off continuation used by the decompression switch</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x46</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE$IIC_WRITE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Packs a PCF8584 I2C write -- the path that badges the machine</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x66</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(masked PAL_BASE)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Returns PAL_BASE with the low bits masked</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span class="f_CodeExample">START</span> path is worth understanding before touching it. On a uniprocessor model there are no secondaries to start, which once made a no-op look harmless -- but the primary OS boot transfer runs through the same entry. It reaches <span class="f_CodeExample">sys__exit_console</span>, which restores the boot context from the per-CPU HWRPB slot, flushes the ITB and DTB, and restarts fetch at the slot's halt PC. Stubbing it stranded the whole handoff. The current default routes faithfully into the guest PAL; <span class="f_CodeExample">EMULATR_CSERVE_START_MODE</span> selects <span class="f_CodeExample">guest</span> (the default), <span class="f_CodeExample">cpp</span> (a C++ replica, for testing) or <span class="f_CodeExample">off</span>. <a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot</a> covers that handoff in full.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Unimplemented CSERVE codes are a known divergence</span></h2>
+<p class="p_Normal">A function code with no case falls to the dispatch default, which returns with <span class="f_CodeExample">R0</span> untouched. That is a DIVERGENCE from real execution, not a tolerated no-op: the guest <span class="f_CodeExample">sys__cserve</span> would dispatch the same code to a handler with real side-effects.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The distinction was settled empirically. <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST disproved the earlier assumption that these were silicon-tolerated -- the console loops on it and re-initializes, because the guest handler never saves <span class="f_CodeExample">R18</span> into <span class="f_CodeExample">CNS__WORK_REQUEST</span>. Codes still landing in the default arm include <span class="f_CodeExample">0x0A</span>, <span class="f_CodeExample">0x0B-0x0D</span>, <span class="f_CodeExample">0x32-0x37</span>, <span class="f_CodeExample">0x45</span> JUMP_TO_ARC and <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Set <span class="f_CodeExample">EMULATR_CSERVE_AUDIT=1</span> to capture the missing contract for each: the function code and its inputs, the caller PC, and whether the call is one-shot or a polling loop. That capture is what lets a code be closed against the corresponding guest handler in the apisrm source.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Localizing a stall</span></h2>
+<p class="p_Normal">Read the last console line and map it to the table above. A boot that stops after a device-probe line and before any prompt is in enumeration; one that stops at <span class="f_CodeExample">UPD&gt;</span> is waiting in LFU, not hung. A boot that produces no output at all never reached the banner, which puts it in one of the three pre-console stages -- and there the only instrument is a trace, because the console cannot yet report on itself.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Two failure shapes look like hangs but are not. A long pause during self-decompression is the guest doing several million cycles of real work. And a memory geometry the machine cannot support does not fail -- it churns its memory configuration indefinitely, alive but never converging; see <a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Source</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">What it settles</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CSERVE dispatch and every function code above</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">apisrm ev6_vms_pc264_pal.mar</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest PAL: <span class="f_CodeExample">sys__cserve</span>, <span class="f_CodeExample">sys__exit_console</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">apisrm ref/ev6_huf_decom.m64</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The self-decompression path</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">deviceLib/Hwrpb.h</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The HWRPB and its per-CPU slots</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">schedLib/SmpHarness.h</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The multi-agent substrate the secondary path will use</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Cchip, including the CPU-present reporting the console reads</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START Handoff)</a></p>
+<p class="p_Normal"><a href="--reaching-the-srm-prompt.html" class="topiclink">Reaching the SRM Prompt</a></p>
+<p class="p_Normal"><a href="--firmware-decode--decompressi.html" class="topiclink">Firmware Decode &amp; Decompression</a></p>
+<p class="p_Normal"><a href="--execution-_-boot-internals.html" class="topiclink">Execution / Boot Internals</a></p>
+<p class="p_Normal"><a href="boot-sequences.html" class="topiclink">Source Cross Reference</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?srm-boot-call-stack.html" target="_top">'+baseurl+'index.html?srm-boot-call-stack.html</a></p>');
+
+</script>
+</body>
+</html>

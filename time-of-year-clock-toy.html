@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Time-of-Year Clock (TOY)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="battery,CMOS,date prompt,determinism,EMULATR_TOY_MODE,EMULATR_TOY_NVRAM,host mode,MC146818,RTC,time of day,TOY,VRT" />
+   <meta name="description" content="The Time-of-Year clock is the machine's battery-backed real-time clock: an MC146818-compatible part in the Cypress CY82C693 southbridge, reached through I/O ports 0x70 (index)..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "time-of-year-clock-toy.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Time-of-Year Clock (TOY)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?time-of-year-clock-toy.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Time-of-Year Clock (TOY)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="clock-frequency-mhz.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="execution-modes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="warp-variants-and-cycle-accoun.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The Time-of-Year clock is the machine's battery-backed real-time clock: an MC146818-compatible part in the Cypress CY82C693 southbridge, reached through I/O ports <span class="f_CodeExample">0x70</span> (index) and <span class="f_CodeExample">0x71</span> (data). It holds the date and time the console and the operating system read, plus 256 bytes of CMOS scratch the SRM uses for its own settings.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On real hardware this clock runs from a battery, so it keeps time while the machine is powered off. EmulatR has no battery, so where the time comes from is a choice - and that choice trades everyday usability against exact reproducibility. <span class="f_CodeExample">EMULATR_TOY_MODE</span> makes it.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Time-source modes</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; width:140px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Mode</span></p>
+</th>
+<th style="vertical-align:top; width:420px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Where the time comes from</span></p>
+</th>
+<th style="vertical-align:top; width:620px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Use it when</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; width:140px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">host</span></p>
+<p class="p_Normal">(default)</p>
+</td>
+<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">Seeded from the host wall clock when the machine starts, then advanced by the emulated cycle counter. The clock always reports itself valid.</p>
+</td>
+<td style="vertical-align:top; width:620px; padding:0; border:solid thin #000000;"><p class="p_Normal">Normal interactive use. A fresh installation boots with a correct clock and the guest does not ask you for the date.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:140px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">fixed</span></p>
+</td>
+<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">A pure function of emulated cycles: epoch 2026-01-01 00:00:00 plus elapsed emulated seconds. The host clock is never read.</p>
+</td>
+<td style="vertical-align:top; width:620px; padding:0; border:solid thin #000000;"><p class="p_Normal">Any run whose output is compared byte-for-byte with another run - do-no-harm, differential and certification passes. Set it explicitly; never rely on a default for this.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:140px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">unset</span></p>
+</td>
+<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">Dead battery. Register D reports VRT = 0, the clock fields read invalid and do not advance, until the guest writes the time through the MC146818 SET protocol. Answering the OpenVMS boot-time date prompt does NOT do that - see the note below.</p>
+</td>
+<td style="vertical-align:top; width:620px; padding:0; border:solid thin #000000;"><p class="p_Normal">Reproducing a machine whose battery has never been charged - the faithful lifecycle. Expect the guest to ask for the date on EVERY boot, not just the first.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TOY_MODE=fixed&nbsp;#&nbsp;deterministic&nbsp;clock,&nbsp;for&nbsp;a&nbsp;comparison&nbsp;run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TOY_MODE=unset&nbsp;#&nbsp;dead-battery&nbsp;lifecycle</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox"><span class="f_NotesBox">In </span><span class="f_CodeExample">unset</span><span class="f_NotesBox"> mode the date prompt does not go away. Answering it sets the time inside OpenVMS for that session, but nothing is written back to the emulated clock chip: the stored origin stays at the factory epoch and the validity bit stays clear, so the next boot honestly reports a dead battery and asks again. This has been confirmed across a clean shutdown - it is not a persistence failure, the store saves and reloads correctly. What is missing is the write itself. Whether OpenVMS is expected to write the chip from that prompt on real hardware is still being established; until it is, use </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> mode (the default) if you want the prompt to stop.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">An unrecognised value is not fatal - the emulator says so and falls back to <span class="f_CodeExample">host</span>:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">ToyRtc:&nbsp;unknown&nbsp;EMULATR_TOY_MODE&nbsp;'wallclock'&nbsp;--&nbsp;using&nbsp;host</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox"><span class="f_NotesBox">The default was </span><span class="f_CodeExample">unset</span><span class="f_NotesBox"> in earlier builds and is </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> from 19 August 2026. Under the old default every fresh installation booted with an invalid clock, and because OpenVMS will not write a clock it does not trust, the boot-time date prompt returned on every cold boot. Host mode removes that. The reproducibility rule is unchanged: a run that must reproduce has to pin </span><span class="f_CodeExample">fixed</span><span class="f_NotesBox"> itself rather than inherit whatever the default happens to be.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why reproducibility cares</span></h2>
+<p class="p_Normal">In <span class="f_CodeExample">unset</span> and <span class="f_CodeExample">fixed</span> modes the clock is never read from the host. Time advances as</p>
+<p class="p_CodeExample"><span class="f_CodeExample">elapsed_seconds&nbsp;=&nbsp;(cycles&nbsp;-&nbsp;origin_cycles)&nbsp;/&nbsp;cycles_per_second</span></p>
+<p class="p_Normal">from a deterministic origin, so two identical boots read byte-identical clock registers. <span class="f_CodeExample">host</span> mode breaks that by construction - guest-visible time stops being a function of guest state - which is exactly why it is not valid for a run whose whole purpose is to reproduce.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Persistence</span></h2>
+<p class="p_Normal">The 256-byte CMOS array and the time origin persist to <span class="f_CodeExample">nvram/&lt;stem&gt;_toy.bin</span>, relative to the run directory, where <span class="f_CodeExample">&lt;stem&gt;</span> is the base name of the firmware image - the same stem the log artifacts use, overridable with <span class="f_CodeExample">EMULATR_LOG_STEM</span>. <span class="f_CodeExample">EMULATR_TOY_NVRAM</span> overrides the whole path. The file is written on every CMOS store rather than at exit, so an abrupt kill loses nothing. It is read back at startup, and a store that is absent, short, corrupt, or written under a different mode is refused with one loud line, leaving the clock unset.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">This is a different store from the SRM environment-variable flash image - see <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>. The store is keyed by that same firmware stem, so every platform in a run directory keeps its own clock and CMOS: a DS20 run uses <span class="f_CodeExample">nvram/ds20_v7_3_toy.bin</span> and a DS10 run its own file. Before 19 August 2026 the two shared one store, and a DS10 boot could consume the clock a DS20 boot had written.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A store left over from that shared scheme is ignored rather than migrated - there is no silent conversion - and the emulator says so once at startup:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_CodeExample"><span class="f_CodeExample">Machine:&nbsp;legacy&nbsp;nvram/toy_cmos.bin&nbsp;present&nbsp;but&nbsp;IGNORED&nbsp;--&nbsp;the&nbsp;TOY&nbsp;store&nbsp;is&nbsp;stem-keyed&nbsp;now&nbsp;(nvram/ds20_v7_3_toy.bin)</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Initializing a clock that has never been set</span></h2>
+<p class="p_Normal">This applies only to <span class="f_CodeExample">unset</span> mode. It is the behaviour of real hardware after a battery replacement, not a defect.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">OpenVMS gates its clock writes on the validity bit. While the hardware clock reports VRT = 0, answering the date prompt at boot sets the <span class="f_T_Emphasis">system</span> time only - nothing reaches the chip, so the next boot asks again. Once the clock reports valid, VMS both reads it and maintains it; the first write after validity was observed setting the full date and time through the standard SET protocol.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The designed heal on real hardware is the console <span class="f_CodeExample">DATE</span> command, which writes the clock with that same protocol. The v7.3 console images shipped for these platforms do not carry it, so in practice a dead store is initialized either by running once in <span class="f_CodeExample">host</span> or <span class="f_CodeExample">fixed</span> mode - the clock then reports valid and the guest writes it - or by initializing the store file directly. Either way it is a one-time step; afterwards the clock persists and the prompt does not come back.</p>
+<p class="p_NotesBox"><span class="f_NotesBox">If the date prompt PERSISTS across boots even in </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> mode - a store carried across mixed mode histories can hold a wedged validity latch - reset it: shut the guest down cleanly, delete the run directory's </span><span class="f_CodeExample">nvram/&lt;stem&gt;_toy.bin</span><span class="f_NotesBox"> (for example </span><span class="f_CodeExample">nvram/ds20_v7_3_toy.bin</span><span class="f_NotesBox">), and boot twice. The first boot asks for the date once; answering it latches validity into the freshly created store. Shut down cleanly again, and the second and every later boot comes up with the correct time, unprompted. The clean shutdowns matter - they are what persist the store.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables</a></p>
+<p class="p_Normal"><a href="clock-frequency-mhz.html" class="topiclink">Clock Frequency and the MHz Reading</a></p>
+<p class="p_Normal"><a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?time-of-year-clock-toy.html" target="_top">'+baseurl+'index.html?time-of-year-clock-toy.html</a></p>');
+
+</script>
+</body>
+</html>

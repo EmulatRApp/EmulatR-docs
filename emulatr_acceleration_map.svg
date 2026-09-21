@@ -1,0 +1,146 @@
+<svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EmulatR acceleration program: component map, letters keyed to the status matrix" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4A5561"/>
+    </marker>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3D6FA8"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1100" height="720" fill="#FAFAF7"/>
+
+  <rect x="290" y="70" width="500" height="440" rx="10" fill="#FBF3E2" fill-opacity="0.35" stroke="#B07818" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <rect x="300" y="80" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="312" y="97" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">H</text>
+  <text x="334" y="97" font-size="12" font-weight="bold" fill="#8A5E13">TRANSLATION CACHE</text>
+  <text x="334" y="112" font-size="10.5" fill="#6B6B66">bounded + evicting; key (VA, ASN, pageGen); two-level lazy TBI</text>
+
+  <rect x="30" y="150" width="200" height="200" rx="8" fill="#E8F2EA" stroke="#2F7D4F" stroke-width="2"/>
+  <rect x="38" y="158" width="24" height="24" rx="4" fill="#2F7D4F"/>
+  <text x="50" y="175" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">A</text>
+  <text x="70" y="175" font-size="12.5" font-weight="bold" fill="#212B36">FAITHFUL PIPELINE</text>
+  <text x="44" y="200" font-size="11" fill="#212B36">6-stage staged walk</text>
+  <text x="44" y="216" font-size="11" fill="#212B36">the permanent oracle</text>
+  <text x="44" y="232" font-size="11" fill="#212B36">and fallback; detects</text>
+  <text x="44" y="248" font-size="11" fill="#212B36">loops, builds blocks</text>
+  <text x="44" y="272" font-size="10.5" fill="#2F7D4F" font-weight="bold">SHIPPED (permanent)</text>
+  <text x="44" y="288" font-size="10.5" fill="#6B6B66">k = 302.6 / 12.5 MHz</text>
+
+  <rect x="30" y="400" width="200" height="86" rx="8" fill="#E8F2EA" stroke="#2F7D4F" stroke-width="2"/>
+  <rect x="38" y="408" width="24" height="24" rx="4" fill="#2F7D4F"/>
+  <text x="50" y="425" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">L</text>
+  <text x="70" y="425" font-size="12.5" font-weight="bold" fill="#212B36">SPINSKIP / WARP</text>
+  <text x="44" y="450" font-size="11" fill="#212B36">certified idle loops:</text>
+  <text x="44" y="466" font-size="11" fill="#212B36">skip cycles to next timer edge</text>
+  <line x1="130" y1="350" x2="130" y2="400" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="140" y="380" font-size="10" fill="#6B6B66">certified loops</text>
+
+  <rect x="330" y="140" width="190" height="92" rx="8" fill="#FBF3E2" stroke="#B07818" stroke-width="2"/>
+  <rect x="338" y="148" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="350" y="165" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">D</text>
+  <text x="370" y="165" font-size="12.5" font-weight="bold" fill="#212B36">BLOCK EXECUTOR</text>
+  <text x="344" y="190" font-size="11" fill="#212B36">straight-line descriptor runs;</text>
+  <text x="344" y="205" font-size="11" fill="#212B36">fill stops: page / uncond / exc set</text>
+  <text x="344" y="223" font-size="10.5" fill="#8A5E13" font-weight="bold">DESIGNED, NOT BUILT</text>
+
+  <rect x="570" y="140" width="190" height="92" rx="8" fill="#FBF3E2" stroke="#B07818" stroke-width="2"/>
+  <rect x="578" y="148" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="590" y="165" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">E</text>
+  <text x="610" y="165" font-size="12.5" font-weight="bold" fill="#212B36">LINKS / TRACES</text>
+  <text x="584" y="190" font-size="11" fill="#212B36">successor links: fall-through</text>
+  <text x="584" y="205" font-size="11" fill="#212B36">+ taken; block-to-block dispatch</text>
+  <text x="584" y="223" font-size="10.5" fill="#8A5E13" font-weight="bold">DESIGNED, NOT BUILT</text>
+
+  <rect x="570" y="280" width="190" height="92" rx="8" fill="#FBF3E2" stroke="#B07818" stroke-width="2"/>
+  <rect x="578" y="288" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="590" y="305" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">F</text>
+  <text x="610" y="305" font-size="12.5" font-weight="bold" fill="#212B36">LOOP-TB SPIN (rev6)</text>
+  <text x="584" y="330" font-size="11" fill="#212B36">taken-exit links to own head;</text>
+  <text x="584" y="345" font-size="11" fill="#212B36">continuation gate per lap</text>
+  <text x="584" y="363" font-size="10.5" fill="#8A5E13" font-weight="bold">DESIGNED, NOT BUILT</text>
+  <path d="M 760,300 C 785,300 785,350 760,350" fill="none" stroke="#B07818" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="770" y="330" font-size="10" fill="#8A5E13">spin</text>
+
+  <rect x="330" y="410" width="430" height="72" rx="8" fill="#FBF3E2" stroke="#B07818" stroke-width="3"/>
+  <rect x="338" y="418" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="350" y="435" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">G</text>
+  <text x="370" y="435" font-size="12.5" font-weight="bold" fill="#212B36">PAL TRACING</text>
+  <rect x="640" y="419" width="112" height="20" rx="10" fill="#B07818"/>
+  <text x="696" y="433" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#FFFFFF">RULED 08-22</text>
+  <text x="344" y="458" font-size="11" fill="#212B36">fill crosses into PAL mode; obligations C-1..C-5 (SDE boundary rule,</text>
+  <text x="344" y="472" font-size="11" fill="#212B36">exceptional set stops fill, mode in the key); coverage 0.90 to 0.98</text>
+
+  <rect x="330" y="550" width="190" height="86" rx="8" fill="#E8F2EA" stroke="#2F7D4F" stroke-width="2"/>
+  <rect x="338" y="558" width="24" height="24" rx="4" fill="#2F7D4F"/>
+  <text x="350" y="575" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">B</text>
+  <text x="370" y="575" font-size="12.5" font-weight="bold" fill="#212B36">INSTANCE CACHE</text>
+  <text x="344" y="600" font-size="11" fill="#212B36">decoded grains, VA-keyed;</text>
+  <text x="344" y="615" font-size="11" fill="#212B36">IMB invalidation contract</text>
+  <text x="344" y="630" font-size="10.5" fill="#2F7D4F" font-weight="bold">SHIPPED +89.8%</text>
+  <line x1="425" y1="550" x2="425" y2="512" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="433" y="537" font-size="10" fill="#6B6B66">substrate</text>
+
+  <rect x="570" y="550" width="190" height="86" rx="8" fill="#E8F2EA" stroke="#2F7D4F" stroke-width="2"/>
+  <rect x="578" y="558" width="24" height="24" rx="4" fill="#2F7D4F"/>
+  <text x="590" y="575" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">C</text>
+  <text x="610" y="575" font-size="12.5" font-weight="bold" fill="#212B36">D-SIDE MEMO</text>
+  <text x="584" y="600" font-size="11" fill="#212B36">gen-guarded VA-to-PA memo</text>
+  <text x="584" y="615" font-size="11" fill="#212B36">for the data path</text>
+  <text x="584" y="630" font-size="10.5" fill="#2F7D4F" font-weight="bold">SHIPPED +24.2%</text>
+  <line x1="665" y1="550" x2="665" y2="512" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="673" y="537" font-size="10" fill="#6B6B66">data side</text>
+
+  <rect x="840" y="30" width="230" height="80" rx="8" fill="#E9F0F7" stroke="#3D6FA8" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="848" y="38" width="24" height="24" rx="4" fill="#3D6FA8"/>
+  <text x="860" y="55" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">I</text>
+  <text x="880" y="55" font-size="12.5" font-weight="bold" fill="#212B36">CODEGEN / comJIT</text>
+  <text x="854" y="80" font-size="11" fill="#212B36">hybrid H-1..H-5 on the table</text>
+  <text x="854" y="98" font-size="10.5" fill="#3D6FA8" font-weight="bold">OPEN, gated on Q-3 + M</text>
+  <path d="M 840,70 L 665,70 L 665,140" fill="none" stroke="#3D6FA8" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#arrB)"/>
+  <text x="700" y="62" font-size="10" fill="#3D6FA8">emits top-N blocks (if ruled)</text>
+
+  <rect x="840" y="150" width="230" height="96" rx="8" fill="#FBF3E2" stroke="#B07818" stroke-width="2"/>
+  <rect x="848" y="158" width="24" height="24" rx="4" fill="#B07818"/>
+  <text x="860" y="175" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">J</text>
+  <text x="880" y="175" font-size="12.5" font-weight="bold" fill="#212B36">BOUNDARY CHECK</text>
+  <text x="854" y="200" font-size="11" fill="#212B36">unconditional + periodic</text>
+  <text x="854" y="215" font-size="11" fill="#212B36">(epoch / budget shape)</text>
+  <text x="854" y="233" font-size="10.5" fill="#8A5E13" font-weight="bold">RULED 08-22 (S-3b disproof)</text>
+  <line x1="840" y1="198" x2="790" y2="198" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="796" y="190" font-size="10" fill="#6B6B66">every block edge</text>
+
+  <rect x="840" y="286" width="230" height="86" rx="8" fill="#E8F2EA" stroke="#2F7D4F" stroke-width="2"/>
+  <rect x="848" y="294" width="24" height="24" rx="4" fill="#2F7D4F"/>
+  <text x="860" y="311" text-anchor="middle" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#FFFFFF">K</text>
+  <text x="880" y="311" font-size="12.5" font-weight="bold" fill="#212B36">AST DELIVERY</text>
+  <text x="854" y="336" font-size="11" fill="#212B36">softint/AST evaluated at every</text>
+  <text x="854" y="351" font-size="11" fill="#212B36">boundary, never gated</text>
+  <text x="854" y="366" font-size="10.5" fill="#2F7D4F" font-weight="bold">SHIPPED + CERTIFIED 08-23</text>
+  <line x1="955" y1="286" x2="955" y2="246" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="963" y="270" font-size="10" fill="#6B6B66">invariant inside</text>
+
+  <line x1="230" y1="210" x2="330" y2="186" stroke="#4A5561" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="238" y="180" font-size="10" fill="#6B6B66">entry: presence bit</text>
+  <text x="238" y="192" font-size="10" fill="#6B6B66">+ head probe</text>
+  <line x1="290" y1="300" x2="230" y2="300" stroke="#4A5561" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="236" y="318" font-size="10" fill="#6B6B66">exit: exceptional set only</text>
+  <text x="236" y="330" font-size="10" fill="#6B6B66">(fault / PAL entry / armed PC /</text>
+  <text x="236" y="342" font-size="10" fill="#6B6B66">invalidated / miss)</text>
+  <line x1="520" y1="186" x2="570" y2="186" stroke="#4A5561" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="524" y="178" font-size="10" fill="#6B6B66">linked</text>
+  <line x1="665" y1="232" x2="665" y2="280" stroke="#4A5561" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="673" y="260" font-size="10" fill="#6B6B66">taken-exit == head</text>
+
+  <line x1="30" y1="660" x2="1070" y2="660" stroke="#D8D6CE" stroke-width="1"/>
+  <text x="30" y="682" font-size="11" font-weight="bold" fill="#3D5A80">PROJECTED LADDER (MODEL; calibration bracket 3-8x either way):</text>
+  <text x="470" y="682" font-size="11" font-family="Consolas, monospace" fill="#212B36">today 12.5</text>
+  <text x="553" y="682" font-size="11" fill="#4A5561">-&gt;</text>
+  <text x="575" y="682" font-size="11" font-family="Consolas, monospace" fill="#8A5E13">A&apos; 41</text>
+  <text x="622" y="682" font-size="11" fill="#4A5561">-&gt;</text>
+  <text x="644" y="682" font-size="11" font-family="Consolas, monospace" fill="#8A5E13">B&apos; 52</text>
+  <text x="691" y="682" font-size="11" fill="#4A5561">-&gt;</text>
+  <text x="713" y="682" font-size="11" font-family="Consolas, monospace" font-weight="bold" fill="#8A5E13">D&apos; 73 (interpretive ceiling)</text>
+  <text x="905" y="682" font-size="11" fill="#4A5561">-&gt;</text>
+  <text x="927" y="682" font-size="11" font-family="Consolas, monospace" fill="#3D6FA8">E&apos; ~250 MHz</text>
+  <text x="30" y="702" font-size="10" fill="#6B6B66">Letters key to the status matrix.  Green = shipped/certified.  Amber = designed or ruled, not built.  Blue = open decision.</text>
+</svg>

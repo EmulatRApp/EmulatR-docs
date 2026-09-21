@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>1. Introduction &gt; Known Gaps</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="ALi M1543C,ALi M5229,blocker,boot flags,boot_osflags,build_power_hw,dq_initialize,DS10,DS20,ES40,FBOX,FPCR,FRU,HW_MTPR,IIC,init,ipcr,IPR 0x2d,ISP mode,JIT,kIicBaseByModel,known gaps,MEMDSC,NXM,OpenVMS,PCHIP 1,QLogic ISP,release checkpoint,scatter-gather,SCSI,show dev,silicon mode,SMP,TIG,Tru64,V6,vector 0x660" />
+   <meta name="description" content="Release checkpoint = DS10 + DS20 + ES40 certified to the same boot milestone. All three reach P00&gt;&gt;&gt;, and that three-platform console gate is now a standing pre-commit..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "known-gaps.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR - Known Gaps</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?known-gaps.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="1_-introduction.html">1. Introduction</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR - Known Gaps</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--current-development-status--.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="version-administration.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Release checkpoint = DS10 + DS20 + ES40 certified to the same boot milestone. All three reach <span class="f_CodeExample">P00&gt;&gt;&gt;</span>, and that three-platform console gate is now a standing pre-commit requirement for any shared core, chipset, or device change; ES40 does not yet complete <span class="f_CodeExample">init</span>. IDs are stable handles: an ID is never reused, and a row is never deleted. When a gap closes, its row is replaced by a one-line TOMBSTONE in the Closed and retired IDs table below, carrying the close date and where the result went, so that a citation to the ID keeps resolving after the work is done.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Beyond the console, the current front is the guest operating system: OpenVMS Alpha V8.3 boots from the SCSI disk to its banner reliably on DS20 and its drivers initialize, the system volume mounts, and the boot reaches the DCL login prompt on the DS20. Rows G-28 through G-30 carry what remains on that front.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Severity legend. BLOCKER: on the ES40 boot/console path, gates the checkpoint. OPEN: unresolved contradiction to reconcile. GAP: fidelity or downstream, not blocking the prompt. REF: blocked on an absent primary source. DEFER: intentional deferral (silicon-mode / a later generation / post-prompt). PROV: a value is _PROVISIONAL.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">ID</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Sev</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Area</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Gap - what is missing / current state</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Blocks</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-01</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 SRM console commands almost entirely untested <span class="f_CodeExample">(show dev/config/mem, set/show env, examine/deposit, init, boot)</span>; no ES40 iteration history vs DS10/DS20.</p>
+<p class="p_Normal">Beta: execute each platform model, &nbsp;SRM&gt;&gt;&gt; set</p>
+<p class="p_Normal">display/</p>
+<p class="p_Normal">persist &nbsp;(requires a clean shutdown)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Release parity with DS10/DS20</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-02</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">init</span> not wired for ES40; <span class="f_CodeExample">P00&gt;&gt;&gt;init</span> faults with a non-existent-memory error via <span class="f_CodeExample">vector 0x660</span> (see G-10).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 checkpoint</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-03</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">VALIDATED. <span class="f_CodeExample">auto_action=BOOT</span> with a persisted <span class="f_CodeExample">bootdef_dev</span> drives a hands-off cold boot end to end (verified twice, 2026-08-20), and <span class="f_CodeExample">boot_osflags</span> is exercised by the conversational boots the crash-dump procedure uses. The load path carries OpenVMS to a login prompt on the DS20.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Any guest-OS boot</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-04</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC/FRU</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC controller base missing (<span class="f_CodeExample">kIicBaseByModel[ES40]</span>); <span class="f_CodeExample">build_power_hw</span> <span class="f_CodeExample">fopen(&quot;iic_system0&quot;/&quot;iic_system1&quot;)</span> cannot resolve, <span class="f_CodeExample">fread</span> fails, <span class="f_CodeExample">!status</span> aborts config.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_config</span> on ES40</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-05</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC/FRU</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC <span class="f_CodeExample">0x70/0x72</span> return <span class="f_CodeExample">0x00</span> (not faithful; SRM sees &quot;nothing present&quot;); FRU EEPROM reads <span class="f_CodeExample">0xA2/0xA4</span> in <span class="f_CodeExample">build_fru_root</span> are the likely next blocker.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Fidelity; next wall</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-06</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exec mode</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP-mode default =&gt; no real device discovery; <span class="f_CodeExample">dq_initialize</span> returns <span class="f_CodeExample">msg_failure</span> before IDENTIFY (confirmed mode-behavior (and consider that its real home is the execution-modes topic, as the worked example).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Device datapath / OS boot</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-07</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OPEN</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exec mode</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20 enumerates IDE under the ISP default even though the ISP gate is upstream of the Cypress special case; unreconciled against the <span class="f_CodeExample">ds20</span> (<span class="f_CodeExample">pc264</span>) binary.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Silicon-mode runs make the DS20-under-ISP anomaly sharper.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Trust in the ISP model</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-08</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exec mode</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Silicon-mode delays busy-wait on RSCC; <span class="f_CodeExample">krn$_micro_delay</span> returns immediately only in ISP mode, so silicon grinds. EmulatR models <span class="f_CodeExample">RSCC = cycleCount/5594</span>; the fix is a safe warp that advances <span class="f_CodeExample">cpu.cycleCount</span> COHERENTLY so RSCC crosses the limit and the spin exits. The surviving levers to build on are <span class="f_CodeExample">EMULATR_UDELAYWARP</span>, which advances only as far as the next timer edge so no boundary is skipped, and <span class="f_CodeExample">EMULATR_SPINSKIP</span>. The old warp family - <span class="f_CodeExample">EMULATR_IDLEWARP</span>, <span class="f_CodeExample">EMULATR_RSCCWARP</span> and the rest - was REMOVED on 1 August 2026 and is not available to re-enable; RSCCWARP is why the survivors are shaped this way, having jumped ticks and rewritten <span class="f_CodeExample">0x3c970</span> out-of-band for confirmed boot corruption. Gated <span class="f_CodeExample">EMULATR_PLATFORM=silicon</span>, discuss-before-code.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Silicon mode is now a live surface for the warp validation.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Silicon-mode completion</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-09</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">South bridge</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">REFERENCE BLOCK CLEARED - the ALi M1543C datasheet is now in the reference library, and PCI identities and legacy port decode are verified against it. What remains is behavioral: south-bridge configuration space above the identity header is stored but inert (IDE enable/disable, IDSEL relocation, interrupt routing and PIRQ steering have no effect), which is the prerequisite for wiring the IDE interrupt path (G-30).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Faithful bridge init; IDE interrupts</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Pchip</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PCHIP 1 CSR window undecoded (all regs read <span class="f_CodeExample">0x00000000FFFFFFFF</span>) -&gt; NXM on <span class="f_CodeExample">init</span> (HYPOTHESIS); needs a compile-gated PA probe. Pchip1 base <span class="f_CodeExample">0x801_C000_0000</span> _PROV (Pchip0 <span class="f_CodeExample">0x801_8000_0000</span>, stride <span class="f_CodeExample">0x4_0000_0000</span>).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">init</span> completion (G-02)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-11</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PROV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Memory</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_hwrpb</span> <span class="f_CodeExample">MEMDSC</span> 4GiB layout reached-but-unaudited; must lay four 1GB arrays (<span class="f_CodeExample">AAR0..3</span>), not one region, or a downstream memory walker underflows.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Latent walker underflow</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-12</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PROV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISA/IPR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">HW_MTPR</span> to reserved IPR index <span class="f_CodeExample">0x2d</span>; confirm the ignore-write is now faithful on ES40 and not merely masked (all 4 platforms fault; ES40 cascaded to <span class="f_CodeExample">DtbMissDouble</span>).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Confirm not masked</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-13</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">REFERENCE BLOCK CLEARED and the adapter is BUILT - this row no longer describes a missing file. The reference set is closed (ANSI X3.131-1994, the 53C895 data manual, the DEC SRM SCSI driver source, and the KZPBA guide), and an NCR 53C810 adapter with its SCRIPTS processor plus SCSI-2 disk and CD-ROM targets are modeled and audited. Residual fidelity items are individually ledgered: bus-device-reset and abort messages are accepted but not acted on, adapter identity/revision nibbles read zero, and the selection timeout is instantaneous rather than timed.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Error-recovery fidelity</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-15</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">REF</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PAL/console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 platform PAL/console source absent; exact <span class="f_CodeExample">CSERVE</span> semantics (<span class="f_CodeExample">0x44/0x45/0x46/0x65/0x66</span>), <span class="f_CodeExample">get_sysvar</span>/platform-detect path, and <span class="f_CodeExample">CSC</span> strap value unresolved.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40-specific init facts</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-16</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PROV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Topology</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 board BDF assignments _PROVISIONAL (DS10-derived); resolvable from an ES40 service manual or a <span class="f_CodeExample">PCICFG</span> trace.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Faithful device map</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-17</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP/FBOX</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Arithmetic leaf coverage is still partial and Tier 0 <span class="f_CodeExample">FPCR</span> / rounding-mode infrastructure is still owed. NOTE this row is NOT what blocked the VMS startup: that was the S/F FORMAT-CONVERSION helpers (LDS/STS/LDF/STF are architected BIT operations and were implemented as arithmetic re-encodes), fixed and accepted 2026-08-18 with static_assert gates so a conversion regression fails the build. READ THIS ROW TOGETHER WITH <a href="--floating-point-consideration.html" class="topiclink">Floating-Point Considerations</a>, which describes the same situation from the other end and can look like it disagrees: the COMPUTE BACKEND is complete - SoftFloatBackend implements the whole IEEE S/T and VAX F/G operation set over Berkeley SoftFloat, bit-identical across hosts - while what is partial is the WIRING of that backend into the individual FP grain leaves. Backend complete, integration in progress. This row stays open on the Tier 0 FPCR / rounding-mode work, not on the arithmetic itself.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OS boot (post-console)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-18</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DMA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Scatter-gather translation is now IMPLEMENTED and verified against the chipset manual (page-table walk, address composition, window-miss behavior) with unit tests, and device DMA is routed through it. It remains UNEXERCISED by real firmware: the console and the guest so far use direct-mapped windows, so the gather path has no live witness yet. Expect the OS-installer DMA-mapped path to be its first real consumer.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OS install (first live witness)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-19</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SMP/IPI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ipcr</span> modeled storage-only; cross-CPU IPI delivery and secondary-CPU start not functionally modeled (ES40/ES45 are multi-CPU).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OS SMP bring-up</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PROV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TIG</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">arb_rev=0</span> _PROVISIONAL (needs a real DS10 config dump); TIG snapshot is an assert-guarded defer; <span class="f_CodeExample">EMULATR_TIG_TRACE</span> guards the next unmodeled TIG register.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Fidelity</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-21</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">JIT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No JIT code generation. V6 is fidelity-first: the interpreter is the reference implementation and JIT is deferred behind it by design; <span class="f_CodeExample">jitLib</span> in the tree holds trivial examples only. The deferral condition -- a guest operating system booting -- has now been met (G-22), and a first execution profile has been measured to decide whether the JIT program proceeds. No throughput figures are published here until that decision is made.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(by design)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-22</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OS boot</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">End-to-end OpenVMS boot. LARGELY ACHIEVED on the DS20: a cold boot reaches the <span class="f_CodeExample">Username:</span> prompt unattended, and the startup behind it is healthy - system processes at real priorities, no WTTQE parking, QUEUE_MANAGER running, TCPIP up with an active interface, NCP SET EXECUTOR ALL returning, and an orderly SHUTDOWN completing. What remains depends on G-17 (floating point) and, for the multi-CPU machines, G-19 (SMP). Tru64 remains untried.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Milestone</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-23</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLOCKER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Boot</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RUN/STOP handling on the boot path; mechanism _PROVISIONAL - CPU RUN/STOP (console halt/continue, <span class="f_CodeExample">HWRPB</span> <span class="f_CodeExample">BIP/RC</span> handoff) and/or device RUN/STOP (controller start/stop bit in the boot driver). Future blocker once <span class="f_CodeExample">boot</span> is wired; trace to pin the mechanism before scoping.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span> handoff (G-03)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-24</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OPEN</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Silicon</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 does not yet initialize in silicon mode (<span class="f_CodeExample">EMULATR_PLATFORM=silicon</span>) -- outstanding diagnostic, active surface (not a deferral). Under warp the RSCC micro-delay spin now exits (G-08), but ES40 <span class="f_CodeExample">init</span> still does not complete on the silicon path; entangled with the ISP-path init blockers (G-02 / G-10) and the exec-mode reconciliation (G-06 / G-07). Needs an evidence-first trace of where silicon-mode init diverges before scoping a fix.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40 silicon-mode bring-up</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-25</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Config/CLI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unified configuration precedence not yet implemented. TODAY: built-in defaults &lt; <span class="f_CodeExample">Emulatr.ini</span> &lt; CLI (CLI wins) for shared tunables (firmware, memory). <span class="f_CodeExample">EMULATR_*</span> env vars are ORTHOGONAL -- most are ENV-only diagnostic/trace toggles; the two that overlap a CLI flag (<span class="f_CodeExample">--no-autoload</span> / <span class="f_CodeExample">EMULATR_NO_AUTOLOAD</span>, <span class="f_CodeExample">--autosnapshot</span> / <span class="f_CodeExample">EMULATR_AUTOSNAP</span>) are OR/AND-merged, not ranked. INTENDED: a single order <span class="f_CodeExample">ini &lt; CLI &lt; ENV</span> (ENV overrides both), by threading env reads through the same settings resolver as ini/CLI.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unified config override (intended)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-26</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Config/INI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RESOLVED - the rename has landed. The settings file is <span class="f_CodeExample">Emulatr.ini</span> (release versioning is handled by the directory tree / hive, not the filename), the loader searches for that name only (<span class="f_CodeExample">IniLoader::defaultSearchPaths</span>), and the shipped file is <span class="f_CodeExample">config/Emulatr.ini</span>. The doc topics that still named the old file were corrected on 2026-08-20. Note no back-compat fallback was kept: the old name is not in the search order at all, so a stale copy is simply ignored.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Filename cleanup (intended)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-28</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEFER</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No disconnect / reselection and no tagged command queuing. The adapter runs every command to completion without releasing the bus, which is self-consistent and adequate for a single initiator with one outstanding request, but it is not how the real chip behaves under a loaded multi-drive system. INTERLOCK, learned the hard way: the drive must not advertise the queuing capability until the adapter can actually honour it - claiming it while tag messages are silently discarded wedged the mount path for tens of thousands of operations. Advertise only when both halves land.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Concurrency; multi-drive load</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-29</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI / CD</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The virtual SCSI CD-ROM lags its disk sibling on protocol behaviour shared by both: it has no UNIT ATTENTION condition at all (so a media change is invisible to a running guest, and swapping an image under a mounted volume goes unannounced), pending sense is not cleared by an intervening successful command, an unsupported command does not record why it failed, and MODE SELECT is absent - the same command whose absence previously broke the disk boot path. Enumeration and console-era use are unaffected.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Booting or installing from CD media</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-30</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IDE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The IDE / ATAPI channel is a polled, read-only enumeration surface: no interrupt path (IRQ 14/15 are never driven), no write path (every write aborts), and no DMA. The no-DMA story is at least internally honest - the drive advertises no DMA capability, so a conforming driver stays in programmed I/O. Harmless while the system disk is SCSI; FATAL for any IDE-resident OS disk or install target, and the three pieces are interlocked and must land together. Blocked behind G-09.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IDE as a system disk (DS10)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-31</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">&gt;&gt;&gt; init is not verified to perform a reset boot. On a real DS20 it warm-resets the console (banner and device probe re-run), PRESERVES the environment variables, and then honors auto_action - so with bootdef_dev and auto_action set, init returns to the guest with no keystrokes. What EmulatR does instead is unrecorded. Distinct from G-02, which is the ES40-specific fault.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Hands-off reboot; beta test plan</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-32</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console / OS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest-initiated stop: behaviour observed, confirmation pending. On the current binary a VMS <span class="f_CodeExample">SHUTDOWN</span> taking the <span class="f_CodeExample">POWER_OFF</span> option was observed to exit EmulatR cleanly (HaltedClean), while a PLAIN shutdown halts back to <span class="f_CodeExample">&gt;&gt;&gt;</span> with the process still alive - both seen 2026-08-20. The SRM <span class="f_CodeExample">&gt;&gt;&gt; power off</span> command itself remains untested. Treat as observed-not-yet-confirmed; the ledger carries the evidence.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Fully hands-off boot-work-shutdown cycle</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Closed and retired IDs</span></h1>
+<p class="p_Normal">A gap that closes keeps its ID here. Nothing in this table is open work; it exists so that a reference to a retired ID -- in this guide, in a journal, or in a commit message -- still lands somewhere.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">ID</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Closed</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">What it was, and where the result went</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-14</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">before 2026-08-20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Retired under the earlier delete-on-close policy, and its text did not survive: no copy of this topic still holds the row, so what G-14 said cannot be stated here without inventing it. What is known is only its company - it is cited in the Notes below as one of the unmodeled-region gaps alongside G-05, G-10 and G-20, where a region that is not decoded answers with a plausible-looking value the firmware then branches on. This entry is the reason the policy changed.</p>
+<p class="p_Normal">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-27</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2026-08-20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The SCSI system disk never went VALID under OpenVMS, so the volume was never mounted and the boot could not proceed to a login prompt. CLOSED: the DS20 now mounts the system volume and boots through to the <span class="f_CodeExample">Username:</span> prompt unattended. The remaining guest-OS work moved to G-17 (floating point) and G-19 (SMP), with G-28 to G-30 covering SCSI concurrency, CD media and the IDE surface; the milestone itself is tracked by G-22.</p>
+<p class="p_Normal">&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">G-33</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2026-09-20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No host L2 backend was attached to the DE500 (21143), so nothing left the emulated machine: a guest could bring an interface up and configure an address with no reachability at all. CLOSED: EWA0 now bridges to a dedicated host adapter over libpcap/Npcap and is ON BY DEFAULT. The guest answers ARP, replies to ping, accepts inbound TELNET and FTP, and brings a DECnet circuit to <span class="f_CodeExample">State = On</span> with every one of its own error counters at zero. The receive path is proven for all three address classes -- unicast, broadcast and true multicast. What is carried but still UNTESTED moved to the release notes rather than back here: LAT, LAST/InfoServer, and the SCS traffic an OpenVMS Cluster runs on. Result: Networking (EWA0) in the release notes and topic 4.9 of this guide.</p>
+<p class="p_Normal">&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Notes</span></h1>
+<p class="p_Normal">Release-critical set (must clear for the DS10/DS20/ES40 console checkpoint): G-01, G-02, G-03, G-04, G-10, plus the G-07 reconciliation. Guest-OS-critical set: G-27 is CLOSED (OpenVMS reaches a login prompt and a full startup on DS20); what remains on that front is G-17 (floating-point leaf coverage) and G-19 (SMP / cross-CPU IPI), with G-28 to G-30 covering SCSI concurrency, CD media and the IDE surface.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Reference blocks cleared since the previous revision: G-09 (ALi M1543C datasheet) and G-13 (SCSI datasheets plus the DEC SRM driver source). Both rows were rewritten rather than deleted because a behavioural gap survives the reference arriving - the source was the blocker, not the whole gap. No ID has been reused.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Next probe (evidence-before-scope): a compile-gated NXM-address probe at the raise site to confirm or refute G-10 before any Pchip-decode edit lands.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Unifying failure mode across G-05/G-10/G-14/G-20: an unmodeled region returning a plausible-looking value (<span class="f_CodeExample">0x00</span> or <span class="f_CodeExample">0xFFFF...</span>) the firmware branches on, so the symptom surfaces far downstream from the defect. Every CSR the console reads must be decoded and faithful; INERT-TRUTHFUL store-through is allowed only where no consumer reads a side-effect.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Second failure mode, learned on the mount path and now standing doctrine (see G-28): a CAPABILITY CLAIM is not a label - it is an assertion the other side acts on. A wrong geometry value is inert until something reads it, but a wrong capability bit changes what the guest DOES. A device datasheet's feature list describes the silicon, not the model; advertise a capability only when the model can honour it end to end.</p>
+<p class="p_Normal">&nbsp;</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?known-gaps.html" target="_top">'+baseurl+'index.html?known-gaps.html</a></p>');
+
+</script>
+</body>
+</html>

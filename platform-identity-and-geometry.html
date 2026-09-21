@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>4. Operating EmulatR &gt; 4.1 Configuring &amp; Running &gt; Platform Identity &amp; Memory Geometry</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="--firmware,--mem,[System] model,argument resolution,clamp-and-continue,DS10,DS15,DS20,DS25,ES40,ES45,firmware stem,GAP-PLAT-001,JRN-PLATID-001,memory geometry,memorySize,model derivation,platform identity,platform latch,PLATFORM MISMATCH,silicon maximum,stem-wins,Titan 21274" />
+   <meta name="description" content="Two rules settle what machine EmulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "platform-identity-and-geometry.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Platform Identity &amp; Memory Geometry</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-identity-and-geometry.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">4.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Platform Identity &amp; Memory Geometry</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--configuring----------(moved-.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="4_1-configuring--running.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="--executing------------(moved).html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Two rules settle what machine EmulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the requested memory size is capped at what that model's silicon could physically hold.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The firmware stem names the model</span></h2>
+<p class="p_Normal">When <span class="f_CodeExample">--firmware</span> is given, the model is derived from the firmware stem's leading token -- the text before the first underscore, upcased. <span class="f_CodeExample">ds10_v7_3.exe</span> gives DS10. A recognized token overrides the <span class="f_CodeExample">[System] model</span> line in the ini, and the override is announced on stderr when the two disagree.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The recognized tokens are DS10, DS20, DS25, ES40 and ES45. With no <span class="f_CodeExample">--firmware</span>, or a leading token that names no known model, the ini model stands -- no guess is made. A vendor firmware revision inside the stem is not part of the identity, so <span class="f_CodeExample">ds20_v7_3_b.rom</span> still resolves to DS20.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Before this rule the platform had two identity channels. The manifest was already keyed to the firmware stem, but the model rode the ini -- so an ini reading <span class="f_CodeExample">model=DS20</span> launched with <span class="f_CodeExample">--firmware ds10_v7_3.exe</span> booted a DS10 device bus under a DS20 model. South-bridge selection, the capability latch and the memory-geometry expectations all followed the wrong machine, while the guest firmware badged itself from the DS10 IIC bus it actually probed. The platform latch reports that split as <span class="f_CodeExample">PLATFORM MISMATCH</span>; it stays in place as the second line of defense for firmware whose stem is unrecognized.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory is clamped to the silicon maximum</span></h2>
+<p class="p_Normal">A requested memory size larger than the modeled machine could physically hold is reset to that maximum, and the change is announced on stderr. The policy is clamp-and-continue rather than fail: the ini carries a single <span class="f_CodeExample">memorySize</span> shared by every model, and a DS10 run should not die because the ini was last tuned for an ES40.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Model</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Maximum guest memory</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Basis</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Webbrick, 4 DIMM slots</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS15</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Single EV68C, 1 GiB DIMMs (launcher-enforced only -- see below)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Tsunami 21272, four 1 GiB banks</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS25</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">16 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Titan 21274, 16 DIMM slots</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">32 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Model 2: 32 DIMMs at 8 per memory motherboard (Model 1: 16 DIMMs = 16 GiB)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES45</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">32 GiB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Titan 21274, 32 DIMMs (MS620 kits of 4, 512 MiB to 4 GiB)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">DS15 is in the table because the launcher enforces its ceiling, but the binary does not yet. EmulatR recognizes DS10, DS20, DS25, ES40 and ES45 in both its stem-token list and its clamp table, and DS15 is in neither, so a DS15 run takes its model from the ini and is not clamped inside the emulator at all -- the 4 GiB ceiling holds only because <span class="f_CodeExample">tools/emulatr_launch.sh</span> applies it before launch. Adding DS15 to those two tables closes the gap.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">These are BOX ceilings -- what the chassis holds in DIMMs -- not chipset addressing limits, and the two differ. Titan (21274), the core logic behind DS15, DS25 and ES45, addresses 32 GiB, so a DS25 clamped at 16 GiB is bounded by its 16 DIMM slots rather than by anything Titan cannot reach. The ES40 shows the same split from the other side: 32 GiB is the Model 2 figure, with 32 DIMMs at eight per memory motherboard, while Model 1 carries 16 DIMMs and tops out at 16 GiB. Where one model name covers both builds, the clamp table takes the larger figure, so it bounds the most capable machine of that name and leaves a smaller build of it unprotected.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Requests at or below the maximum pass through untouched -- the rule constrains the ceiling, not the floor. A size beneath the machine's minimum, or a geometry the firmware otherwise dislikes, remains the firmware's to reject, exactly as on real hardware.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why an oversized request is not simply a bigger machine</span></h2>
+<p class="p_Normal">An unsupported geometry does not run slowly and does not report an error. A DS10 -- real maximum 2 GiB -- handed 4 GiB churns its memory configuration indefinitely: past ten billion cycles with no console output after the early banner, alive but never converging, and landing in varied SRM init code rather than one identifiable loop.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">At 2 GiB the same binary, the same firmware and the same boot reach the memory banner (<span class="f_CodeExample">2048 Meg of system memory</span>), the PCI probe, LFU, the DS10 console banner and <span class="f_CodeExample">&gt;&gt;&gt;</span> within minutes. An unsupported geometry is not a bigger machine; it is an impossible one the firmware was never written to configure.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Resolution order</span></h2>
+<p class="p_Normal">Each setting is resolved in this order, highest priority first:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Setting</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Resolved from</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">firmware path</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--firmware</span>, else the ini <span class="f_CodeExample">[ROM] firmwareImage</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">model</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the firmware stem, if its leading token is recognized; else the ini <span class="f_CodeExample">[System] model</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">memory requested</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--mem</span>, else the ini <span class="f_CodeExample">[System] memorySize</span>, else 64 MiB</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">memory granted</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the lesser of the request and the model's silicon maximum</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">All four are settled before the machine is constructed, so every downstream consumer -- the chipset and the Cchip address-array registers among them -- sees the clamped value rather than the request.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What these rules do not do</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">Neither rule overrides the platform manifest.</span> <span class="f_CodeExample">EMULATR_PLATFORM_CONFIG</span> still points the manifest wherever an experiment needs it. The model still follows the stem, and the latch still reports a hybrid combination rather than accepting one silently -- an experiment may want a hybrid, but it must not get one by accident.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The clamp is a ceiling, not geometry validation. DIMM interleave legality, array counts and alignment are not checked -- only the total size. Faithful geometry modelling, of the kind the ES40 banner reports, is future work.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Neither rule changes emulated behavior. Both act at argument resolution, before the machine exists, so there is no snapshot, oracle or determinism impact.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--configuring----------(moved-.html" class="topiclink">Configuring</a></p>
+<p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
+<p class="p_Normal"><a href="platform-memory-reference.html" class="topiclink">Platform Memory Reference</a></p>
+<p class="p_Normal"><a href="command-line-options.html" class="topiclink">Command Line Options</a></p>
+<p class="p_Normal"><a href="--memory----------------------.html" class="topiclink">Memory</a></p>
+<p class="p_Normal"><a href="show-memory.html" class="topiclink">show memory</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?platform-identity-and-geometry.html" target="_top">'+baseurl+'index.html?platform-identity-and-geometry.html</a></p>');
+
+</script>
+</body>
+</html>

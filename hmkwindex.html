@@ -1,0 +1,1762 @@
+﻿<!DOCTYPE html>
+<html><head>
+   <title>EmulatR User and Developer Reference</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="robots" content="noindex,follow" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ 
+   <!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet" />
+
+   <script type="text/javascript">isIE=false</script>
+   <!--[if IE]>
+   <script type="text/javascript">isIE=true</script>
+   <![endif]-->
+
+   <!--HM_KEYWORD_INDEX_AS_LIST-->
+   <style type="text/css">
+       body { 
+        margin: 0; 
+        padding: 0; 
+        width: 100%;
+        height: 100%;
+        }
+       #keyword_entry_div {
+       	position: absolute;
+       	left: 5px;
+       	top: 5px;
+       	right: 5px;
+       	} 
+       #keyword_entry_div p {
+       	font-weight: bold;
+       }
+       #keyword_list_div {
+       	position: absolute;
+       	left: 5px;
+       	top: 45px;
+       	right: 5px;
+       	bottom: 5px;
+       	padding:0;
+       	} 
+       #keyword_entry {
+       	border: 1px solid silver;
+       	width: 100px;
+       	}
+       #keyword_list {
+       	border: 1px solid silver;
+       	width: 100%;
+      	height: 100%; 
+       	}
+       #keyword_menu {
+        display: none;
+	background: #fff;
+       	border: 1px solid silver;
+	padding: 10px;
+	box-shadow: 4px 4px 8px #888;
+	border-radius: 6px 6px;
+       	}
+       #keyword_menu a {
+       	display: block;
+        text-decoration: none;
+	color: #000;
+	padding: 2px 2px 2px 18px;
+	background: url(hm-keyword-page-icon.png) 2px 2px no-repeat;
+       	}
+       #keyword_menu a:hover {
+       	background: #2C5D88 url(hm-keyword-page-icon.png) 2px 2px no-repeat;
+        text-decoration: none;
+	color: #fff;
+       	}               
+       #keyword_menu_no_entry {
+        display: none;
+	background: #fff;
+       	border: 1px solid silver;
+	padding: 5px;
+	box-shadow: 4px 4px 8px #888;
+	border-radius: 6px 6px;
+	width: 50%;
+	font-size:1em;
+       }
+   </style>       
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){
+     var parentScope = (parent.hmNavigationFrame);
+     if (parentScope) parent.currentNav("index");
+	$("a[target='hmcontent']").on("click",function(event){
+		$("p.hilite").removeClass("hilite");
+		$(this).parent("p").addClass("hilite");
+		if (parentScope)
+			window.parent.showNav("toggle");
+		});
+        });
+   </script>
+   <script type="text/javascript" src="hmcontextids.js"></script>
+</head>
+<body>
+<div id="keyword_menu"></div>
+<div id="keyword_menu_no_entry">To locate information about this keyword, please select one of the subentries in the list.</div>
+<div id="keyword_entry_div"><p>Enter value</p><input type="text" id="keyword_entry" onkeyup="keywordEntryKey()" /></div>
+<div id="keyword_list_div">
+  <select id="keyword_list" size="2">
+  <option value="'Feature Matrix','--feature-matrix.html','Snapshot Operations','--automatic-_-creating-_-resto.html'">.axpsnap</option>
+  <option value="firmware-images-exe-and-rom.html">.exe</option>
+  <option value="firmware-images-exe-and-rom.html">.rom</option>
+  <option value="'Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Platform Execution','platform-execution.html'">[System] model</option>
+  <option value="running-from-a-run-directory.html">_emulatr_runenv.sh</option>
+  <option value="'trace_halt','trace_halt.html','V1.6 (Beta)','releasenotesv1_6-.html'">&gt;&gt;&gt;</option>
+  <option value="ali-m1543c-south-bridge-interf.html">0x10B9</option>
+  <option value="ali-m1543c-south-bridge-interf.html">0x1533</option>
+  <option value="warp-variants-and-cycle-accoun.html">0x3c970</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html'">0xBFFC</option>
+  <option value="'Connecting to the Console','--connecting-to-the-console.html','Configuring','--configuring----------(moved-.html'">10023</option>
+  <option value="show-memory.html">1024 MB</option>
+  <option value="de500-ethernet-21143.html">21143</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Overview','--overview--------------------.html','Appendix - DS10','--appendix---ds10.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html'">21264</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html'">21264A</option>
+  <option value="platform-memory-reference.html">21264C</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Current Platform Support','--current-platform-support.html','show config','show-config.html','Overview','--overview--------------------.html','Chipset','chipset.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Appendix - DS10','--appendix---ds10.html','Platform Memory Reference','platform-memory-reference.html'">21272</option>
+  <option value="--example---performance.html">21272 Tsunami</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html'">21272-CA</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html'">21272-DA</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html'">21272-EA</option>
+  <option value="'Chipset','chipset.html','DECchip 21274 (Titan)','decchip-21274-(titan).html','Platform Memory Reference','platform-memory-reference.html'">21274</option>
+  <option value="diagnostic-instrumentation.html">264DP</option>
+  <option value="clock-frequency-mhz.html">268 MHz</option>
+  <option value="testing-supported-cest-cases.html">53C810</option>
+  <option value="82077-controller_.html">82077</option>
+  <option value="82077-controller_.html">82077AA</option>
+  <option value="5_8-comjit.html">AAPCS64</option>
+  <option value="--memory----------------------.html">AAR</option>
+  <option value="testing-supported-cest-cases.html">AAR0</option>
+  <option value="testing-supported-cest-cases.html">AAR1</option>
+  <option value="testing-supported-cest-cases.html">AAR2</option>
+  <option value="testing-supported-cest-cases.html">AAR3</option>
+  <option value="hwrpb---ds20.html">AARM Table 26-1</option>
+  <option value="hwrpb---ds20.html">AARM Table 26-4</option>
+  <option value="testing-supported-cest-cases.html">ABT</option>
+  <option value="testing-supported-cest-cases.html">ABW</option>
+  <option value="testing-supported-cest-cases.html">ACL</option>
+  <option value="networking-ewa0.html">adapter</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','Windows Registry Settings','--windows-registry-settings.html'">Add Existing</option>
+  <option value="installing-with-the-windows-installer.html">Add/Remove Programs</option>
+  <option value="decchip-21274-(titan).html">AGP</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','South Bridge','southbridge.html','ALi M1543C South-Bridge Interface','ali-m1543c-south-bridge-interf.html'">ALi M1543C</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">ALi M5229</option>
+  <option value="ali-m1543c-south-bridge-interf.html">AliM1543C</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Overview','--overview--------------------.html','Glossary','--glossary--------------------.html'">Alpha AXP</option>
+  <option value="--supported-systems.html">Alpha EV6</option>
+  <option value="'SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html','phase1_dispatch_gate','phase1-dispatch-gate.html'">AlphaCpuAgent</option>
+  <option value="testing-supported-cest-cases.html">AlphaPte::makeValid</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Platform Appendices','8_1-platform-appendices.html','Platform Memory Reference','platform-memory-reference.html'">AlphaServer</option>
+  <option value="'Supported Systems','--supported-systems.html','Appendix - DS10','--appendix---ds10.html'">AlphaServer DS10</option>
+  <option value="'Successful Boot to SRM (per platform)','boot-transcripts.html','Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html'">AlphaServer DS20</option>
+  <option value="boot-transcripts.html">AlphaServer ES40</option>
+  <option value="testing-supported-cest-cases.html">Am29F016</option>
+  <option value="5_8-comjit.html">AMD64 ABI</option>
+  <option value="analyze_retire_trace.html">analyze_retire_trace</option>
+  <option value="--ghidra.html">analyzeHeadless</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Source Cross Reference','boot-sequences.html'">apisrm</option>
+  <option value="decchip-21274-(titan).html">A-port</option>
+  <option value="8_-appendices---developer-refe.html">appendices</option>
+  <option value="5_8-comjit.html">Apple Silicon</option>
+  <option value="'Supported Systems','--supported-systems.html','Memory','--memory----------------------.html'">arbiter</option>
+  <option value="warp-variants-and-cycle-accoun.html">architectural CC</option>
+  <option value="goals--objectives.html">architectural correctness</option>
+  <option value="5_-architecture--internals----.html">architecture</option>
+  <option value="platform-identity-and-geometry.html">argument resolution</option>
+  <option value="terms-of-use.html">as is</option>
+  <option value="--development-conventions.html">ASCII</option>
+  <option value="testing-supported-cest-cases.html">ASIZ</option>
+  <option value="'Addressing &amp; TLB','--addressing--tlb.html','Supported Test Cases','testing-supported-cest-cases.html'">ASM</option>
+  <option value="'Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html','Supported Test Cases','testing-supported-cest-cases.html'">ASN</option>
+  <option value="terms-of-use.html">assumption of risk</option>
+  <option value="testing-supported-cest-cases.html">AST</option>
+  <option value="testing-supported-cest-cases.html">ASTEN</option>
+  <option value="testing-supported-cest-cases.html">ASTER</option>
+  <option value="testing-supported-cest-cases.html">ASTRR</option>
+  <option value="mkdisk.html">ATA</option>
+  <option value="--create-guest-disk-storage---.html">ATA disk</option>
+  <option value="--virtual-disk-images.html">ATA fixed disk</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Feature Matrix','--feature-matrix.html','show device','show-device.html','Storage','4_4-storage.html','Storage Interconnect and Fabric','--storage-interconnect-and-fab.html','Virtual CDROM (dqa1)','--virtual-cdrom.html','Supported Test Cases','testing-supported-cest-cases.html','v2.0','releasenotesv2_0-.html'">ATAPI</option>
+  <option value="--atapi-devices.html">ATAPI signature</option>
+  <option value="--virtual-cdrom.html">atapi_cdrom</option>
+  <option value="platform-execution-mode-isp-(e.html">AtaTaskfileEngine</option>
+  <option value="6_-reference------------------.html">attributions</option>
+  <option value="examples---json.html">audited</option>
+  <option value="help--manual.html">authoring tool</option>
+  <option value="boot-sequences.html">authority tiers</option>
+  <option value="platform-execution.html">auto_*.axpsnap</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','boot','boot.html','SRM Environment Variables','--srm-environment-variables.html','Guest Boot','4_7-guest-boot----------------.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html'">auto_action</option>
+  <option value="booting-from-an-iso-image.html">AUTOGEN</option>
+  <option value="--automatic-_-creating-_-resto.html">autoload-newest</option>
+  <option value="4_6-firmware-update-utility-(l.html">auto-response</option>
+  <option value="'Launching EmulatR','--launching-emulatr.html','Running EmulatR from the Shell','running-from-the-shell.html','Executing','--executing------------(moved).html','Command Line Options (EmulatR)','command-line-options.html','Snapshot Operations','--automatic-_-creating-_-resto.html'">--autosnapshot</option>
+  <option value="'Host Decompressor','host-decompressor.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Source Cross Reference','boot-sequences.html'">AXPBox</option>
+  <option value="'Boot Acceleration - Entry Snapshot','--boot-acceleration-entry-snap.html','Execution Matrix (Models x Modes)','execution-matrix.html','snapmap','snapmap.html'">axpsnap</option>
+  <option value="booting-from-an-iso-image.html">AXPVMS</option>
+  <option value="--system-disk-configuration.html">b dka0</option>
+  <option value="'Current Development Status','--current-development-status--.html','System Disk Configuration','--system-disk-configuration.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html'">b dqa1</option>
+  <option value="tsunami-error-chain.html">b_error</option>
+  <option value="'SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">Bachman diagram</option>
+  <option value="running-from-the-shell.html">background process</option>
+  <option value="terms-of-use.html">backup</option>
+  <option value="'Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html','v2.0','releasenotesv2_0-.html'">badge</option>
+  <option value="'Appendix - DS10','--appendix---ds10.html','Supported Test Cases','testing-supported-cest-cases.html'">BAR</option>
+  <option value="--create-guest-disk-storage---.html">bare image</option>
+  <option value="running-from-the-shell.html">bash</option>
+  <option value="time-of-year-clock-toy.html">battery</option>
+  <option value="--supported-systems.html">Bcache</option>
+  <option value="testing-supported-cest-cases.html">BCD</option>
+  <option value="--floating-point-consideration.html">Berkeley SoftFloat</option>
+  <option value="'Installing with the Windows Installer','installing-with-the-windows-installer.html','V1.6 (Beta)','releasenotesv1_6-.html'">beta</option>
+  <option value="--windows-registry-settings.html">binaryConfig</option>
+  <option value="--create-guest-disk-storage---.html">blank-4G</option>
+  <option value="'EMULATR_BLOCK_MAX','block-max-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">Block</option>
+  <option value="execution-pipeline.html">Block cache</option>
+  <option value="releasenotesv2_0-.html">block execution</option>
+  <option value="execution-pipeline.html">Block executor</option>
+  <option value="examples---json.html">BLOCK_MAX</option>
+  <option value="'EMULATR_BLOCK_MAX','block-max-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">BlockCache</option>
+  <option value="known-gaps.html">blocker</option>
+  <option value="'EMULATR_BLOCK_MAX','block-max-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">BlockExecutor</option>
+  <option value="'SRM Console','4_3-srm-console.html','Common Commands','--common-commands.html','boot','boot.html','Guest Boot','4_7-guest-boot----------------.html','launch_vms_boot','launch_vms_boot.html'">boot</option>
+  <option value="srm-boot-call-stack.html">boot call stack</option>
+  <option value="known-gaps.html">boot flags</option>
+  <option value="testing.html">boot gate</option>
+  <option value="--current-development-status--.html">boot milestone</option>
+  <option value="--halt-button-is-in_-boot-not-.html">BOOT NOT POSSIBLE</option>
+  <option value="7_-troubleshooting------------.html">boot problems</option>
+  <option value="'Example - Performance','--example---performance.html','Successful Boot to SRM (per platform)','boot-transcripts.html'">boot transcript</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','boot','boot.html','SRM Environment Variables','--srm-environment-variables.html','Guest Boot','4_7-guest-boot----------------.html'">boot_osflags</option>
+  <option value="reset-into-secondary-boot.html">boot0</option>
+  <option value="'boot','boot.html','SRM Environment Variables','--srm-environment-variables.html','Guest Boot','4_7-guest-boot----------------.html'">bootdef_dev</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Booting/Configure A New OpenVMS Instance from an ISO','booting-from-an-iso-image.html'">Booting, ISO Image</option>
+  <option value="reset-into-secondary-boot.html">bootstrap handoff</option>
+  <option value="booting-from-an-iso-image.html">BOOTUPGRADE</option>
+  <option value="'Goals &amp; Objectives','goals--objectives.html','Glossary','--glossary--------------------.html'">Box</option>
+  <option value="'Overview','--overview--------------------.html','Execution / Boot Internals','--execution-_-boot-internals.html'">BoxResult</option>
+  <option value="networking-ewa0.html">bridge</option>
+  <option value="'./tools/build_emulatr_diag.bat','__tools_build_emulatr_diag_bat.html','Bring-Up Probes (EMULATR_BRINGUP_PROBES)','bring-up-probes.html'">bring-up probes</option>
+  <option value="releasenotesv1_6-.html">bugcheck</option>
+  <option value="'Installation','2_-installation.html','./tools/build_emulatr_diag.bat','__tools_build_emulatr_diag_bat.html','Qt Creator','qt-creator.html','script','script.html','build_test_run','build_test_run2.html'">build</option>
+  <option value="running-from-a-run-directory.html">build of record</option>
+  <option value="run-directory-contents.html">build output</option>
+  <option value="--required-tools--frameworks.html">build prerequisites</option>
+  <option value="host-decompressor.html">build.sh</option>
+  <option value="__tools_build_emulatr_diag_bat.html">build_emulatr_diag.bat</option>
+  <option value="diagnostic-instrumentation.html">build_hwrpb</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Supported Test Cases','testing-supported-cest-cases.html'">build_power_hw</option>
+  <option value="build_test_run2.html">build_test_run</option>
+  <option value="phase1-dispatch-gate.html">byte-identical</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Dependencies','--dependencies----------------.html'">C++20</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html'">CAFEBEEF</option>
+  <option value="examples---json.html">calibrated delay</option>
+  <option value="clock-frequency-mhz.html">calibration</option>
+  <option value="software-verify.html">call graph</option>
+  <option value="--memory-map--iprs.html">CALL_PAL</option>
+  <option value="--clean-shutdown.html">CALL_PAL HALT</option>
+  <option value="pipeline-execution-(internals).html">canAcceptInterrupt</option>
+  <option value="--addressing--tlb.html">canonical VA</option>
+  <option value="testing-supported-cest-cases.html">canRead</option>
+  <option value="testing-supported-cest-cases.html">canWrite</option>
+  <option value="'Logging Subsystems (EmulatR)','emulatr-subsystems.html','Overview','--overview--------------------.html'">CBox</option>
+  <option value="testing-supported-cest-cases.html">cBox::execEcb</option>
+  <option value="testing-supported-cest-cases.html">cBox::execExcb</option>
+  <option value="testing-supported-cest-cases.html">cBox::execMb</option>
+  <option value="testing-supported-cest-cases.html">cBox::execTrapb</option>
+  <option value="testing-supported-cest-cases.html">cBox::execWmb</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','show config','show-config.html','Overview','--overview--------------------.html','Memory','--memory----------------------.html','Chipset','chipset.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Supported Test Cases','testing-supported-cest-cases.html'">Cchip</option>
+  <option value="platform-memory-reference.html">C-chip</option>
+  <option value="--iso-9660-pfd-(cd001).html">CD001</option>
+  <option value="testing-supported-cest-cases.html">CDB</option>
+  <option value="booting-from-an-iso-image.html">CDSA</option>
+  <option value="--floating-point-consideration.html">cfenv</option>
+  <option value="'Release Notes','release-notes.html','V1.6 (Beta)','releasenotesv1_6-.html','v2.0','releasenotesv2_0-.html'">changelog</option>
+  <option value="testing.html">CHECK</option>
+  <option value="testing-supported-cest-cases.html">CheckCondition</option>
+  <option value="'Chipset','chipset.html','build_test_run','build_test_run2.html'">chipset</option>
+  <option value="snapmap.html">chipset block</option>
+  <option value="emulatr-subsystems.html">ChipsetCsr</option>
+  <option value="boot-sequences.html">chipsetLib</option>
+  <option value="testing-supported-cest-cases.html">ChipsetVariantInfo</option>
+  <option value="platform-identity-and-geometry.html">clamp-and-continue</option>
+  <option value="'Clean Shutdown','--clean-shutdown.html','Env Vars, Shutdown &amp; Known Limitations','--env-vars-operation-ref-_-kil.html'">clean shutdown</option>
+  <option value="command-line-options.html">CLI</option>
+  <option value="--floating-point-consideration.html">CLRFEN</option>
+  <option value="'Installation','2_-installation.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Building from Source','--building-from-source.html','Dependencies','--dependencies----------------.html','Running from a Run Directory','running-from-a-run-directory.html','Qt Creator','qt-creator.html'">CMake</option>
+  <option value="8_2-subsystem-internals-------.html">CMake guards</option>
+  <option value="--cmake-macro-guards----------.html">CMake option</option>
+  <option value="bring-up-probes.html">CMakeCache</option>
+  <option value="time-of-year-clock-toy.html">CMOS</option>
+  <option value="srm-boot-call-stack.html">CNS__WORK_REQUEST</option>
+  <option value="'Subsystem Internals','8_2-subsystem-internals-------.html','grainFactoryLib','--grainfactorylib.html'">codegen</option>
+  <option value="'3. Quick Start','3_-quick-start----------------.html','Launching EmulatR','--launching-emulatr.html','Executing','--executing------------(moved).html','Execution Flight Plan','--execution-flight-plan-------.html','Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Platform Execution','platform-execution.html','launch_vms_boot','launch_vms_boot.html','run_fw.sh','run_fw_sh.html'">cold boot</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','SRM Environment Variables','--srm-environment-variables.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html','Supported Test Cases','testing-supported-cest-cases.html'">COM1</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html','Supported Test Cases','testing-supported-cest-cases.html'">COM2</option>
+  <option value="running-from-the-shell.html">command line</option>
+  <option value="command-line-options.html">command line options</option>
+  <option value="command-line-options.html">command-line</option>
+  <option value="license.html">commercial license</option>
+  <option value="goals--objectives.html">commit point</option>
+  <option value="bring-up-probes.html">compile gate</option>
+  <option value="--cmake-macro-guards----------.html">compile guard</option>
+  <option value="testing-supported-cest-cases.html">composeIsum</option>
+  <option value="testing-supported-cest-cases.html">composeIsumSw</option>
+  <option value="decompressor-internals.html">compressed firmware</option>
+  <option value="testing-supported-cest-cases.html">computeVaForm</option>
+  <option value="'Configuring &amp; Running','4_1-configuring--running.html','Executing Two Instances','--executing-two-instances.html'">concurrent instances</option>
+  <option value="running-from-a-run-directory.html">CONFIG</option>
+  <option value="platform-execution.html">config/Emulatr.ini</option>
+  <option value="'Building from Source','--building-from-source.html','82077 Floppy Controller','82077-controller_.html'">CONFIGURE</option>
+  <option value="'Operating EmulatR','4_-operating-emulatr----------.html','Configuring &amp; Running','4_1-configuring--running.html'">configuring</option>
+  <option value="'Terminal Clients','--putty-_-plink-_-teraterm-_-m.html','Console Connection Issues','--console-connection-issues---.html'">connection refused</option>
+  <option value="'Connecting to the Console','--connecting-to-the-console.html','Operating EmulatR','4_-operating-emulatr----------.html','Console Connectivity','4_2-console-connectivity.html','Console Support','--console-support------(moved-.html','SRM Console','4_3-srm-console.html','Troubleshooting','7_-troubleshooting------------.html'">console</option>
+  <option value="per-cpu-halt-codes.html">console entry</option>
+  <option value="firmware-images-exe-and-rom.html">console image</option>
+  <option value="running-from-the-shell.html">console log</option>
+  <option value="releasenotesv2_0-.html">console MHz</option>
+  <option value="'TCP Console Overview','--tcp-console-overview.html','EmulatR will not start','--emulatr-will-not-start.html'">console port</option>
+  <option value="--tcp-console-overview.html">console server</option>
+  <option value="--es40-tig-module-reset.html">console_restart</option>
+  <option value="--development-conventions.html">conventions</option>
+  <option value="4_7-guest-boot----------------.html">conversational boot</option>
+  <option value="license.html">copyright</option>
+  <option value="'show config','show-config.html','Chipset','chipset.html'">core logic</option>
+  <option value="boot-sequences.html">coreLib</option>
+  <option value="testing-supported-cest-cases.html">CPC</option>
+  <option value="--feature-matrix.html">CPU pipeline</option>
+  <option value="--configuring----------(moved-.html">cpuCount</option>
+  <option value="testing-supported-cest-cases.html">CPUID</option>
+  <option value="boot-sequences.html">cpuLib</option>
+  <option value="srm-boot-call-stack.html">cpuSlot</option>
+  <option value="testing-supported-cest-cases.html">CPU-START</option>
+  <option value="'Overview','--overview--------------------.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">CpuState</option>
+  <option value="smp-(multiprocessor)-design.html">CpuState.h</option>
+  <option value="releasenotesv1_6-.html">crash dump</option>
+  <option value="--create-guest-disk-storage---.html">create_if_missing</option>
+  <option value="testing-supported-cest-cases.html">CSC</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','SRM Boot Call-Stack','srm-boot-call-stack.html','Supported Test Cases','testing-supported-cest-cases.html'">CSERVE</option>
+  <option value="reset-into-secondary-boot.html">CSERVE START</option>
+  <option value="palcode-platform-bases.html">CSERVE$CALLBACK</option>
+  <option value="palcode-platform-bases.html">CSERVE$CLEAR_HWE</option>
+  <option value="'PALcode Platform Bases','palcode-platform-bases.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">CSERVE$HALT</option>
+  <option value="'PALcode Platform Bases','palcode-platform-bases.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">CSERVE$IIC_WRITE</option>
+  <option value="palcode-platform-bases.html">CSERVE$JUMP_TO_ARC</option>
+  <option value="palcode-platform-bases.html">CSERVE$LDBP</option>
+  <option value="palcode-platform-bases.html">CSERVE$LDLP</option>
+  <option value="palcode-platform-bases.html">CSERVE$MP_WORK_REQUEST</option>
+  <option value="palcode-platform-bases.html">CSERVE$MTPR_EXC_ADDR</option>
+  <option value="palcode-platform-bases.html">CSERVE$SET_HWE</option>
+  <option value="'PALcode Platform Bases','palcode-platform-bases.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">CSERVE$START</option>
+  <option value="palcode-platform-bases.html">CSERVE$STBP</option>
+  <option value="palcode-platform-bases.html">CSERVE$STLP</option>
+  <option value="'PALcode Platform Bases','palcode-platform-bases.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">CSERVE$WHAMI</option>
+  <option value="palcode-platform-bases.html">CSERVE__CALLBACK</option>
+  <option value="palcode-platform-bases.html">CSERVE__START</option>
+  <option value="de500-ethernet-21143.html">CSR0</option>
+  <option value="de500-ethernet-21143.html">CSR5</option>
+  <option value="de500-ethernet-21143.html">CSR9</option>
+  <option value="releasenotesv1_6-.html">Ctrl/P</option>
+  <option value="--loading-firmware.html">current directory</option>
+  <option value="testing-supported-cest-cases.html">CVT</option>
+  <option value="testing-supported-cest-cases.html">CVTTQ</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Storage','4_4-storage.html','ATAPI Devices','--atapi-devices.html','IDE Devices','--ide-devices.html','Storage Interconnect and Fabric','--storage-interconnect-and-fab.html','Cypress','cypress.html','CY82C693','cy82c693-.html','Supported Test Cases','testing-supported-cest-cases.html','v2.0','releasenotesv2_0-.html'">CY82C693</option>
+  <option value="show-device.html">CY82C693 IDE</option>
+  <option value="'CY82C693','cy82c693-.html','Supported Test Cases','testing-supported-cest-cases.html'">Cy82C693Ide</option>
+  <option value="cy82c693-.html">Cy82C693IsaBridge</option>
+  <option value="clock-frequency-mhz.html">cycle counter</option>
+  <option value="hwrpb---ds20.html">cycle counter frequency</option>
+  <option value="'Clock Frequency and the MHz Reading','clock-frequency-mhz.html','WARP Variants and Cycle-Accounting for Reported CPU Speed','warp-variants-and-cycle-accoun.html'">cycle_count_freq</option>
+  <option value="warp-variants-and-cycle-accoun.html">cycleCount</option>
+  <option value="testing-supported-cest-cases.html">CycleInjector::runCycles</option>
+  <option value="examples---json.html">cycles_skipped</option>
+  <option value="'Cypress','cypress.html','CY82C693','cy82c693-.html'">Cypress</option>
+  <option value="'Supported Systems','--supported-systems.html','Current Development Status','--current-development-status--.html','Example - Performance','--example---performance.html','show config','show-config.html'">Cypress 82C693</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Overview','--overview--------------------.html','South Bridge','southbridge.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Appendix - DS10','--appendix---ds10.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html'">Cypress CY82C693</option>
+  <option value="testing-supported-cest-cases.html">Cypress ISA bridge</option>
+  <option value="--evaluate-address.html">d command</option>
+  <option value="--example-(console)-execution.html">d pmem</option>
+  <option value="testing-supported-cest-cases.html">DAT</option>
+  <option value="'First Startup','--first-startup.html','Time-of-Year Clock (TOY)','time-of-year-clock-toy.html'">date prompt</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Overview','--overview--------------------.html','Chipset','chipset.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Supported Test Cases','testing-supported-cest-cases.html'">Dchip</option>
+  <option value="platform-memory-reference.html">D-chip</option>
+  <option value="booting-from-an-iso-image.html">DCL&gt;Show User</option>
+  <option value="post-flash.html">ddb_startup()</option>
+  <option value="'4.9 Networking (EWA0)','networking-ewa0.html','DE500 Ethernet (21143 Tulip)','de500-ethernet-21143.html','Appendix - DS10','--appendix---ds10.html','v2.0','releasenotesv2_0-.html'">DE500</option>
+  <option value="de500-ethernet-21143.html">de500_tulip</option>
+  <option value="platform-execution.html">debug</option>
+  <option value="de500-ethernet-21143.html">DEC 21143</option>
+  <option value="--what-is-emulatr.html">DEC Alpha</option>
+  <option value="--create-guest-disk-storage---.html">dec_disk_media_types</option>
+  <option value="booting-from-an-iso-image.html">DECnet</option>
+  <option value="--dispatchtables.html">decode</option>
+  <option value="pipeline-execution-(internals).html">DecodedICache</option>
+  <option value="'Host Decompressor','host-decompressor.html','Decompressor Internals','decompressor-internals.html'">decom.c</option>
+  <option value="decompile_ds10.html">decompile</option>
+  <option value="decompile_ds10.html">decompile_ds10</option>
+  <option value="--ghidra.html">decompile_ds10.sh</option>
+  <option value="--ghidra.html">decompiler</option>
+  <option value="--ghidra.html">DecompileToDir.java</option>
+  <option value="--firmware-decode--decompressi.html">decompress</option>
+  <option value="alpha_diasm.html">decompressed.bin</option>
+  <option value="host-decompressor.html">decompressed_ds10_v7_3.bin</option>
+  <option value="'Architecture &amp; Internals','5_-architecture--internals----.html','Execution Flight Plan','--execution-flight-plan-------.html'">decompression</option>
+  <option value="firmware-images-exe-and-rom.html">decompressor</option>
+  <option value="'8.3 Architecture Deep-Dives','8_3-architecture-deep-dives---.html','Appendices - Developer Reference','8_-appendices---developer-refe.html'">deep-dive</option>
+  <option value="6_-reference------------------.html">dependencies</option>
+  <option value="'&gt;&gt;&gt; Evaluate Address','--evaluate-address.html','Supported Test Cases','testing-supported-cest-cases.html'">deposit</option>
+  <option value="pipeline-execution-(internals).html">Desc</option>
+  <option value="'Goals &amp; Objectives','goals--objectives.html','Boot Acceleration - Entry Snapshot','--boot-acceleration-entry-snap.html','Time-of-Year Clock (TOY)','time-of-year-clock-toy.html'">determinism</option>
+  <option value="testing-supported-cest-cases.html">DeterministicMemory</option>
+  <option value="1_-introduction.html">developer</option>
+  <option value="8_3-architecture-deep-dives---.html">developer lens</option>
+  <option value="8_-appendices---developer-refe.html">developer reference</option>
+  <option value="--current-development-status--.html">development status</option>
+  <option value="8_4-tools.html">development tools</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">device discovery</option>
+  <option value="platform-execution-mode-isp-(e.html">device enumeration</option>
+  <option value="boot-sequences.html">deviceLib</option>
+  <option value="testing-supported-cest-cases.html">DEVSUP</option>
+  <option value="diag_halt_irq4.html">diag_halt_irq4</option>
+  <option value="--cmake-macro-guards----------.html">diagnostic build</option>
+  <option value="emulatr-subsystems.html">diagnostic logging</option>
+  <option value="'Operating EmulatR','4_-operating-emulatr----------.html','Logging &amp; Diagnostics','4_8-logging--diagnostics.html','script','script.html'">diagnostics</option>
+  <option value="goals--objectives.html">differential validation</option>
+  <option value="testing-supported-cest-cases.html">DIM</option>
+  <option value="platform-memory-reference.html">DIMM</option>
+  <option value="testing-supported-cest-cases.html">DIR</option>
+  <option value="alpha_diasm.html">disassembler</option>
+  <option value="terms-of-use.html">disclaimer</option>
+  <option value="--development-conventions.html">discuss-first</option>
+  <option value="--create-guest-disk-storage---.html">disk geometry</option>
+  <option value="mkdisk.html">disk image</option>
+  <option value="'Create Guest Disk Storage','--create-guest-disk-storage---.html','System Disk Configuration','--system-disk-configuration.html','v2.0','releasenotesv2_0-.html'">disk_types.json</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','System Disk Configuration','--system-disk-configuration.html'">diskDir</option>
+  <option value="running-from-the-shell.html">disown</option>
+  <option value="phase1-dispatch-gate.html">dispatch</option>
+  <option value="8_2-subsystem-internals-------.html">dispatch tables</option>
+  <option value="'DispatchTables','--dispatchtables.html','Supported Test Cases','testing-supported-cest-cases.html'">DispatchKind</option>
+  <option value="--dispatchtables.html">DispatchTables.cpp</option>
+  <option value="--list-_-display-_-update.html">Display</option>
+  <option value="'Running from a Run Directory','running-from-a-run-directory.html','Run-Directory Contents','run-directory-contents.html'">distribution</option>
+  <option value="--current-development-status--.html">dka</option>
+  <option value="'System Disk Configuration','--system-disk-configuration.html','Guest Boot','4_7-guest-boot----------------.html'">dka0</option>
+  <option value="booting-from-an-iso-image.html">dka200</option>
+  <option value="releasenotesv2_0-.html">dka400</option>
+  <option value="testing-supported-cest-cases.html">DLAB</option>
+  <option value="testing-supported-cest-cases.html">DLM</option>
+  <option value="releasenotesv2_0-.html">DMA</option>
+  <option value="testing-supported-cest-cases.html">dmaReadBytes</option>
+  <option value="testing-supported-cest-cases.html">dmaWriteBytes</option>
+  <option value="'Development Conventions','--development-conventions.html','build_test_run','build_test_run2.html','Testing','testing.html'">doctest</option>
+  <option value="help--manual.html">documentation</option>
+  <option value="82077-controller_.html">DOR</option>
+  <option value="per-cpu-halt-codes.html">double machine check</option>
+  <option value="platform-execution-mode-isp-(e.html">dq_driver</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Source Cross Reference','boot-sequences.html'">dq_driver.c</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">dq_init_ide</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html'">dq_initialize</option>
+  <option value="task-matrix-_-timeout-loops.html">dq_long_wait_on_busy</option>
+  <option value="task-matrix-_-timeout-loops.html">dq_wait_for_drq</option>
+  <option value="'Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html','Task Matrix &amp; TimeOut Loops','task-matrix-_-timeout-loops.html'">dq_wait_on_busy</option>
+  <option value="'IDE Devices','--ide-devices.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','mkdisk','mkdisk.html'">dqa</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Example - Performance','--example---performance.html','show device','show-device.html','Storage','4_4-storage.html','ATAPI Devices','--atapi-devices.html','Create Guest Disk Storage','--create-guest-disk-storage---.html','Virtual Disk Images','--virtual-disk-images.html','Guest Boot','4_7-guest-boot----------------.html','Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html','Appendix - DS10','--appendix---ds10.html'">dqa0</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','System Disk Configuration','--system-disk-configuration.html','Virtual CDROM (dqa1)','--virtual-cdrom.html','Guest Boot','4_7-guest-boot----------------.html','Appendix - DS10','--appendix---ds10.html','Booting/Configure A New OpenVMS Instance from an ISO','booting-from-an-iso-image.html','launch_vms_boot','launch_vms_boot.html'">dqa1</option>
+  <option value="platform-execution-mode-isp-(e.html">DQB</option>
+  <option value="testing-supported-cest-cases.html">DREV</option>
+  <option value="'Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html','Supported Test Cases','testing-supported-cest-cases.html'">DRIR</option>
+  <option value="tsunami-error-chain.html">DRIR 62</option>
+  <option value="releasenotesv2_0-.html">drive profile</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Current Platform Support','--current-platform-support.html','EmulatR - Known Gaps','known-gaps.html','Configuring','--configuring----------(moved-.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Cypress','cypress.html','CY82C693','cy82c693-.html','Platform Execution','platform-execution.html','Execution Matrix (Models x Modes)','execution-matrix.html','Platform Appendices','8_1-platform-appendices.html','Platform Memory Reference','platform-memory-reference.html','decompile_ds10','decompile_ds10.html','launch_vms_boot','launch_vms_boot.html','Supported Test Cases','testing-supported-cest-cases.html'">DS10</option>
+  <option value="--executing-two-instances.html">ds10_flash.rom</option>
+  <option value="'Current Platform Support','--current-platform-support.html','Configuring','--configuring----------(moved-.html','Appendix - DS10','--appendix---ds10.html'">ds10_platform.json</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Firmware Requirements','--firmware-requirements.html','Loading Firmware','--loading-firmware.html'">ds10_v7_3.exe</option>
+  <option value="'Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','DECchip 21274 (Titan)','decchip-21274-(titan).html','Platform Execution','platform-execution.html','Platform Memory Reference','platform-memory-reference.html'">DS15</option>
+  <option value="platform-memory-reference.html">DS15a</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Cypress','cypress.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Platform Execution','platform-execution.html','Execution Matrix (Models x Modes)','execution-matrix.html','Platform Appendices','8_1-platform-appendices.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html','Platform Memory Reference','platform-memory-reference.html','Supported Test Cases','testing-supported-cest-cases.html'">DS20</option>
+  <option value="reset-into-secondary-boot.html">ds20_v7_3</option>
+  <option value="releasenotesv1_6-.html">ds20_v7_3.exe</option>
+  <option value="platform-memory-reference.html">DS20e</option>
+  <option value="'Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','DECchip 21274 (Titan)','decchip-21274-(titan).html','Platform Execution','platform-execution.html','Platform Memory Reference','platform-memory-reference.html'">DS25</option>
+  <option value="'HWRPB Key/Value Offset Map','hwrpb---ds20.html','Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html'">DSRDB</option>
+  <option value="--sdi-devices-_-dssi-devices-_.html">DSSI</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html'">DTB</option>
+  <option value="reset-into-secondary-boot.html">DTB_IA</option>
+  <option value="82077-controller_.html">DUMPREG</option>
+  <option value="releasenotesv1_6-.html">DUMPSTYLE</option>
+  <option value="'Current Development Status','--current-development-status--.html','show device','show-device.html','82077 Floppy Controller','82077-controller_.html'">dva0</option>
+  <option value="virtual-floppy-(dva0).html">dva0.0.0.0.0</option>
+  <option value="--evaluate-address.html">e command</option>
+  <option value="--example-(console)-execution.html">e pmem</option>
+  <option value="--overview--------------------.html">EBox</option>
+  <option value="testing-supported-cest-cases.html">eBox::execAddl</option>
+  <option value="testing-supported-cest-cases.html">eBox::execAddlV</option>
+  <option value="testing-supported-cest-cases.html">eBox::execAddq</option>
+  <option value="testing-supported-cest-cases.html">eBox::execAddqV</option>
+  <option value="testing-supported-cest-cases.html">eBox::execCmpeq</option>
+  <option value="testing-supported-cest-cases.html">eBox::execFtois</option>
+  <option value="testing-supported-cest-cases.html">eBox::execMullV</option>
+  <option value="testing-supported-cest-cases.html">eBox::execMulqV</option>
+  <option value="testing-supported-cest-cases.html">eBox::execRc</option>
+  <option value="testing-supported-cest-cases.html">eBox::execRpcc</option>
+  <option value="testing-supported-cest-cases.html">eBox::execRs</option>
+  <option value="testing-supported-cest-cases.html">eBox::execSubl</option>
+  <option value="testing-supported-cest-cases.html">eBox::execSublV</option>
+  <option value="testing-supported-cest-cases.html">eBox::execSubq</option>
+  <option value="testing-supported-cest-cases.html">eBox::execSubqV</option>
+  <option value="platform-memory-reference.html">ECC</option>
+  <option value="testing-supported-cest-cases.html">EEPROM</option>
+  <option value="warp-variants-and-cycle-accoun.html">effective MHz</option>
+  <option value="testing-supported-cest-cases.html">ejectMedia</option>
+  <option value="--configuring----------(moved-.html">EmulatorSettings</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Logging &amp; Diagnostics','4_8-logging--diagnostics.html','script','script.html'">EmulatR</option>
+  <option value="--first-startup.html">Emulatr root</option>
+  <option value="--atapi-devices.html">EMULATR VIRTUAL CDROM</option>
+  <option value="'Building from Source','--building-from-source.html','3. Quick Start','3_-quick-start----------------.html','Launching EmulatR','--launching-emulatr.html','Command Line Options (EmulatR)','command-line-options.html'">EmulatR.exe</option>
+  <option value="--configuring----------(moved-.html">Emulatr.ini</option>
+  <option value="--srm-environment-variables.html">EMULATR_</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','V1.6 (Beta)','releasenotesv1_6-.html'">EMULATR_2D_NOOP</option>
+  <option value="'Snapshot Operations','--automatic-_-creating-_-resto.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_AUTOSNAP</option>
+  <option value="--environment-variables-(emula.html">EMULATR_AUTOSNAP_KEEP</option>
+  <option value="--environment-variables-(emula.html">EMULATR_AUTOSNAP_PERIOD</option>
+  <option value="'EMULATR_BLOCK_MAX','block-max-internals.html','9-Iteration-Baseline','9-iteration-baseline.html','v2.0','releasenotesv2_0-.html'">EMULATR_BLOCK_MAX</option>
+  <option value="'Execution Pipeline','execution-pipeline.html','EMULATR_BLOCK_MAX','block-max-internals.html','9-Iteration-Baseline','9-iteration-baseline.html'">EMULATR_BLOCKCACHE_BLOCKS</option>
+  <option value="'Execution Pipeline','execution-pipeline.html','EMULATR_BLOCK_MAX','block-max-internals.html','9-Iteration-Baseline','9-iteration-baseline.html'">EMULATR_BLOCKEXEC</option>
+  <option value="--cmake-macro-guards----------.html">EMULATR_BOOTSTRAP_ITB_BYPASS</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_BREAK_ON_PA10</option>
+  <option value="bring-up-probes.html">EMULATR_BRINGUP_PROBES</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_CHECKPOINTS</option>
+  <option value="--cmake-macro-guards----------.html">EMULATR_CHIPSET_DIAG</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_CHIPSET_DIAG_ON</option>
+  <option value="--executing------------(moved).html">EMULATR_CONSOLE_MIRROR</option>
+  <option value="--environment-variables-(emula.html">EMULATR_CONSOLE_PACE_CPS</option>
+  <option value="'Configuring','--configuring----------(moved-.html','Executing','--executing------------(moved).html','Executing Two Instances','--executing-two-instances.html','TCP Console Overview','--tcp-console-overview.html','Environment Variables','--environment-variables-(emula.html','EmulatR will not start','--emulatr-will-not-start.html','Env Vars, Shutdown &amp; Known Limitations','--env-vars-operation-ref-_-kil.html'">EMULATR_CONSOLE_PORT</option>
+  <option value="'Executing','--executing------------(moved).html','Snapshot Operations','--automatic-_-creating-_-resto.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_CONSOLE_SNAPSHOT</option>
+  <option value="--required-tools--frameworks.html">EMULATR_CONSOLE_TRACE</option>
+  <option value="srm-boot-call-stack.html">EMULATR_CSERVE_AUDIT</option>
+  <option value="srm-boot-call-stack.html">EMULATR_CSERVE_START_MODE</option>
+  <option value="'CMake Macro Guards','--cmake-macro-guards----------.html','Qt Creator','qt-creator.html'">EMULATR_DEBUG_STEP</option>
+  <option value="platform-execution.html">EMULATR_DIAG</option>
+  <option value="--environment-variables-(emula.html">EMULATR_DIAG_BYTECHECK</option>
+  <option value="--development-conventions.html">EMULATR_DIAG_KNOBS</option>
+  <option value="networking-ewa0.html">EMULATR_DIAG_TULIP_PCAP</option>
+  <option value="'Logging Subsystems (EmulatR)','emulatr-subsystems.html','CMake Macro Guards','--cmake-macro-guards----------.html'">EMULATR_DIAGNOSTIC_LOGGING</option>
+  <option value="'Boot Acceleration - Entry Snapshot','--boot-acceleration-entry-snap.html','Execution Matrix (Models x Modes)','execution-matrix.html'">EMULATR_FAST_DECOMPRESS</option>
+  <option value="82077-controller_.html">EMULATR_FDC_TRACE</option>
+  <option value="'Firmware Images: .exe and .rom','firmware-images-exe-and-rom.html','Executing Two Instances','--executing-two-instances.html','Environment Variables','--environment-variables-(emula.html','EmulatR will not start','--emulatr-will-not-start.html','Env Vars, Shutdown &amp; Known Limitations','--env-vars-operation-ref-_-kil.html'">EMULATR_FLASH_ROM</option>
+  <option value="'Executing','--executing------------(moved).html','Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html'">EMULATR_FLASH_TRACE</option>
+  <option value="'Floating-Point Considerations','--floating-point-consideration.html','CMake Macro Guards','--cmake-macro-guards----------.html'">EMULATR_FP_SOFTFLOAT</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_GATE</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_GCT_WATCH</option>
+  <option value="--executing------------(moved).html">EMULATR_IDE_TRACE</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Execution Matrix (Models x Modes)','execution-matrix.html'">EMULATR_IDLEWARP</option>
+  <option value="'Executing','--executing------------(moved).html','Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html'">EMULATR_IIC_TRACE</option>
+  <option value="'Execution Pipeline','execution-pipeline.html','9-Iteration-Baseline','9-iteration-baseline.html'">EMULATR_IRQ_MODULUS</option>
+  <option value="reset-into-secondary-boot.html">EMULATR_ITBPROBE_VA</option>
+  <option value="platform-execution.html">emulatr_launch.sh</option>
+  <option value="'Firmware Update Utility (LFU)','4_6-firmware-update-utility-(l.html','Environment Variables','--environment-variables-(emula.html','v2.0','releasenotesv2_0-.html'">EMULATR_LFU_INTERACTIVE</option>
+  <option value="--environment-variables-(emula.html">EMULATR_LOG_STEM</option>
+  <option value="'Building from Source','--building-from-source.html','Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html','CMake Macro Guards','--cmake-macro-guards----------.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_MEMDIAG</option>
+  <option value="networking-ewa0.html">EMULATR_NET_ADAPTER</option>
+  <option value="'Launching EmulatR','--launching-emulatr.html','Executing','--executing------------(moved).html','Snapshot Operations','--automatic-_-creating-_-resto.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_NO_AUTOLOAD</option>
+  <option value="'First Startup','--first-startup.html','Connecting to the Console','--connecting-to-the-console.html','TCP Console Overview','--tcp-console-overview.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_NO_PUTTY</option>
+  <option value="--cmake-macro-guards----------.html">EMULATR_PA_DUMP</option>
+  <option value="--diagnostics--debugging---(ne.html">EMULATR_PIC_TRACE</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html','Execution Matrix (Models x Modes)','execution-matrix.html'">EMULATR_PLATFORM</option>
+  <option value="'Current Platform Support','--current-platform-support.html','Configuring','--configuring----------(moved-.html','Environment Variables','--environment-variables-(emula.html'">EMULATR_PLATFORM_CONFIG</option>
+  <option value="clock-frequency-mhz.html">EMULATR_PROFILE_ALPHA_CLOCK_HZ</option>
+  <option value="reset-into-secondary-boot.html">EMULATR_PTBR_DIAG</option>
+  <option value="'SRM Performance Logging','--srm-performance-logging.html','Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html'">EMULATR_RETIRE_TRACE_DIR</option>
+  <option value="--automatic-_-creating-_-resto.html">EMULATR_SNAPSHOT_MARKER</option>
+  <option value="--automatic-_-creating-_-resto.html">EMULATR_SNAPSHOT_PRUNE</option>
+  <option value="'Clean Shutdown','--clean-shutdown.html','Configuring a System with the Launcher','--configuring-a-system-with-t.html','Windows Registry Settings','--windows-registry-settings.html'">EMULATR_STOP</option>
+  <option value="--environment-variables-(emula.html">EMULATR_STOP_FILE</option>
+  <option value="testing.html">Emulatr_tests</option>
+  <option value="9-iteration-baseline.html">EMULATR_TICK_CADENCE</option>
+  <option value="'Time-of-Year Clock (TOY)','time-of-year-clock-toy.html','Environment Variables','--environment-variables-(emula.html','V1.6 (Beta)','releasenotesv1_6-.html'">EMULATR_TOY_MODE</option>
+  <option value="'Time-of-Year Clock (TOY)','time-of-year-clock-toy.html','Environment Variables','--environment-variables-(emula.html','V1.6 (Beta)','releasenotesv1_6-.html'">EMULATR_TOY_NVRAM</option>
+  <option value="running-from-the-shell.html">EMULATR_TRACE_DIR</option>
+  <option value="--cmake-macro-guards----------.html">EMULATR_TRACE_HOOKS</option>
+  <option value="'Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html','trace_halt','trace_halt.html'">EMULATR_TRACE_WINDOW</option>
+  <option value="examples---json.html">EMULATR_UDELAYWARP</option>
+  <option value="--cmake-macro-guards----------.html">EMULATR_USE_OS_PAGES</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','System Disk Configuration','--system-disk-configuration.html'">EmulatrLaunch</option>
+  <option value="--create-guest-disk-storage---.html">EmulatRLauncher</option>
+  <option value="task-matrix-_-timeout-loops.html">engineering status</option>
+  <option value="--execution-_-boot-internals.html">entry vector</option>
+  <option value="--boot-acceleration-entry-snap.html">entryPa</option>
+  <option value="releasenotesv2_0-.html">env_registry.json</option>
+  <option value="--env-vars-operation-ref-_-kil.html">environment variable</option>
+  <option value="'Reference','6_-reference------------------.html','Environment Variables','--environment-variables-(emula.html'">environment variables</option>
+  <option value="license.html">eNVy Systems</option>
+  <option value="testing-supported-cest-cases.html">EOI</option>
+  <option value="--addressing--tlb.html">epoch invalidation</option>
+  <option value="tsunami-error-chain.html">error interrupt</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Current Platform Support','--current-platform-support.html','EmulatR - Known Gaps','known-gaps.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','ALi M1543C South-Bridge Interface','ali-m1543c-south-bridge-interf.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Platform Execution','platform-execution.html','Execution Matrix (Models x Modes)','execution-matrix.html','Platform Appendices','8_1-platform-appendices.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html','Platform Memory Reference','platform-memory-reference.html','Supported Test Cases','testing-supported-cest-cases.html','v2.0','releasenotesv2_0-.html'">ES40</option>
+  <option value="--appendix-ds20-_-es40-_-es45.html">es40_platform.json</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Current Platform Support','--current-platform-support.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','DECchip 21274 (Titan)','decchip-21274-(titan).html','ALi M1543C South-Bridge Interface','ali-m1543c-south-bridge-interf.html','Platform Execution','platform-execution.html','Execution Matrix (Models x Modes)','execution-matrix.html','Platform Appendices','8_1-platform-appendices.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html','Platform Memory Reference','platform-memory-reference.html','Supported Test Cases','testing-supported-cest-cases.html'">ES45</option>
+  <option value="--appendix-ds20-_-es40-_-es45.html">es45_platform.json</option>
+  <option value="host-decompressor.html">es45_v7_3.exe</option>
+  <option value="testing-supported-cest-cases.html">ETBEI</option>
+  <option value="'4.9 Networking (EWA0)','networking-ewa0.html','DE500 Ethernet (21143 Tulip)','de500-ethernet-21143.html'">Ethernet</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Current Platform Support','--current-platform-support.html','Feature Matrix','--feature-matrix.html','Example - Performance','--example---performance.html','show config','show-config.html','Architecture &amp; Internals','5_-architecture--internals----.html','Overview','--overview--------------------.html','Appendix - DS10','--appendix---ds10.html','alpha_disasm','alpha_diasm.html'">EV6</option>
+  <option value="testing-supported-cest-cases.html">EV6__ASTER</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Source Cross Reference','boot-sequences.html'">ev6_defs.mar</option>
+  <option value="--firmware-decode--decompressi.html">ev6_huf_decom</option>
+  <option value="'Decompressor Internals','decompressor-internals.html','SRM Boot Call-Stack','srm-boot-call-stack.html','Source Cross Reference','boot-sequences.html'">ev6_huf_decom.m64</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Source Cross Reference','boot-sequences.html'">ev6_ipr_driver.c</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Current Platform Support','--current-platform-support.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html'">EV67</option>
+  <option value="decchip-21274-(titan).html">EV68</option>
+  <option value="platform-memory-reference.html">EV68C</option>
+  <option value="platform-memory-reference.html">EV68CB</option>
+  <option value="--overview--------------------.html">Ev6EntryVectors</option>
+  <option value="'Overview','--overview--------------------.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html'">Ev6Translator</option>
+  <option value="trace_halt.html">evaluate</option>
+  <option value="'Guest Boot','4_7-guest-boot----------------.html','4.9 Networking (EWA0)','networking-ewa0.html','DE500 Ethernet (21143 Tulip)','de500-ethernet-21143.html'">ewa0</option>
+  <option value="--evaluate-address.html">examine</option>
+  <option value="'Execution / Boot Internals','--execution-_-boot-internals.html','Memory Map &amp; IPRs','--memory-map--iprs.html'">EXC_ADDR</option>
+  <option value="testing-supported-cest-cases.html">excAddr</option>
+  <option value="'Overview','--overview--------------------.html','Execution / Boot Internals','--execution-_-boot-internals.html'">ExecCtx</option>
+  <option value="execution-matrix.html">execution matrix</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html'">execution mode</option>
+  <option value="5_-architecture--internals----.html">execution model</option>
+  <option value="virtualization-methods.html">execution path</option>
+  <option value="releasenotesv2_0-.html">execution_mode</option>
+  <option value="--list-_-display-_-update.html">Exit</option>
+  <option value="goals--objectives.html">explicit serialization</option>
+  <option value="testing-supported-cest-cases.html">extract</option>
+  <option value="--floating-point-consideration.html">F_float</option>
+  <option value="block-max-internals.html">F-1</option>
+  <option value="'EMULATR_BLOCK_MAX','block-max-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">F-2</option>
+  <option value="--boot-acceleration-entry-snap.html">faithful</option>
+  <option value="--execution-_-boot-internals.html">faultCode</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Overview','--overview--------------------.html','Floating-Point Considerations','--floating-point-consideration.html'">fBox</option>
+  <option value="testing-supported-cest-cases.html">fBox::execAddt</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCmpteq</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCmptle</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCmptlt</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCpys</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCpyse</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCpysn</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCvtql</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCvtqlSv</option>
+  <option value="testing-supported-cest-cases.html">fBox::execCvtqlV</option>
+  <option value="testing-supported-cest-cases.html">fBox::execDivt</option>
+  <option value="testing-supported-cest-cases.html">fBox::execMult</option>
+  <option value="testing-supported-cest-cases.html">fBox::execSubt</option>
+  <option value="testing-supported-cest-cases.html">FCR</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','82077 Floppy Controller','82077-controller_.html'">FDC</option>
+  <option value="82077-controller_.html">FDC37C669</option>
+  <option value="srm-boot-_-srm-commands-prompt.html">FDD</option>
+  <option value="--feature-matrix.html">Feature Matrix</option>
+  <option value="'Floating-Point Considerations','--floating-point-consideration.html','Supported Test Cases','testing-supported-cest-cases.html'">FEN</option>
+  <option value="execution-pipeline.html">Fidelity</option>
+  <option value="goals--objectives.html">fidelity standard</option>
+  <option value="goals--objectives.html">fidelity-faithful</option>
+  <option value="testing-supported-cest-cases.html">FieldSpec</option>
+  <option value="'Virtual Disk Images','--virtual-disk-images.html','Supported Test Cases','testing-supported-cest-cases.html'">FileBlockMedia</option>
+  <option value="post-flash.html">filesys_init()</option>
+  <option value="testing-supported-cest-cases.html">findRange</option>
+  <option value="windows-defender-firewall.html">Firewall</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Terms of Use','terms-of-use.html','Installation','2_-installation.html','Installing with the Windows Installer','installing-with-the-windows-installer.html','3. Quick Start','3_-quick-start----------------.html','Loading Firmware','--loading-firmware.html','Configuring a System with the Launcher','--configuring-a-system-with-t.html','Command Line Options (EmulatR)','command-line-options.html'">firmware</option>
+  <option value="'Firmware Requirements','--firmware-requirements.html','Firmware Images: .exe and .rom','firmware-images-exe-and-rom.html','Launching EmulatR','--launching-emulatr.html','Loading Firmware','--loading-firmware.html','Running EmulatR from the Shell','running-from-the-shell.html','Configuring','--configuring----------(moved-.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Command Line Options (EmulatR)','command-line-options.html','EmulatR will not start','--emulatr-will-not-start.html'">--firmware</option>
+  <option value="--firmware-requirements.html">firmware integrity check</option>
+  <option value="run_fw_sh.html">firmware launch</option>
+  <option value="--firmware-requirements.html">firmware path resolution</option>
+  <option value="'Configuring','--configuring----------(moved-.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Platform Execution','platform-execution.html'">firmware stem</option>
+  <option value="'Operating EmulatR','4_-operating-emulatr----------.html','Firmware Update Utility (LFU)','4_6-firmware-update-utility-(l.html'">firmware update</option>
+  <option value="firmware-images-exe-and-rom.html">firmware update image</option>
+  <option value="examples---json.html">firmware_fnv64</option>
+  <option value="firmware-images-exe-and-rom.html">--firmware-format</option>
+  <option value="'Firmware Requirements','--firmware-requirements.html','Configuring','--configuring----------(moved-.html'">firmwareImage</option>
+  <option value="'Firmware Requirements','--firmware-requirements.html','Configuring','--configuring----------(moved-.html'">firmwareSha256</option>
+  <option value="--first-startup.html">first run</option>
+  <option value="--first-startup.html">first startup</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Firmware Images: .exe and .rom','firmware-images-exe-and-rom.html'">flash</option>
+  <option value="--executing-two-instances.html">flash corruption</option>
+  <option value="--executing-two-instances.html">flash isolation</option>
+  <option value="testing-supported-cest-cases.html">FlashRom</option>
+  <option value="8_2-subsystem-internals-------.html">floating point</option>
+  <option value="'Supported Systems','--supported-systems.html','82077 Floppy Controller','82077-controller_.html'">floppy</option>
+  <option value="82077-controller_.html">floppy controller</option>
+  <option value="virtual-floppy-(dva0).html">Floppy, Virtual</option>
+  <option value="testing-supported-cest-cases.html">Floppy82077</option>
+  <option value="testing-supported-cest-cases.html">FltIeee</option>
+  <option value="testing-supported-cest-cases.html">FltVax</option>
+  <option value="running-from-the-shell.html">forked process</option>
+  <option value="82077-controller_.html">FORMAT TRACK</option>
+  <option value="--overview--------------------.html">fpBox</option>
+  <option value="--floating-point-consideration.html">fpBoxLib</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Floating-Point Considerations','--floating-point-consideration.html'">FPCR</option>
+  <option value="testing-supported-cest-cases.html">FPE</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Reaching the SRM Prompt','--reaching-the-srm-prompt.html','SRM Boot Call-Stack','srm-boot-call-stack.html','Supported Test Cases','testing-supported-cest-cases.html'">FRU</option>
+  <option value="--appendix---ds10.html">FRU EEPROM</option>
+  <option value="'Example - Performance','--example---performance.html','set','set.html','Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html'">full_powerup_diags</option>
+  <option value="--floating-point-consideration.html">G_float</option>
+  <option value="'Execution / Boot Internals','--execution-_-boot-internals.html','DispatchTables','--dispatchtables.html'">g_primaryTable</option>
+  <option value="platform-identity-and-geometry.html">GAP-PLAT-001</option>
+  <option value="phase1-dispatch-gate.html">gate</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Execution Flight Plan','--execution-flight-plan-------.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">GCT</option>
+  <option value="--firmware-hangs-_-slow-boot-_.html">GCT/FRU</option>
+  <option value="releasenotesv2_0-.html">gen_drive_profiles.py</option>
+  <option value="--grainfactorylib.html">genGrains.py</option>
+  <option value="diagnostic-instrumentation.html">get_sysvar</option>
+  <option value="testing-supported-cest-cases.html">getChar</option>
+  <option value="--environment-variables-(emula.html">getenv</option>
+  <option value="testing-supported-cest-cases.html">GH</option>
+  <option value="'Required Tools &amp; Frameworks','--required-tools--frameworks.html','Tools','8_4-tools.html','Ghidra','--ghidra.html','decompile_ds10','decompile_ds10.html'">Ghidra</option>
+  <option value="__tools_build_emulatr_diag_bat.html">Git Bash</option>
+  <option value="'Reference','6_-reference------------------.html','Glossary','--glossary--------------------.html'">glossary</option>
+  <option value="goals--objectives.html">goals</option>
+  <option value="boot-transcripts.html">golden boot</option>
+  <option value="testing.html">golden trace</option>
+  <option value="terms-of-use.html">governing law</option>
+  <option value="decchip-21274-(titan).html">G-port</option>
+  <option value="--clean-shutdown.html">graceful-stop</option>
+  <option value="'Overview','--overview--------------------.html','Execution / Boot Internals','--execution-_-boot-internals.html','grainFactoryLib','--grainfactorylib.html','Glossary','--glossary--------------------.html'">grain</option>
+  <option value="8_2-subsystem-internals-------.html">grain factory</option>
+  <option value="testing-supported-cest-cases.html">grain.execFn</option>
+  <option value="pipeline-execution-(internals).html">GrainEntry</option>
+  <option value="--overview--------------------.html">GrainMasterV4</option>
+  <option value="--grainfactorylib.html">GrainMasterV4.tsv</option>
+  <option value="testing-supported-cest-cases.html">GrainSem</option>
+  <option value="--grainfactorylib.html">GrainStubs.cpp</option>
+  <option value="boot-sequences.html">ground truth</option>
+  <option value="'Overview','--overview--------------------.html','Memory','--memory----------------------.html','Supported Test Cases','testing-supported-cest-cases.html'">GuestMemory</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Reaching the SRM Prompt','--reaching-the-srm-prompt.html','SRM Overview','--srm-overview.html','boot','boot.html','diag_halt_irq4','diag_halt_irq4.html'">halt</option>
+  <option value="'Troubleshooting','7_-troubleshooting------------.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html'">halt button</option>
+  <option value="per-cpu-halt-codes.html">halt code</option>
+  <option value="--halt-button-is-in_-boot-not-.html">halt gate</option>
+  <option value="per-cpu-halt-codes.html">halt request</option>
+  <option value="--halt-button-is-in_-boot-not-.html">halt switch</option>
+  <option value="per-cpu-halt-codes.html">HALT__</option>
+  <option value="testing-supported-cest-cases.html">HaltedClean</option>
+  <option value="--grainfactorylib.html">handwritten.tsv</option>
+  <option value="post-flash.html">Hardware, Initialize</option>
+  <option value="post-flash.html">Hardware, Reset</option>
+  <option value="--scsi-devices.html">HBA</option>
+  <option value="'Ghidra','--ghidra.html','decompile_ds10','decompile_ds10.html'">headless</option>
+  <option value="--common-commands.html">help</option>
+  <option value="'Tools','8_4-tools.html','Help &amp; Manual','help--manual.html'">Help &amp; Manual</option>
+  <option value="help--manual.html">help project</option>
+  <option value="snapmap.html">hex dump</option>
+  <option value="boot-sequences.html">Hierarchy.txt</option>
+  <option value="--windows-registry-settings.html">hive</option>
+  <option value="--windows-registry-settings.html">HKCU</option>
+  <option value="time-of-year-clock-toy.html">host mode</option>
+  <option value="'Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Host Decompressor','host-decompressor.html','Decompressor Internals','decompressor-internals.html'">host_decompressor</option>
+  <option value="--floating-point-consideration.html">HostBackend</option>
+  <option value="software-verify.html">hot path</option>
+  <option value="analyze_retire_trace.html">hot PC</option>
+  <option value="--firmware-decode--decompressi.html">Huffman</option>
+  <option value="testing-supported-cest-cases.html">HW_CC</option>
+  <option value="testing-supported-cest-cases.html">HW_CM</option>
+  <option value="testing-supported-cest-cases.html">HW_EXC_ADDR</option>
+  <option value="--memory-map--iprs.html">HW_IPR</option>
+  <option value="testing-supported-cest-cases.html">HW_ISUM</option>
+  <option value="'Overview','--overview--------------------.html','Memory Map &amp; IPRs','--memory-map--iprs.html','Supported Test Cases','testing-supported-cest-cases.html'">HW_MFPR</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Overview','--overview--------------------.html','Memory Map &amp; IPRs','--memory-map--iprs.html','Supported Test Cases','testing-supported-cest-cases.html'">HW_MTPR</option>
+  <option value="testing-supported-cest-cases.html">HW_PAL_BASE</option>
+  <option value="--execution-_-boot-internals.html">HW_REI</option>
+  <option value="bring-up-probes.html">HW_REI XITION</option>
+  <option value="'Execution Flight Plan','--execution-flight-plan-------.html','Decompressor Internals','decompressor-internals.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html'">hw_ret</option>
+  <option value="testing-supported-cest-cases.html">HW_SIRR</option>
+  <option value="testing-supported-cest-cases.html">HW_VA_CTL</option>
+  <option value="testing-supported-cest-cases.html">HWPCB</option>
+  <option value="'HWRPB Key/Value Offset Map','hwrpb---ds20.html','Clock Frequency and the MHz Reading','clock-frequency-mhz.html','Per-CPU Halt Codes','per-cpu-halt-codes.html','snapmap','snapmap.html'">HWRPB</option>
+  <option value="'HWRPB Key/Value Offset Map','hwrpb---ds20.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">Hwrpb.h</option>
+  <option value="'Memory Map &amp; IPRs','--memory-map--iprs.html','Supported Test Cases','testing-supported-cest-cases.html'">I_CTL</option>
+  <option value="--overview--------------------.html">IBox</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBeq</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBge</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBgt</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBlbc</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBlbs</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBle</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBlt</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBne</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBr</option>
+  <option value="testing-supported-cest-cases.html">iBox::execBsr</option>
+  <option value="testing-supported-cest-cases.html">iBox::execJmp</option>
+  <option value="testing-supported-cest-cases.html">iBox::execJsr</option>
+  <option value="testing-supported-cest-cases.html">iBox::execJsrCoroutine</option>
+  <option value="testing-supported-cest-cases.html">iBox::execRet</option>
+  <option value="reset-into-secondary-boot.html">IC_FLUSH</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Feature Matrix','--feature-matrix.html','Storage','4_4-storage.html','Storage Interconnect and Fabric','--storage-interconnect-and-fab.html','CY82C693','cy82c693-.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Tools','8_4-tools.html','Qt Creator','qt-creator.html'">IDE</option>
+  <option value="--ide-devices.html">IDE controller</option>
+  <option value="testing-supported-cest-cases.html">ide_poll</option>
+  <option value="execution-modes.html">IDENTIFY</option>
+  <option value="'ATAPI Devices','--atapi-devices.html','Supported Test Cases','testing-supported-cest-cases.html'">IDENTIFY DEVICE</option>
+  <option value="--atapi-devices.html">IDENTIFY PACKET DEVICE</option>
+  <option value="warp-variants-and-cycle-accoun.html">IDLEWARP</option>
+  <option value="--floating-point-consideration.html">IEEE S</option>
+  <option value="--floating-point-consideration.html">IEEE T</option>
+  <option value="testing-supported-cest-cases.html">IER</option>
+  <option value="testing-supported-cest-cases.html">IER.SIEN</option>
+  <option value="--execution-_-boot-internals.html">IFetchOverride</option>
+  <option value="--floating-point-consideration.html">IFpBackend</option>
+  <option value="'Feature Matrix','--feature-matrix.html','EmulatR - Known Gaps','known-gaps.html','Appendix - DS10','--appendix---ds10.html'">IIC</option>
+  <option value="diagnostic-instrumentation.html">iic_8574_ocp</option>
+  <option value="testing-supported-cest-cases.html">iic_chip_reset</option>
+  <option value="diagnostic-instrumentation.html">iic_ocp0</option>
+  <option value="diagnostic-instrumentation.html">iic_rcm_temp</option>
+  <option value="'Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html','Supported Test Cases','testing-supported-cest-cases.html'">IicPcf8584</option>
+  <option value="southbridge.html">IIoPortHandler</option>
+  <option value="testing-supported-cest-cases.html">IIR</option>
+  <option value="testing-supported-cest-cases.html">IMB</option>
+  <option value="reset-into-secondary-boot.html">impure frame</option>
+  <option value="palcode-platform-bases.html">IMPURE$CPU_TYPE_OFFSET</option>
+  <option value="palcode-platform-bases.html">IMPURE$PCB_OFFSET</option>
+  <option value="palcode-platform-bases.html">IMPURE$PROF_OFFSET</option>
+  <option value="palcode-platform-bases.html">IMPURE$QUILT_OFFSET</option>
+  <option value="palcode-platform-bases.html">IMPURE$UART_OFFSET</option>
+  <option value="testing-supported-cest-cases.html">IMR</option>
+  <option value="--development-conventions.html">include guards</option>
+  <option value="terms-of-use.html">indemnification</option>
+  <option value="'Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Decompressor Internals','decompressor-internals.html'">inflate</option>
+  <option value="host-decompressor.html">inflate.c</option>
+  <option value="--loading-firmware.html">ini default</option>
+  <option value="--configuring----------(moved-.html">IniLoader</option>
+  <option value="known-gaps.html">init</option>
+  <option value="--es40-tig-module-reset.html">Initializing</option>
+  <option value="testing-supported-cest-cases.html">InlineWorkQueue</option>
+  <option value="4_2-console-connectivity.html">input pacing</option>
+  <option value="testing-supported-cest-cases.html">INQUIRY</option>
+  <option value="--system-disk-configuration.html">install</option>
+  <option value="mkdisk.html">install target</option>
+  <option value="'Introduction','1_-introduction.html','Installation','2_-installation.html'">Installation</option>
+  <option value="'Installation','2_-installation.html','Installing with the Windows Installer','installing-with-the-windows-installer.html'">installer</option>
+  <option value="5_8-comjit.html">Intel</option>
+  <option value="decompressor-internals.html">intercept-hybrid</option>
+  <option value="platform-memory-reference.html">interleaving</option>
+  <option value="--memory-map--iprs.html">internal processor register</option>
+  <option value="diag_halt_irq4.html">interrupt</option>
+  <option value="pipeline-execution-(internals).html">interrupt delivery</option>
+  <option value="'Clock Frequency and the MHz Reading','clock-frequency-mhz.html','WARP Variants and Cycle-Accounting for Reported CPU Speed','warp-variants-and-cycle-accoun.html','EMULATR_BLOCK_MAX','block-max-internals.html'">interval timer</option>
+  <option value="emulatr-subsystems.html">IntervalTimer</option>
+  <option value="clock-frequency-mhz.html">intrclock_freq</option>
+  <option value="testing-supported-cest-cases.html">intrFlag</option>
+  <option value="1_-introduction.html">Introduction</option>
+  <option value="testing-supported-cest-cases.html">invalidateSingle</option>
+  <option value="'Run-Directory Contents','run-directory-contents.html','Tools Script Reference','tools-script-reference.html'">inventory</option>
+  <option value="releasenotesv1_6-.html">INVEXCEPTN</option>
+  <option value="testing-supported-cest-cases.html">IoCommand</option>
+  <option value="testing-supported-cest-cases.html">IoResult</option>
+  <option value="southbridge.html">IPciDeviceHandler</option>
+  <option value="known-gaps.html">ipcr</option>
+  <option value="testing-supported-cest-cases.html">IPINTR</option>
+  <option value="'Overview','--overview--------------------.html','8.3 Architecture Deep-Dives','8_3-architecture-deep-dives---.html','Memory Map &amp; IPRs','--memory-map--iprs.html','Glossary','--glossary--------------------.html'">IPR</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html'">IPR 0x2d</option>
+  <option value="testing-supported-cest-cases.html">IPREQ</option>
+  <option value="palcode-platform-bases.html">IRQ_DEV__M</option>
+  <option value="diag_halt_irq4.html">IRQ4</option>
+  <option value="82077-controller_.html">IRQ6</option>
+  <option value="examples---json.html">is_warpable</option>
+  <option value="'Supported Systems','--supported-systems.html','show config','show-config.html'">ISA</option>
+  <option value="'South Bridge','southbridge.html','Cypress','cypress.html','CY82C693','cy82c693-.html'">ISA bridge</option>
+  <option value="--example-(console)-execution.html">ISA table corrupt</option>
+  <option value="testing-supported-cest-cases.html">isEpochLive</option>
+  <option value="'System Disk Configuration','--system-disk-configuration.html','Virtual CDROM (dqa1)','--virtual-cdrom.html','Booting/Configure A New OpenVMS Instance from an ISO','booting-from-an-iso-image.html','launch_vms_boot','launch_vms_boot.html'">ISO</option>
+  <option value="booting-from-an-iso-image.html">ISO Image</option>
+  <option value="--iso-9660-pfd-(cd001).html">ISO-9660</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Execution Matrix (Models x Modes)','execution-matrix.html'">ISP</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html'">ISP mode</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html'">ISP_MODEL</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html'">ITB</option>
+  <option value="reset-into-secondary-boot.html">ITBPROBE</option>
+  <option value="testing-supported-cest-cases.html">ItFp</option>
+  <option value="testing-supported-cest-cases.html">ITINTR</option>
+  <option value="'Ghidra','--ghidra.html','decompile_ds10','decompile_ds10.html'">JDK 21</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','5.8 Cross-Platform JIT Architecture','5_8-comjit.html','Acceleration Program Status','acceleration-program-status.html'">JIT</option>
+  <option value="platform-identity-and-geometry.html">JRN-PLATID-001</option>
+  <option value="examples---json.html">JRN-V2-WARPPROF-001</option>
+  <option value="srm-boot-call-stack.html">JUMP_TO_ARC</option>
+  <option value="--supported-systems.html">KBD</option>
+  <option value="testing-supported-cest-cases.html">kCchipIntervalTimerCycles</option>
+  <option value="clock-frequency-mhz.html">kCchipTimerBit</option>
+  <option value="warp-variants-and-cycle-accoun.html">kCchipTimerMask</option>
+  <option value="diagnostic-instrumentation.html">KCRCM</option>
+  <option value="booting-from-an-iso-image.html">Kerberos</option>
+  <option value="srm-boot-call-stack.html">kernel executive</option>
+  <option value="per-cpu-halt-codes.html">kernel stack not valid</option>
+  <option value="post-flash.html">kernel.c</option>
+  <option value="help--manual.html">keywords</option>
+  <option value="testing-supported-cest-cases.html">kFaultBusError</option>
+  <option value="'Per-CPU Halt Codes','per-cpu-halt-codes.html','Supported Test Cases','testing-supported-cest-cases.html'">kFaultHalt</option>
+  <option value="testing-supported-cest-cases.html">kFaultUnaligned</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Supported Test Cases','testing-supported-cest-cases.html'">kFaultUnimplemented</option>
+  <option value="known-gaps.html">kIicBaseByModel</option>
+  <option value="--env-vars-operation-ref-_-kil.html">kill EmulatR</option>
+  <option value="qt-creator.html">kit</option>
+  <option value="hwrpb---ds20.html">kKeyValue</option>
+  <option value="block-max-internals.html">kMaxCap</option>
+  <option value="testing-supported-cest-cases.html">kNoRegWrite</option>
+  <option value="known-gaps.html">known gaps</option>
+  <option value="'Env Vars, Shutdown &amp; Known Limitations','--env-vars-operation-ref-_-kil.html','Release Notes','release-notes.html','v2.0','releasenotesv2_0-.html'">known limitations</option>
+  <option value="warp-variants-and-cycle-accoun.html">kProfileAlphaClockHz</option>
+  <option value="execution-modes.html">krn$_micro_delay</option>
+  <option value="testing-supported-cest-cases.html">krn$_reset_toy</option>
+  <option value="--firmware-hangs-_-slow-boot-_.html">krn$_sleep</option>
+  <option value="'Overview','--overview--------------------.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html','Glossary','--glossary--------------------.html'">kseg</option>
+  <option value="testing-supported-cest-cases.html">KSP</option>
+  <option value="testing-supported-cest-cases.html">LAB</option>
+  <option value="--windows-registry-settings.html">launch_paths</option>
+  <option value="--windows-registry-settings.html">launch_run</option>
+  <option value="--windows-registry-settings.html">launch_systems</option>
+  <option value="--windows-registry-settings.html">launch_ui</option>
+  <option value="launch_vms_boot.html">launch_vms_boot</option>
+  <option value="--configuring-a-system-with-t.html">launcher</option>
+  <option value="--first-startup.html">Launching EmulatR</option>
+  <option value="--iso-9660-pfd-(cd001).html">LBA 16</option>
+  <option value="--grainfactorylib.html">leaf</option>
+  <option value="--grainfactorylib.html">leafBase</option>
+  <option value="--sdi-devices-_-dssi-devices-_.html">legacy interconnect</option>
+  <option value="'Current Development Status','--current-development-status--.html','Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Example - Performance','--example---performance.html','Firmware Update Utility (LFU)','4_6-firmware-update-utility-(l.html','ES40 TIG Module Reset (Experimental)','--es40-tig-module-reset.html','SRM Boot Call-Stack','srm-boot-call-stack.html','V1.6 (Beta)','releasenotesv1_6-.html','v2.0','releasenotesv2_0-.html'">LFU</option>
+  <option value="--first-startup.html">LFU auto-response</option>
+  <option value="terms-of-use.html">liability</option>
+  <option value="'License','license.html','Booting/Configure A New OpenVMS Instance from an ISO','booting-from-an-iso-image.html'">LICENSE</option>
+  <option value="license.html">license header</option>
+  <option value="terms-of-use.html">limitation of liability</option>
+  <option value="--list-_-display-_-update.html">List</option>
+  <option value="--console-connection-issues---.html">listener</option>
+  <option value="testing-supported-cest-cases.html">loadMedia</option>
+  <option value="--connecting-to-the-console.html">localhost</option>
+  <option value="testing-supported-cest-cases.html">LockArbiter</option>
+  <option value="'Overview','--overview--------------------.html','Memory','--memory----------------------.html','Supported Test Cases','testing-supported-cest-cases.html'">LockMonitor</option>
+  <option value="emulatr-subsystems.html">log subsystem</option>
+  <option value="emulatr-subsystems.html">--log-disable</option>
+  <option value="'Running EmulatR from the Shell','running-from-the-shell.html','Logging Subsystems (EmulatR)','emulatr-subsystems.html'">--log-file</option>
+  <option value="4_8-logging--diagnostics.html">logging</option>
+  <option value="emulatr-subsystems.html">logging subsystems</option>
+  <option value="srm-boot-_-srm-commands-prompt.html">logical device</option>
+  <option value="emulatr-subsystems.html">--log-only</option>
+  <option value="--development-conventions.html">logs</option>
+  <option value="emulatr-subsystems.html">--log-verbose</option>
+  <option value="analyze_retire_trace.html">loop detection</option>
+  <option value="acceleration-program-status.html">Loop spin</option>
+  <option value="testing-supported-cest-cases.html">lowerPciInterrupt</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html'">LPT1</option>
+  <option value="testing-supported-cest-cases.html">LRB</option>
+  <option value="testing-supported-cest-cases.html">LSR</option>
+  <option value="testing-supported-cest-cases.html">LUN</option>
+  <option value="ali-m1543c-south-bridge-interf.html">M5229</option>
+  <option value="de500-ethernet-21143.html">MAC address</option>
+  <option value="'Overview','--overview--------------------.html','Supported Test Cases','testing-supported-cest-cases.html'">Machine</option>
+  <option value="per-cpu-halt-codes.html">machine check</option>
+  <option value="smp-(multiprocessor)-design.html">Machine.cpp</option>
+  <option value="testing-supported-cest-cases.html">Machine::tryFetch</option>
+  <option value="5_8-comjit.html">macOS/ARM</option>
+  <option value="5_8-comjit.html">macOS/Intel</option>
+  <option value="'System Disk Configuration','--system-disk-configuration.html','v2.0','releasenotesv2_0-.html'">Make Disk</option>
+  <option value="testing-supported-cest-cases.html">makeBlockMedia</option>
+  <option value="platformeditor-web-ui.html">manifest</option>
+  <option value="'Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Host Decompressor','host-decompressor.html','Decompressor Internals','decompressor-internals.html'">Mark Adler</option>
+  <option value="testing-supported-cest-cases.html">mask</option>
+  <option value="tsunami-error-chain.html">master abort</option>
+  <option value="testing-supported-cest-cases.html">maxCycles</option>
+  <option value="'Launching EmulatR','--launching-emulatr.html','Running EmulatR from the Shell','running-from-the-shell.html','Command Line Options (EmulatR)','command-line-options.html'">--max-cycles</option>
+  <option value="platform-memory-reference.html">maximum memory</option>
+  <option value="--overview--------------------.html">MBox</option>
+  <option value="testing-supported-cest-cases.html">mBox::execFetch</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLda</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdah</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdbu</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdl</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdlL</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdq</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdqL</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdqU</option>
+  <option value="testing-supported-cest-cases.html">mBox::execLdwu</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStb</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStl</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStlC</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStq</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStqC</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStqU</option>
+  <option value="testing-supported-cest-cases.html">mBox::execStw</option>
+  <option value="time-of-year-clock-toy.html">MC146818</option>
+  <option value="per-cpu-halt-codes.html">MCHK_FROM_PAL</option>
+  <option value="testing-supported-cest-cases.html">MCR</option>
+  <option value="'Virtual CDROM (dqa1)','--virtual-cdrom.html','Virtual Disk Images','--virtual-disk-images.html'">media</option>
+  <option value="--system-disk-configuration.html">media_kind</option>
+  <option value="testing-supported-cest-cases.html">MediaStatus</option>
+  <option value="--atapi-devices.html">MEDIUM NOT PRESENT</option>
+  <option value="'Running EmulatR from the Shell','running-from-the-shell.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Command Line Options (EmulatR)','command-line-options.html','show memory','show-memory.html'">--mem</option>
+  <option value="diagnostic-instrumentation.html">member</option>
+  <option value="testing-supported-cest-cases.html">memData</option>
+  <option value="'Execution / Boot Internals','--execution-_-boot-internals.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Supported Test Cases','testing-supported-cest-cases.html'">MemDrainer</option>
+  <option value="known-gaps.html">MEMDSC</option>
+  <option value="testing-supported-cest-cases.html">memEffect</option>
+  <option value="5_-architecture--internals----.html">memory</option>
+  <option value="platform-memory-reference.html">memory architecture</option>
+  <option value="show-memory.html">memory array</option>
+  <option value="platform-identity-and-geometry.html">memory geometry</option>
+  <option value="8_3-architecture-deep-dives---.html">memory map</option>
+  <option value="platform-memory-reference.html">memory motherboard</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">memory sizing</option>
+  <option value="'Example - Performance','--example---performance.html','set','set.html','Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html'">memory_test</option>
+  <option value="'Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','show memory','show-memory.html'">memorySize</option>
+  <option value="testing-supported-cest-cases.html">memSize</option>
+  <option value="testing-supported-cest-cases.html">MFPR_VPTB</option>
+  <option value="clock-frequency-mhz.html">MHz</option>
+  <option value="--configuring-a-system-with-t.html">mirror log</option>
+  <option value="testing-supported-cest-cases.html">MISC</option>
+  <option value="'Create Guest Disk Storage','--create-guest-disk-storage---.html','mkdisk','mkdisk.html'">mkdisk</option>
+  <option value="testing-supported-cest-cases.html">mm_stat</option>
+  <option value="--memory----------------------.html">mmap</option>
+  <option value="--memory----------------------.html">MMIO</option>
+  <option value="boot-sequences.html">mmuLib</option>
+  <option value="'Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">MobaXterm</option>
+  <option value="testing-supported-cest-cases.html">MockBlockMedia</option>
+  <option value="releasenotesv2_0-.html">MODE SELECT</option>
+  <option value="testing-supported-cest-cases.html">MODE SELECT(10)</option>
+  <option value="testing-supported-cest-cases.html">MODE SELECT(6)</option>
+  <option value="--configuring----------(moved-.html">model</option>
+  <option value="platform-identity-and-geometry.html">model derivation</option>
+  <option value="booting-from-an-iso-image.html">Module installed successfully</option>
+  <option value="--es40-tig-module-reset.html">module reset</option>
+  <option value="--supported-systems.html">MOUSE</option>
+  <option value="palcode-platform-bases.html">MP$BREAK</option>
+  <option value="palcode-platform-bases.html">MP$CONTROL_P</option>
+  <option value="palcode-platform-bases.html">MP$HALT</option>
+  <option value="palcode-platform-bases.html">MP$RESTART</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Supported Test Cases','testing-supported-cest-cases.html'">MP_WORK_REQUEST</option>
+  <option value="platform-memory-reference.html">MS620</option>
+  <option value="installing-with-the-windows-installer.html">MSI</option>
+  <option value="82077-controller_.html">MSR</option>
+  <option value="'Installation','2_-installation.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Building from Source','--building-from-source.html','./tools/build_emulatr_diag.bat','__tools_build_emulatr_diag_bat.html','Dependencies','--dependencies----------------.html'">MSVC</option>
+  <option value="qt-creator.html">MSVC 2022</option>
+  <option value="'SRM Boot Call-Stack','srm-boot-call-stack.html','Supported Test Cases','testing-supported-cest-cases.html'">MTPR_EXC_ADDR</option>
+  <option value="--tcp-console-overview.html">multiple instances</option>
+  <option value="smp-(multiprocessor)-design.html">multiprocessor</option>
+  <option value="--configuring-a-system-with-t.html">named system</option>
+  <option value="tsunami-error-chain.html">NDS</option>
+  <option value="booting-from-an-iso-image.html">NET$CONFIG.DAT</option>
+  <option value="'Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">netcat</option>
+  <option value="--tcp-console-overview.html">netstat</option>
+  <option value="networking-ewa0.html">network</option>
+  <option value="networking-ewa0.html">networking</option>
+  <option value="--configuring-a-system-with-t.html">New System</option>
+  <option value="de500-ethernet-21143.html">NIC</option>
+  <option value="tsunami-error-chain.html">No Devsel</option>
+  <option value="terms-of-use.html">no warranty</option>
+  <option value="'Launching EmulatR','--launching-emulatr.html','Running EmulatR from the Shell','running-from-the-shell.html','Command Line Options (EmulatR)','command-line-options.html','Snapshot Operations','--automatic-_-creating-_-resto.html','Platform Execution','platform-execution.html'">--no-autoload</option>
+  <option value="'Running EmulatR from the Shell','running-from-the-shell.html','Executing','--executing------------(moved).html'">nohup</option>
+  <option value="license.html">non-commercial</option>
+  <option value="networking-ewa0.html">Npcap</option>
+  <option value="--list-_-display-_-update.html">nt_fw</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Current Development Status','--current-development-status--.html','Firmware Images: .exe and .rom','firmware-images-exe-and-rom.html','Executing Two Instances','--executing-two-instances.html','SRM Console','4_3-srm-console.html','SRM Overview','--srm-overview.html','set','set.html','Env Vars, Shutdown &amp; Known Limitations','--env-vars-operation-ref-_-kil.html','v2.0','releasenotesv2_0-.html'">NVRAM</option>
+  <option value="--clean-shutdown.html">NVRAM flush</option>
+  <option value="--srm-environment-variables.html">NVRAM slots</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Memory','--memory----------------------.html','Supported Test Cases','testing-supported-cest-cases.html'">NXM</option>
+  <option value="goals--objectives.html">objectives</option>
+  <option value="testing-supported-cest-cases.html">OCW1</option>
+  <option value="testing-supported-cest-cases.html">OCW3</option>
+  <option value="set.html">oem_string</option>
+  <option value="alpha_diasm.html">offset</option>
+  <option value="hwrpb---ds20.html">offset keys</option>
+  <option value="testing-supported-cest-cases.html">OPCDEC</option>
+  <option value="--dispatchtables.html">opcode</option>
+  <option value="booting-from-an-iso-image.html">OPCOM</option>
+  <option value="--configuring-a-system-with-t.html">Open Console</option>
+  <option value="--configuring-a-system-with-t.html">Open in PlatEd</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','EmulatR - Known Gaps','known-gaps.html','System Disk Configuration','--system-disk-configuration.html','Booting/Configure A New OpenVMS Instance from an ISO','booting-from-an-iso-image.html','launch_vms_boot','launch_vms_boot.html','V1.6 (Beta)','releasenotesv1_6-.html'">OpenVMS</option>
+  <option value="4_7-guest-boot----------------.html">OpenVMS boot</option>
+  <option value="4_-operating-emulatr----------.html">operating</option>
+  <option value="1_-introduction.html">operator</option>
+  <option value="releasenotesv1_6-.html">OPERCRASH</option>
+  <option value="'Virtual CDROM (dqa1)','--virtual-cdrom.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">option firmware</option>
+  <option value="82077-controller_.html">option firmware scan</option>
+  <option value="'Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html','Task Matrix &amp; TimeOut Loops','task-matrix-_-timeout-loops.html'">option-firmware scan</option>
+  <option value="command-line-options.html">options</option>
+  <option value="'Boot Acceleration - Entry Snapshot','--boot-acceleration-entry-snap.html','Floating-Point Considerations','--floating-point-consideration.html','Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Host Decompressor','host-decompressor.html','Decompressor Internals','decompressor-internals.html','Testing','testing.html'">Oracle</option>
+  <option value="host-decompressor.html">oracle.c</option>
+  <option value="--current-development-status--.html">OS boot</option>
+  <option value="boot-sequences.html">osfalpha_defs.mar</option>
+  <option value="'Running from a Run Directory','running-from-a-run-directory.html','Platform Execution','platform-execution.html'">out/build</option>
+  <option value="testing-supported-cest-cases.html">OUT2</option>
+  <option value="--es40-tig-module-reset.html">outtig</option>
+  <option value="post-flash.html">ovly_init ()</option>
+  <option value="reset-into-secondary-boot.html">p_temp</option>
+  <option value="boot-transcripts.html">P00</option>
+  <option value="releasenotesv1_6-.html">P00&gt;&gt;&gt;</option>
+  <option value="decchip-21274-(titan).html">PA-chip</option>
+  <option value="testing-supported-cest-cases.html">PACKET</option>
+  <option value="--atapi-devices.html">PACKET command</option>
+  <option value="profile_resolve.html">PAL</option>
+  <option value="alpha_diasm.html">PAL image</option>
+  <option value="palcode-platform-bases.html">PAL$CALLBACK</option>
+  <option value="palcode-platform-bases.html">PAL$CONSOLE_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$CPU0_START_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$CPU1_START_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$ENTER_CONSOLE_PTR</option>
+  <option value="palcode-platform-bases.html">PAL$ENTER_OSF</option>
+  <option value="palcode-platform-bases.html">PAL$EVMSBUILD_BITMASK</option>
+  <option value="palcode-platform-bases.html">PAL$EVMSVERSION</option>
+  <option value="palcode-platform-bases.html">PAL$HALT_SWITCH_IN</option>
+  <option value="palcode-platform-bases.html">PAL$HWRPB_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$IMPURE_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$IMPURE_COMMON_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL$IMPURE_SPECIFIC_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL$LOGOUT_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$LOGOUT_SPECIFIC_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL$OSFPAL_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$OSFPAL_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL$OSFVERSION</option>
+  <option value="palcode-platform-bases.html">PAL$PAL_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$PAL_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL$PRIMARY</option>
+  <option value="palcode-platform-bases.html">PAL$TEMPS_BASE</option>
+  <option value="palcode-platform-bases.html">PAL$TEMPS_SPECIFIC_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL__CONSOLE_BASE</option>
+  <option value="palcode-platform-bases.html">PAL__ENTER_OSF</option>
+  <option value="palcode-platform-bases.html">PAL__IMPURE_BASE</option>
+  <option value="palcode-platform-bases.html">PAL__IMPURE_COMMON_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL__IMPURE_SPECIFIC_SIZE</option>
+  <option value="palcode-platform-bases.html">PAL__OSFPAL_BASE</option>
+  <option value="palcode-platform-bases.html">PAL__PAL_BASE</option>
+  <option value="palcode-platform-bases.html">PAL__TEMPS_BASE</option>
+  <option value="palcode-platform-bases.html">PAL__TEMPS_SPECIFIC_SIZE</option>
+  <option value="'Execution Flight Plan','--execution-flight-plan-------.html','Memory Map &amp; IPRs','--memory-map--iprs.html','Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html'">PAL_BASE</option>
+  <option value="examples---json.html">pal_mode</option>
+  <option value="--memory-map--iprs.html">PAL_TEMP</option>
+  <option value="testing-supported-cest-cases.html">palBase</option>
+  <option value="--overview--------------------.html">PalBox</option>
+  <option value="testing-supported-cest-cases.html">palBox::execBpt_tru64</option>
+  <option value="testing-supported-cest-cases.html">palBox::execBpt_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execCallPalDispatch</option>
+  <option value="testing-supported-cest-cases.html">palBox::execChme_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execChmk_tru64</option>
+  <option value="testing-supported-cest-cases.html">palBox::execCserve</option>
+  <option value="testing-supported-cest-cases.html">palBox::execHalt</option>
+  <option value="testing-supported-cest-cases.html">palBox::execHwMfpr</option>
+  <option value="testing-supported-cest-cases.html">palBox::execHwMtpr</option>
+  <option value="testing-supported-cest-cases.html">palBox::execHwRei</option>
+  <option value="testing-supported-cest-cases.html">palBox::execLdqp_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execMfprVptb_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execMfprWhami</option>
+  <option value="testing-supported-cest-cases.html">palBox::execMtprVptb_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execStqp_vms</option>
+  <option value="testing-supported-cest-cases.html">palBox::execWtint</option>
+  <option value="boot-sequences.html">palBoxLib</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Goals &amp; Objectives','goals--objectives.html','Feature Matrix','--feature-matrix.html','Example - Performance','--example---performance.html','SRM Overview','--srm-overview.html','Overview','--overview--------------------.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Glossary','--glossary--------------------.html'">PALcode</option>
+  <option value="--execution-_-boot-internals.html">PALcode trap delivery</option>
+  <option value="--memory-map--iprs.html">PALcode-visible IPR</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">PalEntries.cpp</option>
+  <option value="testing-supported-cest-cases.html">palMode</option>
+  <option value="4_2-console-connectivity.html">paste</option>
+  <option value="'Cypress','cypress.html','CY82C693','cy82c693-.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Supported Test Cases','testing-supported-cest-cases.html'">pc264</option>
+  <option value="post-flash.html">pc264_init.c</option>
+  <option value="networking-ewa0.html">pcap</option>
+  <option value="clock-frequency-mhz.html">PCC</option>
+  <option value="--feature-matrix.html">PCF8584</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Overview','--overview--------------------.html','Chipset','chipset.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Supported Test Cases','testing-supported-cest-cases.html'">Pchip</option>
+  <option value="platform-memory-reference.html">P-chip</option>
+  <option value="known-gaps.html">PCHIP 1</option>
+  <option value="tsunami-error-chain.html">Pchip error</option>
+  <option value="testing-supported-cest-cases.html">Pchip1</option>
+  <option value="de500-ethernet-21143.html">PCI</option>
+  <option value="--ide-devices.html">PCI config</option>
+  <option value="--appendix---ds10.html">PCI device manifest</option>
+  <option value="--current-development-status--.html">PCI enumeration</option>
+  <option value="'Supported Systems','--supported-systems.html','show config','show-config.html','Storage Interconnect and Fabric','--storage-interconnect-and-fab.html'">PCI hose</option>
+  <option value="testing-supported-cest-cases.html">PCI INTx</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">PCI probe</option>
+  <option value="--what-is-emulatr.html">PCI-to-ISA bridge</option>
+  <option value="testing-supported-cest-cases.html">PCN</option>
+  <option value="bring-up-probes.html">PCSAMPLE</option>
+  <option value="testing-supported-cest-cases.html">PCTX</option>
+  <option value="hwrpb---ds20.html">peek poke</option>
+  <option value="pipeline-execution-(internals).html">pendingIrq</option>
+  <option value="testing-supported-cest-cases.html">pendingSoftInt</option>
+  <option value="'HWRPB Key/Value Offset Map','hwrpb---ds20.html','Per-CPU Halt Codes','per-cpu-halt-codes.html'">per-CPU slot</option>
+  <option value="hwrpb---ds20.html">PerCpuSlot</option>
+  <option value="'Configuring &amp; Running','4_1-configuring--running.html','Execution Pipeline','execution-pipeline.html','EMULATR_BLOCK_MAX','block-max-internals.html','Acceleration Program Status','acceleration-program-status.html'">Performance</option>
+  <option value="'SRM Performance Logging','--srm-performance-logging.html','Software Verify','software-verify.html'">Performance Validator</option>
+  <option value="8_1-platform-appendices.html">per-model reference</option>
+  <option value="82077-controller_.html">PERPENDICULAR MODE</option>
+  <option value="tsunami-error-chain.html">PERRMASK</option>
+  <option value="tsunami-error-chain.html">PERROR</option>
+  <option value="tsunami-error-chain.html">PERRSET</option>
+  <option value="--grainfactorylib.html">personality</option>
+  <option value="phase1-dispatch-gate.html">phase1_dispatch_gate</option>
+  <option value="--evaluate-address.html">physical address</option>
+  <option value="--memory-map--iprs.html">physical address map</option>
+  <option value="--overview--------------------.html">Pic8259Pair</option>
+  <option value="testing-supported-cest-cases.html">PIDENTIFY</option>
+  <option value="testing-supported-cest-cases.html">PIN</option>
+  <option value="releasenotesv2_0-.html">PIO</option>
+  <option value="'8.3 Architecture Deep-Dives','8_3-architecture-deep-dives---.html','Execution Pipeline','execution-pipeline.html'">Pipeline</option>
+  <option value="'SRM Performance Logging','--srm-performance-logging.html','Overview','--overview--------------------.html','Execution / Boot Internals','--execution-_-boot-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html','Supported Test Cases','testing-supported-cest-cases.html'">PipelineDriver</option>
+  <option value="'Overview','--overview--------------------.html','Execution / Boot Internals','--execution-_-boot-internals.html','Pipeline Machinery -- Bachman Diagram','pipeline-execution-(internals).html'">PipelineSlot</option>
+  <option value="ali-m1543c-south-bridge-interf.html">PIRQ</option>
+  <option value="--appendix-ds20-_-es40-_-es45.html">planned platform</option>
+  <option value="platformeditor-web-ui.html">platedit_qt</option>
+  <option value="'Appendices - Developer Reference','8_-appendices---developer-refe.html','Platform Appendices','8_1-platform-appendices.html'">platform appendix</option>
+  <option value="'System Disk Configuration','--system-disk-configuration.html','Platform Editor','platformeditor-web-ui.html'">platform editor</option>
+  <option value="platform-execution-mode-isp-(e.html">platform execution mode</option>
+  <option value="platform-identity-and-geometry.html">platform identity</option>
+  <option value="platform-identity-and-geometry.html">platform latch</option>
+  <option value="'Supported Systems','--supported-systems.html','Current Platform Support','--current-platform-support.html','Firmware Images: .exe and .rom','firmware-images-exe-and-rom.html','Configuring &amp; Running','4_1-configuring--running.html','Configuring a System with the Launcher','--configuring-a-system-with-t.html','Configuring','--configuring----------(moved-.html','System Disk Configuration','--system-disk-configuration.html','Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html','EmulatR will not start','--emulatr-will-not-start.html','Platform Appendices','8_1-platform-appendices.html','Appendix DS20 / ES40 / ES45','--appendix-ds20-_-es40-_-es45.html','Platform Editor','platformeditor-web-ui.html','v2.0','releasenotesv2_0-.html'">platform manifest</option>
+  <option value="platform-identity-and-geometry.html">PLATFORM MISMATCH</option>
+  <option value="--current-platform-support.html">platform selection</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html'">platform()</option>
+  <option value="platformeditor-web-ui.html">platform.json</option>
+  <option value="post-flash.html">platform_init1()</option>
+  <option value="--configuring----------(moved-.html">PlatformConfig</option>
+  <option value="--current-platform-support.html">platformConfigPath</option>
+  <option value="--windows-registry-settings.html">platformMode</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Connecting to the Console','--connecting-to-the-console.html','Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">Plink</option>
+  <option value="testing-supported-cest-cases.html">PME</option>
+  <option value="'&gt;&gt;&gt; Evaluate Address','--evaluate-address.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html','Example (Console) execution','--example-(console)-execution.html','trace_halt','trace_halt.html'">pmem</option>
+  <option value="'Configuring','--configuring----------(moved-.html','Console Connection Issues','--console-connection-issues---.html'">port</option>
+  <option value="'First Startup','--first-startup.html','Console Connectivity','4_2-console-connectivity.html','Console Support','--console-support------(moved-.html','TCP Console Overview','--tcp-console-overview.html'">port 10023</option>
+  <option value="--emulatr-will-not-start.html">port in use</option>
+  <option value="build_test_run2.html">POST_BUILD</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Execution Flight Plan','--execution-flight-plan-------.html'">power-up</option>
+  <option value="--example---performance.html">power-up sequence</option>
+  <option value="testing-supported-cest-cases.html">PPCE</option>
+  <option value="--configuring----------(moved-.html">precedence</option>
+  <option value="--building-from-source.html">preset</option>
+  <option value="--ide-devices.html">primary channel</option>
+  <option value="--dispatchtables.html">primary table</option>
+  <option value="boot-sequences.html">Processor Support</option>
+  <option value="clock-frequency-mhz.html">profile clock</option>
+  <option value="--configuring-a-system-with-t.html">profile directory</option>
+  <option value="--srm-performance-logging.html">profile file</option>
+  <option value="profile_resolve.html">profile_resolve</option>
+  <option value="testing-supported-cest-cases.html">profileAlphaClockHz</option>
+  <option value="'Logging &amp; Diagnostics','4_8-logging--diagnostics.html','Tools','8_4-tools.html','Software Verify','software-verify.html'">profiler</option>
+  <option value="software-verify.html">profiling</option>
+  <option value="platform-execution-mode-isp-(e.html">prog-IF</option>
+  <option value="installing-with-the-windows-installer.html">Program Files</option>
+  <option value="networking-ewa0.html">provision_enic</option>
+  <option value="reset-into-secondary-boot.html">PT__IMPURE</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Supported Test Cases','testing-supported-cest-cases.html'">PT__VPTB</option>
+  <option value="--memory-map--iprs.html">PT0</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Per-CPU Halt Codes','per-cpu-halt-codes.html'">PTBR</option>
+  <option value="--addressing------------------.html">PTE</option>
+  <option value="testing-supported-cest-cases.html">putChar</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Feature Matrix','--feature-matrix.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Connecting to the Console','--connecting-to-the-console.html','Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">PuTTY</option>
+  <option value="'First Startup','--first-startup.html','TCP Console Overview','--tcp-console-overview.html'">PuTTY auto-launch</option>
+  <option value="platform-execution.html">PuTTY console</option>
+  <option value="--configuring----------(moved-.html">puttyPath</option>
+  <option value="--iso-9660-pfd-(cd001).html">PVD</option>
+  <option value="--dependencies----------------.html">Python</option>
+  <option value="known-gaps.html">QLogic ISP</option>
+  <option value="--windows-registry-settings.html">QSettings</option>
+  <option value="'Installation','2_-installation.html','Required Tools &amp; Frameworks','--required-tools--frameworks.html','Dependencies','--dependencies----------------.html'">Qt</option>
+  <option value="qt-creator.html">Qt 6.10.2</option>
+  <option value="'Tools','8_4-tools.html','Qt Creator','qt-creator.html'">Qt Creator</option>
+  <option value="--development-conventions.html">Qt surface</option>
+  <option value="platformeditor-web-ui.html">Qt Widgets</option>
+  <option value="command-line-options.html">qualifiers</option>
+  <option value="'Introduction','1_-introduction.html','3. Quick Start','3_-quick-start----------------.html'">Quick Start</option>
+  <option value="--sdi-devices-_-dssi-devices-_.html">RA disk</option>
+  <option value="testing-supported-cest-cases.html">raisePciInterrupt</option>
+  <option value="--virtual-disk-images.html">raw image</option>
+  <option value="--console-connection-issues---.html">RAW mode</option>
+  <option value="'Connecting to the Console','--connecting-to-the-console.html','Console Connectivity','4_2-console-connectivity.html','Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">RAW TCP</option>
+  <option value="--tcp-console-overview.html">RAW TCP socket</option>
+  <option value="--required-tools--frameworks.html">RAW-TCP client</option>
+  <option value="testing-supported-cest-cases.html">RBR</option>
+  <option value="testing-supported-cest-cases.html">rcm_nvram0</option>
+  <option value="testing-supported-cest-cases.html">READ CAPACITY</option>
+  <option value="82077-controller_.html">READ DATA</option>
+  <option value="82077-controller_.html">READ DELETED DATA</option>
+  <option value="82077-controller_.html">READ ID</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">read intercept</option>
+  <option value="testing-supported-cest-cases.html">READ SECTORS</option>
+  <option value="testing-supported-cest-cases.html">READ TOC</option>
+  <option value="--iso-9660-pfd-(cd001).html">READ(10)</option>
+  <option value="testing-supported-cest-cases.html">READ10</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Virtualization Methods','virtualization-methods.html','Execution Matrix (Models x Modes)','execution-matrix.html'">REAL_HW</option>
+  <option value="per-cpu-halt-codes.html">reason for halt</option>
+  <option value="'82077 Floppy Controller','82077-controller_.html','Supported Test Cases','testing-supported-cest-cases.html'">RECALIBRATE</option>
+  <option value="boot-sequences.html">ref leaf</option>
+  <option value="host-decompressor.html">ref_decompressed.bin</option>
+  <option value="6_-reference------------------.html">reference</option>
+  <option value="boot-sequences.html">REFERENCE_INDEX.md</option>
+  <option value="snapmap.html">region map</option>
+  <option value="profile_resolve.html">region rollup</option>
+  <option value="8_3-architecture-deep-dives---.html">register level</option>
+  <option value="--windows-registry-settings.html">registry</option>
+  <option value="host-decompressor.html">regression guard</option>
+  <option value="testing-supported-cest-cases.html">regWriteIdx</option>
+  <option value="installing-with-the-windows-installer.html">reinstall</option>
+  <option value="'Building from Source','--building-from-source.html','Platform Execution','platform-execution.html'">release</option>
+  <option value="bring-up-probes.html">release build</option>
+  <option value="known-gaps.html">release checkpoint</option>
+  <option value="'Release Notes','release-notes.html','V1.6 (Beta)','releasenotesv1_6-.html','v2.0','releasenotesv2_0-.html'">release notes</option>
+  <option value="version-administration.html">Release Stages</option>
+  <option value="--execution-flight-plan-------.html">relocation</option>
+  <option value="'Building from Source','--building-from-source.html','Platform Execution','platform-execution.html','build_test_run','build_test_run2.html'">RelWithDebInfo</option>
+  <option value="--tcp-console-overview.html">remote host</option>
+  <option value="'ATAPI Devices','--atapi-devices.html','Supported Test Cases','testing-supported-cest-cases.html'">REQUEST SENSE</option>
+  <option value="reset-into-secondary-boot.html">reset re-entry</option>
+  <option value="boot.html">RESTART</option>
+  <option value="reset-into-secondary-boot.html">restore_state</option>
+  <option value="--boot-acceleration-entry-snap.html">restore-except-flash</option>
+  <option value="--execution-_-boot-internals.html">retire</option>
+  <option value="'analyze_retire_trace','analyze_retire_trace.html','diag_halt_irq4','diag_halt_irq4.html'">retire trace</option>
+  <option value="--srm-performance-logging.html">retire-PC histogram</option>
+  <option value="'./tools/build_emulatr_diag.bat','__tools_build_emulatr_diag_bat.html','SRM Performance Logging','--srm-performance-logging.html','profile_resolve','profile_resolve.html'">RetireProfiler</option>
+  <option value="testing-supported-cest-cases.html">REV</option>
+  <option value="'Tools','8_4-tools.html','Ghidra','--ghidra.html'">reverse engineering</option>
+  <option value="--current-development-status--.html">roadmap</option>
+  <option value="'Firmware Requirements','--firmware-requirements.html','Configuring','--configuring----------(moved-.html'">ROM</option>
+  <option value="terms-of-use.html">ROMs</option>
+  <option value="--floating-point-consideration.html">rounding mode</option>
+  <option value="testing-supported-cest-cases.html">roundLog2Nearest</option>
+  <option value="testing-supported-cest-cases.html">routeMmioOffset</option>
+  <option value="'Clock Frequency and the MHz Reading','clock-frequency-mhz.html','WARP Variants and Cycle-Accounting for Reported CPU Speed','warp-variants-and-cycle-accoun.html'">RPCC</option>
+  <option value="execution-modes.html">RSCC</option>
+  <option value="examples---json.html">RSCC anchor</option>
+  <option value="warp-variants-and-cycle-accoun.html">RSCCWARP</option>
+  <option value="time-of-year-clock-toy.html">RTC</option>
+  <option value="'Running EmulatR from the Shell','running-from-the-shell.html','Running from a Run Directory','running-from-a-run-directory.html','Run-Directory Contents','run-directory-contents.html','Configuring a System with the Launcher','--configuring-a-system-with-t.html','System Disk Configuration','--system-disk-configuration.html','v2.0','releasenotesv2_0-.html'">run directory</option>
+  <option value="examples---json.html">run product</option>
+  <option value="tools-script-reference.html">run scripts</option>
+  <option value="--launching-emulatr.html">run.log</option>
+  <option value="'Virtual CDROM (dqa1)','--virtual-cdrom.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html'">RUN/STOP</option>
+  <option value="platform-execution.html">run_&lt;plat&gt;.sh</option>
+  <option value="'Running from a Run Directory','running-from-a-run-directory.html','Platform Execution','platform-execution.html'">RUN_DIR</option>
+  <option value="run_fw_sh.html">run_fw</option>
+  <option value="platform-execution.html">run_fw.sh</option>
+  <option value="'script','script.html','Tools Script Reference','tools-script-reference.html'">runbook</option>
+  <option value="--windows-registry-settings.html">runDir</option>
+  <option value="4_1-configuring--running.html">running</option>
+  <option value="run-directory-contents.html">runtime layout</option>
+  <option value="testing-supported-cest-cases.html">RX FIFO</option>
+  <option value="'SCSI Devices','--scsi-devices.html','Create Guest Disk Storage','--create-guest-disk-storage---.html'">RZ28</option>
+  <option value="--scsi-devices.html">RZ29</option>
+  <option value="--system-disk-configuration.html">RZ29L</option>
+  <option value="testing-supported-cest-cases.html">S_ExcBarrier</option>
+  <option value="testing-supported-cest-cases.html">S_Locked</option>
+  <option value="testing-supported-cest-cases.html">S_Mb</option>
+  <option value="--grainfactorylib.html">S_PalLinux</option>
+  <option value="--grainfactorylib.html">S_PalTru64</option>
+  <option value="--grainfactorylib.html">S_PalVms</option>
+  <option value="testing-supported-cest-cases.html">S_PrefetchOnly</option>
+  <option value="testing-supported-cest-cases.html">S_TrapBarrier</option>
+  <option value="testing-supported-cest-cases.html">S_Wmb</option>
+  <option value="82077-controller_.html">SCAN EQUAL</option>
+  <option value="known-gaps.html">scatter-gather</option>
+  <option value="post-flash.html">scb_init()</option>
+  <option value="per-cpu-halt-codes.html">SCBB</option>
+  <option value="--memory-map--iprs.html">scbd field</option>
+  <option value="'SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html','Source Cross Reference','boot-sequences.html'">schedLib</option>
+  <option value="'script','script.html','Tools Script Reference','tools-script-reference.html'">script</option>
+  <option value="testing-supported-cest-cases.html">SCRIPTS</option>
+  <option value="'Feature Matrix','--feature-matrix.html','EmulatR - Known Gaps','known-gaps.html','Storage','4_4-storage.html','SCSI Devices','--scsi-devices.html','Storage Interconnect and Fabric','--storage-interconnect-and-fab.html','V1.6 (Beta)','releasenotesv1_6-.html'">SCSI</option>
+  <option value="releasenotesv2_0-.html">scsi_cdrom</option>
+  <option value="--scsi-devices.html">scsi_poll</option>
+  <option value="--scsi-devices.html">scsi_reset</option>
+  <option value="releasenotesv1_6-.html">SDA</option>
+  <option value="testing-supported-cest-cases.html">SDE</option>
+  <option value="--sdi-devices-_-dssi-devices-_.html">SDI</option>
+  <option value="reset-into-secondary-boot.html">secondary boot</option>
+  <option value="srm-boot-call-stack.html">secondary start</option>
+  <option value="--dispatchtables.html">secondary table</option>
+  <option value="'Virtual Disk Images','--virtual-disk-images.html','mkdisk','mkdisk.html'">sector</option>
+  <option value="terms-of-use.html">security</option>
+  <option value="82077-controller_.html">SEEK</option>
+  <option value="running-from-a-run-directory.html">self-location</option>
+  <option value="--grainfactorylib.html">SemanticFlags.tsv</option>
+  <option value="testing-supported-cest-cases.html">semFlags</option>
+  <option value="'82077 Floppy Controller','82077-controller_.html','Supported Test Cases','testing-supported-cest-cases.html'">SENSE DRIVE STATUS</option>
+  <option value="'82077 Floppy Controller','82077-controller_.html','Supported Test Cases','testing-supported-cest-cases.html'">SENSE INTERRUPT</option>
+  <option value="goals--objectives.html">separation of concerns</option>
+  <option value="phase1-dispatch-gate.html">SequentialDriver</option>
+  <option value="'SRM Console','4_3-srm-console.html','SRM Overview','--srm-overview.html','Common Commands','--common-commands.html','set','set.html'">set</option>
+  <option value="installing-with-the-windows-installer.html">setup.exe</option>
+  <option value="tsunami-error-chain.html">SGE</option>
+  <option value="'SRM Console','4_3-srm-console.html','SRM Overview','--srm-overview.html','Common Commands','--common-commands.html','set','set.html'">show</option>
+  <option value="'Example - Performance','--example---performance.html','Successful Boot to SRM (per platform)','boot-transcripts.html','Common Commands','--common-commands.html','show config','show-config.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">show config</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Successful Boot to SRM (per platform)','boot-transcripts.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">show dev</option>
+  <option value="'Example - Performance','--example---performance.html','Common Commands','--common-commands.html','show device','show-device.html'">show device</option>
+  <option value="'Common Commands','--common-commands.html','show memory','show-memory.html'">show memory</option>
+  <option value="--windows-registry-settings.html">shutdownTimeoutMs</option>
+  <option value="de500-ethernet-21143.html">SIA</option>
+  <option value="'Configuring a System with the Launcher','--configuring-a-system-with-t.html','Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Virtualization Methods','virtualization-methods.html'">silicon</option>
+  <option value="platform-execution.html">silicon ceiling</option>
+  <option value="'Configuring','--configuring----------(moved-.html','Platform Identity &amp; Memory Geometry','platform-identity-and-geometry.html','Platform Memory Reference','platform-memory-reference.html'">silicon maximum</option>
+  <option value="'EmulatR - Known Gaps','known-gaps.html','Successful Boot to SRM (per platform)','boot-transcripts.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Execution Matrix (Models x Modes)','execution-matrix.html','v2.0','releasenotesv2_0-.html'">silicon mode</option>
+  <option value="boot-sequences.html">SimH</option>
+  <option value="srm-boot-_-srm-commands-prompt.html">SIO-TRACE</option>
+  <option value="testing-supported-cest-cases.html">SIRR</option>
+  <option value="--execution-_-boot-internals.html">six-stage pipeline</option>
+  <option value="'Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html','diag_halt_irq4','diag_halt_irq4.html'">smir</option>
+  <option value="'Goals &amp; Objectives','goals--objectives.html','EmulatR - Known Gaps','known-gaps.html','SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html'">SMP</option>
+  <option value="smp-(multiprocessor)-design.html">SMP architecture</option>
+  <option value="smp-(multiprocessor)-design.html">SmpDrivers.h</option>
+  <option value="'SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">SmpHarness.h</option>
+  <option value="snapmap.html">snapmap</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Current Development Status','--current-development-status--.html','3. Quick Start','3_-quick-start----------------.html','Launching EmulatR','--launching-emulatr.html','Command Line Options (EmulatR)','command-line-options.html','Boot Acceleration - Entry Snapshot','--boot-acceleration-entry-snap.html','Logging Subsystems (EmulatR)','emulatr-subsystems.html','snapmap','snapmap.html'">snapshot</option>
+  <option value="platform-execution.html">snapshot restore</option>
+  <option value="--windows-registry-settings.html">snapshotMode</option>
+  <option value="'Command Line Options (EmulatR)','command-line-options.html','Snapshot Operations','--automatic-_-creating-_-resto.html'">--snapshot-on-pc</option>
+  <option value="'Operating EmulatR','4_-operating-emulatr----------.html','Configuring a System with the Launcher','--configuring-a-system-with-t.html','Executing Two Instances','--executing-two-instances.html'">snapshots</option>
+  <option value="--automatic-_-creating-_-resto.html">snapshots directory</option>
+  <option value="'Dependencies','--dependencies----------------.html','Floating-Point Considerations','--floating-point-consideration.html','Supported Test Cases','testing-supported-cest-cases.html'">softfloat</option>
+  <option value="'Floating-Point Considerations','--floating-point-consideration.html','Supported Test Cases','testing-supported-cest-cases.html'">SoftFloatBackend</option>
+  <option value="'Tools','8_4-tools.html','Software Verify','software-verify.html'">Software Verify</option>
+  <option value="boot-sequences.html">source cross reference</option>
+  <option value="--development-conventions.html">source header</option>
+  <option value="boot-sequences.html">Source References</option>
+  <option value="'Chipset','chipset.html','South Bridge','southbridge.html','ALi M1543C South-Bridge Interface','ali-m1543c-south-bridge-interf.html','Cypress','cypress.html'">south bridge</option>
+  <option value="'Overview','--overview--------------------.html','Addressing','--addressing------------------.html','Glossary','--glossary--------------------.html'">SPAM</option>
+  <option value="testing-supported-cest-cases.html">SPAMBucket</option>
+  <option value="'Overview','--overview--------------------.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html','Supported Test Cases','testing-supported-cest-cases.html'">SPAMShardManager</option>
+  <option value="testing-supported-cest-cases.html">Sparse I/O</option>
+  <option value="--create-guest-disk-storage---.html">sparse image</option>
+  <option value="--memory----------------------.html">sparse paging</option>
+  <option value="'Required Tools &amp; Frameworks','--required-tools--frameworks.html','Dependencies','--dependencies----------------.html','Logging &amp; Diagnostics','4_8-logging--diagnostics.html','Diagnostics &amp; Debugging','--diagnostics--debugging---(ne.html'">spdlog</option>
+  <option value="82077-controller_.html">SPECIFY</option>
+  <option value="platformeditor-web-ui.html">SPEC-PLATED-001</option>
+  <option value="platformeditor-web-ui.html">SPEC-SCSIH-001</option>
+  <option value="examples---json.html">spin candidate</option>
+  <option value="post-flash.html">Spinlocks</option>
+  <option value="testing-supported-cest-cases.html">SQWE</option>
+  <option value="--ghidra.html">SRE</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Feature Matrix','--feature-matrix.html','Installation','2_-installation.html','SRM Console','4_3-srm-console.html','Overview','--overview--------------------.html','Execution Flight Plan','--execution-flight-plan-------.html','Glossary','--glossary--------------------.html','profile_resolve','profile_resolve.html'">SRM</option>
+  <option value="'SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">SRM boot</option>
+  <option value="'Common Commands','--common-commands.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html'">SRM commands</option>
+  <option value="'Introduction','1_-introduction.html','Goals &amp; Objectives','goals--objectives.html','Operating EmulatR','4_-operating-emulatr----------.html','SRM Overview','--srm-overview.html'">SRM console</option>
+  <option value="--ghidra.html">SRM firmware</option>
+  <option value="--firmware-requirements.html">SRM firmware image</option>
+  <option value="--loading-firmware.html">SRM image</option>
+  <option value="'Current Development Status','--current-development-status--.html','First Startup','--first-startup.html','3. Quick Start','3_-quick-start----------------.html','Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Successful Boot to SRM (per platform)','boot-transcripts.html'">SRM prompt</option>
+  <option value="--firmware-requirements.html">SRM V7.3</option>
+  <option value="--srm-environment-variables.html">SRM variables</option>
+  <option value="--list-_-display-_-update.html">srm_fw</option>
+  <option value="--configuring----------(moved-.html">SRMConsole</option>
+  <option value="testing-supported-cest-cases.html">SRMConsoleDevice</option>
+  <option value="'Current Development Status','--current-development-status--.html','Execution Flight Plan','--execution-flight-plan-------.html','DE500 Ethernet (21143 Tulip)','de500-ethernet-21143.html','Firmware Decode &amp; Decompression','--firmware-decode--decompressi.html','Glossary','--glossary--------------------.html'">SROM</option>
+  <option value="decompressor-internals.html">SROM parameters</option>
+  <option value="booting-from-an-iso-image.html">SSL</option>
+  <option value="testing-supported-cest-cases.html">ST0</option>
+  <option value="--sdi-devices-_-dssi-devices-_.html">ST506</option>
+  <option value="pipeline-execution-(internals).html">stageInterruptDivert</option>
+  <option value="mkdisk.html">stamp</option>
+  <option value="releasenotesv1_6-.html">STARTUP_P1</option>
+  <option value="de500-ethernet-21143.html">station address</option>
+  <option value="bring-up-probes.html">stderr noise</option>
+  <option value="platform-identity-and-geometry.html">stem-wins</option>
+  <option value="testing-supported-cest-cases.html">step</option>
+  <option value="software-verify.html">step loop</option>
+  <option value="phase1-dispatch-gate.html">stepCycle</option>
+  <option value="testing-supported-cest-cases.html">STO</option>
+  <option value="--clean-shutdown.html">stop sentinel</option>
+  <option value="per-cpu-halt-codes.html">StopReason</option>
+  <option value="'Operating EmulatR','4_-operating-emulatr----------.html','Storage','4_4-storage.html'">storage</option>
+  <option value="--storage-interconnect-and-fab.html">storage fabric</option>
+  <option value="help--manual.html">styleclass</option>
+  <option value="--dispatchtables.html">subDecode</option>
+  <option value="emulatr-subsystems.html">subsys</option>
+  <option value="'Subsystem Internals','8_2-subsystem-internals-------.html','Appendices - Developer Reference','8_-appendices---developer-refe.html'">subsystem internals</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Feature Matrix','--feature-matrix.html','SRM Boot, Commands &amp; SuperIO Controller','srm-boot-_-srm-commands-prompt.html'">SuperIO</option>
+  <option value="'Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html'">superpage</option>
+  <option value="--supported-systems.html">Supported Systems</option>
+  <option value="running-from-the-shell.html">switches</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Supported Test Cases','testing-supported-cest-cases.html'">SWPCTX</option>
+  <option value="de500-ethernet-21143.html">SWR</option>
+  <option value="profile_resolve.html">symbols</option>
+  <option value="srm-boot-call-stack.html">sys__cserve</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">sys__exit_console</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">sys__reset</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','SRM Boot Call-Stack','srm-boot-call-stack.html'">sys__reset_init</option>
+  <option value="--example-(console)-execution.html">sys_serial_num</option>
+  <option value="'System Disk Configuration','--system-disk-configuration.html','Guest Boot','4_7-guest-boot----------------.html','V1.6 (Beta)','releasenotesv1_6-.html'">SYSBOOT</option>
+  <option value="booting-from-an-iso-image.html">SYSGEN</option>
+  <option value="--system-disk-configuration.html">system disk</option>
+  <option value="--example-(console)-execution.html">system serial number</option>
+  <option value="5_8-comjit.html">System V</option>
+  <option value="'SMP (MultiProcessor) Design','smp-(multiprocessor)-design.html','Source Cross Reference','boot-sequences.html'">systemLib</option>
+  <option value="warp-variants-and-cycle-accoun.html">systemNow</option>
+  <option value="diagnostic-instrumentation.html">SYSTYPE</option>
+  <option value="'HWRPB Key/Value Offset Map','hwrpb---ds20.html','Model Badging: SRM Platform Identity from an IIC Discriminator Device','diagnostic-instrumentation.html'">SYSVAR</option>
+  <option value="help--manual.html">table of contents</option>
+  <option value="task-matrix-_-timeout-loops.html">task matrix</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html'">taskfile</option>
+  <option value="--clean-shutdown.html">taskkill</option>
+  <option value="'Addressing &amp; TLB','--addressing--tlb.html','Supported Test Cases','testing-supported-cest-cases.html'">TBIA</option>
+  <option value="'Addressing &amp; TLB','--addressing--tlb.html','Supported Test Cases','testing-supported-cest-cases.html'">TBIAP</option>
+  <option value="--addressing--tlb.html">TBIS</option>
+  <option value="'What is EmulatR','--what-is-emulatr.html','Feature Matrix','--feature-matrix.html','3. Quick Start','3_-quick-start----------------.html','Connecting to the Console','--connecting-to-the-console.html','Console Connection Issues','--console-connection-issues---.html'">TCP console</option>
+  <option value="booting-from-an-iso-image.html">TCPIP</option>
+  <option value="releasenotesv2_0-.html">TDF</option>
+  <option value="running-from-the-shell.html">tee</option>
+  <option value="'Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">telnet</option>
+  <option value="'Console Support','--console-support------(moved-.html','Terminal Clients','--putty-_-plink-_-teraterm-_-m.html'">Tera Term</option>
+  <option value="'Required Tools &amp; Frameworks','--required-tools--frameworks.html','Console Connectivity','4_2-console-connectivity.html'">terminal client</option>
+  <option value="terms-of-use.html">terms of use</option>
+  <option value="execution-matrix.html">test matrix</option>
+  <option value="testing-supported-cest-cases.html">TEST UNIT READY</option>
+  <option value="testing-supported-cest-cases.html">THR</option>
+  <option value="testing-supported-cest-cases.html">THRE</option>
+  <option value="platform-execution.html">three-platform gate</option>
+  <option value="emulatr-subsystems.html">throttle</option>
+  <option value="warp-variants-and-cycle-accoun.html">tick counter</option>
+  <option value="'Supported Systems','--supported-systems.html','EmulatR - Known Gaps','known-gaps.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','ES40 TIG Module Reset (Experimental)','--es40-tig-module-reset.html','Halt Button is IN, BOOT NOT POSSIBLE','--halt-button-is-in_-boot-not-.html','diag_halt_irq4','diag_halt_irq4.html','trace_halt','trace_halt.html'">TIG</option>
+  <option value="time-of-year-clock-toy.html">time of day</option>
+  <option value="--console-connection-issues---.html">timeout</option>
+  <option value="'Firmware Hangs, Slow Boot, and Missing Devices','--firmware-hangs-_-slow-boot-_.html','Task Matrix &amp; TimeOut Loops','task-matrix-_-timeout-loops.html'">timeout loop</option>
+  <option value="block-max-internals.html">timer edge</option>
+  <option value="testing-supported-cest-cases.html">timestampMMDDhhmm</option>
+  <option value="examples---json.html">timing twins</option>
+  <option value="license.html">Timothy Peer</option>
+  <option value="'Chipset','chipset.html','DECchip 21274 (Titan)','decchip-21274-(titan).html','Platform Memory Reference','platform-memory-reference.html'">Titan</option>
+  <option value="platform-identity-and-geometry.html">Titan 21274</option>
+  <option value="decchip-21274-(titan).html">TitanChipset</option>
+  <option value="'Feature Matrix','--feature-matrix.html','Overview','--overview--------------------.html','8.3 Architecture Deep-Dives','8_3-architecture-deep-dives---.html','Addressing','--addressing------------------.html'">TLB</option>
+  <option value="testing-supported-cest-cases.html">TlbEntry::matches</option>
+  <option value="'Overview','--overview--------------------.html','Addressing','--addressing------------------.html','Addressing &amp; TLB','--addressing--tlb.html'">TlbEpoch</option>
+  <option value="qt-creator.html">toolchain</option>
+  <option value="script.html">tooling</option>
+  <option value="'Installation','2_-installation.html','Running from a Run Directory','running-from-a-run-directory.html','script','script.html','Tools Script Reference','tools-script-reference.html'">tools</option>
+  <option value="'Development Conventions','--development-conventions.html','Tools Script Reference','tools-script-reference.html'">tools directory</option>
+  <option value="help--manual.html">topic</option>
+  <option value="help--manual.html">topiclink</option>
+  <option value="time-of-year-clock-toy.html">TOY</option>
+  <option value="testing-supported-cest-cases.html">ToyRtc</option>
+  <option value="4_8-logging--diagnostics.html">trace</option>
+  <option value="'Running EmulatR from the Shell','running-from-the-shell.html','Command Line Options (EmulatR)','command-line-options.html'">--trace</option>
+  <option value="analyze_retire_trace.html">TRACE_RETIRE_COMPACT</option>
+  <option value="--executing------------(moved).html">traced boot</option>
+  <option value="--development-conventions.html">traces</option>
+  <option value="5_-architecture--internals----.html">translation</option>
+  <option value="acceleration-program-status.html">Translation Block</option>
+  <option value="--addressing--tlb.html">translation buffer</option>
+  <option value="acceleration-program-status.html">Translation Cache</option>
+  <option value="--floating-point-consideration.html">trap mode</option>
+  <option value="'Terminal Clients','--putty-_-plink-_-teraterm-_-m.html','Troubleshooting','7_-troubleshooting------------.html'">troubleshooting</option>
+  <option value="known-gaps.html">Tru64</option>
+  <option value="4_7-guest-boot----------------.html">Tru64 boot</option>
+  <option value="--what-is-emulatr.html">Tru64 UNIX</option>
+  <option value="testing-supported-cest-cases.html">tryRead</option>
+  <option value="testing-supported-cest-cases.html">tryWrite</option>
+  <option value="version-administration.html">T-Stage_Version</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Chipset','chipset.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','Glossary','--glossary--------------------.html','Appendix - DS10','--appendix---ds10.html','Platform Memory Reference','platform-memory-reference.html','Supported Test Cases','testing-supported-cest-cases.html'">Tsunami</option>
+  <option value="clock-frequency-mhz.html">Tsunami21272_CsrSpec</option>
+  <option value="pipeline-execution-(internals).html">TsunamiCchip</option>
+  <option value="srm-boot-call-stack.html">TsunamiCchip.h</option>
+  <option value="'Overview','--overview--------------------.html','Memory','--memory----------------------.html','Tsunami \ Typhoon','tsunami-_-typhoon.html'">TsunamiChipset</option>
+  <option value="testing-supported-cest-cases.html">TsunamiTig</option>
+  <option value="'DE500 Ethernet (21143 Tulip)','de500-ethernet-21143.html','Appendix - DS10','--appendix---ds10.html','Task Matrix &amp; TimeOut Loops','task-matrix-_-timeout-loops.html','v2.0','releasenotesv2_0-.html'">tulip</option>
+  <option value="--executing-two-instances.html">two instances</option>
+  <option value="'Introduction','1_-introduction.html','What is EmulatR','--what-is-emulatr.html','Supported Systems','--supported-systems.html','Overview','--overview--------------------.html','Tsunami \ Typhoon','tsunami-_-typhoon.html','ES40 TIG Module Reset (Experimental)','--es40-tig-module-reset.html','Platform Memory Reference','platform-memory-reference.html','Supported Test Cases','testing-supported-cest-cases.html'">Typhoon</option>
+  <option value="--firmware-decode--decompressi.html">UDELAYWARP</option>
+  <option value="reset-into-secondary-boot.html">unassigned IPR</option>
+  <option value="'Installation','2_-installation.html','Installing with the Windows Installer','installing-with-the-windows-installer.html'">uninstall</option>
+  <option value="testing.html">unit tests</option>
+  <option value="testing-supported-cest-cases.html">unregisterIoPortRange</option>
+  <option value="testing-supported-cest-cases.html">unregisterPciMemRange</option>
+  <option value="running-from-a-run-directory.html">unzip and run</option>
+  <option value="'Reaching the SRM Prompt','--reaching-the-srm-prompt.html','Example - Performance','--example---performance.html','Firmware Update Utility (LFU)','4_6-firmware-update-utility-(l.html','LFU Commands','--list-_-display-_-update.html'">UPD</option>
+  <option value="--list-_-display-_-update.html">Update</option>
+  <option value="'Example - Performance','--example---performance.html','Firmware Update Utility (LFU)','4_6-firmware-update-utility-(l.html','LFU Commands','--list-_-display-_-update.html'">update srm</option>
+  <option value="'Installation','2_-installation.html','Installing with the Windows Installer','installing-with-the-windows-installer.html'">upgrade</option>
+  <option value="1_-introduction.html">User Guide</option>
+  <option value="releasenotesv2_0-.html">v2.0</option>
+  <option value="known-gaps.html">V6</option>
+  <option value="platform-execution-mode-isp-(e.html">V6 trajectory</option>
+  <option value="'Memory Map &amp; IPRs','--memory-map--iprs.html','Addressing &amp; TLB','--addressing--tlb.html'">VA_CTL</option>
+  <option value="testing-supported-cest-cases.html">VA_FORM</option>
+  <option value="platformeditor-web-ui.html">validation</option>
+  <option value="testing-supported-cest-cases.html">variantFromModel</option>
+  <option value="--floating-point-consideration.html">VAX float</option>
+  <option value="known-gaps.html">vector 0x660</option>
+  <option value="--list-_-display-_-update.html">Verify</option>
+  <option value="'82077 Floppy Controller','82077-controller_.html','Release Notes','release-notes.html'">version</option>
+  <option value="version-administration.html">Version Numbering</option>
+  <option value="hwrpb---ds20.html">View union</option>
+  <option value="execution-modes.html">virtual</option>
+  <option value="'show device','show-device.html','Virtual CDROM (dqa1)','--virtual-cdrom.html'">virtual CDROM</option>
+  <option value="--atapi-devices.html">virtual CD-ROM</option>
+  <option value="'Storage','4_4-storage.html','Create Guest Disk Storage','--create-guest-disk-storage---.html','Virtual Disk Images','--virtual-disk-images.html'">virtual disk</option>
+  <option value="execution-matrix.html">virtual mode</option>
+  <option value="'Overview','--overview--------------------.html','Memory','--memory----------------------.html'">VirtualAlloc</option>
+  <option value="'ISO-9660 PFD (CD001)','--iso-9660-pfd-(cd001).html','Supported Test Cases','testing-supported-cest-cases.html'">VirtualIsoDevice</option>
+  <option value="virtualization-methods.html">virtualization</option>
+  <option value="--scsi-devices.html">VirtualScsiDevice</option>
+  <option value="--dependencies----------------.html">Visual Studio</option>
+  <option value="'Reset into Secondary Boot (CSERVE START Handoff)','reset-into-secondary-boot.html','Supported Test Cases','testing-supported-cest-cases.html'">vptb</option>
+  <option value="'Time-of-Year Clock (TOY)','time-of-year-clock-toy.html','Supported Test Cases','testing-supported-cest-cases.html'">VRT</option>
+  <option value="__tools_build_emulatr_diag_bat.html">VS Developer prompt</option>
+  <option value="version-administration.html">V-Stage-Version</option>
+  <option value="testing-supported-cest-cases.html">W1C_MASK</option>
+  <option value="testing-supported-cest-cases.html">W1S_MASK</option>
+  <option value="'Execution Modes: Virtual (ISP) vs REAL_HW','execution-modes.html','Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)','platform-execution-mode-isp-(e.html','WARP Variants and Cycle-Accounting for Reported CPU Speed','warp-variants-and-cycle-accoun.html','V1.6 (Beta)','releasenotesv1_6-.html','v2.0','releasenotesv2_0-.html'">warp</option>
+  <option value="examples---json.html">warp census</option>
+  <option value="examples---json.html">warp.json</option>
+  <option value="--firmware-decode--decompressi.html">warp_cyc</option>
+  <option value="examples---json.html">WarpProfile</option>
+  <option value="terms-of-use.html">warranty</option>
+  <option value="platformeditor-web-ui.html">webui</option>
+  <option value="analyze_retire_trace.html">wedge</option>
+  <option value="'Release Notes','release-notes.html','V1.6 (Beta)','releasenotesv1_6-.html','v2.0','releasenotesv2_0-.html'">what's new</option>
+  <option value="7_-troubleshooting------------.html">will not start</option>
+  <option value="'Host Decompressor','host-decompressor.html','Decompressor Internals','decompressor-internals.html'">WimC</option>
+  <option value="5_8-comjit.html">Win64</option>
+  <option value="windows-defender-firewall.html">Windows Defender</option>
+  <option value="southbridge.html">wireDevices</option>
+  <option value="networking-ewa0.html">Wireshark</option>
+  <option value="testing-supported-cest-cases.html">WO_MASK</option>
+  <option value="srm-boot-_-srm-commands-prompt.html">word-fold</option>
+  <option value="82077-controller_.html">WRITE DATA</option>
+  <option value="goals--objectives.html">Writeback</option>
+  <option value="testing-supported-cest-cases.html">WSBA0</option>
+  <option value="--srm-environment-variables.html">wwid</option>
+  <option value="__tools_build_emulatr_diag_bat.html">x64</option>
+  <option value="5_8-comjit.html">x86/64</option>
+  <option value="version-administration.html">X-Stage-Version</option>
+</select>
+
+  <select id="keyword_list_dummy" size="5" style="display:none"></select>
+</div>
+
+   <script type="text/javascript">
+     /* Script for keyword listbox */
+     var idxMenu = null;
+     var idxEntries = new Array(); 
+     var idxEntryHeight = 0;
+
+     function keywordHideMenu() {	
+        if (idxMenu!=null) {
+          idxMenu.stop();
+          idxMenu.hide();
+          idxMenu = null;
+        }
+     }     	
+
+     function keywordEntryKey(value) {
+        var aKeyword = $('#keyword_entry').val().toLowerCase();
+     	var list = document.getElementById('keyword_list');
+    	var idx1 = 0;
+    	var idx2 = idxEntries.length-1;
+    	while (idx2>idx1+1) {
+    	  var delta = parseInt((idx2-idx1)/2) + idx1;
+    	  if (aKeyword.localeCompare(idxEntries[delta]) > 0) idx1 = delta;
+    	  else idx2 = delta;  
+        }
+    	$('#keyword_entry').unbind('onkeyup');
+        if (aKeyword.localeCompare(idxEntries[idx1]) < 0) idx2 = idx1;
+        list.selectedIndex = idx2;
+        if ((idxEntryHeight>0) && (idx2<idxEntries.length-1)) {
+          $(list).stop();	
+          idx1 = idx2 * idxEntryHeight;
+          if (idx1 > ((idxEntryHeight*idxEntries.length)-$(list).innerHeight())) idx1 = (idxEntryHeight*idxEntries.length)-$(list).innerHeight(); 
+          $(list).scrollTop(idx1);
+        } 
+    	$('#keyword_entry').bind('keywordEntryKey');
+        keywordHideMenu();
+     }
+    
+     function keywordListClick(event) {
+     	var list = document.getElementById('keyword_list');
+        var aKeyword = list.options[list.selectedIndex].text;
+        var aTarget = list.options[list.selectedIndex].value; 
+
+        if (aKeyword.substr(0,1)==String.fromCharCode(160)) {
+          var i = list.selectedIndex-1;
+          var aKw = '';
+          while (i>0) {
+          	aKw = list.options[i].text;
+          	if (aKw.substr(0,1)!=String.fromCharCode(160)) { 
+          	  aKeyword = aKw + ', ' + $.trim(aKeyword);
+          	  break;
+          	}
+          	i--;
+          }
+        }
+
+        $('#keyword_entry').attr('value', aKeyword);        
+        keywordHideMenu();
+
+        //if option.value starts with an "'", it's a list of entries => display menu 
+     	if (aTarget.substring(0,1)==String.fromCharCode(39)) {
+     	  var links = aTarget.substring(1,aTarget.length-1).split("','");
+          var i = 0;
+          var aCode = '';
+          while (i<links.length-1) {
+          	aCode = aCode + '<p><a href="javascript:keywordListJump(' + "'" + links[i+1] + "'" + ')">' + links[i] + '</a></p>';
+          	i = i+2;
+          }
+          
+          idxMenu = $('#keyword_menu');
+          idxMenu.html(aCode);
+          idxMenu.css({'z-index':99, 'position':'absolute', 'right':'4px'});
+          var ypos = event.clientY;
+          if ((ypos + idxMenu.outerHeight()) > $(window).height()) ypos = event.clientY - idxMenu.outerHeight();
+          idxMenu.css('top', ypos + 'px');
+          if (hmAnimate) idxMenu.show('fast');
+          else idxMenu.show();
+     	}
+     	else if ((aTarget=='undefined')||(aTarget=='')) {
+          idxMenu = $('#keyword_menu_no_entry');
+          idxMenu.css({'z-index':99, 'position':'absolute', 'right':'4px', 'opacity':1});
+          var ypos = event.clientY;
+          if ((ypos + idxMenu.outerHeight()) > $(window).height()) ypos = event.clientY - idxMenu.outerHeight();
+          idxMenu.css('top', ypos + 'px');
+          if (hmAnimate) idxMenu.show('fast');
+          else idxMenu.show();
+          idxMenu.fadeOut(5000);
+     	}
+     	else {
+     	  keywordListJump(aTarget);
+     	}	
+     }
+     
+     function keywordListJump(aTarget) {
+	
+	
+	parent.document.getElementById("hmcontent").src = aTarget;
+
+        //Google adwords tracking, if enabled:
+        if (parent.frames.length>0) {
+          if (parent.gaaccount) { 
+            var list = document.getElementById('keyword_list');
+            parent.track("index", idxEntries[list.selectedIndex]); 
+          }
+        }          
+     }
+     
+     $(document).ready( function() {
+       idxEntryHeight = parseInt(($('#keyword_list_dummy').innerHeight()/5)+0.5);
+       if (isIE) idxEntryHeight = 0; //autoscrolling in keyword list works well in IE
+       var kwmain = '';
+       var kw = '';
+       var list = document.getElementById('keyword_list');
+       $(list).click(function(event) { keywordListClick(event) });
+       	
+       for (var i=0; i < list.options.length; i++) {
+         kw = list.options[i].text;
+         
+         if ( (kw.substring(0,3)==String.fromCharCode(160,160,160)) || (kw.substring(0,3)==String.fromCharCode(32,32,32)) ) {
+           kw = kw.substr(3);	
+           idxEntries.push( kwmain+', '+kw.toLowerCase() );
+         }            
+         else {  
+           kwmain = kw.toLowerCase();
+           idxEntries.push(kwmain); 
+         }            
+       }
+
+       $(list).scroll(keywordHideMenu);
+       	
+       $(window).resize(function() { 
+         $('#keyword_entry').css('width', $('#keyword_list').width()+'px');
+	     $('#keyword_list_div').css('top', $('#keyword_entry_div').offset().top + $('#keyword_entry_div').outerHeight() + 5 + 'px');
+       });
+	 
+	   $(window).resize();
+	   
+     });
+   </script>
+ 
+</body>
+</html>

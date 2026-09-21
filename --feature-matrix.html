@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>1. Introduction &gt; Feature Matrix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content=".axpsnap,ATAPI,CPU pipeline,CY82C693,dqa0,DTB,EV6,Feature Matrix,Flash,HALT,IDE,IIC,ITB,NVRAM,PALcode,PCF8584,PuTTY,SCSI,snapshot,SRM,SuperIO,TCP console,TLB" />
+   <meta name="description" content="Subsystem status as of August 2026. This reflects the DS10 / DS20 target, with ES40 in active bring-up; status evolves and should be reconfirmed against the current build." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "--feature-matrix.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Feature Matrix</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--feature-matrix.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="1_-introduction.html">1. Introduction</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Feature Matrix</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--current-platform-support.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="--current-development-status--.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Subsystem status as of August 2026. This reflects the DS10 / DS20 target, with ES40 in active bring-up; status evolves and should be reconfirmed against the current build.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Status vocabulary. <span style="font-size: 13px; font-weight: bold;">Working</span>: exercised by real firmware or a real guest and covered by tests. <span style="font-size: 13px; font-weight: bold;">In progress</span>: functional on the measured path, with named gaps still open. <span style="font-size: 13px; font-weight: bold;">Planned</span>: not implemented. A subsystem marked Working is faithful for the paths that have been exercised - it is not a claim of complete device coverage.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Subsystem</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Status</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Notes</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU pipeline (EV6) + TLB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">128 ITB + 128 DTB; PALcode relocation in place.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM firmware boot to &gt;&gt;&gt;</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Reaches the interactive console prompt.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TCP console server</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RAW TCP; PuTTY auto-launch.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Snapshot save / restore</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">.axpsnap</span>; autoload-newest and marker capture all work. The <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> entry-snapshot lever is designed but NOT implemented - see Boot Acceleration - Entry Snapshot.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SuperIO (FDC / COM / LPT)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CY82C693 SuperIO word-fold confirmed.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IDE / ATAPI virtual CD-ROM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">In progress</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dqa0</span> fixed disk enumerates and reads; ATA/ATAPI reset signatures and IDENTIFY are faithful. READ-ONLY and POLLED by design so far: there is no interrupt path (IRQ 14/15 are never driven), no write path (writes abort), and no DMA. Adequate for enumeration and console-era reads; not yet usable as a guest-OS system disk or install target.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC (PCF8584)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">In progress</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Sufficient for console bring-up on DS10 and DS20, including the discriminator device that yields the correct DS20 system badge. The bus runs POLLED (the completion interrupt is never enabled by firmware). The ES40 IIC decode base is unresolved and is likely an ALi M1543C SMBus rather than a fixed PCF8584 row.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Flash / NVRAM persistence</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Persists to <span class="f_CodeExample">&lt;firmware&gt;.rom</span> / <span class="f_CodeExample">ds10_v7_3.rom</span>; <span class="f_CodeExample">set</span> and <span class="f_CodeExample">update srm</span> survive across boots.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI host adapter (NCR 53C810)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The <span class="f_CodeExample">pka</span> adapter is modeled at register level, including its SCRIPTS I/O processor: selection, bus-phase sequencing, message in / message out, DMA through the chipset address windows, and interrupt delivery. Register layout and the phase-mismatch recovery contract are verified against the DEC SRM console's own SCSI driver. Disconnect / reselection and tagged command queuing are deliberately not modeled yet.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI disk and CD-ROM (dka)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI-2 target command set audited against ANSI X3.131-1994: INQUIRY, TEST UNIT READY, REQUEST SENSE with the UNIT ATTENTION state machine, READ LONG / WRITE LONG answering the ECC probe VMS runs on every boot (a wrong length is answered with VALID+ILI and the signed difference, so the initiator converges in one exchange instead of a retry ladder), READ CAPACITY, MODE SENSE / MODE SELECT with rigid-disk geometry pages, and READ / WRITE with range and write-protect checking. Genuine DEC drive identities (RZ28L / RZ29L / RZ40) carry documented geometry and capacity. Available on DS20 and ES40; DS10 is an IDE-only machine and has no SCSI bus.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">boot / OS load</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An explicit <span class="f_CodeExample">boot dka0</span> loads the bootstrap from the SCSI disk and transfers control to it, and the automatic path is validated too: <span class="f_CodeExample">auto_action=BOOT</span> with a persisted <span class="f_CodeExample">bootdef_dev</span> carries a cold boot to the guest with no keystrokes (verified twice, 2026-08-20). <span class="f_CodeExample">boot_osflags</span> is exercised by the conversational boots the crash-dump procedure uses.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest operating system (OpenVMS)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Working</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OpenVMS Alpha V8.3 boots from the SCSI disk through a full (non-MIN) startup on DS20: the system disk mounts, QUEUE_MANAGER runs, DECnet and TCPIP start, and the boot reaches the login prompt - hands-off, with zero keystrokes from power-on (the console answers the firmware-update prompts and <span class="f_CodeExample">auto_action</span> boots the default device). Login and an orderly SHUTDOWN run end to end. Certified 2026-08-20 under the integer-operate shadow checker: 6.0e9 cycles, boot to <span class="f_CodeExample">Username:</span>, mismatches=0. Tru64 is untried. Installing an OS from CD media is not yet possible (G-29 / G-30).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Basis for these claims</span></h2>
+<p class="p_Normal">&quot;Faithful&quot; and &quot;verified&quot; on this page mean checked against a primary source, not against expectation. The sources behind the storage and chipset rows are:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> ANSI X3.131-1994 (SCSI-2) - the target command set, sense data, and mode pages.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> NCR / Symbios 53C895 Data Manual, and the DEC SRM console's own SCSI driver sources - the adapter registers, its SCRIPTS processor, and the driver contract the adapter has to satisfy.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> EK-KZPBA-UG.B01 (KZPBA UltraSCSI adapter guide) - how a real DEC console renders drive identities.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> EK-SM2DR-PN.B01 (StorageWorks drive reference) - RZ28L / RZ29L / RZ40 geometry and capacity.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> The 21272 and 21264 hardware reference manuals - chipset registers and CPU behavior.</span></p>
+<p class="p_Normal">Per-claim verification, down to the clause or table and the line of code it was checked against, is recorded in the engineering audit records rather than here; this page is the summary they roll up to. Where a value could not be traced to a source it is called out as provisional rather than presented as fact.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?--feature-matrix.html" target="_top">'+baseurl+'index.html?--feature-matrix.html</a></p>');
+
+</script>
+</body>
+</html>

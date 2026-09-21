@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>4. Operating EmulatR &gt; 4.1 Configuring &amp; Running &gt; Configuring a System with the Launcher</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="Add Existing,diskDir,EMULATR_STOP,EmulatrLaunch,execution mode,firmware,ISP,launcher,mirror log,named system,New System,Open Console,Open in PlatEd,platform manifest,profile directory,run directory,silicon,snapshots" />
+   <meta name="description" content="This topic walks through configuring an emulated machine from a fresh installation to a booted guest. Work through the steps in order; each one builds on the last." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "--configuring-a-system-with-t.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Configuring a System with the Launcher</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--configuring-a-system-with-t.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">4.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Configuring a System with the Launcher</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="4_1-configuring--running.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="4_1-configuring--running.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="--configuring----------(moved-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">This topic walks through configuring an emulated machine from a fresh installation to a booted guest. Work through the steps in order; each one builds on the last.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Terms you need first</span></h2>
+<p class="p_Normal">The product is <span style="font-weight: bold;">EmulatR</span>. The <span style="font-weight: bold;">launcher</span> (<span class="f_CodeExample">EmulatrLaunch.exe</span>) and the <span style="font-weight: bold;">Platform Editor</span> (<span class="f_CodeExample">editors\platedit_qt.exe</span>) are subsystems of it.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span style="font-weight: bold;">installation</span> lives at <span class="f_CodeExample">C:\Program Files\eNVy Systems, Inc\ASA-EmulatR</span> and is read-only. A kit upgrade replaces it wholesale, so nothing you customize is ever stored there.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A <span style="font-weight: bold;">named system</span> is the launcher's unit of configuration: one platform (bound at creation) plus one <span style="font-weight: bold;">profile directory</span>, also called the run directory. The profile directory holds everything that system owns -- <span class="f_CodeExample">Emulatr.ini</span>, the system's own copy of the platform manifest, <span class="f_CodeExample">firmware\</span>, <span class="f_CodeExample">disks\</span>, <span class="f_CodeExample">logs\</span> and <span class="f_CodeExample">traces\</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The launcher's catalog of systems lives in the per-user registry hive <span class="f_CodeExample">HKEY_CURRENT_USER\Software\eNVy Systems\EmulatR</span>, where every launcher key carries a <span class="f_CodeExample">launch_</span> prefix. The registry is the CATALOG, not the substance: it stores names, pointers and small per-system knobs, while everything load-bearing lives in the profile directory on disk. That split is why both survive a kit uninstall and reinstall, and why a lost hive costs you nothing but the re-registration.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 1 -- Install and start the launcher</span></h2>
+<p class="p_Normal">Run the installer, uninstalling any existing kit first, then start <span class="f_CodeExample">EmulatrLaunch.exe</span> from the installation directory. No console window or shell is involved: the launcher starts the emulator directly as a child process with an explicit working directory and environment.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 2 -- Create a named system</span></h2>
+<p class="p_Normal">On the Systems tab, choose <span style="font-weight: bold;">New System...</span> and supply:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><img src="embim2.png" width="625" height="470" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Name</span><span class="f_NotesBox"> -- any display name, unique ignoring case.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Platform</span><span class="f_NotesBox"> -- DS10, DS20 or ES40. This is immutable after creation.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Profile (run) directory</span><span class="f_NotesBox"> -- anywhere you own, for example under Documents. Locations under Program Files are REFUSED: Windows silently redirects writes there and the emulator's flash state would be lost.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><img src="embim3.png" width="602" height="260" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On OK the launcher builds the profile:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">created</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">purpose</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.ini</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">seeded from a template with the model and console port filled in</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware\</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">where your SRM image goes, with a readme; firmware is never shipped</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">disks\</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">default resolution root for relative disk-image names</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">logs\</span>, <span class="f_CodeExample">traces\</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">run output</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;stem&gt;_platform.json</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">this system's OWN copy of the platform manifest, copied from the installation and made writable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The manifest copy at creation is the key design point: the profile is self-contained from birth. Editing the manifest affects only this system, and kit upgrades never touch it. Systems created by older launcher builds are seeded on their first <span style="font-weight: bold;">Open in PlatEd</span> instead.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 3 -- Supply the SRM firmware image</span></h2>
+<p class="p_Normal">EmulatR does not distribute firmware, for licensing reasons. Copy your firmware image -- for example <span class="f_CodeExample">ds20_v7_3.exe</span> -- into the profile's <span class="f_CodeExample">firmware\</span> folder. Back in the launcher, the Details tab's <span style="font-weight: bold;">Firmware -&gt; Image</span> control lists every file it finds there; pick one. A platform-mismatched image is flagged as a warning, never refused.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The selection is written to <span class="f_CodeExample">Emulatr.ini</span>, and the image's basename -- the <span style="font-weight: bold;">stem</span> -- names the manifest the system uses: <span class="f_CodeExample">ds20_v7_3.exe</span> selects <span class="f_CodeExample">ds20_v7_3_platform.json</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 4 -- Configure devices and storage</span></h2>
+<p class="p_Normal">Details tab -&gt; <span style="font-weight: bold;">Devices -&gt; Open in PlatEd</span> opens this system's manifest copy. The note under the button shows the exact path and confirms it is <span class="f_CodeExample">(system-local)</span>. The manifest declares the PCI devices and, under each storage controller, the disk and CD rows. On a DS20 the rows that matter to a first boot are:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pka_53c810</span><span class="f_NotesBox"> (the NCR SCSI HBA): SCSI id 0 becomes console device </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox">, id 1 becomes </span><span class="f_CodeExample">dka100</span><span class="f_NotesBox">, and so on. Each row's </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names its backing image file.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cypress_ide</span><span class="f_NotesBox">: the ATAPI CD, </span><span class="f_CodeExample">dqa1</span><span class="f_NotesBox">. Its </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names an ISO; empty means no disc.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">How a media path is resolved</span></h3>
+<p class="p_Normal">One rule, two cases:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">An ABSOLUTE path (</span><span class="f_CodeExample">D:/Disks/dka0.vdisk</span><span class="f_NotesBox">) is used as-is. This is the simplest way to attach a disk you already have.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A RELATIVE path (</span><span class="f_CodeExample">Alpha/dka0.vdisk</span><span class="f_NotesBox">) resolves against </span><span class="f_CodeExample">[Storage] diskDir</span><span class="f_NotesBox"> in the profile's </span><span class="f_CodeExample">Emulatr.ini</span><span class="f_NotesBox">. New profiles are seeded with </span><span class="f_CodeExample">diskDir = disks</span><span class="f_NotesBox">, so that example means </span><span class="f_CodeExample">&lt;profile&gt;\disks\Alpha\dka0.vdisk</span><span class="f_NotesBox">.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">If a row's file does not exist at launch, the emulator leaves that unit empty -- the SRM then reports <span class="f_CodeExample">device dka0 is invalid</span> when you try to boot it -- and writes a <span class="f_CodeExample">Storage: ... not attached</span> line to the mirror log naming the exact path it tried. That log line is the first place to look when a disk is missing.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">New blank disks come from the launcher's <span style="font-weight: bold;">Make Disk</span> tool, whose drive geometries are read from the installation's verified <span class="f_CodeExample">disk_types.json</span>, or from <span class="f_CodeExample">tools\mkdisk.py</span> for scripted provisioning.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 5 -- The per-system knobs</span></h2>
+<p class="p_Normal">All of these live on the Details tab, persist per system, and take effect at the next Start.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">control</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">choices</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">effect</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulator binary</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Discovered (recommended) / Release / RelWithDebInfo / Debug / Custom</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">which <span class="f_CodeExample">Emulatr.exe</span> this system launches. Discovered finds the installed one.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Snapshots</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Safety net (default) / Diagnostic / Off</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">machine-state snapshot cadence. Safety net saves rarely (50B cycles); Diagnostic saves densely (1B cycles) and each save pauses the guest.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Execution mode</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP (default) / Silicon</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is the firmware's pre-silicon simulator path and boots to the SRM prompt. Silicon is the faithful real-hardware path -- experimental, and does not yet reach the console.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console -&gt; Port</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TCP port, defaulted per system</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the telnet console port. <span style="font-weight: bold;">Open Console</span> connects a terminal, using PuTTY if one is found.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Runtime environment variables</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">per-variable Enable plus value</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">see Step 6</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 6 -- Runtime environment variables</span></h2>
+<p class="p_Normal">The environment panel lists exactly what the SELECTED emulator binary declares -- each binary carries its own registry of variable names beside it. The installed release binary declares NONE, because the diagnostic layer is compiled out of release builds, and the panel says so rather than offering knobs that would do nothing. Pinning the system to a RelWithDebInfo or Debug binary lights up the full curated registry of 130-plus variables with descriptions.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">An unchecked variable is ABSENT from the child environment, not merely empty. Quarantined variables are stripped even when they are set in your own shell.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 7 -- Start, console, stop</span></h2>
+<p class="p_Normal"><span style="font-weight: bold;">Start</span> launches <span class="f_CodeExample">Emulatr.exe</span> directly, with no shell: the working directory is the profile, the firmware comes from the Image selection, and the environment is composed from the knob overlays plus the variables you checked. When the profile owns a manifest copy, the launch points the emulator at it explicitly, so the installed defaults are never consulted.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Every run writes a <span style="font-weight: bold;">mirror log</span> to <span class="f_CodeExample">&lt;profile&gt;\logs\run_launch_*.log</span>, headed by the effective diagnostic environment for that run.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Open Console</span> connects to <span class="f_CodeExample">127.0.0.1:&lt;port&gt;</span>. At the <span class="f_CodeExample">P00&gt;&gt;&gt;</span> prompt, verify the configuration took -- <span class="f_CodeExample">show dev</span> should list the disks you configured in Step 4 -- then boot with <span class="f_CodeExample">b dka0</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Stop</span> requests a clean shutdown by writing a stop sentinel into the profile; the emulator exits after persisting its state. If it has not exited after ten seconds the launcher OFFERS escalation -- it never kills on its own. A forced kill loses unpersisted flash state, and is logged as such.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What survives what</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">event</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">registry catalog</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">profile directories</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Launcher restart</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kept</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kept</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Kit uninstall, reinstall or upgrade</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kept -- HKCU is not touched</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kept, including customized manifests</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Registry hive deleted</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">lost -- but <span style="font-weight: bold;">Add Existing...</span> re-registers any profile directory</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kept</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Profile directory deleted</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">stale entry flagged broken by preflight</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">lost -- it IS the system</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Because a profile directory is self-contained, the recovery story is simple: point <span style="font-weight: bold;">Add Existing...</span> at the directory and the system is back.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Troubleshooting</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">symptom</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">cause</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">fix</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">device dka0 is invalid</span> at the SRM prompt</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the storage row's media file was not found</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">check the <span class="f_CodeExample">Storage:</span> line in the mirror log, then fix the row's <span class="f_CodeExample">media</span> -- an absolute path is simplest -- or put the file where <span class="f_CodeExample">diskDir</span> plus the relative path points</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Devices note says <span class="f_CodeExample">(installed default ...)</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the profile predates manifest seeding</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">click Open in PlatEd once; it copies the manifest into the profile</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Environment panel says there are no variables</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">a release binary is selected</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">expected by design -- pin a RelWithDebInfo or Debug binary for diagnostics</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memtest: No such command</span>, <span class="f_CodeExample">net: No such command</span>, keyboard notice during boot</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">normal ISP-path console chatter</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none needed</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">New System refused under Program Files</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">deliberate guard against write redirection</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">choose a directory you own</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--system-disk-configuration.html" class="topiclink">System Disk Configuration</a></p>
+<p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>
+<p class="p_Normal"><a href="platformeditor-web-ui.html" class="topiclink">Platform Editor</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="--connecting-to-the-console.html" class="topiclink">Connecting to the Console</a></p>
+<p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?--configuring-a-system-with-t.html" target="_top">'+baseurl+'index.html?--configuring-a-system-with-t.html</a></p>');
+
+</script>
+</body>
+</html>

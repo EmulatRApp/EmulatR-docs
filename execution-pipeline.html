@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Architecture &amp; Internals &gt; 5.2 Memory, Addressing &amp; Deep Dives &gt; Execution Pipeline</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="Block cache,Block executor,EMULATR_BLOCKCACHE_BLOCKS,EMULATR_BLOCKEXEC,EMULATR_IRQ_MODULUS,Fidelity,Performance,Pipeline" />
+   <meta name="description" content="EmulatR executes guest Alpha instructions through two cooperating paths: a six-stage main pipeline that models the full instruction lifecycle, and a four-stage block path that..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "execution-pipeline.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Execution Pipeline</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?execution-pipeline.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_3-architecture-deep-dives---.html">5.2 Memory, Addressing &amp; Deep Dives</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Execution Pipeline</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--addressing--tlb.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="8_3-architecture-deep-dives---.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="chipset.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EmulatR executes guest Alpha instructions through two cooperating paths: a six-stage main pipeline that models the full instruction lifecycle, and a four-stage block path that accelerates hot straight-line code. The two paths are mutually exclusive per instruction — every retired instruction completes on exactly one of them — and both produce identical architectural results.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The main pipeline (six stages)</span></h2>
+<p class="p_Normal">The main pipeline carries every instruction through fetch, decode, context build, execute, drain, and retire. Decode results are cached, so repeated instructions do not pay the decode cost twice, but each retire still runs the full per-instruction boundary work: interrupt evaluation, tick bookkeeping, and dispatch re-entry. All privileged operations, PALmode execution, and exception paths run here.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The block path (four stages)</span></h2>
+<p class="p_Normal">On a hot hit, the block path elides the front-end: fetch and decode are served from a cached descriptor run, and execution proceeds directly through context build, execute, drain, and retire. These are not different stages — they are the same back-end code as the main pipeline, invoked verbatim, with the front-end amortized across the block. Fidelity is therefore structural, not asserted: the block path cannot compute a different result because it executes the same execution engine.</p>
+<p class="p_Normal">A block ends where straight-line execution ends: at a branch taken, a page boundary, a privileged or PALmode instruction, or the configured block-length limit. Code that does not qualify simply runs on the main pipeline; there is no functional difference, only a performance one.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Fidelity contract</span></h2>
+<p class="p_Normal">Architectural state — registers, memory, and processor state — is exact per retired instruction on both paths. What the block path coarsens is interrupt-delivery granularity: interrupt evaluation runs at block boundaries and at the configured sweep interval rather than after every instruction, so delivery latency is bounded by a small number of guest cycles rather than zero. AST delivery is never deferred. This contract is certified by byte-level shadow checking: the block path with the shipping sweep configuration has been verified against the reference execution over more than 988 million operations through a complete OpenVMS boot with zero mismatches.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Workload behavior</span></h2>
+<p class="p_Normal">The block path benefits code that revisits the same instruction sequences: tight loops, spin waits, and the operating-system idle loop are the best cases. Measured guest workloads spend the large majority of their execution in such repeated runs, which is why a running guest feels responsive: the hot path serves repeated work from the block cache while cold and privileged code takes the faithful main pipeline.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Configuration</span></h2>
+<p class="p_Normal">The execution pipeline is controlled by environment variables, documented in the environment-variable registry. <span class="f_CodeExample">EMULATR_BLOCKEXEC</span> enables the block path. <span class="f_CodeExample">EMULATR_BLOCK_MAX</span> bounds the instructions per block (2 to 64, default 32). <span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span> sets the block-cache capacity (minimum 256, default 8192). <span class="f_CodeExample">EMULATR_IRQ_MODULUS</span> sets the interrupt sweep interval in guest cycles (1 to 524288, default 1). A value outside a variable's documented range reverts to the bound defined by the code.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_SeeAlso" style="page-break-after: avoid;"><span class="f_SeeAlso"><a href="acceleration-program-status.html" class="topiclink">Acceleration Program Status</a></span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?execution-pipeline.html" target="_top">'+baseurl+'index.html?execution-pipeline.html</a></p>');
+
+</script>
+</body>
+</html>

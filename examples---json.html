@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Examples - JSON</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="BLOCK_MAX,audited,calibrated delay,cycles_skipped,EMULATR_UDELAYWARP,firmware_fnv64,is_warpable,JRN-V2-WARPPROF-001,pal_mode,RSCC anchor,run product,spin candidate,timing twins,warp census,warp.json,WarpProfile" />
+   <meta name="description" content="&lt;firmware&gt;_warp.json is the calibrated-delay census: a run product, stem-keyed beside the firmware image it was measured against. It records every delay loop the RSCC anchor..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "examples---json.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">&lt;firmware&gt;_warp.json -- Calibrated-Delay Census</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?examples---json.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">&lt;firmware&gt;_warp.json -- Calibrated-Delay Census</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="block-max-internals.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="execution-modes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="5_8-comjit.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal"><span class="f_CodeExample">&lt;firmware&gt;_warp.json</span> is the calibrated-delay census: a run product, stem-keyed beside the firmware image it was measured against. It records every delay loop the RSCC anchor collapses, plus the spin candidates the block executor finds, and it accumulates: each boot of the same image loads it, adds what that run observed, and rewrites it at clean exit. Since 2026-09-19 the file is also read back. A caller the RSCC anchor has already recorded confirms its warp after 8 tight re-reads instead of the full spin depth, so most of the discovery tax is paid once. A block loop that a human has audited (<span class="f_CodeExample">audited</span>) is warped at a work-paced rate: at most one timer tick per 12000 executed instructions, which keeps an idle guest near real time and every run reproducible. No block loop has been audited yet, so no tick-step warp is armed by default. The census is always on and has no configuration knob (architect ruling D-2). One bisection switch exists so the warp can be A/B tested in two runs rather than two builds: <span class="f_CodeExample">EMULATR_UDELAYWARP=0</span> turns the warp off, while the census is still loaded and saved. The platform manifest key <span class="f_CodeExample">warp_spin_depth</span> sets how many consecutive tight RSCC re-reads confirm a spin. See JRN-V2-WARPPROF-001 and the run-products discussion in <span style="font-size: 13px; font-weight: bold; color: #b00000;"><a href="block-max-internals.html" class="topiclink">Block-MAX-Internals</a></span>.</p>
+<p class="p_Normal">The file is content-bound to the exact firmware image: <span class="f_CodeExample">firmware_bytes</span> and <span class="f_CodeExample">firmware_fnv64</span> together are the binding key. A consumer that computes a different FNV-1a hash for the firmware it is about to run must treat the file as stale -- refuse it loudly and regenerate at clean exit, never consume it silently. The stale file is not overwritten: it is renamed to <span class="f_CodeExample">&lt;firmware&gt;_warp.stale-&lt;fnv64&gt;.json</span>, keeping any hand-set flags. A read-only file is used but never rewritten, which is how to run timing twins from the same census.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Like the flash NVRAM, this file never ships and is never copied between machines. A fresh install generates its own on first boot.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Top-level fields</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; width:190px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; width:77px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Type</span></p>
+</th>
+<th style="vertical-align:top; width:1328px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">version</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">File format version. Current value <span class="f_CodeExample">2</span> (since 2026-09-19). Version <span class="f_CodeExample">1</span> files still load, with every site enabled and none audited.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">comment</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">string</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">Human-readable description embedded in the file itself: what the census is, what <span class="f_CodeExample">src</span> bits 0 and 1 mean, and the staleness rule. Authoritative -- read it before this table if the two disagree.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware_bytes</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">Size in bytes of the firmware image this census is bound to. Half of the content-binding key.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware_fnv64</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">string</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">FNV-1a 64-bit hash of the firmware image, as a lowercase hex string with no <span class="f_CodeExample">0x</span> prefix. The other half of the content-binding key.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">collisions</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">Hash-slot conflicts in the census table that caused data to be dropped. The census stores sites in a direct-mapped table — <span class="f_CodeExample">slot = (pc &gt;&gt; 2) &amp; (kSlots-1)</span>, <span class="f_CodeExample">kSlots</span> = 32768 (raised from 512 to 2048 on 2026-08-26 and to 32768 on 2026-08-27) — and by explicit architect ruling (D-3), a lookup is never a search: one shift, one mask, one compare. So when two different caller PCs hash to the same slot, the second site is not recorded anywhere — the slot keeps its first occupant, and collisions increments instead. It increments on every dropped EVENT (each encounter of a PC whose slot another PC owns), not once per lost site, so the value says that sites were lost but not how many. It describes the most recent run's table only: it is not restored from the file on load.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">collisions = 0 — the most recent run lost nothing: every distinct delay site it encountered is in the file.</p>
+<p class="p_Normal">nonzero — the census silently lost at least one site, and the correct response is enlarging kSlots (a rebuild), never adding probing — the counter exists precisely so an undersized table announces itself rather than degrading into a scan.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sites</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">array of objects</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">One entry per PC identified as a delay loop or spin candidate during discovery. See Site record fields below.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">total_warps</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">Count of delay-loop warps performed, accumulated across every clean run of this image. It is counted BEFORE the slot lookup, so it includes warps at sites lost to a collision: when <span class="f_CodeExample">collisions</span> is nonzero it exceeds the sum of <span class="f_CodeExample">hits</span> across the <span class="f_CodeExample">is_warpable</span> sites.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:190px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">total_skipped</span></p>
+</td>
+<td style="vertical-align:top; width:77px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer (64-bit)</p>
+</td>
+<td style="vertical-align:top; width:1328px; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulated cycles collapsed by the anchor warp, accumulated across every clean run of this image. Like <span class="f_CodeExample">total_warps</span> it includes collided events, so it can exceed the sum of <span class="f_CodeExample">cycles_skipped</span> across the sites. Exceeds 32 bits on any real firmware.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Site record fields</span></h2>
+<p class="p_Normal">Each entry in <span class="f_CodeExample">sites</span> describes one program-counter address the census discovered:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; width:188px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; width:135px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Type</span></p>
+</th>
+<th style="vertical-align:top; width:1275px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">pc</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">string</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Address that names the site, as a lowercase hex string with no <span class="f_CodeExample">0x</span> prefix (e.g. <span class="f_CodeExample">6ab34</span>). For an RSCC-anchor site (<span class="f_CodeExample">src</span> bit0) it is R26 at the warp -- the delay routine's return address into its caller, which names the delay site -- not an address inside the loop or inside PALcode. For a block-level candidate (<span class="f_CodeExample">src</span> bit1) it is the head PC of the repeating block.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">src</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer (bitmask)</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">How this site was found. See The src field below.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">is_warpable</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">boolean</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">RSCC-anchor evidence: the anchor's spin test confirmed a pure busy-wait for this caller. It licenses the anchor warp for that caller and nothing else. In particular it never arms a block site; only <span class="f_CodeExample">audited</span> does. (An earlier tick-step experiment could leave it set on a block site, so it must not be read as an audit.)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">audited</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">boolean</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">A human audit of a block site's loop: loads, compares and branches only, waiting on time rather than on a device. It is the only thing that arms a tick-step warp. The emulator never sets it, and saving preserves it. Absent (version 1 files) means false.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">enabled</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">boolean</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Architect policy. <span class="f_CodeExample">false</span> keeps recording the site but never warps it. The emulator never changes it: loading restores it, saving writes it back, and a new site gets <span class="f_CodeExample">true</span>. A disabled anchor caller is still counted in <span class="f_CodeExample">hits</span>.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">pal_mode</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">boolean</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">True when the site was caught by the RSCC anchor, which fires at the PAL-mode CALL_PAL RSCC entry; false for block-level candidates, which the block executor only ever sees outside PAL mode. It does NOT say that <span class="f_CodeExample">pc</span> lies in PALcode: most anchor sites are ordinary console or OS return addresses (a DS20 OpenVMS census holds many like <span class="f_CodeExample">ffffffff801e010c</span>), and only a few have PC bit 0 set. Because both fields are set by the same detector, it tracks <span class="f_CodeExample">is_warpable</span> exactly.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">hits</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Number of times this site was encountered, accumulated across every clean run of this image.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">max_consec</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Longest run of consecutive iterations observed in one spin episode at this site: consecutive re-entries of the same block head, recorded once a run reaches <span class="f_CodeExample">kSpinThreshold</span> (64). A loop whose body spans more than one block resets the count at every block change, so the detector sees it weakly or not at all. Always <span class="f_CodeExample">0</span> for RSCC-anchor (warped) sites; meaningful only for block-level spin candidates, where it is the spin detector's diagnostic signal (<span class="f_CodeExample">BlockExecutor::noteSpin</span> / <span class="f_CodeExample">traceLib::WarpProfile</span> -- see <a href="block-max-internals.html" class="topiclink">Block-MAX-Internals</a>).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">end_pc</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">string</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Block sites: the loop's back-edge, the branch that closes each pass, so the loop spans <span class="f_CodeExample">pc</span> to <span class="f_CodeExample">end_pc</span>. Lowercase hex, no <span class="f_CodeExample">0x</span>. <span class="f_CodeExample">0</span> means not measured (anchor sites, version 1 records, or a loop with no PC-relative back-edge).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">period</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Block sites: block entries per pass. <span class="f_CodeExample">1</span> is a loop inside one block; <span class="f_CodeExample">2</span> to <span class="f_CodeExample">7</span> is a loop spanning several blocks, keyed on the block its back-edge returns to, never on a shared routine it calls. <span class="f_CodeExample">0</span> means not measured.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cycles_skipped</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer (64-bit)</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulated cycles this site's warp collapsed. Zero for a block site unless it is audited, enabled and armed.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">first_cycle</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer (64-bit)</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulated cycle count at the first encounter, as recorded by the run that first saw the site.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:188px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">last_cycle</span></p>
+</td>
+<td style="vertical-align:top; width:135px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer (64-bit)</p>
+</td>
+<td style="vertical-align:top; width:1275px; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulated cycle count at the most recent encounter, in the most recent run that saw the site. The two values can come from different runs, whose cycle counters each start at zero, so <span class="f_CodeExample">last_cycle</span> can be smaller than <span class="f_CodeExample">first_cycle</span>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The src field</span></h2>
+<p class="p_Normal">Per the file's own <span class="f_CodeExample">comment</span> field, <span class="f_CodeExample">src</span> is a bitmask:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Bit</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Observed src value</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">bit0 (0x1)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Seen by the RSCC anchor and warped.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">src = 1</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">bit1 (0x2)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Block-level spin site: recorded with its extent, warped only after a human audit (<span class="f_CodeExample">audited</span>).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">src = 2</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">Every sample entry shows <span class="f_CodeExample">src</span> as exactly 1 or 2, never both bits set. The comment describes the two as independent bits, so a future entry with <span class="f_CodeExample">src = 3</span> (a site found by both detectors) cannot be ruled out by this schema alone.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Worked example</span></h2>
+<p class="p_Normal">The highest-impact site in a typical census is an RSCC-anchor site -- a calibrated delay routine whose RSCC re-reads the anchor collapses -- for example:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">{</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;pc&quot;: &quot;6ab34&quot;,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;src&quot;: 1,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;is_warpable&quot;: true,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;pal_mode&quot;: true,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;hits&quot;: 99458,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;cycles_skipped&quot;: 51522740539,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;max_consec&quot;: 0, &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;first_cycle&quot;: 1573916471,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;last_cycle&quot;: 57220797888</span></p>
+<p class="p_Normal"><span class="f_CodeExample">}</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Read as: a delay routine returning to <span class="f_CodeExample">6ab34</span> in the SRM console was warped 99,458 times, and the RSCC anchor collapsed roughly 51.5 billion emulated cycles it would otherwise have spent spinning through that loop. The counts are cumulative over every clean run of this image, and the two cycle values need not come from the same run.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">By contrast, a block-level spin candidate is discovery-only and contributes nothing to <span class="f_CodeExample">total_skipped</span>:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">{</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;pc&quot;: &quot;1b7924&quot;,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;src&quot;: 2,&quot;is_warpable&quot;: false,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;pal_mode&quot;: false,&quot;hits&quot;: 458,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;cycles_skipped&quot;: 0,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;max_consec&quot;: 432795,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;first_cycle&quot;: 1240000912,</span></p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span><span class="f_CodeExample">&quot;last_cycle&quot;: 52674310402</span></p>
+<p class="p_Normal"><span class="f_CodeExample">}</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Read as: guest code at PC <span class="f_CodeExample">1b7924</span> was flagged as a spin candidate -- one episode ran 432,795 consecutive iterations -- but a block site is warped only after a human audit sets <span class="f_CodeExample">audited</span>, so no cycles were skipped there.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also</span></p>
+<p class="p_Normal"><a href="block-max-internals.html" class="topiclink">Block-MAX-Internals</a></p>
+<p class="p_Normal"><a href="pipeline-execution-(internals).html" class="topiclink">Pipeline Execution (Internals)</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?examples---json.html" target="_top">'+baseurl+'index.html?examples---json.html</a></p>');
+
+</script>
+</body>
+</html>

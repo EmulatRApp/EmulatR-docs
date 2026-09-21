@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Release Notes &gt; V1.6 (Beta)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="&gt;&gt;&gt;,beta,bugcheck,changelog,crash dump,Ctrl/P,ds20_v7_3.exe,DUMPSTYLE,EMULATR_2D_NOOP,EMULATR_TOY_MODE,EMULATR_TOY_NVRAM,INVEXCEPTN,LFU,OpenVMS,OPERCRASH,P00&gt;&gt;&gt;,release notes,SCSI,SDA,STARTUP_P1,SYSBOOT,warp,what's new" />
+   <meta name="description" content="EmulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. Each release records what landed, what was fixed, and the..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "releasenotesv1_6-.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">V1.6 (Beta)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?releasenotesv1_6-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="release-notes.html">Release Notes</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">V1.6 (Beta)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="release-notes.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="release-notes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="releasenotesv2_0-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EmulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. Each release records what landed, what was fixed, and the current known limitations. Entries are newest first.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">How EmulatR is delivered today:</span> as a single Windows installer, <span class="f_CodeExample">EmulatR_V&lt;version&gt;-setup.exe</span>, which lays down a complete ready-to-run installation - see <a href="installing-with-the-windows-installer.html" class="topiclink">Installing with the Windows Installer</a>. Firmware is never included: SRM images are licensed, so you supply your own. Older entries below describe the packaging of THEIR release (v1.4.4 and earlier shipped as build-variant zips) and are kept as the record of what was delivered then, not as current instructions - the same applies to their known-limitation lists. In particular, entries up to v1.6 say OpenVMS stops short of a login prompt; that is no longer the case - the DS20 now boots OpenVMS Alpha V8.3 through to the DCL login prompt.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">X1.6-15 (Beta) — 2026-08-19</span></h2>
+<p class="p_Normal">The headline is that a cold boot now reaches the OpenVMS <span class="f_CodeExample">Username:</span> prompt without a human at the console: the firmware-update prompts answer themselves, the clock is valid on a fresh install, and the multi-minute post-banner stall is gone. The version minor is now derived from the source tree (<span class="f_CodeExample">v6</span> gives <span class="f_CodeExample">1.6</span>), so the kit names the hive it came from.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Added</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">LFU auto-response.</span><span class="f_NotesBox"> The console matches the update image's two prompts on its own output and answers them as an operator would (</span><span class="f_CodeExample">&lt;CR&gt;</span><span class="f_NotesBox">, then </span><span class="f_CodeExample">exit</span><span class="f_NotesBox">), printing one </span><span class="f_CodeExample">LFU-AUTORESPOND:</span><span class="f_NotesBox"> line per injection so the log always says why the machine appeared to type. Capped at six injections, after which the console is handed back. </span><span class="f_CodeExample">EMULATR_LFU_INTERACTIVE=1</span><span class="f_NotesBox"> opts out entirely.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Console input pacing.</span><span class="f_NotesBox"> Input is delivered at a serial-plausible rate (</span><span class="f_CodeExample">EMULATR_CONSOLE_PACE_CPS</span><span class="f_NotesBox">, default 9600; </span><span class="f_CodeExample">0</span><span class="f_NotesBox"> = legacy unpaced). Multi-line pastes into TPU or EVE no longer truncate with </span><span class="f_CodeExample">Data Overrun</span><span class="f_NotesBox">. Paced by guest cycles, so determinism is unaffected.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">BYTECHECK certification facility.</span><span class="f_NotesBox"> A standing shadow checker that validates every bitwise and byte-operate retire against a reference, with fault-injection self-test and a one-shot listing window on first divergence. Diagnostic builds only.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">USER0 volume</span><span class="f_NotesBox"> on the shipped DS20 manifest.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Changed</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">EMULATR_TOY_MODE</span><span class="f_NotesBox"> now defaults to </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> (was </span><span class="f_CodeExample">unset</span><span class="f_NotesBox">). The dead-battery default meant every fresh install booted with a clock VMS refuses to write, so the boot date prompt returned on every cold boot. Gate, differential and certification runs MUST still pin </span><span class="f_CodeExample">fixed</span><span class="f_NotesBox"> explicitly rather than inherit a default; the faithful lifecycle remains one variable away (</span><span class="f_CodeExample">unset</span><span class="f_NotesBox">).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Shipped platform manifests are tailored at ship time.</span><span class="f_NotesBox"> Every storage row's media field is emptied except </span><span class="f_CodeExample">dka0.vdisk</span><span class="f_NotesBox">. The rows stay as documentation of the available slots; an empty-media row does not enumerate, so a fresh install boots </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox"> only and no shipped manifest points at a path that existed only on the build machine.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">SCSI fault reports carry identity</span><span class="f_NotesBox"> - id, LUN and CDB are included, so a fault names the device and command instead of only the condition.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Fixed</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">READ LONG / WRITE LONG and ILI sense.</span><span class="f_NotesBox"> The roughly six-minute post-banner stall on every boot is gone; startup no longer appears to hang for minutes after the banner.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Installer staging is hive-aware.</span><span class="f_NotesBox"> The launcher payload is resolved from its real location, so staging no longer fails its own precondition on a release build.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Known limitations (what to expect in this beta)</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">&gt;&gt;&gt; init</span><span class="f_NotesBox"> reset-boot is unverified. Do not rely on it; see gap G-31.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Guest </span><span class="f_CodeExample">SHUTDOWN ... POWER_OFF</span><span class="f_NotesBox"> does not stop the emulator. Shut the guest down, then use the stop sentinel; see gap G-32.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Tru64 is untried.</span><span class="f_NotesBox"> The OpenVMS path is the one exercised.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">v1.6 (Beta) — 2026-08-01</span></h2>
+<p class="p_Normal"><span style="font-weight: bold;">Two firsts this cycle: EmulatR produces a guest crash dump on disk, and the reason OpenVMS stops short of the login prompt is now identified rather than merely observed.</span> The operator crash path, which previously stopped after the register dump, now runs to completion and writes a dump that the OpenVMS System Dump Analyzer reads. That dump is what located the remaining boot blocker.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Highlights this cycle</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Crash dumps reach the disk.</span><span class="f_NotesBox"> The sequence now runs from Ctrl/P through the bugcheck banner, the register dump and the loaded-image table to a written dump — </span><span class="f_CodeExample">Memory dump complete, 28809 blocks used of 167418 blocks in dump file</span><span class="f_NotesBox">. The dump loads cleanly in SDA, which makes guest-side post-mortem analysis a working tool rather than a goal.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Execution accelerations removed for fidelity.</span><span class="f_NotesBox"> The delay-loop and idle-spin &quot;warp&quot; levers are gone from the execution path. They advanced the guest clock, and one of them wrote a guest register directly to force a countdown loop to exit. Runs are now cycle-honest end to end: the cycle accounting reports </span><span class="f_CodeExample">warp_cyc=0</span><span class="f_NotesBox"> with </span><span class="f_CodeExample">MHz_real == MHz_eff</span><span class="f_NotesBox">, meaning every cycle was executed and none fabricated. Boot is slower as a result. That is the intended trade.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">An undocumented processor register no longer faults.</span><span class="f_NotesBox"> The SRM writes an EV6 internal register absent from the published 21264 register table. EmulatR raised an illegal-instruction fault on it, which aborted part of firmware reset initialization and sent secondary boot back into console startup. Accepting the write is required to boot a guest operating system — see Conditions.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Conditions — what this result requires</span></h3>
+<p class="p_Normal">The crash-dump result was produced under the configuration below; departing from it will not reproduce the result. One row has since been overtaken by a change - see <span class="f_CodeExample">EMULATR_2D_NOOP</span> below.</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Setting</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Value and why</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Platform</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20, firmware <span class="f_CodeExample">ds20_v7_3.exe</span>, guest media <span class="f_CodeExample">dka0</span>, OpenVMS Alpha V8.3.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Launcher</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">tools/run_ds20_bplus.sh</span> — it carries the secondary-boot stack. The plain console launcher <span class="f_CodeExample">tools/run_ds20_putty.sh</span> does not, and falls back into console initialization instead of entering the bootstrap.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_2D_NOOP</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No longer needed, and no longer read. This result was recorded on 1 August 2026; the gate was removed the following day and the faithful behaviour is now unconditional, so a leftover export of the variable has no effect. <span class="f_CodeExample">run_ds20_bplus.sh</span> still sets it harmlessly. Nothing needs to be done to reproduce this row.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM <span class="f_CodeExample">STARTUP_P1</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Left blank, i.e. a full startup. A minimum startup may not bring up enough of the system to reach <span class="f_CodeExample">SYS$SYSTEM:SYSDUMP.DMP</span>, and a dump can then fail quietly.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM <span class="f_CodeExample">DUMPSTYLE</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">11</span> (selective + full console output + compressed). Selective preserves system space and the current process; the console-output bit puts the crash-time registers and stacks in the console log where they are readable without opening the dump.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PuTTY over the TCP console port. Use a port no other instance holds — a bind collision suppresses the PuTTY auto-launch silently.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Boot command variants</span></h3>
+<p class="p_Normal">All three forms are accepted. The console echoes the normalized form it will act on.</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Command</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Effect</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">b dka0</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Normal boot. Runs into the operating system without stopping.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">b -fl 0,1 dka0</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Conversational boot. Stops at <span class="f_CodeExample">SYSBOOT&gt;</span> so system parameters can be set before the OS starts. This is the form used to set <span class="f_CodeExample">DUMPSTYLE</span> above.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">b dka0 -flags 0,1</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Equivalent long form. The console echoes <span class="f_CodeExample">(boot dka0.0.0.8.0 -flags 0,1)</span> for either spelling.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">The crash sequence, end to end</span></h3>
+<p class="p_Normal">This uses the firmware's own <span class="f_CodeExample">controlp</span> machinery. There are no emulator hooks in the path.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>At <span class="f_CodeExample">SYSBOOT&gt;</span>, <span class="f_CodeExample">set dumpstyle 11</span>, then <span class="f_CodeExample">c</span> to continue.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>With OpenVMS running, press <span class="f_CodeExample">Ctrl/P</span>. The console reports <span class="f_CodeExample">halted CPU 0</span>, <span class="f_CodeExample">halt code = 1</span>, <span class="f_CodeExample">operator initiated halt</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span>At <span class="f_CodeExample">P00&gt;&gt;&gt;</span>, type <span class="f_CodeExample">crash</span>. The console reports <span class="f_CodeExample">CPU 0 restarting</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">4.</span>OpenVMS prints the BUGCHECK banner with code <span class="f_CodeExample">0000064C: OPERCRASH</span>, the register dump, the stack and the loaded-image table.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">5.</span>The dump is written to the system disk, then analysed with <span class="f_CodeExample">ANALYZE/CRASH_DUMP SYS$SYSTEM:SYSDUMP.DMP</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Restored: the dump now reaches the disk</span></h3>
+<p class="p_Normal">Everything from <span class="f_CodeExample">Accessing system disk</span> onward is new in this release. The previous cycle stopped after the register dump with no banner and no dump file.</p>
+<p class="p_Normal"><span class="f_CodeExample">**** Accessing system disk via original boot path</span></p>
+<p class="p_Normal"><span class="f_CodeExample">**** Starting compressed selective memory dump...</span></p>
+<p class="p_Normal"><span class="f_CodeExample">** Dumping PT space...</span></p>
+<p class="p_Normal"><span class="f_CodeExample">** Dumping S0/S1 space...</span></p>
+<p class="p_Normal"><span class="f_CodeExample">** Dumping S2 space...</span></p>
+<p class="p_Normal"><span class="f_CodeExample">**** Memory dump complete, 28809 blocks used of 167418 blocks in dump file...</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Storage: why OpenVMS stops short of the login prompt</span></h3>
+<p class="p_Normal">This limitation is unchanged in effect but is no longer unexplained. The crash dump identified it precisely, and the finding is recorded here because it is the single blocker between the current release and an interactive guest.</p>
+<p class="p_Normal">OpenVMS boots into the executive and prints its banner. The swapper then waits for the system disk to be marked valid, and that never happens. The chain, measured rather than inferred:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>The SCSI driver issues an INQUIRY asking for up to 255 bytes. The disk answers with the standard 36.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>On real hardware the target then changes bus phase, the adapter detects the mismatch, records the unsent byte count and raises an interrupt. EmulatR instead padded the transfer with zeroes and reported it complete, so no interrupt was ever raised.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span>The port driver waits on that interrupt to finish initialization, so the SCSI port never comes online and reports zero completed operations.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">4.</span>The disk behind it therefore never leaves initialization and never reports a device type, so it is never marked valid.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">5.</span>The swapper's wait for that valid flag never ends. Because no timeout routine is registered on either device, nothing recovers it.</p>
+<p class="p_Normal">The phase-mismatch behaviour has been implemented against DEC's own NCR 810 register definitions and the SRM's own driver for the same chip. <span style="font-weight: bold;">Verification is in progress and this release does not yet claim the guest reaches a login prompt.</span> Note that the adapter identity itself is correct: OpenVMS classifies the emulated controller exactly as it classifies the real part.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Known limitations (what to expect in this beta)</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">OpenVMS does not yet reach the login prompt.</span><span class="f_NotesBox"> Cause identified — see Storage above.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">The cause of the restored dump path is not yet isolated.</span><span class="f_NotesBox"> Three things changed together this cycle: the accelerations were removed, </span><span class="f_CodeExample">DUMPSTYLE</span><span class="f_NotesBox"> moved, and the startup went from minimum to full. Any of the three could carry the result. Recorded as an observed result, not an explained one.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Boot is slower than the previous release.</span><span class="f_NotesBox"> Deliberate. Firmware settling delays and idle spins now run at their real cost. Cold boot to </span><span class="f_CodeExample">P00&gt;&gt;&gt;</span><span class="f_NotesBox"> runs at roughly 3.7 to 4.1 million emulated cycles per second on the reference host, and a full crash dump takes several minutes to write.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Guest clock date.</span><span class="f_NotesBox"> The guest boot time and dump timestamps do not track the host clock. The TOY/RTC date path is a known open item, and because driver timeouts are driven from that clock it may also be why a stalled device is never recovered.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Single-CPU only.</span><span class="f_NotesBox"> Unchanged from the previous release.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">v1.5 (Beta) — 2026-07-29</span></h2>
+<p class="p_Normal"><span style="font-weight: bold;">Breakthrough: OpenVMS makes it off the firmware and into the operating system.</span> OpenVMS Alpha V8.3 now boots from <span class="f_CodeExample">dka0</span> past SYSBOOT into the executive — banner, exec init, and a running scheduler — on DS20. Two CPU-faithfulness defects that each ended the boot in an <span class="f_CodeExample">INVEXCEPTN</span> bugcheck were root-caused with the full oracle loop (EmulatR crash dump, SDA analysis, Alpha Architecture Manual confirmation, fix, in-boot verification) and eliminated. The previous release reached the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt only; this cycle the guest OS runs.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Highlights this cycle</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">OpenVMS boots into the executive.</span><span class="f_NotesBox"> The boot now runs an order of magnitude past both former crash sites with a live scheduler, currently progressing through early system initialization.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">The crash-dump workflow is a proven tool.</span><span class="f_NotesBox"> Operator halt (Ctrl/P) from a running OS to </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox">, conversational boot (</span><span class="f_CodeExample">b -flags 0,1</span><span class="f_NotesBox"> to </span><span class="f_CodeExample">SYSBOOT&gt;</span><span class="f_NotesBox">), and the halt / </span><span class="f_CodeExample">crash</span><span class="f_NotesBox"> / dump / SDA loop all work against EmulatR guests — the firmware's own </span><span class="f_CodeExample">controlp</span><span class="f_NotesBox"> machinery, no emulator hooks needed.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">The TOY clock behaves like real hardware.</span><span class="f_NotesBox"> Dead-battery lifecycle, guest SET TIME honored, and the CMOS persists across runs (see Added below).</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Fixed</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Stale firmware bytes in the instruction stream.</span><span class="f_NotesBox"> The SRM loader's instruction-fetch override served frozen firmware-image bytes for any fetch in the firmware load range for the life of the run; once OpenVMS loaded executive code into that physical range, the CPU executed stale firmware content while data reads saw real memory (</span><span class="f_CodeExample">INVEXCEPTN</span><span class="f_NotesBox">, garbage instruction stream). The override now retires at the decompressor hand-off — the only era it legitimately models — verified at the bus level.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Loads to R31/F31 could fault.</span><span class="f_NotesBox"> Per the Alpha architecture, a load whose destination is R31/F31 is a prefetch and never signals an exception (</span><span class="f_CodeExample">LDQ_U R31</span><span class="f_NotesBox"> is the canonical UNOP). EmulatR executed them as real accesses, and SWAPPER's scheduler epilogue padding — </span><span class="f_CodeExample">LDQ_U R31,(SP)</span><span class="f_NotesBox"> at a stack boundary — took an architecturally impossible ACCVIO. Such loads now perform no memory access and raise no fault.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Added</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">TOY/RTC time-source modes</span><span class="f_NotesBox"> via </span><span class="f_CodeExample">EMULATR_TOY_MODE</span><span class="f_NotesBox">: </span><span class="f_CodeExample">unset</span><span class="f_NotesBox"> (default) is the faithful dead-battery lifecycle — the clock reads invalid until the guest sets the time, then stays set; </span><span class="f_CodeExample">fixed</span><span class="f_NotesBox"> is a pure function of guest cycles (required for differential/oracle gate runs); </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> seeds from the host wall clock (best usability, breaks bit-reproducibility).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Guest SET TIME honored and persisted.</span><span class="f_NotesBox"> The MC146818 SET-protocol write is decoded and latched as the new time origin (previously it was silently discarded), and the full CMOS — clock plus the NVRAM bytes the console really uses — persists to </span><span class="f_CodeExample">nvram/toy_cmos.bin</span><span class="f_NotesBox"> in the run directory (</span><span class="f_CodeExample">EMULATR_TOY_NVRAM</span><span class="f_NotesBox"> overrides). Corrupt or mode-mismatched stores are refused loudly.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">21 new unit tests</span><span class="f_NotesBox"> covering the instruction-stream regressions and the full TOY lifecycle (write protocol, persistence round-trip, corrupt store, gate rule).</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Known limitations (what to expect in this beta)</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">OpenVMS does not yet reach the login prompt.</span><span class="f_NotesBox"> After the banner the guest idles between bootstrap-driver disk reads; whether this is emulation pacing or a wait condition is the active investigation. The boot-time clock also logs </span><span class="f_CodeExample">17-NOV-1858</span><span class="f_NotesBox"> (VMS time-zero), implicating the OS-side RTC access path — both are next-cycle leads.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Single-CPU only.</span><span class="f_NotesBox"> The HWRPB correctly advertises the second DS20 CPU slot as empty (verified live); SMP execution remains future work.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Operator note — the LFU prompts during init</span></h3>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_BodyText">LFU&gt;</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #ffffff;">&gt; </span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #afafff;">update srm</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; font-weight: bold; color: #ffffff;">.</span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;"> </span>The running console is V7.3-2 (Feb 27 2007) — the same <span class="f_CodeExample">ds20_v7_3.exe</span> image EmulatR loads &nbsp;fresh on every launch. There's nothing newer to update to, and the loaded firmware always comes from that file, not from what an update would write. For now: <span class="f_CodeExample">LFU&gt;exit</span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span>The LFU write path is untested territory in EmulatR. An update attempt exercises the firmware-update utility's flash-programming sequence against the emulated TIG flash, whose backing file (ds20_v7_3.rom beside the firmware) is where SRM environment variables live — </p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span>auto_action, boot_osflags, controlp, the wwid entries, everything you saw in show *. A partial or misbehaving update could corrupt that store, and then every subsequent boot inherits scrambled env state.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 26px; margin-left: 0;"><span class="f_CodeExample" style="display:inline-block;width:13px;margin-left:-13px">o</span> The LFU prompts you see during init are noise, not a request. This firmware auto-enters the LFU during startup (sometimes twice, per the run-emulatr gotchas — &quot;Option firmware files were not found on CD or floppy...&quot;). The correct response is to &nbsp;exit/decline back to P00&gt;&gt;&gt; — the scripted console driver does exactly that. It's asking whether you want to load option firmware, not telling you an update is needed. If the prompt in front of you is the LFU asking for a device, just get back to P00&gt;&gt;&gt; and proceed with the boot. </p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">v1.4.4 (Beta) — 2026-07-23</span></h2>
+<p class="p_Normal">This beta reaches the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt on DS10, DS20, and ES40. Guest-operating-system boot is not yet available (see Known limitations below).</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Highlights this cycle</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">A second classic Alpha comes to life.</span><span class="f_NotesBox"> The DS20 now cold-boots to the SRM </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> prompt and badges correctly as </span><span style="font-style: italic;">AlphaServer DS20</span><span class="f_NotesBox"> — joining DS10, with ES40 (Clipper) bring-up also reaching the console.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Platform manifest system.</span><span class="f_NotesBox"> Each model's device tree is described by a runtime-loaded </span><span class="f_CodeExample">&lt;firmware&gt;_platform.json</span><span class="f_NotesBox">, editable through the Platform Editor desktop application (</span><span class="f_CodeExample">editors/platedit_qt</span><span class="f_NotesBox">) with live validation and format-preserving save.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Deterministic execution substrate + fast resume.</span><span class="f_NotesBox"> A multi-agent scheduler (agent + dispatcher, Sequential==Threaded verified) and Level-1 snapshots (auto-save / autoload-newest, plus an entry snapshot that skips the firmware decompressor).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">New device models.</span><span class="f_NotesBox"> Floppy FDC, keyboard + VGA console, and IDE/ATAPI storage (Cypress func1 on DS10/DS20; ALi M5229 on ES40) over a common block-media seam.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Cross-platform.</span><span class="f_NotesBox"> macOS/Linux build hardening alongside the Windows build.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Packaging &amp; docs.</span><span class="f_NotesBox"> Versioned redistributable packaging, the full user guide shipped inside the package, and this release-notes track.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Fixed</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">DS20 model badging</span><span class="f_NotesBox"> — root-caused to an IIC completion-interrupt gap and fixed; the console now reports the correct system identity.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">ES40 memtest ACV</span><span class="f_NotesBox"> — resolved (an AAR </span><span class="f_CodeExample">ASIZ</span><span class="f_NotesBox"> decode-width mismatch); a spurious </span><span class="f_CodeExample">CSERVE 0x66 get_time</span><span class="f_NotesBox"> behavior was identified as a regression and removed (the 0x66 no-op is the faithful behavior).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">ES40 console</span><span class="f_NotesBox"> — SCB base-mismatch halt fixed and the COM2 console backend landed.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">MMU / TLB</span><span class="f_NotesBox"> — the DTB/ITB are now modeled as truly 128-entry fully-associative, fixing a conflict-eviction thrash.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Memory</span><span class="f_NotesBox"> — a page-crossing store overrun in the sparse pager was fixed.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Build portability</span><span class="f_NotesBox"> — added the explicit </span><span class="f_CodeExample">&lt;new&gt;</span><span class="f_NotesBox"> / </span><span class="f_CodeExample">&lt;cstdlib&gt;</span><span class="f_NotesBox"> includes that the Release configuration and the clang (macOS) build require.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Known limitations (what to expect in this beta)</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">No guest OS boot yet.</span><span class="f_NotesBox"> The SRM-to-OS hand-off at VA </span><span class="f_CodeExample">0x20000000</span><span class="f_NotesBox"> is the active frontier: the VMB loads and builds the HWRPB/page tables but the transfer to the OS entry does not yet fire.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">OpenVMS/Tru64 install is gated on floating point.</span><span class="f_NotesBox"> The FP unit is an IEEE-T proof-of-concept; VAX G/F float (which VMS relies on) is not yet implemented.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">PCI enumeration.</span><span class="f_NotesBox"> The on-board devices are now walked and enumerated - that is how the 53C810 SCSI adapter is found and bound, and it is what carries the boot as far as the OpenVMS startup banner. That path now carries OpenVMS through a full startup to the login prompt.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">No Ethernet yet.</span><span class="f_NotesBox"> The on-board DE500 / 21143 (&quot;Tulip&quot;) NIC is designed but not implemented.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Single-CPU only.</span><span class="f_NotesBox"> SMP is scaffolded but boots run </span><span class="f_CodeExample">cpuCount=1</span><span class="f_NotesBox"> deliberately.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">DS25 / ES45 (Titan chipset) are experimental</span><span class="f_NotesBox"> — model-only, not yet booting.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Cosmetic mismatches.</span><span class="f_NotesBox"> The clock-MHz banner and a handful of SRM defaults differ from real hardware.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Beta test focus</span></h3>
+<p class="p_Normal">We would most value reports on:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Cold-boot to </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> on DS10 / DS20 / ES40 (via </span><span class="f_CodeExample">run_fw.sh</span><span class="f_NotesBox"> or the </span><span class="f_CodeExample">run_*</span><span class="f_NotesBox"> helper scripts).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Console over PuTTY/plink on TCP </span><span class="f_CodeExample">10023</span><span class="f_NotesBox"> — </span><span class="f_CodeExample">show config</span><span class="f_NotesBox">, </span><span class="f_CodeExample">show device</span><span class="f_NotesBox">, </span><span class="f_CodeExample">show memory</span><span class="f_NotesBox">, environment variables.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Storage — attaching a virtual disk / CD-ROM and </span><span class="f_CodeExample">show dev</span><span class="f_NotesBox"> enumeration.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The Platform Editor — opening and editing a </span><span class="f_CodeExample">&lt;model&gt;_platform.json</span><span class="f_NotesBox">.</span></p>
+<p class="p_Normal">Because EmulatR treats itself as the primary correctness oracle, anything that diverges from real-hardware behavior is worth reporting.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Getting started (as shipped for v1.4.4)</span></h3>
+<p class="p_Normal">Two build variants are provided: <span class="f_CodeExample">EmulatR_v1.4.4_relwithdebinfo.zip</span> (diagnostic logging and trace facilities compiled in — preferred for beta, since it lets you capture the logs/traces that make a bug report actionable) and <span class="f_CodeExample">EmulatR_v1.4.4_release.zip</span> (optimized, diagnostics compiled out; for performance and clean runs).</p>
+<p class="p_Normal">Firmware is not included — DEC/Compaq/HP SRM images are licensed, so supply your own <span class="f_CodeExample">&lt;model&gt;_v7_3.exe</span> in <span class="f_CodeExample">./firmware/</span>. Full documentation ships in <span class="f_CodeExample">documentation/EmulatRGuide.pdf</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Reporting issues</span></h3>
+<p class="p_Normal">Please include the model, the build variant, the run command, and — on a RelWithDebInfo build — the run log and any <span class="f_CodeExample">.trc</span> from <span class="f_CodeExample">logs/</span> and <span class="f_CodeExample">traces/</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also</span></p>
+<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
+<p class="p_Normal"><a href="running-from-a-run-directory.html" class="topiclink">Running from a Run Directory</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?releasenotesv1_6-.html" target="_top">'+baseurl+'index.html?releasenotesv1_6-.html</a></p>');
+
+</script>
+</body>
+</html>

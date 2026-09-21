@@ -1,0 +1,759 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>8. Appendices - Developer Reference &gt; Testing (draft) &gt; Supported Test Cases</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="53C810,AAR0,AAR1,AAR2,AAR3,ABT,ABW,ACL,AlphaPte::makeValid,Am29F016,ASIZ,ASM,ASN,AST,ASTEN,ASTER,ASTRR,ATAPI,BAR,BCD,build_power_hw,canRead,canWrite,cBox::execEcb,cBox::execExcb,cBox::execMb,cBox::execTrapb,cBox::execWmb,Cchip,CDB,CheckCondition,ChipsetVariantInfo,COM1,COM2,composeIsum,composeIsumSw,computeVaForm,CPC,CPUID,CPU-START,CSC,CSERVE,CVT,CVTTQ,CY82C693,Cy82C693Ide,CycleInjector::runCycles,Cypress ISA bridge,DAT,Dchip,deposit,DeterministicMemory,DEVSUP,DIM,DIR,DispatchKind,DLAB,DLM,dmaReadBytes,dmaWriteBytes,DREV,DRIR,DS10,DS20,eBox::execAddl,eBox::execAddlV,eBox::execAddq,eBox::execAddqV,eBox::execCmpeq,eBox::execFtois,eBox::execMullV,eBox::execMulqV,eBox::execRc,eBox::execRpcc,eBox::execRs,eBox::execSubl,eBox::execSublV,eBox::execSubq,eBox::execSubqV,EEPROM,ejectMedia,EOI,ES40,ES45,ETBEI,EV6__ASTER,excAddr,extract,fBox::execAddt,fBox::execCmpteq,fBox::execCmptle,fBox::execCmptlt,fBox::execCpys,fBox::execCpyse,fBox::execCpysn,fBox::execCvtql,fBox::execCvtqlSv,fBox::execCvtqlV,fBox::execDivt,fBox::execMult,fBox::execSubt,FCR,FEN,FieldSpec,FileBlockMedia,findRange,FlashRom,Floppy82077,FltIeee,FltVax,FPE,FRU,getChar,GH,grain.execFn,GrainSem,GuestMemory,HaltedClean,HW_CC,HW_CM,HW_EXC_ADDR,HW_ISUM,HW_MFPR,HW_MTPR,HW_PAL_BASE,HW_SIRR,HW_VA_CTL,HWPCB,I_CTL,iBox::execBeq,iBox::execBge,iBox::execBgt,iBox::execBlbc,iBox::execBlbs,iBox::execBle,iBox::execBlt,iBox::execBne,iBox::execBr,iBox::execBsr,iBox::execJmp,iBox::execJsr,iBox::execJsrCoroutine,iBox::execRet,ide_poll,IDENTIFY DEVICE,IER,IER.SIEN,iic_chip_reset,IicPcf8584,IIR,IMB,IMR,InlineWorkQueue,INQUIRY,intrFlag,invalidateSingle,IoCommand,IoResult,IPINTR,IPREQ,isEpochLive,ItFp,ITINTR,kCchipIntervalTimerCycles,kFaultBusError,kFaultHalt,kFaultUnaligned,kFaultUnimplemented,kNoRegWrite,krn$_reset_toy,KSP,LAB,loadMedia,LockArbiter,LockMonitor,lowerPciInterrupt,LRB,LSR,LUN,Machine,Machine::tryFetch,makeBlockMedia,mask,maxCycles,mBox::execFetch,mBox::execLda,mBox::execLdah,mBox::execLdbu,mBox::execLdl,mBox::execLdlL,mBox::execLdq,mBox::execLdqL,mBox::execLdqU,mBox::execLdwu,mBox::execStb,mBox::execStl,mBox::execStlC,mBox::execStq,mBox::execStqC,mBox::execStqU,mBox::execStw,MCR,MediaStatus,memData,MemDrainer,memEffect,memSize,MFPR_VPTB,MISC,mm_stat,MockBlockMedia,MODE SELECT(10),MODE SELECT(6),MP_WORK_REQUEST,MTPR_EXC_ADDR,NXM,OCW1,OCW3,OPCDEC,OUT2,PACKET,palBase,palBox::execBpt_tru64,palBox::execBpt_vms,palBox::execCallPalDispatch,palBox::execChme_vms,palBox::execChmk_tru64,palBox::execCserve,palBox::execHalt,palBox::execHwMfpr,palBox::execHwMtpr,palBox::execHwRei,palBox::execLdqp_vms,palBox::execMfprVptb_vms,palBox::execMfprWhami,palBox::execMtprVptb_vms,palBox::execStqp_vms,palBox::execWtint,palMode,pc264,Pchip,Pchip1,PCI INTx,PCN,PCTX,pendingSoftInt,PIDENTIFY,PIN,PipelineDriver,PME,PPCE,profileAlphaClockHz,PT__VPTB,putChar,raisePciInterrupt,RBR,rcm_nvram0,READ CAPACITY,READ SECTORS,READ TOC,READ10,RECALIBRATE,regWriteIdx,REQUEST SENSE,REV,roundLog2Nearest,routeMmioOffset,RX FIFO,S_ExcBarrier,S_Locked,S_Mb,S_PrefetchOnly,S_TrapBarrier,S_Wmb,SCRIPTS,SDE,semFlags,SENSE DRIVE STATUS,SENSE INTERRUPT,SIRR,softfloat,SoftFloatBackend,SPAMBucket,SPAMShardManager,Sparse I/O,SQWE,SRMConsoleDevice,ST0,step,STO,SWPCTX,TBIA,TBIAP,TEST UNIT READY,THR,THRE,timestampMMDDhhmm,TlbEntry::matches,ToyRtc,tryRead,tryWrite,Tsunami,TsunamiTig,Typhoon,unregisterIoPortRange,unregisterPciMemRange,VA_FORM,variantFromModel,VirtualIsoDevice,vptb,VRT,W1C_MASK,W1S_MASK,WO_MASK,WSBA0" />
+   <meta name="description" content="$ Emulatr_tests.exe --list-test-cases &nbsp;[doctest] listing all test case names =============================================================================== cBox::execTrapb" />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "testing-supported-cest-cases.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Supported Test Cases</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?testing-supported-cest-cases.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="testing.html">Testing (draft)</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Supported Test Cases</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="testing.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="testing.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="performance.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">$ Emulatr_tests.exe --list-test-cases</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; color: #00a89a;">[doctest] </span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">listing all test case names</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; color: #c0a000;">===============================================================================</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cBox::execTrapb -- propagates S_TrapBarrier, no effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cBox::execExcb -- propagates S_ExcBarrier, no effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cBox::execMb -- propagates S_Mb, no effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cBox::execWmb -- propagates S_Wmb, no effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cBox::execEcb -- propagates S_PrefetchOnly, no effect; opB ignored</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FieldSpec lsb + width within 64-bit container</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC field positions match HRM Table 10-12</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IIC field positions match HRM Table 10-20</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mask(): bit positions are correct for representative fields</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">extract / deposit round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC W1C_MASK includes NXM, IPINTR, ITINTR -- and only those</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC W1S_MASK includes ABT and ABW -- and only those</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC WO_MASK includes DEVSUP, ACL, IPREQ -- and only those</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC composite masks do not overlap</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">roundLog2Nearest matches known table</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">kCchipIntervalTimerCycles matches profileAlphaClockHz / 1024</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Mask fire predicate fires exactly once per interval</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC REV reset value depends on chipset variant</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Dchip DREV reset value is byte-sliced 0x0101... on both variants</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakePciDevice returns programmed config and records the read</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakePciDevice masks a narrow read to its width</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakePciDevice records writes and reset</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakeIoPortDevice returns programmed port value and records the read</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakeIoPortDevice records the written byte and port</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakeCpu carries its id</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakeCpu reservation survives a write to a different cache line</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FakeCpu reservation clears on a write to the same cache line</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DeterministicMemory round-trips a quadword</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DeterministicMemory ignores an out-of-range access</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom factory state is erased 0xFF</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom autoselect returns AMD Am29F016 id, then read-array</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom erase handshake returns 0x80 twice then read-array</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom program after erase round-trips a byte</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom sector erase clears only its own 64 KB sector</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FlashRom missing backing file leaves factory 0xFF</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IDE wiring: CY82C693 IDE enumerates at bus0/dev5/func1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IDE wiring: legacy taskfile routes to the controller (CD on slave)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IDE wiring: IDENTIFY DEVICE through the chipset posts the ATAPI signature</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: registry contains exactly one Tsunami range after construction</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: findRange resolves Cchip CSC PA to the Tsunami range</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: findRange returns nullptr for a PA below the MMIO window (DRAM region)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: findRange returns nullptr for a PA above the Tsunami MMIO window</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: tryRead at Cchip CSC PA dispatches and returns a value</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: write to Cchip CSC followed by read returns the written value (or its masked form)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: tryRead at a DRAM PA returns false and does not write valueOut</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami: tryWrite at a DRAM PA returns false</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory routes a Cchip CSC PA through the attached MMIO hook</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory: PA below MMIO window still hits DRAM (hook returns false)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory is a dumb byte-store: out-of-range PAs read back zero, not a fault</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">unregisterIoPortRange retires the claim; dispatch reverts to float</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">unregisterPciMemRange retires the claim; dispatch reverts to all-ones</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">unregister with a non-matching range is a logged no-op</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">BAR re-program unregisters the old window and registers the new one</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">BAR re-program moves live decode (chipset integration)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">dmaWriteBytes/dmaReadBytes round-trip across a 4 KiB chunk boundary</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Pre-init: edges latch nothing deliverable; output stays low</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">pc264 init sequence completes; everything masked except cascade</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Unstick invariant: masked edge delivers on the OCW1 unmask</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">acknowledge drops the output and holds the level until EOI</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Edge mode: a held level does not re-trigger after ack + EOI</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">OCW3 poll returns 0x80|level and acknowledges</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cascade: slave request presents on master IR2 with slave vector</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IMR gates output but never capture; remask hides a pending edge</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Chain: UART THRE kick-start reaches DRIR&lt;55&gt; through the PIC</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">variantFromModel maps platform models to the right variant</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ChipsetVariantInfo caps match the documented AAR limits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">All three sub-chips agree on variant (ES45 / Typhoon, 4 CPUs)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">All three sub-chips agree on variant (ES40 / Tsunami)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Model-string ctor derives variant and reports the model</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Unknown model normalizes to Tsunami; consistency guard holds</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DREV reads byte-sliced per-Dchip revision, variant-independent</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">routeMmioOffset maps each realm region and leaves gaps as None</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MMIO read at Cchip CSC routes to the Cchip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MMIO read at Dchip DREV returns byte-sliced per-Dchip revision</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MMIO read in the Pchip1 half returns off-bus all-ones</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Static shim reaches the same Cchip register as the instance method</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cpuId threads to Cchip MISC.CPUID; static shim defaults to CPU 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MMIO write to a Cchip RW register round-trips deterministically</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() fires the Cchip interval timer at the mask interval</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">CycleInjector::runCycles drives step() across an interval boundary</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami 1GB: AAR0 = 1GB at base 0, AAR1-3 disabled</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Tsunami 4GB: 4 x 1GB arrays at bases 0, 1G, 2G, 3G</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Typhoon 32GB (4-bit-ASIZ firmware): 4 x 8GB arrays, ASIZ = 0xA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Typhoon 2GB and 4GB single-array ASIZ (4-bit-ASIZ firmware)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AAR base + size never exceeds 2^35</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AAR0 honours writes (RW per HRM), not read-only</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AAR write/read round-trips through the chipset MMIO surface</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">M2: AAR total via firmware formula == configured memSize (Tsunami)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">M2: 64MB -&gt; AAR0 low word 0x3009; 1GiB -&gt; 0x7009 (firmware-observed)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">M3: Typhoon default 3-bit firmware sizes are pc264-consumable</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">M3: Typhoon ES40 4GB -&gt; 4 x 1GB, ASIZ 0x7 (root-cause regression #6)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DRIR assert with matching DIM sets DIR for that CPU only</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DRIR assert with mismatched DIM does not set DIR</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Deassert clears DIR for all CPUs</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Per-CPU masks are independent</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PCI INTx -&gt; DRIR bit follows the V6 convention</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">raisePciInterrupt lands in DRIR; lowerPciInterrupt clears it</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: W1S ABT[0] auto-promotes to ABW[0] (HRM 12.2 single-CPU arbitration win)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: ACL (bit 24, WO) clears both ABT and ABW; ACL itself does not persist</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: re-arm cycle (ABT set -&gt; ACL clear -&gt; ABT set again) re-promotes ABW</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: W1S ABT[0] auto-promotes to ABW[0] (HRM 12.2 single-CPU arbitration win)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: ACL (bit 24, WO) clears both ABT and ABW; ACL itself does not persist</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MISC: re-arm cycle (ABT set -&gt; ACL clear -&gt; ABT set again) re-promotes ABW</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() fires the interval timer after one full interval</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() short of an interval does not fire</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() fires when a single large delta crosses a boundary (no skip)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() fires again on the next interval after a clear</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">step() fires for all enabled CPUs (4-CPU ES45)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">CycleInjector reaches an interval via overshooting chunks</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Pchip WSBA0 holds its last write (live CSR)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Empty PCI config slot returns 0xFFFFFFFF</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Registered FakePciDevice answers config reads at its slot</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cypress ISA bridge identifies at its slot (vendor 0x1080 / dev 0xC693)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cypress ISA bridge reports the ISA-bridge class code 0x060100</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Sparse I/O offset decodes back to the intended port and byte width</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Sparse I/O read dispatches to a registered handler at the decoded port</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Sparse I/O write dispatches the byte to the registered handler</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Unregistered sparse I/O port reads 0xFF (ISA floating bus)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Chipset-owned COM1 LSR reads transmitter-ready via sparse I/O</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Chipset-owned COM1 THR write is accepted (null backend tolerated)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Chipset-owned COM2 LSR reachable via sparse I/O</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">TsunamiTig -- fresh TIG holds no CPU-start request (UP-boot posture)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">TsunamiTig -- CPU-START write latches a per-CPU start request</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">TsunamiTig -- each CPU-START register maps to its own id bit</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">TsunamiTig -- latched id maps to the PAL impure entry slot</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: EXTQH aligned Rb (offset 0) passes the value through</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: EXTWH/EXTLH aligned Rb apply only the width mask</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: EXTxH matches the AARM shift model for all offsets</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: pre-BWX signed byte-load idiom works at every X mod 8</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: two-LDQ_U unaligned quadword idiom (EXTQL|EXTQH)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: EXTxH non-aligned offsets are unchanged by the fix</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: full-file audit -- byte-lane reference model, all offsets</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: ZAP/ZAPNOT lane selection (header-comment examples)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">vptb: I_CTL 47:30 store + SEXT read round-trips the VMS base</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">vptb: VA_FORM compositions for the VMS base (HRM Figs 5-5/6/7)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">byteops: INSxH/MSKxH aligned cases keep their AARM semantics</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">computeVaForm -- three HRM forms (5-5/5-6/5-7)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">composeIsumSw -- SI[n] requires SIRR[n] AND IER.SIEN[n] (T1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">composeIsumSw -- AST[m] needs ASTRR+ASTER+ASTEN+(CM &gt;= m) (T2)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">composeIsum -- staged HW causes OR live SW; staged SW filtered (T3)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: 512-byte RW round-trip (write then read back)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: 2048-byte ISO is read-only (write -&gt; ReadOnly)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: open() of a missing file -&gt; NotOpen</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: create_if_missing makes a blank writable image of the right size</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: create_if_missing never creates for read-only media</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FileBlockMedia: create_if_missing never overwrites an existing file</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MockBlockMedia: status contract -- Ok / OutOfRange / NoMedia / ReadOnly</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MockBlockMedia: fault injection returns the chosen status at the LBA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">makeBlockMedia: image/iso/absent open a file; host + unknown fail closed</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: present ATAPI master -- ready, no BSY</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: IDENTIFY DEVICE aborts with the ATAPI signature</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: absent slave -- C1 BSY-clear, never 0xFF</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: alt-status mirrors status without side effects</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: unknown command aborts</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: empty controller -- both units absent answer C1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: PACKET INQUIRY round-trip returns CDROM (type 0x05)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: PACKET TEST UNIT READY (no media) -&gt; not-ready sense</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: PIDENTIFY returns an ATAPI identify (word0 config)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: ATA disk presents non-ATAPI ready signature</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: ATA IDENTIFY DEVICE reports LBA, capacity and model</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: READ SECTORS streams the seeded LBA content</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: READ SECTORS past end aborts, never hangs BSY</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Cy82C693Ide: missing/empty image leaves the slot absent (C1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Floppy82077: idle controller reports no pending interrupt at 0x536</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Floppy82077: RECALIBRATE raises the IRQ6 poll bit at 0x536</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Floppy82077: ide_poll sequence (write 0x0A, read 0x536) sees SEEK pending</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Floppy82077: SENSE INTERRUPT clears 0x536 and returns ST0=0x70/PCN=0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Floppy82077: SENSE DRIVE STATUS does not raise the poll bit</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">HWPCB guest I/O: full image reads back what was written</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">HWPCB save set: writes KSP+AST+CPC(longword) and nothing else</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FEN quad packing: FEN&lt;0&gt; | PME&lt;62&gt; | DAT&lt;63&gt; unpack + repack</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">CC arithmetic (F-1 packed): CPC round-trips across a swap pair</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: reset state -- PIN set, bus free, no error bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: ireg_test readback -- S0' / S2 / S3 store and return</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: probe sequence -- instant completion with NAK, never LAB</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: iic_chip_reset byte family leaves the model idle</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: NAK'd address -- status holds LRB, S0 floats</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: rcm_nvram0 read sequence -- ACK, dummy, data, NACK done</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: EEPROM write txn stores, read txn streams back</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: controller reset preserves EEPROM content</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: unknown nodes still NAK fast -- LAB never set</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: non-byte access floats reads and drops writes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: determinism -- identical byte streams, identical state</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: empty bus by default -- every node absent</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: configured FRU device is present and streams content</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: 0x70 status register reads its byte (build_power_hw)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: status register absorbs data writes (read-mostly)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IicPcf8584: content image roundtrip preserves writes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">InlineWorkQueue runs work synchronously (fork-1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">submit delivers the result inline (fork-1 completion)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IoResult OWNS its data-in (C-VALUE: a copy, not a view into target storage)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IoResult carries CheckCondition + sense by value (NOT READY / 3A no media)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IoCommand owns its CDB + data-out (value copy is independent)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">53C810 config identity is the io_device_list bind row</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SCRIPTS INQUIRY transaction end-to-end</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Selection of an empty id raises STO (how the pk driver maps the bus)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SCRIPTS READ(10) moves media blocks into guest RAM</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Unsupported LUN answers INQUIRY with qualifier 011b (no phantom units)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">BAR rebind callbacks fire on 53C810 BAR re-program</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MODE SELECT(6) with no parameter list is accepted</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MODE SELECT(6) accepts a block descriptor that keeps the block size</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MODE SELECT(6) rejects a block size the media does not have</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MODE SELECT(6) with a truncated parameter list reports a length error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MODE SELECT(10) shares the contract with the 6-byte form</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: INQUIRY reports a removable CD-ROM (type 0x05)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: TEST UNIT READY with no media -&gt; 02/3A/00</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: READ10 no media is FAIL-FAST, not retry-eligible</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: REQUEST SENSE returns the medium-not-present sense</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: unknown opcode -&gt; illegal request (0x20)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: loadMedia + TEST UNIT READY good, READ CAPACITY</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: READ10 returns image content at the requested LBA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: READ10 past end of medium -&gt; 05/21/00 (LBA out of range)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: READ TOC reports a single data track at LBA 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: ejectMedia returns to no-media fail-fast</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: READ(10) over MockBlockMedia + isPresent toggle (no-media end to end)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VirtualIsoDevice: MediaStatus maps to sense -- OutOfRange 0x21, IoError 0x11</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SRMConsoleDevice: start + stop lifecycle (ephemeral port)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SRMConsoleDevice: putChar('A') reaches connected client socket</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SRMConsoleDevice: client write -&gt; getChar() returns byte</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SRMConsoleDevice: round-trip 'HELLO\r\n' device-&gt;client and back</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: Reg D VRT -- set in fixed mode, clear in unset (SPEC-TOY-001)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: unset mode -- invalid fields, clock does not advance</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: W-2 write protocol -- SET/stage/clear latches the origin</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: B1 latch -- data port returns index-write-time snapshot</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: lazy time materialization from the cycle source (BCD)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: binary + 24-hour modes honored via Reg B</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: krn$_reset_toy sequence -- RegA=0x26, RMW RegB SQWE</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: Reg B SET holds off materialization for time staging</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: Reg C read-clears and is write-protected</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: non-byte access floats reads and drops writes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: determinism -- same cycles, same bytes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: timestampMMDDhhmm (CSERVE get_time) matches a 24h/BCD RTC read</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: persistence -- write, flush, re-init from file</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: corrupt / mode-mismatched store -&gt; UNSET, never consumed</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">ToyRtc: C-2 register dump at a boot-representative instant</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Reset state: no interrupt pending, FIFO empty, TX ready</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Kick-start: IER=0x03 with THR already empty asserts THRE source</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IER write without ETBEI edge does not assert; repeated 0x03 is edge-gated</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">THR write re-arms the THRE source (per-byte fresh edge)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">RX level: feed -&gt; pending; RBR drain -&gt; level falls</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IIR priority: RX-avail reported above THRE; THRE latch survives</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Masking defers, never drops: IER gate off/on preserves RX level</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">RX FIFO depth 16; overflow sets sticky LSR overrun, clears on read</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FCR RX-reset clears the FIFO and the RX level</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DLAB redirects +0x01 to DLM; divisor writes never touch the IER path</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MCR stores low 5 bits; OUT2 stored but does not gate intPending</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">reset() clears latch, FIFO, sticky errors</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- small positive operands</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- result sign-extends from 32 to 64 bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- 32-bit overflow wraps and sign-extends</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- only the low 32 bits of operands enter the add</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- semFlags propagate from grain to result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddl -- reachable through grain.execFn</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubl -- basic positive subtraction</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubl -- underflow sign-extends to 64-bit all-ones</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddq -- 64-bit positive add</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddq -- 64-bit overflow wraps to zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubq -- basic 64-bit subtraction</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubq -- 64-bit underflow wraps to UINT64_MAX</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execCmpeq -- equal operands return 1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execCmpeq -- unequal operands return 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execCmpeq -- full 64-bit comparison (high bits matter)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddlV -- non-overflow stores the ADDL result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddlV -- overflow still stores sign-extended wrap</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSublV -- non-overflow stores the SUBL result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSublV -- overflow still stores sign-extended wrap</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddqV -- non-overflow stores the ADDQ result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execAddqV -- overflow into bit 64 still stores wrap</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubqV -- non-overflow stores the SUBQ result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execSubqV -- overflow still stores wrap</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execMullV -- non-overflow stores the MULL result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execMullV -- overflow still stores sign-extended low 32</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execMulqV -- non-overflow stores the MULQ result</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execMulqV -- 128-bit overflow still stores low 64 bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execMulqV -- negative operands, representable product</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRc -- reads intrFlag into Ra and clears it</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRc -- preserves prior zero state and remains zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRc -- Ra=R31 suppresses commit, side effect still fires</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRs -- reads intrFlag into Ra and sets it to 1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRs -- prior set value returns 1, stays 1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRc -&gt; execRs -- atomic toggle round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execRpcc -- packed CC: offset&lt;63:32&gt; | counter&lt;31:0&gt; (F-1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">eBox::execFtois -- AARM bit reorder with sign extension</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">softfloat vs host double: oracle agreement (RNE, bit-exact)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">softfloat vs host double: cycles/op delta (for grins)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpys -- sign of Fa onto magnitude of Fb</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpys -- positive sign carries through</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpysn -- negated sign of Fa onto Fb</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpysn -- negative Fa flips to positive on Fb</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpyse -- sign+exp of Fa, fraction of Fb</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execAddt -- 1.5 + 2.5 = 4.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execAddt -- additive inverse cancels to zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execSubt -- 5.0 - 2.0 = 3.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execMult -- 2.0 * 3.0 = 6.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execMult -- zero times finite is zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execDivt -- 10.0 / 2.0 = 5.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execDivt -- 1.0 / 0.0 yields IEEE +infinity</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmpteq -- equal operands -&gt; 2.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmpteq -- unequal operands -&gt; 0.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmpteq -- NaN compares unordered (false) -&gt; 0.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptlt -- 1.0 &lt; 2.0 -&gt; 2.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptlt -- 2.0 &lt; 1.0 is false -&gt; 0.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptlt -- equal operands are not less than -&gt; 0.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptle -- 1.0 &lt;= 1.0 -&gt; 2.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptle -- 2.0 &lt;= 1.0 is false -&gt; 0.0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCmptle -- NaN -&gt; 0.0 (unordered)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCpys -- explicit sign bit comparison</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCvtqlV -- in-range quadword: repositioned, no IOV</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCvtqlV -- 2**31 overflows: truncated result + IOV sticky</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCvtqlV -- negative in-range longword does not overflow</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCvtqlSv -- overflow above 32 bits: IOV recorded</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">fBox::execCvtql -- plain variant records sticky IOV too (AARM 4.7.5)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: exact T arithmetic, no flags</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: inexact div + sqrt set INE</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: directed rounding is honored (1 ULP apart)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: overflow -&gt; +inf, OVF+INE</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: underflow to zero -&gt; UNF+INE</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: compare (T) true/false + unordered</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: CVTTQ rounding + IOV on overflow</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: CVTQT integer-&gt;double exact</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SoftFloatBackend: S-format is single-rounded (not double-rounded)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX addsub: same-binade effective subtraction orders |a| &gt;= |b| (FV-1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CVTQG: exact-halfway quad rounds AWAY from zero, not to even (FV-2)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX underflow is recorded when the qualifier enables it (FV-3)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CMPG: top-binade G operands compare as numbers, not IEEE NaN (FV-4)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CMPG: reserved operand signals INV in every trap mode (FV-4/FV-8)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX dirty zero: INV in default mode, clean zero under /S (FV-8)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CVTGF: F exponent window checked, Ovf/Unf recorded (FV-6)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CVTGF: VAX half-up rounding at F precision; /C chops (FV-6)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CVTQF: rounds to F precision with VAX tie rule; /C chops (FV-6)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">VAX CVTGQ overflow stores the true result's low 64 bits (FV-7)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">IEEE CVTTQ overflow stores the true result's low 64 bits (FV-7)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">host FP self-test agrees with the SoftFloat oracle (no-abort path)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GrainSem -- bitwise operators</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GrainSem -- compound assignment</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GrainSem -- category masks contain expected members</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GrainSem -- categories do not bleed</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GrainSem -- bit positions are ABI</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DispatchKind -- name helper round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DispatchKind -- canonical count</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBr -- forward 1 instruction</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBr -- backward to itself (disp = -1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBr -- R31 destination suppresses link via kNoRegWrite</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBsr -- positive disp links Ra to pc+4</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBeq -- taken when Ra == 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBeq -- not taken when Ra != 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBne -- taken when Ra != 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBne -- not taken when Ra == 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlt -- taken on signed-negative Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlt -- not taken on zero Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBge -- taken on zero Ra (&gt;= 0)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBge -- not taken on signed-negative Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBle -- taken on zero (Ra &lt;= 0)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBle -- taken on signed-negative</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBle -- not taken on positive Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBgt -- taken on positive Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBgt -- not taken on zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBgt -- not taken on signed-negative</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlbc -- taken when low bit clear (even Ra)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlbc -- not taken when low bit set (odd Ra)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlbs -- taken when low bit set (odd Ra)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execBlbs -- not taken when low bit clear (even Ra)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execJmp -- target masks low 2 bits of opB</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execJsr -- links Ra to pc+4, target from opB</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execRet -- target from opB; Ra typically R31</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">iBox::execJsrCoroutine -- both link and indirect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLda -- positive displacement</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLda -- negative displacement sign-extends</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLda -- R31 destination is just kNoRegWrite</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdah -- displacement scaled by 65536</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdah -- negative disp shifts and sign-extends correctly</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdbu -- packs memSize=1 and EA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdwu -- packs memSize=2 and EA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdl -- packs memSize=4 (drainer sign-extends)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdq -- packs memSize=8</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdqU -- masks low 3 bits of computed EA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdqU -- already-aligned EA passes through</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdlL -- packs memSize=4, propagates S_Locked</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execLdqL -- packs memSize=8, propagates S_Locked</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStb -- packs memSize=1, memData=opA, no register effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStw -- packs memSize=2</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStl -- packs memSize=4</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStq -- packs memSize=8</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStqU -- masks low 3 bits of computed EA</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStlC -- packs memEffect AND regWriteIdx=Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execStqC -- packs memEffect AND regWriteIdx=Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">mBox::execFetch -- propagates semFlags only, no effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- default size is 64 MiB</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- zero-initialised on construction</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- byte round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- word round-trip; little-endian byte layout</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- longword round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- quadword round-trip</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- enforces the configured byte size (out-of-range faults)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- misaligned access at in-range PA returns Ok (alignment delegated to translator)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GuestMemory -- writes are independent across non-overlapping ranges</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- LL then SC by the same CPU succeeds once</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- reservation is cache-line granular (64B)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- a load does not clear another CPU's reservation</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- exactly one STx_C wins a contended line</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- a plain store breaks every OTHER CPU's reservation</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">LockMonitor -- device/DMA store (exceptCpu=-1) breaks ALL reservations</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHalt -- raises kFaultHalt; no other effect</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMfpr -- reads HW_CC from CpuState::cycleCount</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMfpr -- reads HW_EXC_ADDR</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMfpr -- reads HW_CM as integer mode bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMfpr -- unknown selector raises kFaultUnimplemented</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMfpr -- silent-stub IPR returns 0 with no fault</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr HW_CC -- packed format: writes OFFSET half only</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- writes HW_VA_CTL into CpuState::va_ctl</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- writes HW_CM clamps to bottom 2 bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- unknown selector raises kFaultUnimplemented</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- silent-stub IPR swallows write with no fault</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- HW_PAL_BASE sources from Rb (regression: 2026-05-10)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwMtpr -- HW_PAL_BASE rejects opA noise (regression: 2026-05-10)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PCTX: EV6__ASTER write (0x42) updates only the ASTEN nibble; 0x5F read composes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PCTX: ASN field write (0x41) takes value&lt;46:39&gt;; ASTRR write (0x44) takes &lt;12:9&gt;</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PCTX: full write (0x5F) sets all five fields incl. FPE-&gt;fen, PPCE-&gt;pme</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PCTX: bare read form 0x60 (01xx xxxx) is a legal composed read, not a fault</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwRei -- STACKED form diverts to EXC_ADDR and clears palMode</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execHwRei -- REGISTER form diverts to Rb and tracks palMode bit</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execBpt_tru64 -- stub raises kFaultUnimplemented</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execBpt_vms -- stub raises kFaultUnimplemented</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execChme_vms -- diverts to CALL_PAL entry palBase+0x3080</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execChmk_tru64 -- stub raises kFaultUnimplemented</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCserve -- function 0x44 (MTPR_EXC_ADDR) diverts to R17, no R0 write</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCserve -- function 0x65 (MP_WORK_REQUEST) tolerated no-op; R0 untouched, no divert</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCserve -- function code in low 8 bits only</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCserve -- unhandled function is tolerated (no-op, no fault)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execLdqp_vms -- packs phys-load memEffect targeting R0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execStqp_vms -- packs phys-store memEffect from R17</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execLdqp_vms -- unaligned R16 raises kFaultUnaligned</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execStqp_vms -- unaligned R16 raises kFaultUnaligned</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execLdqp_vms -- 8-byte aligned address passes alignment check</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMfprVptb_vms -- returns cpu.vptb in R0; no fault, no divert</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMfprVptb_vms -- returns 0 when cpu.vptb is unset</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMtprVptb_vms -- updates cpu.vptb, both IPRs, AND PT__VPTB</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMtprVptb_vms -- an unusable p_temp FAULTS, never skips</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMtprVptb_vms -&gt; execMfprVptb_vms -- round-trips via cpu.vptb</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execWtint -- returns 0 in R0; no fault, no divert</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execMfprWhami -- returns 0 in R0 (single-CPU)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCallPalDispatch -- privileged func 0x29 (MFPR_VPTB) computes 0x602A40</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCallPalDispatch -- unprivileged func 0x86 (IMB) hits 0x3000 base</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCallPalDispatch -- excAddr captures prior PALmode in bit 0</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox::execCallPalDispatch -- preserves palBase high bits above 32K window</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox HW_SIRR -- MTPR drops reserved bits; MFPR round-trips SIR&lt;15:1&gt; (T4)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">palBox HW_ISUM -- derived read; MTPR stays a permissive no-op (T5)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">pendingSoftInt + the run-loop delivery gate shape (T6)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SIRR liveness loop: request -&gt; deliverable -&gt; clear -&gt; quiescent (T7)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SWPCTX T1+T5: A-&gt;B-&gt;A round-trips save-set fields and CPC</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SWPCTX T2+T3+T4: TB semantics -- TBIAP, ASM survival, GH span</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SWPCTX T6: misaligned R16 faults with NO state change; success path is a single clean grain</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDA-shaped result commits Ra without memory</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- regWriteIdx == kNoRegWrite suppresses commit</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDQ commits 64-bit fill into Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDL sign-extends 32-bit fill to 64 bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDBU zero-extends 8-bit fill</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDWU zero-extends 16-bit fill</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- STQ publishes 64-bit memData</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- STB publishes 1-byte memData</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- LDQ_L sets reservation at cache-line granularity</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- STQ_C succeeds when reservation matches; writes 1 to Ra</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- STQ_C fails when reservation cleared; writes 0; no publish</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- STQ_C fails when reservation tags a different cache line</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- pre-existing faultCode aborts before drain work</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- GuestMemory OOR populates kFaultBusError + mm_stat</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">MemDrainer -- unaligned LDQ raises kFaultUnaligned (trap enabled)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- bare HALT halts immediately</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- LDA / ADDQ / HALT sequence sets R1 and R2</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- STQ / LDQ round-trip via GuestMemory</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- BR diverts past a no-op into HALT</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- BEQ falls through when Ra is non-zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- BEQ takes when Ra is zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- maxCycles caps a non-halting program</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- IF fetch beyond GuestMemory halts with excAddr set</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver::step -- returns false once halt fires</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- trap delivery swaps PAL shadow regs when SDE set</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- FltVax dispatch: CVTQG/CVTGQ round-trip reaches the VAX-FP leaves</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- ItFp dispatch: SQRTT func 0x0AB does not alias onto SQRTT_C</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- FltIeee dispatch control: CVTQT reaches its leaf</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PipelineDriver -- FltVax dispatch bounds: unpopulated function still OPCDECs</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AlphaPte::makeValid composes the standard kernel-RX mapping</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AlphaPte::canRead respects fault-on-read regardless of mode bits</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">AlphaPte::canWrite is per-mode</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">isEpochLive enforces the TBIA + TBIAP truth table</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">TlbEntry::matches checks VPN, ASN, and respects ASM=1</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SPAMBucket&lt;4&gt; round-robin replacement + targeted invalidate</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SPAMShardManager TBIA flushes every entry in O(1)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SPAMShardManager TBIAP preserves ASM=1 entries</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SPAMShardManager invalidateSingle is targeted</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SPAMShardManager clear resets epochs and drops slots</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">GH blocks: fill via page N, hit via page k, PA lands on page k</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">lock_arbiter_semantics</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">determinism_equivalence</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">driver_toggle</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">parked_agent_no_deadlock</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">determinism_across_quantum_sequential</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Phase3 LockArbiter -- a load does not clear another CPU's reservation</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Phase3 LockArbiter -- exactly one STx_C wins a contended granule</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Phase3 LockArbiter -- a plain store breaks every OTHER CPU's reservation</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- load 8 bytes at PA 0; contents match</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- PAL bit on startPa sets palMode</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- low bit clear means palMode false</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- file not found</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- image larger than guest memory</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">FirmwareLoader -- non-zero loadPa places image at offset</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- HALT at PC 0 returns HaltedClean</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- LDA, LDA, ADDQ, HALT computes 0x42 + 0x10 = 0x52</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- maxCycles caps a non-halting program</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- reset clears regfile and halt flags</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- step returns false when CPU halts</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine::tryFetch -- without SRM load returns false</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine::tryFetch -- serves payload before Step D, disarms after</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Machine -- loads to R31/F31 never access memory or fault</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: built-in DS10 default validates clean</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: good manifest parses, no fallback</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: malformed JSON falls back to default</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: unsupported manifest_version falls back</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: duplicate IIC address is a hard error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: odd IIC address is a hard error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: fru_eeprom missing required fields is a hard error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">synthesizeFruImage: JEDEC fields + checksums</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">synthesizeFruImage: non-FRU entry is all zero</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">synthesizePciConfig: header fields + BAR masks</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: storage 'enabled' flag -- implicit true; disabled alt shares a slot</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">PlatformConfig: create_if_missing parses size + validates (disk only, 512-aligned)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: round-trip preserves CpuState</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: round-trip preserves GuestMemory bytes</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: round-trip preserves Tsunami chipset CSR storage</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: round-trip preserves interrupt-chain devices (v2)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: rejects file with bad magic</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: rejects memory-size mismatch</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: autoloadLatest returns no-file on empty dir</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: autoloadLatest picks newest by mtime</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: pruneOldSnapshots keeps newest N auto_ files only</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Snapshot: round-trip preserves SRM staging fields</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SrmLoader -- signature at 0x300 with palBase + finalPC</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SrmLoader -- file too small returns error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SrmLoader -- signature absent returns error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SrmLoader -- PAL_BASE zero returns error</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">SrmLoader -- image larger than guest memory range-rejected</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DecListingSink -- emits one listing line and one machine line</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DecListingSink -- TRACE_REGFILE emits REG line in machine channel</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">DecListingSink -- PAL window auto-on dumps lookback on entry</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- LDA R1, 0x42(R31) renders correctly</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- LDQ R7, -8(R30) renders signed disp as hex</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- ADDQ R1, R2, R3 renders as triple</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- ADDQ R1, #0x42, R3 renders literal form</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- BR R31, +8 longwords</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- BEQ R3, -16 longwords negative</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- JMP renders Ra, (Rb)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- CALL_PAL HALT renders 0x000000</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- MISC TRAPB renders 0x0000</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- ADDT renders Fa, Fb, Fc</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">Disassembler -- HW_MFPR renders Ra, IPR(idx)</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">formatResult -- integer write</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">formatResult -- FP write</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">formatResult -- kNoRegWrite returns empty</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">RetireProfiler: bucket math -- 1KiB granularity, PAL bit masked</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">RetireProfiler: PCs above the 16MiB span fold into catch-all</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">RetireProfiler: control poke -- dump then mark; since-mark resets</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; color: #c0a000;">===============================================================================</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace; color: #00a89a;">[doctest] </span><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">unskipped test cases passing the current filters: 561</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
+$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
+'?testing-supported-cest-cases.html" target="_top">'+baseurl+'index.html?testing-supported-cest-cases.html</a></p>');
+
+</script>
+</body>
+</html>
