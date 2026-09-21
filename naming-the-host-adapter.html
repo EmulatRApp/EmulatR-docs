@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>4. Operating EmulatR &gt; 4.9 Networking (EWA0) &gt; Naming the Host Adapter (EMULATR_NET_ADAPTER)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="adapter,auto-detect,description substring,device name,EMULATR_NET_ADAPTER,Get-NetAdapter,InterfaceDescription,Launcher,network adapter,NPF,Runtime environment variables,UNAVAILABLE" />
+   <meta name="description" content="By default EmulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using EMULATR_NET_ADAPTER -- from finding the..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "naming-the-host-adapter.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMULATR_NET_ADAPTER)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?naming-the-host-adapter.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">4.9 Networking (EWA0)</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMULATR_NET_ADAPTER)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="choosing-the-host-adapter.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="networking-ewa0.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="5_-architecture--internals----.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">By default EmulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> -- from finding the adapter, through setting it in the Launcher, to confirming it took effect.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">When you need to name an adapter</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Situation</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Why auto-detection does not do it</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run log says several adapters have no bound address</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">more than one adapter qualifies, and EmulatR will not guess between them</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">You are sharing an adapter with the host</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">auto-detection never selects an adapter that holds an address -- by design, so it can never take over the computer's own connection</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">You want a particular adapter</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">auto-detection picks by rule, not by preference</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Otherwise leave it unset: auto-detection is the recommended arrangement. See <a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">1. Find the adapter</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">In PowerShell:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">Get-NetAdapter&nbsp;|&nbsp;Format-Table&nbsp;Name,&nbsp;InterfaceDescription,&nbsp;Status,&nbsp;MediaType</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Choose the WIRED adapter -- <span class="f_CodeExample">MediaType</span> <span class="f_CodeExample">802.3</span>. A Wi-Fi adapter (<span class="f_CodeExample">Native 802.11</span>) cannot carry the guest, whatever you name.</p>
+<p class="p_Normal">Take a distinctive part of its <span class="f_CodeExample">InterfaceDescription</span>. For <span class="f_CodeExample">Intel(R) Ethernet Connection (3) I219-LM</span>, the value <span class="f_CodeExample">I219</span> is enough. Case does not matter, but the text must match ONE adapter only -- check it against the whole list.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. Choose the value</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Value</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Example</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Use it when</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A description substring (recommended)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">I219</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">almost always. It survives a device GUID change, which happens when hardware is moved or a driver is reinstalled</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A device name</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">\Device\NPF_{DD1B82DC-0887-4F32-AD71-0D9CCE161C71}</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">only when two adapters share a description and no substring tells them apart</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">off</span>, <span class="f_CodeExample">none</span> or <span class="f_CodeExample">0</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">off</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">to switch networking off for this system -- for example for a run you intend to time</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(row unticked)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">--</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">to return to auto-detection, the default</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. Set it in the Launcher</span></h2>
+<p class="p_Normal">The Launcher is where this setting takes effect for an installed EmulatR. Set it there, for each named system that needs it.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">1. Start the Launcher and select the named system.</p>
+<p class="p_Normal">2. On that system's details, find the group <span class="f_T_Emphasis">Run-time environment variables</span>. Its columns are a tick box, <span class="f_T_Emphasis">Name</span>, <span class="f_T_Emphasis">Value</span> and <span class="f_T_Emphasis">Description</span>.</p>
+<p class="p_Normal">3. Find the row <span class="f_CodeExample">EMULATR_NET_ADAPTER</span>. It is shown without ticking <span class="f_T_Emphasis">Show developer variables</span>.</p>
+<p class="p_Normal">4. Double-click its <span class="f_T_Emphasis">Value</span> cell (or select it and press F2), type the value, and press Enter.</p>
+<p class="p_Normal">5. <span class="f_T_Emphasis">TICK THE BOX ON THAT ROW.</span> This is the step that is easy to miss, and nothing warns you if you do.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">An unticked row is ignored.</span> The Launcher applies only ticked rows: a value typed into an unticked row is discarded, auto-detection runs instead, and the run looks exactly as if you had set nothing.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">One setting per named system</span></h3>
+<p class="p_Normal">The value and its tick box are saved with the named system. A second named system has its own row and needs setting separately -- which also means two systems can be bridged onto different adapters.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Not as a Windows environment variable</span></h3>
+<p class="p_Normal">Setting <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> in Windows System Properties does not work with the Launcher. Whenever that row is unticked, the Launcher REMOVES the variable before starting the emulator, so that a value left behind from some earlier session cannot silently change a run. The Launcher's row is the only place to set it.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">4. Confirm it took effect</span></h2>
+<p class="p_Normal">Start the named system and check two things in its run log, in the system's <span class="f_CodeExample">logs</span> folder.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">First, that the Launcher applied your value. The run log's header lists every variable it set:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMULATR_*&nbsp;environment&nbsp;enabled&nbsp;for&nbsp;this&nbsp;run:</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMULATR_NET_ADAPTER=I219</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">If instead it says <span class="f_CodeExample">EMULATR_* environment: none enabled for this run.</span>, the row was not ticked -- go back to step 3.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Second, that the emulator attached to the adapter you named:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">EWA0&nbsp;network&nbsp;backend&nbsp;ATTACHED&nbsp;to&nbsp;'\Device\NPF_{...}'&nbsp;...</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Then, from the guest, ping your gateway and another machine.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">If it did not attach</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">The run log says</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Fix</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_* environment: none enabled for this run.</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the row was not ticked, so your value was discarded</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">tick the box on the <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> row</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EWA0 network backend UNAVAILABLE: no host interface matches '...'</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">nothing matched the text you typed</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR lists every adapter it can see directly beneath this line -- pick a distinctive part of one of those</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EWA0 network backend UNAVAILABLE: cannot open '...'</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the adapter was found but could not be opened; usually Npcap was installed with &quot;Restrict Npcap driver's access to Administrators only&quot; ticked</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reinstall Npcap with that option UNCHECKED, or run EmulatR as administrator</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EWA0 network backend: no adapter attached -- ...</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the variable was not set, so auto-detection ran and declined</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">set and TICK the row, as above</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ATTACHED, but the guest reaches nothing</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">usually a Wi-Fi adapter was named, or the port has powered down</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">name a WIRED adapter, and re-run <span class="f_CodeExample">tools\provision_enic.ps1</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A networking problem never stops EmulatR from starting: in every case above the guest keeps a working network adapter with no wire, and the run continues.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">Networking makes a run NON-DETERMINISTIC</span> -- frames arrive on other machines' schedules. Set the value to <span class="f_CodeExample">off</span> for any run you intend to time or compare.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<p class="p_Normal"><a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

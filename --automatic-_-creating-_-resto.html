@@ -149,7 +149,7 @@
 <p class="p_CodeExample"><span class="f_CodeExample">EMULATR_SNAPSHOT_PRUNE=1</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Boot-acceleration snapshot</span></h2>
-<p class="p_Normal">A specialized use of this machinery mints a snapshot at the firmware's decompression handoff and reuses it to skip the decompressor on later runs, under the <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> lever. That lever is NOT implemented in this build -- see Boot Acceleration - Entry Snapshot, which is kept as the design of record.</p>
+<p class="p_Normal">A specialized use of this machinery mints a snapshot at the firmware's decompression hand-off and reuses it to skip the decompressor on later runs, under the <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> lever. That lever is NOT implemented in this build -- see Boot Acceleration - Entry Snapshot, which is kept as the design of record.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Snapshot.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">systemLib/Snapshot.cpp</span><span class="f_NotesBox"> -- save / load / autoloadLatest; checksum + version + chipset-variant validation; pruneOldSnapshots.</span></p>
@@ -213,9 +213,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--automatic-_-creating-_-resto.html" target="_top">'+baseurl+'index.html?--automatic-_-creating-_-resto.html</a></p>');
 
 </script>
 </body>

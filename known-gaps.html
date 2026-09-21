@@ -417,9 +417,9 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Boot</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RUN/STOP handling on the boot path; mechanism _PROVISIONAL - CPU RUN/STOP (console halt/continue, <span class="f_CodeExample">HWRPB</span> <span class="f_CodeExample">BIP/RC</span> handoff) and/or device RUN/STOP (controller start/stop bit in the boot driver). Future blocker once <span class="f_CodeExample">boot</span> is wired; trace to pin the mechanism before scoping.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RUN/STOP handling on the boot path; mechanism _PROVISIONAL - CPU RUN/STOP (console halt/continue, <span class="f_CodeExample">HWRPB</span> <span class="f_CodeExample">BIP/RC</span> hand-off) and/or device RUN/STOP (controller start/stop bit in the boot driver). Future blocker once <span class="f_CodeExample">boot</span> is wired; trace to pin the mechanism before scoping.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span> handoff (G-03)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span> hand-off (G-03)</p>
 </td>
 </tr>
 <tr>
@@ -632,9 +632,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?known-gaps.html" target="_top">'+baseurl+'index.html?known-gaps.html</a></p>');
 
 </script>
 </body>

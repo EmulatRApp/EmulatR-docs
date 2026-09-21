@@ -143,7 +143,7 @@
 <p class="p_Normal">The block path benefits code that revisits the same instruction sequences: tight loops, spin waits, and the operating-system idle loop are the best cases. Measured guest workloads spend the large majority of their execution in such repeated runs, which is why a running guest feels responsive: the hot path serves repeated work from the block cache while cold and privileged code takes the faithful main pipeline.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Configuration</span></h2>
-<p class="p_Normal">The execution pipeline is controlled by environment variables, documented in the environment-variable registry. <span class="f_CodeExample">EMULATR_BLOCKEXEC</span> enables the block path. <span class="f_CodeExample">EMULATR_BLOCK_MAX</span> bounds the instructions per block (2 to 64, default 32). <span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span> sets the block-cache capacity (minimum 256, default 8192). <span class="f_CodeExample">EMULATR_IRQ_MODULUS</span> sets the interrupt sweep interval in guest cycles (1 to 524288, default 1). A value outside a variable's documented range reverts to the bound defined by the code.</p>
+<p class="p_Normal">The execution pipeline is controlled by environment variables, documented in the environment-variable registry. The block path is on by default; <span class="f_CodeExample">EMULATR_BLOCKEXEC=0</span> turns it off for comparison runs. <span class="f_CodeExample">EMULATR_BLOCK_MAX</span> bounds the instructions per block (2 to 256, default 32). <span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span> sets the block-cache capacity (minimum 256, default 8192). <span class="f_CodeExample">EMULATR_IRQ_MODULUS</span> sets the interrupt sweep interval in guest cycles (1 to 524288, default 1). A value outside a variable's documented range reverts to the bound defined by the code.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_SeeAlso" style="page-break-after: avoid;"><span class="f_SeeAlso"><a href="acceleration-program-status.html" class="topiclink">Acceleration Program Status</a></span></p>
 
@@ -198,9 +198,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?execution-pipeline.html" target="_top">'+baseurl+'index.html?execution-pipeline.html</a></p>');
 
 </script>
 </body>

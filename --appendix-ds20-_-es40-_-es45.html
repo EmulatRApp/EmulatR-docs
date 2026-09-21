@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21264,21264A,DS20,ES40,es40_platform.json,ES45,es45_platform.json,EV67,planned platform,platform manifest" />
-   <meta name="description" content="The larger multi-CPU machines. DS20 is modeled and boots to the SRM &gt;&gt;&gt; prompt; ES40 is in active bring-up (Typhoon variant + ALi M1543C south bridge + silicon-mode path); ES45..." />
+   <meta name="description" content="The larger multi-CPU machines. DS20 is modeled and boots to the SRM &gt;&gt;&gt; prompt; ES40 is in active bring-up (Typhoon variant + Ali M1543C south bridge + silicon-mode path); ES45..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,21 +127,21 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The larger multi-CPU machines. DS20 is modeled and boots to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt; ES40 is in active bring-up (Typhoon variant + ALi M1543C south bridge + silicon-mode path); ES45 (a Titan box) has its firmware decompressing but is not yet driven to the prompt. This appendix records each platform's current status and manifest.</p>
+<p class="p_Normal">The larger multi-CPU machines. DS20 is modeled and boots to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt; ES40 is in active bring-up (Typhoon variant + Ali M1543C south bridge + silicon-mode path); ES45 (a Titan box) has its firmware decompressing but is not yet driven to the prompt. This appendix records each platform's current status and manifest.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">DS20</span></h2>
 <p class="p_Normal">Modeled and validated to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. DS20 is a Tsunami box that wires the Cypress CY82C693 south bridge (like the DS10) and boots the SRM console. Run with <span class="f_CodeExample">[System] model=DS20</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES40</span></h2>
-<p class="p_Normal">In active bring-up. ES40 is a Typhoon (21272) box: EmulatR models the Typhoon chipset variant, the ALi M1543C south bridge with the M5229 IDE, and a silicon-mode boot path. Recent work landed the TIG module-reset model. (An entry-snapshot boot acceleration was designed but is not implemented - see Boot Acceleration - Entry Snapshot.) Run with <span class="f_CodeExample">[System] model=ES40</span> and firmware <span class="f_CodeExample">es40_v7_3.exe</span>; see the ALi M1543C and ES40 TIG Module Reset topics.</p>
+<p class="p_Normal">In active bring-up. ES40 is a Typhoon (21272) box: EmulatR models the Typhoon chipset variant, the Ali M1543C south bridge with the M5229 IDE, and a silicon-mode boot path. Recent work landed the TIG module-reset model. (An entry-snapshot boot acceleration was designed but is not implemented - see Boot Acceleration - Entry Snapshot.) Run with <span class="f_CodeExample">[System] model=ES40</span> and firmware <span class="f_CodeExample">es40_v7_3.exe</span>; see the Ali M1543C and ES40 TIG Module Reset topics.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES45</span></h2>
-<p class="p_Normal">Planned. ES45 (EV67 / 21264A) is a Titan (21274) box with the ALi M1543C south bridge; its compressed firmware (<span class="f_CodeExample">es45_v7_3.exe</span>) decompresses correctly via the host oracle, but the Titan chipset and device modeling around it is not yet driven to the prompt. Manifest <span class="f_CodeExample">es45_platform.json</span> is scaffolded.</p>
+<p class="p_Normal">Planned. ES45 (EV67 / 21264A) is a Titan (21274) box with the Ali M1543C south bridge; its compressed firmware (<span class="f_CodeExample">es45_v7_3.exe</span>) decompresses correctly via the host oracle, but the Titan chipset and device modeling around it is not yet driven to the prompt. Manifest <span class="f_CodeExample">es45_platform.json</span> is scaffolded.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Note that the compressed firmware oracle work (host_decompressor) was developed against <span class="f_CodeExample">es45_v7_3.exe</span>, so the ES45 firmware image decompresses correctly even though the full platform is not yet driven; what remains is the device and chipset modeling around it.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="ali-m1543c-south-bridge-interf.html" class="topiclink">ALi M1543C South-Bridge Interface</a></p>
+<p class="p_Normal"><a href="ali-m1543c-south-bridge-interf.html" class="topiclink">Ali M1543C South-Bridge Interface</a></p>
 <p class="p_Normal"><a href="--es40-tig-module-reset.html" class="topiclink">ES40 TIG Module Reset</a></p>
 <p class="p_Normal"><a href="--boot-acceleration-entry-snap.html" class="topiclink">Boot Acceleration - Entry Snapshot</a></p>
 <p class="p_Normal"><a href="--appendix---ds10.html" class="topiclink">Appendix - DS10</a></p>
@@ -199,9 +199,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--appendix-ds20-_-es40-_-es45.html" target="_top">'+baseurl+'index.html?--appendix-ds20-_-es40-_-es45.html</a></p>');
 
 </script>
 </body>

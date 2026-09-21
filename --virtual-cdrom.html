@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal"><span class="f_CodeExample">dqa1</span> (&quot;EMULATR VIRTUAL CDROM&quot;) is the virtual optical device the firmware probes for option firmware during power-up. It is the ATAPI unit on the CY82C693 IDE channel -- channel 0, unit 1; <span class="f_CodeExample">dqa0</span> (channel 0, unit 0) is the ATA hard disk. When no media is present it reports &quot;no media present or is disabled via the RUN/STOP switch&quot;.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">An ISO image is supplied (not created) through a manifest storage entry: an <span class="f_CodeExample">atapi_cdrom</span> <span class="f_CodeExample">type</span> with the <span class="f_CodeExample">media</span> set to the ISO file. The optical device is read-only, so <span class="f_CodeExample">create_if_missing</span> never applies to it. ISO contents are read through the ISO-9660 path (see ISO-9660 PFD).</p>
+<p class="p_Normal">An ISO image is supplied (not created) through a manifest storage entry: an <span class="f_CodeExample">atapi_cdrom</span> <span class="f_CodeExample">type</span> with the <span class="f_CodeExample">media</span> set to the ISO file. The optical device is read-only, so <span class="f_CodeExample">create_if_missing</span> never applies to it. ISO contents are read through the ISO-9660 path (see ISO-9660 PVD).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Attaching an ISO</span></h2>
 <p class="p_Normal">The CDROM is a storage entry in the platform manifest (<span class="f_CodeExample">&lt;model&gt;_v7_3_platform.json</span>, for example <span class="f_CodeExample">ds20_v7_3_platform.json</span>). It ships with an empty <span class="f_CodeExample">media</span> (no disc). Point <span class="f_CodeExample">media</span> at an ISO file to insert a disc; leave it empty for an empty drive:</p>
@@ -144,7 +144,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--atapi-devices.html" class="topiclink">ATAPI Devices</a></p>
-<p class="p_Normal"><a href="--iso-9660-pfd-(cd001).html" class="topiclink">ISO-9660 PFD (CD001)</a></p>
+<p class="p_Normal"><a href="--iso-9660-pfd-(cd001).html" class="topiclink">ISO-9660 PVD (CD001)</a></p>
 <p class="p_Normal"><a href="--create-guest-disk-storage---.html" class="topiclink">Create Guest Disk Storage</a></p>
 <p class="p_Normal"><span class="f_SeeAlso"><a href="booting-from-an-iso-image.html" class="topiclink">Booting from an ISO Image</a></span></p>
 
@@ -199,9 +199,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--virtual-cdrom.html" target="_top">'+baseurl+'index.html?--virtual-cdrom.html</a></p>');
 
 </script>
 </body>

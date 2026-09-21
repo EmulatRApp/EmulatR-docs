@@ -130,7 +130,7 @@
 <p class="p_Normal">Reference material specific to the DS10 platform -- EmulatR's reference model, driven end to end to the SRM prompt (DS20 also boots to the prompt; ES40 is in active bring-up). This page summarizes the hardware EmulatR presents and the device manifest that defines it; the sub-topics carry the environment-variable reference, the SRM and SuperIO analysis, and the engineering status.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Hardware summary</span></h2>
-<p class="p_Normal">The AlphaServer DS10 is a single-processor Tsunami-family workstation. EmulatR presents a single 21264 (EV6) CPU, the 21272 (Tsunami) core-logic chipset, and a Cypress CY82C693 combination ISA bridge / IDE controller / SuperIO. The default configuration reports 1024 MB of memory and a 268 MHz cycle clock. The platform is defined declaratively by <span class="f_CodeExample">ds10_platform.json</span>; a missing manifest is a hard startup error with no fallback.</p>
+<p class="p_Normal">The AlphaServer DS10 is a single-processor Tsunami-family workstation. EmulatR presents a single 21264 (EV6) CPU, the 21272 (Tsunami) core-logic chipset, and a Cypress CY82C693 combination ISA bridge / IDE controller / SuperIO. The default configuration reports 1024 MB of memory and a 268 MHz cycle clock. The platform is defined declaratively by <span class="f_CodeExample">ds10_platform.json</span>; a missing manifest is a hard start-up error with no fallback.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">PCI device manifest</span></h2>
 <p class="p_Normal">All devices sit on hose 0, bus 0. From <span class="f_CodeExample">ds10_platform.json</span>:</p>
@@ -184,14 +184,14 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x020000</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21143 Ethernet (DE500-BA). Modelled: the CSR file, serial-ROM MAC, the TX/RX descriptor rings, setup frames and the SIA/NWay autonegotiation. No host network backend is attached - that seam is deliberate.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21143 Ethernet (DE500-BA). Modeled: the CSR file, serial-ROM MAC, the TX/RX descriptor rings, setup frames and the SIA/NWay auto-negotiation. No host network back-end is attached - that seam is deliberate.</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The IDE controller carries two storage units on its primary channel: <span class="f_CodeExample">dqa0</span> (primary master) is the bootable ATA fixed disk (raw flat image, 512-byte sectors, byte offset = LBA x 512), and <span class="f_CodeExample">dqa1</span> (primary slave) is the ATAPI CD. Media for each is resolved from the manifest against the <span class="f_CodeExample">[Storage] diskDir</span> in the ini; an empty media string means no disk / no disc.</p>
+<p class="p_Normal">The IDE controller carries two storage units on its primary channel: <span class="f_CodeExample">dqa0</span> (primary master) is the boot-able ATA fixed disk (raw flat image, 512-byte sectors, byte offset = LBA x 512), and <span class="f_CodeExample">dqa1</span> (primary slave) is the ATAPI CD. Media for each is resolved from the manifest against the <span class="f_CodeExample">[Storage] diskDir</span> in the ini; an empty media string means no disk / no disc.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">IIC / FRU devices</span></h2>
 <p class="p_Normal">The DS10 manifest also models the IIC (I2C) bus the firmware probes during GCT/FRU initialization: two system-status devices (0x70, 0x72), an SMB FRU EEPROM for the DS10 board (0xA2) and one for the EV6 CPU (0xA4), and a 256-byte RCM NVRAM (0xC0). The PCI vendor/device IDs and BAR sizes are marked provisional in the manifest pending a real hardware dump.</p>
@@ -204,10 +204,10 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="srm-boot-_-srm-commands-prompt.html" class="topiclink">SuperIO Controller</a></p>
-<p class="p_Normal"><a href="task-matrix-_-timeout-loops.html" class="topiclink">Task Matrix / TimeOut Loops</a></p>
+<p class="p_Normal"><a href="task-matrix-_-timeout-loops.html" class="topiclink">Task Matrix / Time-out Loops</a></p>
 <p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><a href="--env-vars-operation-ref-_-kil.html" class="topiclink">Env Vars, Shutdown &amp; Known Limitations</a> <a href="srm-boot-_-srm-commands-prompt.html" class="topiclink">SRM Boot, Commands &amp; SuperIO</a> <a href="task-matrix-_-timeout-loops.html" class="topiclink">Task Matrix &amp; TimeOut Loops</a></p>
+<p class="p_Normal"><a href="--env-vars-operation-ref-_-kil.html" class="topiclink">Env Vars, Shutdown &amp; Known Limitations</a> <a href="srm-boot-_-srm-commands-prompt.html" class="topiclink">SRM Boot, Commands &amp; SuperIO</a> <a href="task-matrix-_-timeout-loops.html" class="topiclink">Task Matrix &amp; Time-out Loops</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>
@@ -260,9 +260,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--appendix---ds10.html" target="_top">'+baseurl+'index.html?--appendix---ds10.html</a></p>');
 
 </script>
 </body>

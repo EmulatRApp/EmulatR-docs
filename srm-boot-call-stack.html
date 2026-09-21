@@ -284,7 +284,7 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The <span class="f_CodeExample">START</span> path is worth understanding before touching it. On a uniprocessor model there are no secondaries to start, which once made a no-op look harmless -- but the primary OS boot transfer runs through the same entry. It reaches <span class="f_CodeExample">sys__exit_console</span>, which restores the boot context from the per-CPU HWRPB slot, flushes the ITB and DTB, and restarts fetch at the slot's halt PC. Stubbing it stranded the whole handoff. The current default routes faithfully into the guest PAL; <span class="f_CodeExample">EMULATR_CSERVE_START_MODE</span> selects <span class="f_CodeExample">guest</span> (the default), <span class="f_CodeExample">cpp</span> (a C++ replica, for testing) or <span class="f_CodeExample">off</span>. <a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot</a> covers that handoff in full.</p>
+<p class="p_Normal">The <span class="f_CodeExample">START</span> path is worth understanding before touching it. On a uniprocessor model there are no secondaries to start, which once made a no-op look harmless -- but the primary OS boot transfer runs through the same entry. It reaches <span class="f_CodeExample">sys__exit_console</span>, which restores the boot context from the per-CPU HWRPB slot, flushes the ITB and DTB, and restarts fetch at the slot's halt PC. Stubbing it stranded the whole hand-off. The current default routes faithfully into the guest PAL; <span class="f_CodeExample">EMULATR_CSERVE_START_MODE</span> selects <span class="f_CodeExample">guest</span> (the default), <span class="f_CodeExample">cpp</span> (a C++ replica, for testing) or <span class="f_CodeExample">off</span>. <a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot</a> covers that hand-off in full.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Unimplemented CSERVE codes are a known divergence</span></h2>
 <p class="p_Normal">A function code with no case falls to the dispatch default, which returns with <span class="f_CodeExample">R0</span> untouched. That is a DIVERGENCE from real execution, not a tolerated no-op: the guest <span class="f_CodeExample">sys__cserve</span> would dispatch the same code to a handler with real side-effects.</p>
@@ -350,7 +350,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START Handoff)</a></p>
+<p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START hand-off)</a></p>
 <p class="p_Normal"><a href="--reaching-the-srm-prompt.html" class="topiclink">Reaching the SRM Prompt</a></p>
 <p class="p_Normal"><a href="--firmware-decode--decompressi.html" class="topiclink">Firmware Decode &amp; Decompression</a></p>
 <p class="p_Normal"><a href="--execution-_-boot-internals.html" class="topiclink">Execution / Boot Internals</a></p>
@@ -407,9 +407,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?srm-boot-call-stack.html" target="_top">'+baseurl+'index.html?srm-boot-call-stack.html</a></p>');
 
 </script>
 </body>

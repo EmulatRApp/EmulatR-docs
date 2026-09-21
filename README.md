@@ -48,6 +48,16 @@ a separate licence from eNVy Systems, Inc.
 
 ---
 
+## 🙏 Acknowledgments
+
+This documentation was created with [Help+Manual](https://www.helpandmanual.com).
+
+Thanks to the
+[Performance Validator](https://www.softwareverify.com/product/performance-validator/)
+team for the use of their tools during the development of this project.
+
+---
+
 ## About this repository
 
 This repository holds the **published documentation and the release

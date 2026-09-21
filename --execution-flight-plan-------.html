@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">A cold boot is a fixed sequence of stages from reset to the interactive prompt. Each instruction along the way is carried through the six in-order pipeline stages (IF, DE, GR, EX, MEM, WB) and commits at Writeback (see Overview); the stages below are the firmware-level milestones.</p>
+<p class="p_Normal">A cold boot is a fixed sequence of stages from reset to the interactive prompt. Each instruction along the way is carried through the six in-order pipeline stages (IF, DE, GR, EX, MEM, WB) and commits at write-back (see Overview); the stages below are the firmware-level milestones.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The stages</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-weight: bold;">Reset / SROM hand-off.</span> The machine resets with the SROM parameters in registers R16-R21 and enters the firmware startup.</p>
@@ -203,9 +203,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--execution-flight-plan-------.html" target="_top">'+baseurl+'index.html?--execution-flight-plan-------.html</a></p>');
 
 </script>
 </body>

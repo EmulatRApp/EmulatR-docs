@@ -114,7 +114,7 @@
       
       <a href="2_-installation.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="2_-installation.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="--required-tools--frameworks.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="installation-test-plan.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -190,7 +190,11 @@
 <p class="p_Normal">2. Start <span class="f_CodeExample">EmulatrLaunch.exe</span> and create a named system -- the launcher builds the run directory, disk images, and configuration for you.</p>
 <p class="p_Normal">3. Boot, and connect to the console. See <a href="--first-startup.html" class="topiclink">First Startup</a>.</p>
 <p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">Before the first run:</span> exclude EmulatR's folders from antivirus scanning, and keep run directories out of cloud-synced folders such as OneDrive. See <a href="antivirus-and-cloud-sync.html" class="topiclink">Antivirus and Cloud Sync</a>.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="installation-test-plan.html" class="topiclink">Installation Test Plan</a></p>
+<p class="p_Normal"><a href="antivirus-and-cloud-sync.html" class="topiclink">Antivirus and Cloud Sync</a></p>
 <p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>
 <p class="p_Normal"><a href="--first-startup.html" class="topiclink">First Startup</a></p>
 <p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
@@ -247,9 +251,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?installing-with-the-windows-installer.html" target="_top">'+baseurl+'index.html?installing-with-the-windows-installer.html</a></p>');
 
 </script>
 </body>

@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="EMULATR_AUTOSNAP,EMULATR_AUTOSNAP_KEEP,EMULATR_AUTOSNAP_PERIOD,EMULATR_CONSOLE_PACE_CPS,EMULATR_CONSOLE_PORT,EMULATR_CONSOLE_SNAPSHOT,EMULATR_DIAG_BYTECHECK,EMULATR_FLASH_ROM,EMULATR_LFU_INTERACTIVE,EMULATR_LOG_STEM,EMULATR_MEMDIAG,EMULATR_NO_AUTOLOAD,EMULATR_NO_PUTTY,EMULATR_PLATFORM_CONFIG,EMULATR_STOP_FILE,EMULATR_TOY_MODE,EMULATR_TOY_NVRAM,environment variables,getenv" />
+   <meta name="keywords" content="EMULATR_AUTOSNAP,EMULATR_AUTOSNAP,EMULATR_AUTOSNAP_KEEP,EMULATR_AUTOSNAP_KEEP,EMULATR_AUTOSNAP_PERIOD,EMULATR_AUTOSNAP_PERIOD,EMULATR_BOOTTRACE,EMULATR_CHIPSET_DIAG_OFF (retired),EMULATR_CHIPSET_DIAG_ON,EMULATR_CONSOLE_MIRROR,EMULATR_CONSOLE_PACE_CPS,EMULATR_CONSOLE_PACE_CPS,EMULATR_CONSOLE_PACE_CPS,EMULATR_CONSOLE_PORT,EMULATR_CONSOLE_PORT,EMULATR_CONSOLE_PORT,EMULATR_CONSOLE_SNAPSHOT,EMULATR_CONSOLE_SNAPSHOT,EMULATR_CSERVE_AUDIT,EMULATR_CSERVE_ROUTE,EMULATR_CSERVE_START_MODE,EMULATR_DIAG_BYTECHECK,EMULATR_DIAG_BYTECHECK,EMULATR_DIAG_BYTECHECK_SELFTEST,EMULATR_DIAG_BYTECHECK_WINDOW,EMULATR_DIAG_CAP,EMULATR_DIAG_CYCHI,EMULATR_DIAG_CYCLO,EMULATR_DIAG_PCHI,EMULATR_DIAG_PCLO,EMULATR_DIAG_WMIN,EMULATR_DIAG_WREG,EMULATR_DTBM_PROBE,EMULATR_DTBMISS_DIAG,EMULATR_FDC_TRACE,EMULATR_FLASH_ROM,EMULATR_FLASH_ROM,EMULATR_FLASH_ROM,EMULATR_FLASH_TRACE,EMULATR_FP_SOFTFLOAT,EMULATR_GMEM_WATCH,EMULATR_GMEM_WATCH_HI,EMULATR_GMEM_WATCH_LO,EMULATR_HALT_DIAG,EMULATR_HOOKA_CYC_FLOOR,EMULATR_HOOKA_CYC_FLOOR,EMULATR_HOOKA_VA,EMULATR_HOOKA_VA,EMULATR_HWRPB_SCAN_FILE,EMULATR_IDE_TRACE,EMULATR_IFETCH_DIAG,EMULATR_IIC_CTRL_TRACE,EMULATR_IIC_DIAG,EMULATR_IIC_IRQ_BIT,EMULATR_IIC_TRACE,EMULATR_IIC_WATCH,EMULATR_ITBPROBE_VA,EMULATR_ITBPROBE_VA,EMULATR_LFU_INTERACTIVE,EMULATR_LFU_INTERACTIVE,EMULATR_LFU_INTERACTIVE,EMULATR_LOG_STEM,EMULATR_LOG_STEM,EMULATR_LOG_STEM,EMULATR_MEMDIAG,EMULATR_NET_ADAPTER,EMULATR_NO_AUTOLOAD,EMULATR_NO_AUTOLOAD,EMULATR_NO_PUTTY,EMULATR_NO_PUTTY,EMULATR_NO_PUTTY,EMULATR_PA_WATCH,EMULATR_PA_WATCH_LEN,EMULATR_PC_GATE,EMULATR_PCI_CFG_TRACE,EMULATR_PIC_TRACE,EMULATR_PLATFORM,EMULATR_PLATFORM_CONFIG,EMULATR_PLATFORM_CONFIG,EMULATR_PLATFORM_CONFIG,EMULATR_PTBR_DIAG,EMULATR_RETIRE_TRACE_DIR,EMULATR_SCAN_PATTERN,EMULATR_SNAPSHOT_MARKER,EMULATR_SNAPSHOT_PRUNE,EMULATR_SPINSKIP,EMULATR_SPINSKIP_THRESH,EMULATR_SPINSKIP_VERBOSE,EMULATR_START_WATCH,EMULATR_STOP_FILE,EMULATR_STOP_FILE,EMULATR_STOP_FILE,EMULATR_SYSVAR_WATCH,EMULATR_TOY_MODE,EMULATR_TOY_MODE,EMULATR_TOY_MODE,EMULATR_TOY_NVRAM,EMULATR_TOY_NVRAM,EMULATR_TOY_NVRAM,EMULATR_TRACE_ARM_INSTRS,EMULATR_TRACE_ARM_ON_DTBM,EMULATR_TRACE_ARM_ON_IIC,EMULATR_TRACE_ARM_PA,EMULATR_TRACE_ARM_VAL,EMULATR_TRACE_DISARM_PA,EMULATR_TRACE_DISARM_VAL,EMULATR_TRACE_ON_BOOTSTRAP,EMULATR_TRACE_WINDOW,EMULATR_TULIP_TRACE,EMULATR_UARTWATCH,EMULATR_VACTL_DIAG,EMULATR_VAL_WATCH,EMULATR_VAL_WATCH_CYCLO,EMULATR_VALUE_GATE,EMULATR_VALUE_GATE_FLOOR,EMULATR_VECWATCH_VAL,EMULATR_VGA_DUMP,EMULATR_VPTB_DIAG,environment variables,getenv" />
    <meta name="description" content="The runtime environment variables EmulatR reads at launch, plus the compile-time flags that look like env vars but are CMake options. All values are read with std::getenv --..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -575,7 +575,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_TRACE_ON_BOOTSTRAP</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Arm the trace at the bootstrap (0x20000000) handoff.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Arm the trace at the bootstrap (0x20000000) hand-off.</p>
 </td>
 </tr>
 <tr>
@@ -725,7 +725,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_CSERVE_START_MODE</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Selects how the B+ handoff is taken at CSERVE START (0x42). Default <span class="f_CodeExample">guest</span> (Option A) mirrors AXPBox <span class="f_CodeExample">vmspal_call_cserve</span> exactly -- it sets p23 to the CALL_PAL return PC and diverts to the guest <span class="f_CodeExample">cfw_start</span>/<span class="f_CodeExample">exit_console</span>, letting the real PAL do the mode/VPTB/IPL transition. Set <span class="f_CodeExample">cpp</span> for the old C++ B+ replica.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Selects how the B+ hand-off is taken at CSERVE START (0x42). Default <span class="f_CodeExample">guest</span> (Option A) mirrors AXPBox <span class="f_CodeExample">vmspal_call_cserve</span> exactly -- it sets p23 to the CALL_PAL return PC and diverts to the guest <span class="f_CodeExample">cfw_start</span>/<span class="f_CodeExample">exit_console</span>, letting the real PAL do the mode/VPTB/IPL transition. Set <span class="f_CodeExample">cpp</span> for the old C++ B+ replica.</p>
 </td>
 </tr>
 <tr>
@@ -749,7 +749,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_HALT_DIAG</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Pin where the console halts on the b dqa0 handoff: the swppal / console_exit transfer PC and halt code.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Pin where the console halts on the b dqa0 hand-off: the swppal / console_exit transfer PC and halt code.</p>
 </td>
 </tr>
 <tr>
@@ -858,12 +858,34 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Network Configuration</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Variable</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Effect</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_NET_ADAPTER</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The host adapter to bridge EWA0 onto: a case-insensitive part of the adapter's description (for example <span class="f_CodeExample">I219</span>) or a libpcap device name. Unset means auto-detect, the default, which attaches to the one adapter that is up, connected and has no bound address. <span class="f_CodeExample">off</span>, <span class="f_CodeExample">none</span> or <span class="f_CodeExample">0</span> disables networking. Set it in the Launcher's Run-time environment variables panel and <span class="f_T_Emphasis">tick its row</span>, or the value is ignored. Wired adapters only -- WiFi cannot carry the guest. Makes the run non-deterministic. See <a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Probe / experimental</span></h2>
 <p class="p_Normal"><span class="f_CodeExample">EMULATR_GCT_WATCH</span>, <span class="f_CodeExample">EMULATR_BREAK_ON_PA10</span>, <span class="f_CodeExample">EMULATR_CHECKPOINTS</span>, and <span class="f_CodeExample">EMULATR_GATE</span> are pinpoint debug gates. The ES40 bring-up probes <span class="f_CodeExample">EMULATR_TIG_RESET</span> (model the TIG module reset) and <span class="f_CodeExample">EMULATR_UDELAYWARP</span> (collapse the 0x6a514 micro-delay loop, advancing only to the next timer edge so no timer boundary is skipped), together with the trace gates <span class="f_CodeExample">EMULATR_TIG_TRACE</span> / <span class="f_CodeExample">EMULATR_RSCC_DIAG</span>, are gated behind the compile-time <span class="f_CodeExample">EMULATR_BRINGUP_PROBES</span> and remain experimental / provisional.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-weight: bold;">Removed 2026-08-01 — no longer recognised.</span> <span class="f_CodeExample">EMULATR_IDLEWARP</span>, <span class="f_CodeExample">EMULATR_RSCCWARP</span>, <span class="f_CodeExample">EMULATR_TICKWARP</span>, <span class="f_CodeExample">EMULATR_DELAYWARP</span> and <span class="f_CodeExample">EMULATR_UDELAYWARP_LEGACY_UNSAFE</span> have been taken out of the execution path. They advanced the guest clock, and one of them wrote a guest register directly to force a delay loop to exit — fabricating state the emulated machine would never have reached. Setting any of them now has no effect, and the launcher strips them from the child environment so a stale export in an operator shell cannot silently change a run. Delay and idle spins execute at their real cost. See the Release Notes for v1.6 and the WARP Variants topic.</p>
+<p class="p_Normal"><span style="font-weight: bold;">Removed 2026-08-01 — no longer recognized.</span> <span class="f_CodeExample">EMULATR_IDLEWARP</span>, <span class="f_CodeExample">EMULATR_RSCCWARP</span>, <span class="f_CodeExample">EMULATR_TICKWARP</span>, <span class="f_CodeExample">EMULATR_DELAYWARP</span> and <span class="f_CodeExample">EMULATR_UDELAYWARP_LEGACY_UNSAFE</span> have been taken out of the execution path. They advanced the guest clock, and one of them wrote a guest register directly to force a delay loop to exit - fabricating state the emulated machine would never have reached. Setting any of them now has no effect, and the launcher strips them from the child environment so a stale export in an operator shell cannot silently change a run. Delay and idle spins execute at their real cost. See the Release Notes for v1.6 and the WARP Variants topic.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Compile-time flags (NOT runtime env vars)</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Compile-time flags (NOT run-time env vars)</span></h2>
 <p class="p_Normal">These are CMake options baked in at build time -- setting them in the shell does nothing: <span class="f_CodeExample">EMULATR_MEMDIAG</span> (per-instruction logging, ~900x slowdown, keep OFF), <span class="f_CodeExample">EMULATR_DIAGNOSTIC_LOGGING</span> (non-Release per-subsystem logging), and the <span class="f_CodeExample">EMULATR_LOG_*</span> spdlog level macros.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">CLI flags that mirror env vars</span></h2>
@@ -927,9 +949,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--environment-variables-(emula.html" target="_top">'+baseurl+'index.html?--environment-variables-(emula.html</a></p>');
 
 </script>
 </body>

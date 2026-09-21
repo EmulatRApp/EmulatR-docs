@@ -6,8 +6,8 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="Alpha AXP,Box,glossary,grain,IPR,kseg,PALcode,SPAM,SRM,SROM,Tsunami" />
-   <meta name="description" content="Terms and acronyms used throughout this guide. &nbsp;Alpha AXP -- Digital's 64-bit RISC architecture. EmulatR models the 21264 (EV6) generation. 21264 / EV6 (EV67) -- the Alpha CPU i" />
+   <meta name="keywords" content=".axpsnap,acronyms,Alpha AXP,badge,Box,CSERVE,DE500,DECnet,EWA0,firmware stem,glossary,grain,HWRPB,IPR,ISP,kseg,LAT,LFU,MOP,MSCP,named system,Npcap,NVRAM,PALcode,placeholders,platform manifest,profile directory,run directory,SCS,silicon mode,SPAM,SRM,SROM,stem,TOY,Tsunami,version numbering,warp census" />
+   <meta name="description" content="Placeholders, terms and acronyms used throughout this guide." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,95 +127,248 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Terms and acronyms used throughout this guide.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Alpha AXP</span> -- Digital's 64-bit RISC architecture. EmulatR models the 21264 (EV6) generation.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">21264 / EV6 (EV67)</span> -- the Alpha CPU implementation EmulatR emulates; EV67 is the later 21264A.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">21272 / Tsunami / Typhoon</span> -- the core-logic chipset: Cchip (control), Dchip (data), Pchip (PCI).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Cchip / Dchip / Pchip</span> -- the three 21272 components: system control and memory arbitration, the data path, and the PCI host bridge.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">CY82C693</span> -- the Cypress PCI-to-ISA southbridge (also the IDE / ATAPI controller and SuperIO).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">SRM</span> -- the Alpha console firmware (the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt) that EmulatR runs unmodified.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">PALcode</span> -- Privileged Architecture Library code: the low-level routines (OpenVMS and Tru64 personalities) that implement privileged operations.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">SROM</span> -- the serial ROM whose parameters seed the CPU at reset (passed in registers R16-R21).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">LFU / UPD&gt;</span> -- the Loadable Firmware Update utility and its prompt, used to update firmware in flash.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">NVRAM</span> -- the non-volatile store (backed by the flash image) holding SRM environment variables.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">IPR</span> -- Internal Processor Register, accessed in PAL mode via HW_MTPR / HW_MFPR.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">ITB / DTB</span> -- the instruction and data Translation Buffers (the EV6 TLBs).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">TLB</span> -- Translation Lookaside Buffer: the cache of virtual-to-physical mappings.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">SPAM</span> -- Set-Partitioned Associative Memory: EmulatR's TLB model. It can shard, but the ITB and DTB are instantiated flat at 128 entries, so as shipped they are fully associative.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">kseg</span> -- the EV6 superpage region where a virtual address maps directly to physical (no page table).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">ASN</span> -- Address Space Number, the tag distinguishing per-process translations.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Box</span> -- a functional execution domain in EmulatR: IBox (control flow), EBox (integer), FBox (floating point), MBox (memory), CBox (cache / predict), PalBox (privileged).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">grain</span> -- a single per-opcode leaf function that implements one instruction's semantics.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">GCT / FRU</span> -- the firmware's Configuration Tree and Field-Replaceable-Unit data, built during power-up.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">HWRPB</span> -- the Hardware Restart Parameter Block, the firmware-to-OS handoff structure.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">VMB / SYSBOOT</span> -- the OpenVMS primary and secondary bootstraps; a conversational boot stops at <span class="f_CodeExample">SYSBOOT&gt;</span>.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">dqa / dka / dva / ewa</span> -- SRM device names: IDE / ATAPI, SCSI, floppy, and Ethernet respectively.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">ATAPI</span> -- the packet command set for optical / removable devices on an IDE channel.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">RZ-series</span> -- DEC SCSI disk models (RZ26, RZ28, RZ29, ...).</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">.axpsnap</span> -- an EmulatR machine-state snapshot file.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">NXM</span> -- Non-eXistent Memory: a physical access above the configured RAM limit.</p>
-<p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">RPCC</span> -- the Alpha cycle-counter instruction (Read Processor Cycle Counter).</p>
-<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Placeholders, terms and acronyms used throughout this guide.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Placeholders</span></h2>
+<p class="p_Normal">A name in angle brackets stands for a value you substitute: type the value, not the brackets. <span class="f_CodeExample">&lt;stem&gt;.rom</span> for the DS20 firmware is <span class="f_CodeExample">ds20_v7_3.rom</span>.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal">Key</p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Placeholder</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal">Value</p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Stands for</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Example</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">See</span></p>
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCBL</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;stem&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI Bus Control Lines</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The firmware stem: the firmware image's file name without its extension. It names every file that belongs to that firmware, and its first word selects the machine model (it overrides the ini's [System] model). A log written with no firmware in use is named <span class="f_CodeExample">emulatr</span> instead, unless <span class="f_CodeExample">EMULATR_LOG_STEM</span> sets a stem.</p>
 </td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware/ds20_v7_3.exe</span> gives <span class="f_CodeExample">ds20_v7_3</span>, hence <span class="f_CodeExample">ds20_v7_3.rom</span>, <span class="f_CodeExample">ds20_v7_3_platform.json</span>, <span class="f_CodeExample">logs/ds20_v7_3_boot_20260921_101500.log</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a></p>
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;firmware&gt;</span>, <span class="f_CodeExample">&lt;firmware-stem&gt;</span>, <span class="f_CodeExample">&lt;platform&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The same as <span class="f_CodeExample">&lt;stem&gt;</span>. <span class="f_CodeExample">&lt;platform&gt;_platform.json</span> is the platform manifest named for its firmware.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ds20_v7_3_warp.json</span>, <span class="f_CodeExample">ds20_v7_3_platform.json</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="examples---json.html" class="topiclink">&lt;firmware&gt;_warp.json -- Calibrated-Delay Census</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;model&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The machine model in lower case -- the first word of the stem: <span class="f_CodeExample">ds10</span>, <span class="f_CodeExample">ds20</span>, <span class="f_CodeExample">ds25</span>, <span class="f_CodeExample">es40</span> or <span class="f_CodeExample">es45</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;model&gt;_v7_3_platform.json</span> is <span class="f_CodeExample">ds20_v7_3_platform.json</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;plat&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The platform argument the tools scripts take: a model name, or a named run environment.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">emulatr_launch.sh ds20</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tools-script-reference.html" class="topiclink">Tools Script Reference</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;</span>, <span class="f_CodeExample">&lt;run&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directory: the folder EmulatR is started from. It holds the firmware, configuration and platform manifests, and receives the logs, snapshots and flash NVRAM. In a build tree it is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>; for an installed kit it is the system's profile directory.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;/tools/</span>, <span class="f_CodeExample">&lt;run-dir&gt;/logs/</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="running-from-a-run-directory.html" class="topiclink">Running from a Run Directory</a>, <a href="run-directory-contents.html" class="topiclink">Run-Directory Contents</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;</span>, <span class="f_CodeExample">&lt;your profile directory&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A named system's profile (run) directory, chosen when the system is created in the Launcher -- anywhere you own, for example under Documents, and never under Program Files. It holds that system's <span class="f_CodeExample">Emulatr.ini</span>, disks, logs and flash NVRAM.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;\logs\run_launch_*.log</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;tree&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The source tree a developer build comes from: <span class="f_CodeExample">v2.0</span> (current) or <span class="f_CodeExample">v5</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">out/build/v2.0-release/run/</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;config&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The build configuration: <span class="f_CodeExample">release</span>, <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span>. The <span class="f_CodeExample">EMULATR_DIAG_*</span> diagnostic facilities exist only in <span class="f_CodeExample">relwithdebinfo</span> and <span class="f_CodeExample">debug</span> builds.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">out/build/v2.0-relwithdebinfo/run/</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;project&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The root of the source tree, in developer instructions.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;project&gt;/tools/</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="running-from-a-run-directory.html" class="topiclink">Running from a Run Directory</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;purpose&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A short word naming what a log or trace is for, chosen by the tool or script that writes it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span>, <span class="f_CodeExample">showdev</span>, <span class="f_CodeExample">atapiwire</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tools-script-reference.html" class="topiclink">Tools Script Reference</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;ts&gt;</span>, <span class="f_CodeExample">&lt;timestamp&gt;</span>, <span class="f_CodeExample">&lt;YYYYMMDD&gt;</span>, <span class="f_CodeExample">&lt;HHMMSS&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The local date and time the file was created, written YYYYMMDD_HHMMSS.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">20260921_101500</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;port&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The TCP port of a system's SRM console. The default is 10023; give every system that runs at the same time its own port.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">127.0.0.1:10023</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--tcp-console-overview.html" class="topiclink">TCP Console Overview</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;device&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An SRM console device name.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dka0</span>, <span class="f_CodeExample">dqa1</span>, <span class="f_CodeExample">ewa0</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;var&gt;</span>, <span class="f_CodeExample">&lt;value&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An SRM environment variable and the value to give it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set auto_action halt</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--srm-environment-variables.html" class="topiclink">SRM Environment Variables</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;adapter&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Windows name of a host network adapter, as Network Connections shows it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Ethernet 2</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;name or description substring&gt;</span>, <span class="f_CodeExample">&lt;description-substring&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Part of a host adapter's description, as <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> accepts it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">I219</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;guest-ip&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The IP address configured inside the guest operating system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;pa&gt;</span>, <span class="f_CodeExample">&lt;va&gt;</span>, <span class="f_CodeExample">&lt;pc&gt;</span>, <span class="f_CodeExample">&lt;addr&gt;</span>, <span class="f_CodeExample">&lt;address&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A physical address, a virtual address, a program-counter value, or any address -- in hexadecimal.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x80130000040</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;subsys&gt;</span>, <span class="f_CodeExample">&lt;csv&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A logging subsystem name; a comma-separated list of them.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--log-verbose &lt;subsys&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="emulatr-subsystems.html" class="topiclink">Logging Subsystems (EmulatR)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;version&gt;</span>, <span class="f_CodeExample">&lt;stage&gt;&lt;major&gt;.&lt;variant&gt;-&lt;build&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The kit version, and its parts: the stage letter (X experimental, T field test, V released), the major and variant numbers of the line, and the build number.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">T2.0-16</span>: stage T, line 2.0, build 16</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="version-administration.html" class="topiclink">EmulatR Version Numbering and Release Stages</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;N&gt;</span>, <span class="f_CodeExample">&lt;n&gt;</span>, <span class="f_CodeExample">&lt;count&gt;</span>, <span class="f_CodeExample">&lt;bytes&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A number; a count; a size in bytes.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--mem 1073741824</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;path&gt;</span>, <span class="f_CodeExample">&lt;dir&gt;</span>, <span class="f_CodeExample">&lt;file&gt;</span>, <span class="f_CodeExample">&lt;name&gt;</span>, <span class="f_CodeExample">&lt;s&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A file path, a directory, a file, a name, a string.</p>
+</td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;CR&gt;</span>, <span class="f_CodeExample">&lt;Return&gt;</span>, <span class="f_CodeExample">&lt;Enter&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Press the Enter key. A key name in angle brackets is a key to press, not text to type.</p>
 </td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
-</td>
-</tr>
-<tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
@@ -225,9 +378,835 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Terms and acronyms</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Term</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Meaning</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">See</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21143 (Tulip)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet controller chip; the chip on the DE500-BA that EmulatR models as EWA0.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21264 / EV6 (EV67)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha CPU implementation EmulatR emulates; EV67 is the later 21264A.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21272 / Tsunami / Typhoon</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The core-logic chipset: Cchip (control), Dchip (data), Pchip (PCI).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tsunami-_-typhoon.html" class="topiclink">Tsunami \ Typhoon</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AARM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha Architecture Reference Manual.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Alpha AXP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital's 64-bit RISC architecture. EmulatR models the 21264 (EV6) generation.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ARP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Address Resolution Protocol: finds the MAC address that owns an IP address on the local network.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ASN</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Address Space Number, the tag distinguishing per-process translations.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AST</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Asynchronous System Trap: OpenVMS's mechanism for running a routine in a process when an event completes.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ATA / IDE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The PC disk interface; IDE is Integrated Drive Electronics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--ide-devices.html" class="topiclink">IDE Devices</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ATAPI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The packet command set for optical / removable devices on an IDE channel.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--atapi-devices.html" class="topiclink">ATAPI Devices</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">.axpsnap</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An EmulatR machine-state snapshot file, written to <span class="f_CodeExample">snapshots/</span>. The newest is restored at start-up unless <span class="f_CodeExample">--no-autoload</span> is given.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--automatic-_-creating-_-resto.html" class="topiclink">Snapshot Operations</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Badge (MHz badge)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CPU speed the SRM banner prints. EmulatR shows the previous run's measured effective speed, marked <span class="f_CodeExample">~</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="warp-variants-and-cycle-accoun.html" class="topiclink">WARP Variants and Cycle-Accounting for Reported CPU Speed</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BAR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Base Address Register: the PCI configuration register that places a device's registers in the address map.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Block execution</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR's normal execution model: runs of straight-line instructions execute from a cache of decoded blocks.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="block-execution.html" class="topiclink">Block-Execution</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Box</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A functional execution domain in EmulatR: IBox (control flow), EBox (integer), FBox (floating point), MBox (memory), CBox (cache / predict), PalBox (privileged).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cchip / Dchip / Pchip</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The three 21272 components: system control and memory arbitration, the data path, and the PCI host bridge.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="chipset.html" class="topiclink">Chipset</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CDB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Command Descriptor Block: one SCSI command as sent to a device.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cchip System Configuration register: the 21272 register holding the chipset's configuration -- queue limits and timing, with its low byte taken from the Cchip's configuration pins at power-up (21272 HRM 10.2.2.1).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tsunami-_-typhoon.html" class="topiclink">Tsunami \ Typhoon</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSERVE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The PALcode call that is the gate between the SRM console and PALcode (<span class="f_CodeExample">CALL_PAL CSERVE</span>).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START Handoff)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CSR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Control and Status Register.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CY82C693</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Cypress PCI-to-ISA south bridge of the DS10 and DS20 (also the IDE / ATAPI controller and SuperIO).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="cy82c693-.html" class="topiclink">CY82C693</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DCL</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital Command Language: the OpenVMS command interpreter (the <span class="f_CodeExample">$</span> prompt).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DE500 (DE500-BA)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet adapter, built on the 21143; EmulatR's EWA0.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DECnet</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital's network architecture: Phase IV, and Phase V (DECnet-Plus, based on OSI).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DMA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Direct Memory Access: a device transfers data to or from memory without the CPU moving it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">dqa / dka / dva / ewa</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM device names: IDE / ATAPI, SCSI, floppy, and Ethernet respectively.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DRIR / DIM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Cchip's Device Raw Interrupt Request and Device Interrupt Mask registers.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="chipset.html" class="topiclink">Chipset</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10, DS20, DS25, ES40, ES45</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The AlphaServer models whose firmware EmulatR runs. Support differs by model.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DSSI / SDI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital Storage Systems Interconnect; Standard Disk Interconnect -- DEC storage buses.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--storage-interconnect-and-fab.html" class="topiclink">Storage Interconnect and Fabric</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DTSS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Distributed Time Synchronization Service: keeps the clocks of networked OpenVMS systems in step.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EWA0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest's first Ethernet device: <span class="f_CodeExample">ewa0</span> at the SRM console, <span class="f_CodeExample">EWA0:</span> in OpenVMS.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Execution mode: ISP / silicon (REAL_HW)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is DEC's Instruction-Set-Processor engineering virtual model: the firmware skips the real-hardware timing and probe steps. Silicon (REAL_HW) takes the path real hardware takes. The ES40 and ES45 manifests bind silicon.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">GCT / FRU</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The firmware's Configuration Tree and Field-Replaceable-Unit data, built during power-up.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">grain</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A single per-opcode leaf function that implements one instruction's semantics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--grainfactorylib.html" class="topiclink">grainFactoryLib</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">HBA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host Bus Adapter: an adapter that connects a storage bus, such as SCSI, to PCI.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">HRM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Hardware Reference Manual: DEC's documentation for a chip or system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">HWRPB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Hardware Restart Parameter Block, the firmware-to-OS hand-off structure.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="hwrpb---ds20.html" class="topiclink">HWRPB Key/Value Offset Map</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IIC (I2C)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The inter-IC serial bus the firmware probes for FRU and model-identity devices.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="diagnostic-instrumentation.html" class="topiclink">Model Badging: SRM Platform Identity from an IIC Discriminator Device</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IMB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Instruction Memory Barrier (<span class="f_CodeExample">CALL_PAL IMB</span>): makes instruction fetch see newly written code.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IPI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Interprocessor Interrupt: one CPU interrupting another.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="smp-(multiprocessor)-design.html" class="topiclink">SMP (MultiProcessor) Design</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IPL</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Interrupt Priority Level.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IPR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Internal Processor Register, accessed in PAL mode via <span class="f_CodeExample">HW_MTPR</span> / <span class="f_CodeExample">HW_MFPR</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IRQ</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Interrupt Request: an interrupt line or its number.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Industry Standard Architecture: the legacy bus behind the south bridge (serial and parallel ports, keyboard, floppy, TOY clock).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISO image</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A CD image file (<span class="f_CodeExample">.iso</span>) attached to the guest as a CD-ROM.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="booting-from-an-iso-image.html" class="topiclink">Booting/Configure A New OpenVMS Instance from an ISO</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ITB / DTB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The instruction and data Translation Buffers (the EV6 TLBs).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--addressing--tlb.html" class="topiclink">Addressing &amp; TLB</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">kseg</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The EV6 superpage region where a virtual address maps directly to physical (no page table).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">KZPBA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI UltraSCSI adapter.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--scsi-devices.html" class="topiclink">SCSI Devices</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LANCP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The OpenVMS LAN Control Program (<span class="f_CodeExample">MC LANCP</span>), which shows and sets LAN device parameters and counters.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LAST</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Local Area System Transport: the protocol an InfoServer uses to serve disks and CDs.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LAT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Local Area Transport: DEC's terminal-server protocol.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LBA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Logical Block Address: a block number on a disk or CD.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LFU / UPD&gt;</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Loadable Firmware Update utility and its prompt, used to update firmware in flash.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">M1543C / M5229</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The ALi PCI-to-ISA south bridge of the ES40 and ES45, and its IDE function.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="ali-m1543c-south-bridge-interf.html" class="topiclink">ALi M1543C South-Bridge Interface</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MAC address</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The 48-bit hardware address of an Ethernet interface. Under DECnet Phase IV it is set from the node address.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MC146818</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The real-time clock chip that provides the TOY clock.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MMIO</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Memory-mapped I/O: device registers reached at physical addresses.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MOP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Maintenance Operation Protocol: DEC's protocol for booting and remote console over a LAN.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MSCP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Mass Storage Control Protocol: serves disks between OpenVMS cluster members.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Named system</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A machine defined in the Launcher: its name, platform, profile directory and settings.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Npcap</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Windows packet-capture driver EmulatR uses to reach a real network. It is installed with Wireshark.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">NVRAM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The non-volatile store holding the SRM environment variables -- the flash image <span class="f_CodeExample">&lt;stem&gt;.rom</span>, maintained only by the running instance.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">NXM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Non-eXistent Memory: a physical access above the configured RAM limit.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OCP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Operator Control Panel: the front-panel display and buttons.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OPCDEC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The reserved-opcode fault, raised for an instruction the CPU does not implement.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OSF/1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The original name of Tru64 UNIX; its PALcode is one of the two PALcode personalities.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PALcode</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Privileged Architecture Library code: the low-level routines (OpenVMS and Tru64 personalities) that implement privileged operations.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="palcode-platform-bases.html" class="topiclink">PALcode Platform Bases</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PC264</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The 21264 platform family, in DEC's SRM sources, that the DS10 and DS20 firmware belongs to.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PCI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Peripheral Component Interconnect: the I/O bus behind the Pchip.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PERROR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Pchip's PCI error register.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tsunami-error-chain.html" class="topiclink">Tsunami Error Chain (PERROR / No Devsel)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PIC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Programmable Interrupt Controller (8259-compatible, in the south bridge).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PIO</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Programmed I/O: the CPU moves every word itself (compare DMA).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Platform manifest</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The <span class="f_CodeExample">&lt;stem&gt;_platform.json</span> file that declares a machine's devices, storage and execution mode.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PTE / PTBR / VPTB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Page Table Entry; Page Table Base Register; Virtual Page Table Base.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--addressing--tlb.html" class="topiclink">Addressing &amp; TLB</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PVD</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Primary Volume Descriptor: the ISO-9660 block at LBA 16, identified by <span class="f_CodeExample">CD001</span>, that describes a CD's file system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--iso-9660-pfd-(cd001).html" class="topiclink">ISO-9660 PVD (CD001)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RPCC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha cycle-counter instruction (Read Processor Cycle Counter).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RSCC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Read System Cycle Counter: the OpenVMS PALcode call that firmware delay loops poll.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RTC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Real-Time Clock; see TOY.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RZ-series</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC SCSI disk models (RZ26, RZ28, RZ29, ...).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--scsi-devices.html" class="topiclink">SCSI Devices</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCB / SCBB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">System Control Block: the table of exception and interrupt vectors; and its base register.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCBL</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI Bus Control Lines.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="scsi-bus-control-lines.html" class="topiclink">SCSI Bus Control Lines</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">System Communications Services: the OpenVMS cluster messaging layer.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SCSI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Small Computer System Interface.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SDE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PALshadow Register Enable: the field of the 21264's <span class="f_CodeExample">I_CTL</span> register that switches in the PALshadow registers PALcode uses (21264 / EV67 HRM, I_CTL).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--firmware-decode--decompressi.html" class="topiclink">Firmware Decode &amp; Decompression</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SIA</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Serial Interface Adapter: the 21143's 10 Mb/s physical-layer interface, controlled through CSR12-CSR15 (21143 datasheet).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SMP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Symmetric Multiprocessing: more than one CPU sharing memory.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="smp-(multiprocessor)-design.html" class="topiclink">SMP (MultiProcessor) Design</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SPAM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set-Partitioned Associative Memory: EmulatR's TLB model. It can shard, but the ITB and DTB are instantiated flat at 128 entries, so as shipped they are fully associative.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--addressing--tlb.html" class="topiclink">Addressing &amp; TLB</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha console firmware (the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt) that EmulatR runs unmodified.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="4_3-srm-console.html" class="topiclink">SRM Console</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SROM</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The serial ROM whose parameters seed the CPU at reset (passed in registers R16-R21).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SSOT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Single Source Of Truth: the one authoritative copy of a fact, from which every other copy is generated.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SYSTYPE / SYSVAR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The HWRPB system type and system variation fields, which identify the platform model.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="diagnostic-instrumentation.html" class="topiclink">Model Badging: SRM Platform Identity from an IIC Discriminator Device</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TB / TLB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Translation Buffer / Translation Lookaside Buffer: the cache of virtual-to-physical mappings.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--addressing--tlb.html" class="topiclink">Addressing &amp; TLB</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TBIA / TBIAP</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Invalidate every TB entry; invalidate every per-process TB entry.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TDF</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Time Differential Factor: OpenVMS's offset from UTC, set during startup.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TIGbus</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The 21272 chipset's bus for miscellaneous system logic: the flash ROM, and the interrupt inputs the Cchip polls eight at a time (21272 HRM 6.3).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tsunami-_-typhoon.html" class="topiclink">Tsunami \ Typhoon</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TOY</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Time-Of-Year clock: the battery-backed date and time clock.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">UART</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The serial-port chip (16550-compatible) behind a serial port.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">VAX</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's 32-bit architecture that preceded Alpha; Alpha supports its floating-point formats.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--floating-point-consideration.html" class="topiclink">Floating-Point Considerations</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">VMB / SYSBOOT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The OpenVMS primary and secondary bootstraps; a conversational boot stops at <span class="f_CodeExample">SYSBOOT&gt;</span>.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">VRT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Valid RAM and Time: the MC146818 bit that says the clock and its RAM are trustworthy.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Warp census</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;stem&gt;_warp.json</span>: the firmware's calibrated delay loops, found on the first boot of a firmware image and collapsed on every later boot.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="performance-warp.html" class="topiclink">Warp</a>, <a href="examples---json.html" class="topiclink">&lt;firmware&gt;_warp.json -- Calibrated-Delay Census</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Overview</a></p>
 <p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>
@@ -280,9 +1259,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--glossary--------------------.html" target="_top">'+baseurl+'index.html?--glossary--------------------.html</a></p>');
 
 </script>
 </body>

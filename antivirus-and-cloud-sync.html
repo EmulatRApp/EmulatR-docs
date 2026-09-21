@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Reference &gt; Antivirus and Cloud Sync</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="Add-MpPreference,antivirus,cloud sync,Dropbox,exclusion,ExclusionPath,Files On-Demand,Microsoft Defender,OneDrive,quarantine,real-time protection,run directory,Windows Security" />
+   <meta name="description" content="A running EmulatR system writes continuously to its run directory: disk images of several gigabytes, snapshots, NVRAM, logs and traces. Real-time antivirus scanners and..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "antivirus-and-cloud-sync.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Antivirus and Cloud Sync</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?antivirus-and-cloud-sync.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="6_-reference------------------.html">6. Reference</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Antivirus and Cloud Sync</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="windows-defender-firewall.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="6_-reference------------------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="execution-matrix.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">A running EmulatR system writes continuously to its run directory: disk images of several gigabytes, snapshots, NVRAM, logs and traces. Real-time antivirus scanners and cloud-sync clients both watch folders like this, and both can interfere with it. Set up the exclusions on this page BEFORE the first run.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What goes wrong without exclusions</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Symptom</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Cause</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest disk access crawls; boots and installs take far longer than they should</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the scanner re-reads a multi-gigabyte disk image after the guest writes to it</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A write to a disk image fails, or the image is left inconsistent</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">a scanner or sync client has the file open at the moment the guest writes to it</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulatr.exe will not start, or disappears after installation</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the scanner quarantined it -- an unsigned beta program that emulates a CPU can trip heuristic detection</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Heavy, continuous upload traffic</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the run directory sits in a cloud-synced folder, and every change to a disk image is uploaded again</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What to exclude</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Location</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Default path</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Why</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The installation folder</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">C:\Program Files\ASA-EmulatR</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulatr.exe, the Launcher and their runtime libraries</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directories</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">%USERPROFILE%\Documents\EmulatR - or the directory into which EmulatR launcher created the environment. </span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the parent of every named system: disk images, snapshots, NVRAM, logs and traces</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Disk images, if you moved them</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">wherever <span class="f_CodeExample">EMULATR_DISK_DIR</span> points</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">only if you keep disk images outside the run directory</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The emulator process (optional)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.exe</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">files the emulator opens are not scanned as it opens them</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">Exclude folders, not your whole Documents folder and never a whole drive -- see The trade-off, below.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Microsoft Defender</span></h2>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Using Windows Security</span></h3>
+<p class="p_Normal">Open <span class="f_T_Emphasis">Windows Security</span>, then <span class="f_T_Emphasis">Virus &amp; threat protection</span> &gt; <span class="f_T_Emphasis">Manage settings</span> &gt; <span class="f_T_Emphasis">Exclusions</span> &gt; <span class="f_T_Emphasis">Add or remove exclusions</span> &gt; <span class="f_T_Emphasis">Add an exclusion</span> &gt; <span class="f_T_Emphasis">Folder</span>, and add each folder from the table above.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Using PowerShell</span></h3>
+<p class="p_Normal">In an ELEVATED PowerShell (Run as administrator):</p>
+<p class="p_CodeExample"><span class="f_CodeExample">Add-MpPreference&nbsp;-ExclusionPath&nbsp;&quot;$env:ProgramFiles\ASA-EmulatR&quot;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Add-MpPreference&nbsp;-ExclusionPath&nbsp;(Join-Path&nbsp;([Environment]::GetFolderPath(&quot;MyDocuments&quot;))&nbsp;&quot;EmulatR&quot;)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Add-MpPreference&nbsp;-ExclusionProcess&nbsp;&quot;Emulatr.exe&quot;</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The second line asks Windows where your Documents folder really is, rather than assuming <span class="f_CodeExample">%USERPROFILE%\Documents</span>. If Documents has been redirected -- to OneDrive, for example -- that is the path that matters.</p>
+<p class="p_Normal">To check what is excluded:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">(Get-MpPreference).ExclusionPath</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Other antivirus products</span></h2>
+<p class="p_Normal">Exclude the same folders, and optionally the process, using your product's exclusion or allow-list settings; the wording varies by vendor. On a work computer, endpoint protection is often managed centrally and your own changes may be overridden -- ask your IT department to add the exclusions.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Cloud sync: OneDrive, Dropbox and similar</span></h2>
+<p class="p_Normal">On many Windows computers the Documents folder is synchronised to OneDrive. New named systems are created under Documents by default, so on those computers every disk image is uploaded, re-uploaded on every change, and locked by the sync client while it does so.</p>
+<p class="p_Normal">To see where your Documents folder really is:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">[Environment]::GetFolderPath(&quot;MyDocuments&quot;)</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">If the path contains <span class="f_CodeExample">OneDrive</span> -- or the folder of another sync client -- choose a different location when you create a named system. The New System dialog pre-fills the Documents location; use <span class="f_T_Emphasis">Browse...</span> to pick a folder outside any synced area, for example <span class="f_CodeExample">C:\EmulatR</span>.</p>
+<p class="p_Normal">Keeping run directories out of synced folders is simpler and more reliable than excluding them from sync, which every client does differently. It also avoids OneDrive Files On-Demand, which can move a disk image to the cloud and leave only a placeholder that the emulator cannot read until it has downloaded again.</p>
+<p class="p_Normal">Exclude the new location from antivirus scanning as well.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The trade-off</span></h2>
+<p class="p_Normal">An exclusion means files in that location are not scanned. Keep exclusions narrow -- EmulatR's own folders only -- and keep in them only firmware, disk images and ISO files from sources you trust, because nothing will check them there.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Confirm it worked</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Check</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Expected</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">(Get-MpPreference).ExclusionPath</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">lists the installation folder and your run-directory parent</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Start a named system from the Launcher</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the emulator starts, and Emulatr.exe is still present afterwards</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Use the guest's disk</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">responsive, with no long pauses on reads or writes</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="installing-with-the-windows-installer.html" class="topiclink">Installing with the Windows Installer</a></p>
+<p class="p_Normal"><a href="windows-defender-firewall.html" class="topiclink">Windows Defender Firewall</a></p>
+<p class="p_Normal"><a href="terms-of-use.html" class="topiclink">Terms of Use</a> -- sections 5 (backups) and 8 (security)</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

@@ -195,7 +195,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/PipelineDriver.h</span><span class="f_NotesBox"> -- step / run / retire; the six-stage slot walk; the only mutator of cpu.pc.</span></p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/MemDrainer.h</span><span class="f_NotesBox"> -- MEM-stage data-effect drain (translate, load/store, sign-extend, LL/SC).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/IFetchOverride.h</span><span class="f_NotesBox"> -- the IF-stage fetch hook; </span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> onBeforeFetch implements it (the decompression / Step D handoff).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/IFetchOverride.h</span><span class="f_NotesBox"> -- the IF-stage fetch hook; </span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> onBeforeFetch implements it (the decompression / Step D hand-off).</span></p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/Ev6EntryVectors.h</span><span class="f_NotesBox"> -- entryForFault / computeHwExceptionEntry and the kEntry_* vector grid.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
@@ -255,9 +255,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--execution-_-boot-internals.html" target="_top">'+baseurl+'index.html?--execution-_-boot-internals.html</a></p>');
 
 </script>
 </body>

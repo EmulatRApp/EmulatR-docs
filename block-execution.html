@@ -6,8 +6,8 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="" />
-   <meta name="description" content="Enter topic text here." />
+   <meta name="keywords" content="AST,block cache,block execution,block executor,EMULATR_BLOCK_MAX,EMULATR_BLOCKCACHE_BLOCKS,EMULATR_BLOCKEXEC,interrupt latency,performance" />
+   <meta name="description" content="Block execution is EmulatR's normal execution model. Once a run of straight-line code has executed, EmulatR lays its already-decoded instructions end to end as a block. The..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Block-Execution</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Block Execution</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -107,7 +107,7 @@
       
       <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Block-Execution</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Block Execution</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,7 +127,68 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Enter topic text here.</p>
+<p class="p_Normal">Block execution is EmulatR's normal execution model. Once a run of straight-line code has executed, EmulatR lays its already-decoded instructions end to end as a block. The next time execution reaches that code, the whole block runs without going back through fetch, decode and the run loop's checks between every instruction.</p>
+<p class="p_Normal">Nothing is translated or recompiled. Each instruction in a block runs through the same execution code as the main pipeline, so registers, memory and processor state are exactly what instruction-by-instruction execution would produce. What a block saves is the approach work around each instruction, not the instruction itself.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What ends a block</span></h2>
+<p class="p_Normal">A block is built only from code that has already run, and it stops at whichever comes first:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>an 8 KB page edge -- a block never spans two pages;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>code that has not been decoded yet;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>a <span class="f_CodeExample">CALL_PAL</span> or other privileged (hardware-format) instruction;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>an unconditional transfer, which is kept as the block's last instruction;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>the <span class="f_CodeExample">EMULATR_BLOCK_MAX</span> limit.</p>
+<p class="p_Normal">A conditional branch that is taken leaves the block early. The smallest block is two instructions. Code that does not form a block simply runs on the main pipeline -- the difference is speed, never results.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Interrupts and time</span></h2>
+<p class="p_Normal">Interrupts are checked at block boundaries and at the configured sweep interval rather than after every instruction, so delivery can lag by a few guest cycles. Asynchronous system traps (ASTs) are never deferred, and the interval timer is edge-exact at any block depth: a timer boundary inside a block cannot be stepped over.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Settings</span></h2>
+<p class="p_Normal">All three are read once, at start-up; changing them mid-run has no effect.</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Variable</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Effect</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-weight: bold;">Default</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCKEXEC</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0</span> turns block execution off, for comparison runs. Unset, or any other value, leaves it on.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The most instructions in one block, 2 to 256. A larger value helps only where the other stop conditions do not end the block first.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">32</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">How many blocks the cache holds; at least 256, rounded down to a power of two.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8192</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">Block execution also finds the spin loops that the warp census records beside the RSCC delay loops; with block execution off, that part of the census is silent.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Details</span></h2>
+<p class="p_Normal"><a href="execution-pipeline.html" class="topiclink">Execution Pipeline</a> -- the main pipeline and the block path side by side, and the fidelity contract.</p>
+<p class="p_Normal"><a href="block-max-internals.html" class="topiclink">EMULATR_BLOCK_MAX</a> -- the block-length limit in depth: block layout, every stop condition, and its history.</p>
+<p class="p_Normal"><a href="performance-warp.html" class="topiclink">Warp</a> -- how calibrated firmware delay loops are collapsed.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--glossary--------------------.html" class="topiclink">Glossary</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>
@@ -180,9 +241,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?block-execution.html" target="_top">'+baseurl+'index.html?block-execution.html</a></p>');
 
 </script>
 </body>

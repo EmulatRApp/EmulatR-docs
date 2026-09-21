@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="axpsnap,determinism,EMULATR_FAST_DECOMPRESS,entryPa,faithful,oracle,restore-except-flash,snapshot" />
+   <meta name="keywords" content="axpsnap,determinism,EMULATR_FAST_DECOMPRESS,entryPa,faithful,oracle,restore-except-flash,snapshot,tools/es40_fast_decompress.sh" />
    <meta name="description" content="NOT IMPLEMENTED IN THIS BUILD. The EMULATR_FAST_DECOMPRESS lever described below is not present: nothing in the emulator reads that name, and no entry-snapshot mechanism..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -127,9 +127,9 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_NotesBox"><span class="f_NotesBox">NOT IMPLEMENTED IN THIS BUILD. The </span><span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span><span class="f_NotesBox"> lever described below is not present: nothing in the emulator reads that name, and no entry-snapshot mechanism exists. This topic is kept as the design of record. To avoid re-running the decompressor today, boot the pre-decompressed </span><span class="f_CodeExample">.rom</span><span class="f_NotesBox"> image, which skips the decompressor outright (see <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>), or let snapshot autoload resume the newest snapshot.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">NOT IMPLEMENTED IN THIS BUILD. The </span><span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span><span class="f_NotesBox"> lever described below is not present: nothing in the emulator reads that name, and no entry-snapshot mechanism exists. This topic is kept as the design of record. To avoid re-running the decompressor today, boot the pre-decompressed </span><span class="f_CodeExample">.rom</span><span class="f_NotesBox"> image, which skips the decompressor outright (see <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>), or let snapshot auto-load resume the newest snapshot.</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">EmulatR can skip re-running the guest self-decompression on a subsequent run by capturing a complete-machine snapshot at the firmware's own init-to-console handoff and restoring it. The handoff is the point where the decompressor stub transfers control into the decompressed console -- the entry PC the image declares, <span class="f_CodeExample">entryPa = targetPalBase + finalPC</span>, the same point the decompressor internals describe. The feature is governed by the <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> environment lever and is OFF by default: with it unset EmulatR always runs the faithful decompressor and is the Oracle.</p>
+<p class="p_Normal">EmulatR can skip re-running the guest self-decompression on a subsequent run by capturing a complete-machine snapshot at the firmware's own init-to-console hand-off and restoring it. The hand-off is the point where the decompressor stub transfers control into the decompressed console -- the entry PC the image declares, <span class="f_CodeExample">entryPa = targetPalBase + finalPC</span>, the same point the decompressor internals describe. The feature is governed by the <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> environment lever and is OFF by default: with it unset EmulatR always runs the faithful decompressor and is the Oracle.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The lever</span></h2>
 <p class="p_Normal">The lever WOULD be set before launching (this is design intent, not a working instruction):</p>
@@ -140,7 +140,7 @@
 <p class="p_Normal">The convenience wrapper <span class="f_CodeExample">tools/es40_fast_decompress.sh {snapshot|faithful}</span> sets the lever and runs the ES40 harness; the same lever works for any SRM firmware (see Model coverage below).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How it works</span></h2>
-<p class="p_Normal">The mint fires once, from the same translated-physical-address handoff detection the console-relocation trigger uses (so it is immune to the PAL-mode bit that a raw PC compare would miss). At that instant the machine is quiescent -- the previous instruction has retired and its writeback is resolved into the CPU state -- so the snapshot is a complete, consistent image: the full CPU state (all registers and IPRs, PC, PAL_BASE, mode), the page-sparse guest memory at its true addresses, and the chipset state. The image the guest decompressor itself produced is captured as-is; EmulatR does not recompute the decompressed layout.</p>
+<p class="p_Normal">The mint fires once, from the same translated-physical-address hand-off detection the console-relocation trigger uses (so it is immune to the PAL-mode bit that a raw PC compare would miss). At that instant the machine is quiescent -- the previous instruction has retired and its write-back is resolved into the CPU state -- so the snapshot is a complete, consistent image: the full CPU state (all registers and IPRs, PC, PAL_BASE, mode), the page-sparse guest memory at its true addresses, and the chipset state. The image the guest decompressor itself produced is captured as-is; EmulatR does not recompute the decompressed layout.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">On a subsequent run the snapshot is validated and restored, and the boot re-enters at entryPa without re-running the decompression.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -148,7 +148,7 @@
 <p class="p_Normal">The snapshot is written next to the firmware, named for it: <span class="f_CodeExample">firmware/&lt;stem&gt;.axpsnap</span> (for example <span class="f_CodeExample">firmware/es40_v7_3.axpsnap</span>). The name binds the machine state to the exact firmware image it was decoded from. It is a per-run performance artifact: it survives a normal exit, a clean shutdown, and an abort so it remains diagnostically available, and it is regenerated (overwritten) only when a run reaches entryPa and finds no VALID snapshot already in place.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Determinism and validation</span></h2>
-<p class="p_Normal">A restored snapshot must match the run that consumes it, or determinism is lost. EmulatR enforces this with the existing snapshot validator before any restore: a stored checksum plus the CPU-state and chipset format versions plus the chipset VARIANT. Any mismatch -- a rebuild bumped a version, the file is truncated or corrupt, or it belongs to a different platform -- fails the load cleanly and the run falls back to the faithful decompressor and re-mints. A stale-code snapshot can therefore never be silently consumed. Determinism is broken only by a change the validator catches (a code rebuild) or by an input change; it is NOT necessary to delete the file between runs.</p>
+<p class="p_Normal">A restored snapshot must match the run that consumes it, or determinism is lost. EmulatR enforces this with the existing Snapshot Validator before any restore: a stored check-sum plus the CPU-state and chipset format versions plus the chipset VARIANT. Any mismatch -- a rebuild bumped a version, the file is truncated or corrupt, or it belongs to a different platform -- fails the load cleanly and the run falls back to the faithful decompressor and re-mints. A stale-code snapshot can therefore never be silently consumed. Determinism is broken only by a change the validator catches (a code rebuild) or by an input change; it is NOT necessary to delete the file between runs.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Restore-except-flash</span></h2>
 <p class="p_Normal">The snapshot carries the TIG flash / NVRAM image, but a reuse re-points the flash to the CURRENT backing after restore. This means live environment changes -- a <span class="f_CodeExample">set</span> at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, or an <span class="f_CodeExample">update srm</span>, persisted to <span class="f_CodeExample">&lt;firmware&gt;.rom</span> / <span class="f_CodeExample">ds10_v7_3.rom</span> -- are honored on the next run, not reverted to the snapshot's capture-time environment. Real flash is nonvolatile; the restore treats it that way.</p>
@@ -216,9 +216,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--boot-acceleration-entry-snap.html" target="_top">'+baseurl+'index.html?--boot-acceleration-entry-snap.html</a></p>');
 
 </script>
 </body>

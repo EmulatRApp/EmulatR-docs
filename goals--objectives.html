@@ -139,7 +139,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 13px; font-weight: bold;">Architectural correctness first.</span> The emulator models Alpha's architectural semantics, not its performance characteristics. Correctness is always prioritized over speed.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 13px; font-weight: bold;">Deterministic and debuggable execution.</span> Execution must be understandable, reproducible, and inspectable. One iteration of the run loop corresponds to one hardware clock cycle, enabling deterministic replay and debugging.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 13px; font-weight: bold;">Explicit serialization.</span> Ordering and synchronization are never implicit. All serialization is driven by architectural mechanisms -- the MB, WMB, EXCB, and TRAPB barriers, PAL entry, and exceptions -- and exceptions are delivered precisely at the architectural commit point, the Writeback stage.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span><span style="font-size: 13px; font-weight: bold;">Explicit serialization.</span> Ordering and synchronization are never implicit. All serialization is driven by architectural mechanisms -- the MB, WMB, EXCB, and TRAPB barriers, PAL entry, and exceptions -- and exceptions are delivered precisely at the architectural commit point, the write-back stage.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">4.</span><span style="font-size: 13px; font-weight: bold;">SMP as a first-class concern.</span> Multiprocessor behavior is fundamental to the design, not layered on afterward. Cross-CPU coordination is modeled with explicit barriers, reservation tracking, and IPI delivery.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">5.</span><span style="font-size: 13px; font-weight: bold;">Separation of concerns.</span> Instruction decode, execution, memory access, coherency, privilege, and devices are isolated into well-defined functional domains (the &quot;Boxes&quot;) with one-way dependency flow. No domain reaches into another's internal state.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -202,9 +202,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?goals--objectives.html" target="_top">'+baseurl+'index.html?goals--objectives.html</a></p>');
 
 </script>
 </body>

@@ -141,7 +141,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. CALL_PAL HALT at the prompt</span></h2>
 <p class="p_Normal">Halting at <span class="f_CodeExample">&gt;&gt;&gt;</span> exits through ~Machine with a clean flush -- no sentinel touch needed.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. Hard kill (instant, no flush)</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. Hard kill (instant, no flush - TOY and NVRAM not saved)</span></h2>
 <p class="p_CodeExample"><span class="f_CodeExample">taskkill&nbsp;/F&nbsp;/IM&nbsp;Emulatr.exe</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">taskkill&nbsp;/F&nbsp;/IM&nbsp;PuTTY.exe</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -205,9 +205,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?--clean-shutdown.html" target="_top">'+baseurl+'index.html?--clean-shutdown.html</a></p>');
 
 </script>
 </body>

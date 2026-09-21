@@ -137,7 +137,7 @@
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">+272</span><span class="f_NotesBox"> HALT PROCEDURE VALUE – value of R27 at the halt.</span></p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">+280</span><span class="f_NotesBox"> REASON FOR HALT – the code from the first table below. Set to </span><span class="f_CodeExample">0</span><span class="f_NotesBox"> at console initialization.</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The restart PC (HALT PC) and PS the console uses to resume live earlier in the slot; the boot handoff parks HALT PC at <span class="f_CodeExample">0x20000000</span> (see Reset into Secondary Boot).</p>
+<p class="p_Normal">The restart PC (HALT PC) and PS the console uses to resume live earlier in the slot; the boot hand-off parks HALT PC at <span class="f_CodeExample">0x20000000</span> (see Reset into Secondary Boot).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Architected reason-for-halt codes (AARM Table 26–4)</span></h2>
 <p class="p_Normal">These are the values the architecture defines for the REASON FOR HALT quadword. Codes <span class="f_CodeExample">0x8</span>..<span class="f_CodeExample">0xFFF</span> are reserved; values above that are implementation-specific (the EV6 realization is in the next table).</p>
@@ -461,7 +461,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How EmulatR surfaces a halt</span></h2>
-<p class="p_Normal">In V6 a halt condition is delivered as the <span class="f_CodeExample">kFaultHalt</span> fault. The clearest path is the console-service HALT: <span class="f_CodeExample">CSERVE$HALT</span> (function <span class="f_CodeExample">0x40</span>) in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span> mirrors the SRM <span class="f_CodeExample">cfw_halt</span> – it corresponds to <span class="f_CodeExample">HALT__HW_HALT</span> and returns <span class="f_CodeExample">kFaultHalt</span>, and the run loop stops with <span class="f_CodeExample">StopReason::HaltedClean</span>. The per-CPU slot's HALT PC parks at <span class="f_CodeExample">0x20000000</span> for the OS boot handoff, so a stop at <span class="f_CodeExample">0x20000000</span> in a trace is the transfer point, not a fault.</p>
+<p class="p_Normal">In V6 a halt condition is delivered as the <span class="f_CodeExample">kFaultHalt</span> fault. The clearest path is the console-service HALT: <span class="f_CodeExample">CSERVE$HALT</span> (function <span class="f_CodeExample">0x40</span>) in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span> mirrors the SRM <span class="f_CodeExample">cfw_halt</span> – it corresponds to <span class="f_CodeExample">HALT__HW_HALT</span> and returns <span class="f_CodeExample">kFaultHalt</span>, and the run loop stops with <span class="f_CodeExample">StopReason::HaltedClean</span>. The per-CPU slot's HALT PC parks at <span class="f_CodeExample">0x20000000</span> for the OS boot hand-off, so a stop at <span class="f_CodeExample">0x20000000</span> in a trace is the transfer point, not a fault.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Processor Support/alpha_arch_ref.txt</span><span class="f_NotesBox"> – AARM Table 26–4 (per-CPU slot fields); REASON FOR HALT at offset +280, architected codes 0..7.</span></p>
@@ -473,7 +473,7 @@
 <p class="p_Normal"><a href="--halt-button-is-in_-boot-not-.html" class="topiclink">Halt Button is IN, BOOT NOT POSSIBLE</a></p>
 <p class="p_Normal"><a href="--memory-map--iprs.html" class="topiclink">Memory Map &amp; IPRs</a></p>
 <p class="p_Normal"><a href="palcode-platform-bases.html" class="topiclink">PALcode, HWRPB &amp; SMP</a></p>
-<p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START Handoff)</a></p>
+<p class="p_Normal"><a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot (CSERVE START hand-off)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>
@@ -526,9 +526,6 @@ function normHeaders() {
  
 
 if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
-var baseurl = document.URL.substring(0,document.URL.lastIndexOf("/")+1); 
-$('#idcontent').append('<p class="help-url"><b>URL of this topic:<br /></b><a href="'+baseurl+'index.html' +
-'?per-cpu-halt-codes.html" target="_top">'+baseurl+'index.html?per-cpu-halt-codes.html</a></p>');
 
 </script>
 </body>
