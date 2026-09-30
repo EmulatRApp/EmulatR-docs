@@ -171,9 +171,12 @@
 </tbody>
 </table>
 </div>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The eight boot tests B-1 to B-8 (see <a href="test-settings.html" class="topiclink">11. Test/Regression</a>), with one driver session from launch:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">python&nbsp;v2.1/tools/srm_console_driver.py&nbsp;--port&nbsp;10040&nbsp;--boot&nbsp;&quot;b&nbsp;dka200&quot;&nbsp;--expect&nbsp;&quot;job&nbsp;terminated&nbsp;at&quot;&nbsp;--then-expect&nbsp;&quot;Username:&quot;</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">An ES40 boot to <span class="f_CodeExample">Username:</span> takes about 35 minutes with the JIT on and about 50 with it off (RelWithDebInfo build). As on the DS10, the instruction count is not compared between runs.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Networking</span></h2>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Setup</span></h3>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -225,7 +228,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TCP/IP</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">@SYS$MANAGER:TCPIP$CONFIG</span>, with an address outside the router's DHCP range. The guide's plan uses <span class="f_CodeExample">192.168.1.48</span> for the ES40.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">@SYS$MANAGER:TCPIP$CONFIG</span>, with an address outside the router's DHCP range. The guide's plan uses <span class="f_CodeExample">192.168.1.48</span> for the ES40; <span class="f_CodeExample">env-es40c</span> is configured as <span class="f_CodeExample">192.168.1.99</span>.</p>
 </td>
 </tr>
 <tr>
@@ -237,6 +240,7 @@
 </tbody>
 </table>
 </div>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Tests, cheapest first</span></h3>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -301,7 +305,77 @@
 </tbody>
 </table>
 </div>
-<p class="p_Normal">Evidence: Wireshark on the host adapter, filtered on the guest's MAC address, or <span class="f_CodeExample">EMulatR_DIAG_TULIP_PCAP</span> on the RelWithDebInfo build for frame-level captures of EWA0 itself.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Results</span></h3>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">#</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Date</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Result</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><br />
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">N-1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">29 September 2026</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host to guest: <span class="f_T_Emphasis">pass</span>. <span class="f_CodeExample">ping 192.168.1.99</span> from the host: 4 of 4 replies, 8 to 12 ms, TTL 64. The host's ARP table shows the guest at <span class="f_CodeExample">aa-00-04-00-01-04</span>, the DECnet-derived address. Guest to host: not yet recorded.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">N-2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">29 September 2026</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TELNET from the host to the guest: <span class="f_T_Emphasis">pass</span>. The guest's <span class="f_CodeExample">TCPIP SHOW DEVICE</span> lists the session: <span class="f_CodeExample">bg68 STREAM 23 21398 TELNET 192.168.1.108</span> (the host). The FTP server is listening on port 21, ready for N-3.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">N-3 (guest to host)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">29 September 2026</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">Pass</span>, guest to host. FTP (FileZilla) downloaded <span class="f_CodeExample">SYS$SYSDEVICE:[PEER]TEP_CRASH.LOG;1</span>, a 350,817-byte text file of 5,630 variable-length records. The download was compared with the guest's own <span class="f_CodeExample">DUMP</span> of the same file, rebuilt record by record: identical, byte for byte (SHA-256 <span class="f_CodeExample">362101920d299ffb...</span>), ending exactly at the file's last record. Host to guest, and a large binary transfer with a rate, not yet run.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">N-4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">29 September 2026</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">Pass</span>. <span class="f_CodeExample">LANCP SHOW DEVICE EWA0/COUNTERS</span> after the FTP and TELNET sessions: over the 158 seconds covered, 3,664,204 bytes sent and 422,603 received (3,123 and 7,777 packets); every error counter zero (frame check, alignment, length, overrun, underrun, collisions, carrier); 1 link-up transition, 0 link-down.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">N-3 (host to guest), N-5, N-6</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not yet run.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal"><span style="font-style: italic;">Evidence: Wireshark on the host adapter, filtered on the guest's MAC address, or </span><span class="f_CodeExample" style="font-style: italic;">EMulatR_DIAG_TULIP_PCAP</span><span style="font-style: italic;"> on the RelWithDebInfo build for frame-level captures of EWA0 itself.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Pass</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>OpenVMS startup completes: the STARTUP job reports <span class="f_CodeExample">job terminated at</span>.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>After a Return at the console, OpenVMS prints the <span class="f_CodeExample">Username:</span> prompt.</p>
