@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>6. Reference &gt; Glossary</title>
+   <title>7. Reference &gt; Glossary</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content=".axpsnap,acronyms,Alpha AXP,badge,Box,CSERVE,DE500,DECnet,EWA0,firmware stem,glossary,grain,HWRPB,IPR,ISP,kseg,LAT,LFU,MOP,MSCP,named system,Npcap,NVRAM,PALcode,placeholders,platform manifest,profile directory,run directory,SCS,silicon mode,SPAM,SRM,SROM,stem,TOY,Tsunami,version numbering,warp census" />
+   <meta name="keywords" content=".axpsnap,acronyms,Alpha AXP,badge,Box,CSERVE,DE500,DECnet,EWA0,firmware stem,glossary,grain,HWRPB,IPR,ISP,kseg,LAT,LFU,MOP,MSCP,named system,Npcap,NVRAM,PALcode,placeholders,platform manifest,profile directory,run directory,SCS,silicon mode,SPAM,SRM,SROM,stem,TOY,Tsunami,version numbering,VIOC,warp census,XFC" />
    <meta name="description" content="Placeholders, terms and acronyms used throughout this guide." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -105,16 +105,16 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--glossary--------------------.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="6_-reference------------------.html">6. Reference</a>&nbsp;&gt;</p>
+      <a href="6_-reference------------------.html">7. Reference</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Glossary</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="--development-conventions.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="execution-matrix.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="6_-reference------------------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="7_-troubleshooting------------.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="per-cpu-halt-codes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -147,7 +147,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;stem&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The firmware stem: the firmware image's file name without its extension. It names every file that belongs to that firmware, and its first word selects the machine model (it overrides the ini's [System] model). A log written with no firmware in use is named <span class="f_CodeExample">emulatr</span> instead, unless <span class="f_CodeExample">EMULATR_LOG_STEM</span> sets a stem.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The firmware stem: the firmware image's file name without its extension. It names every file that belongs to that firmware, and its first word selects the machine model (it overrides the ini's [System] model). A log written with no firmware in use is named <span class="f_CodeExample">EMulatR</span> instead, unless <span class="f_CodeExample">EMulatR_LOG_STEM</span> sets a stem.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware/ds20_v7_3.exe</span> gives <span class="f_CodeExample">ds20_v7_3</span>, hence <span class="f_CodeExample">ds20_v7_3.rom</span>, <span class="f_CodeExample">ds20_v7_3_platform.json</span>, <span class="f_CodeExample">logs/ds20_v7_3_boot_20260921_101500.log</span></p>
 </td>
@@ -179,7 +179,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The platform argument the tools scripts take: a model name, or a named run environment.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">emulatr_launch.sh ds20</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_launch.sh ds20</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="tools-script-reference.html" class="topiclink">Tools Script Reference</a></p>
 </td>
@@ -187,7 +187,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;</span>, <span class="f_CodeExample">&lt;run&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directory: the folder EmulatR is started from. It holds the firmware, configuration and platform manifests, and receives the logs, snapshots and flash NVRAM. In a build tree it is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>; for an installed kit it is the system's profile directory.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directory: the folder EMulatR is started from. It holds the firmware, configuration and platform manifests, and receives the logs, snapshots and flash NVRAM. In a build tree it is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>; for an installed kit it is the system's profile directory.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;/tools/</span>, <span class="f_CodeExample">&lt;run-dir&gt;/logs/</span></p>
 </td>
@@ -197,7 +197,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;</span>, <span class="f_CodeExample">&lt;your profile directory&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A named system's profile (run) directory, chosen when the system is created in the Launcher -- anywhere you own, for example under Documents, and never under Program Files. It holds that system's <span class="f_CodeExample">Emulatr.ini</span>, disks, logs and flash NVRAM.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A named system's profile (run) directory, chosen when the system is created in the Launcher -- anywhere you own, for example under Documents, and never under Program Files. It holds that system's <span class="f_CodeExample">EMulatR.ini</span>, disks, logs and flash NVRAM.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;\logs\run_launch_*.log</span></p>
 </td>
@@ -217,7 +217,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;config&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The build configuration: <span class="f_CodeExample">release</span>, <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span>. The <span class="f_CodeExample">EMULATR_DIAG_*</span> diagnostic facilities exist only in <span class="f_CodeExample">relwithdebinfo</span> and <span class="f_CodeExample">debug</span> builds.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The build configuration: <span class="f_CodeExample">release</span>, <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span>. The <span class="f_CodeExample">EMulatR_DIAG_*</span> diagnostic facilities exist only in <span class="f_CodeExample">relwithdebinfo</span> and <span class="f_CodeExample">debug</span> builds.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">out/build/v2.0-relwithdebinfo/run/</span></p>
 </td>
@@ -291,17 +291,17 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Ethernet 2</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMulatR_NET_ADAPTER)</a></p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;name or description substring&gt;</span>, <span class="f_CodeExample">&lt;description-substring&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Part of a host adapter's description, as <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> accepts it.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Part of a host adapter's description, as <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> accepts it.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">I219</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMulatR_NET_ADAPTER)</a></p>
 </td>
 </tr>
 <tr>
@@ -311,7 +311,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 </td>
 </tr>
 <tr>
@@ -331,7 +331,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--log-verbose &lt;subsys&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="emulatr-subsystems.html" class="topiclink">Logging Subsystems (EmulatR)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="emulatr-subsystems.html" class="topiclink">Logging Subsystems (EMulatR)</a></p>
 </td>
 </tr>
 <tr>
@@ -341,7 +341,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">T2.0-16</span>: stage T, line 2.0, build 16</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="version-administration.html" class="topiclink">EmulatR Version Numbering and Release Stages</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="version-administration.html" class="topiclink">EMulatR Version Numbering and Release Stages</a></p>
 </td>
 </tr>
 <tr>
@@ -394,7 +394,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21143 (Tulip)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet controller chip; the chip on the DE500-BA that EmulatR models as EWA0.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet controller chip; the chip on the DE500-BA that EMulatR models as EWA0.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
 </td>
@@ -402,7 +402,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">21264 / EV6 (EV67)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha CPU implementation EmulatR emulates; EV67 is the later 21264A.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha CPU implementation EMulatR emulates; EV67 is the later 21264A.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -426,9 +426,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Alpha AXP</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital's 64-bit RISC architecture. EmulatR models the 21264 (EV6) generation.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital's 64-bit RISC architecture. EMulatR models the 21264 (EV6) generation.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 </td>
 </tr>
 <tr>
@@ -474,7 +474,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">.axpsnap</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An EmulatR machine-state snapshot file, written to <span class="f_CodeExample">snapshots/</span>. The newest is restored at start-up unless <span class="f_CodeExample">--no-autoload</span> is given.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An EMulatR machine-state snapshot file, written to <span class="f_CodeExample">snapshots/</span>. The newest is restored at start-up unless <span class="f_CodeExample">--no-autoload</span> is given.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--automatic-_-creating-_-resto.html" class="topiclink">Snapshot Operations</a></p>
 </td>
@@ -482,7 +482,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Badge (MHz badge)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CPU speed the SRM banner prints. EmulatR shows the previous run's measured effective speed, marked <span class="f_CodeExample">~</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CPU speed the SRM banner prints. EMulatR shows the previous run's measured effective speed, marked <span class="f_CodeExample">~</span>.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="warp-variants-and-cycle-accoun.html" class="topiclink">WARP Variants and Cycle-Accounting for Reported CPU Speed</a></p>
 </td>
@@ -498,7 +498,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Block execution</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR's normal execution model: runs of straight-line instructions execute from a cache of decoded blocks.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR's normal execution model: runs of straight-line instructions execute from a cache of decoded blocks.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="block-execution.html" class="topiclink">Block-Execution</a></p>
 </td>
@@ -506,7 +506,23 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Box</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A functional execution domain in EmulatR: IBox (control flow), EBox (integer), FBox (floating point), MBox (memory), CBox (cache / predict), PalBox (privileged).</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A functional execution domain in EMulatR: IBox (control flow), EBox (integer), FBox (floating point), MBox (memory), CBox (cache / predict), PalBox (privileged).</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -524,7 +540,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Command Descriptor Block: one SCSI command as sent to a device.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">6.7 SCSI</a></p>
 </td>
 </tr>
 <tr>
@@ -570,7 +586,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DE500 (DE500-BA)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet adapter, built on the 21143; EmulatR's EWA0.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DEC's PCI Fast Ethernet adapter, built on the 21143; EMulatR's EWA0.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
 </td>
@@ -580,7 +596,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Digital's network architecture: Phase IV, and Phase V (DECnet-Plus, based on OSI).</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 </td>
 </tr>
 <tr>
@@ -610,7 +626,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10, DS20, DS25, ES40, ES45</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The AlphaServer models whose firmware EmulatR runs. Support differs by model.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The AlphaServer models whose firmware EMulatR runs. Support differs by model.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
 </td>
@@ -636,15 +652,15 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest's first Ethernet device: <span class="f_CodeExample">ewa0</span> at the SRM console, <span class="f_CodeExample">EWA0:</span> in OpenVMS.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Execution mode: ISP / silicon (REAL_HW)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Execution mode: ISP / REAL_HW (REAL_HW)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is DEC's Instruction-Set-Processor engineering virtual model: the firmware skips the real-hardware timing and probe steps. Silicon (REAL_HW) takes the path real hardware takes. The ES40 and ES45 manifests bind silicon.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is DEC's Instruction-Set-Processor engineering virtual model: the firmware skips the real-hardware timing and probe steps. REAL_HW (REAL_HW) takes the path real hardware takes. The ES40 and ES45 manifests bind REAL_HW.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP (Engineering-Virtual) vs REAL_HW (REAL_HW)</a></p>
 </td>
 </tr>
 <tr>
@@ -668,7 +684,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host Bus Adapter: an adapter that connects a storage bus, such as SCSI, to PCI.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">6.7 SCSI</a></p>
 </td>
 </tr>
 <tr>
@@ -780,7 +796,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The OpenVMS LAN Control Program (<span class="f_CodeExample">MC LANCP</span>), which shows and sets LAN device parameters and counters.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 </td>
 </tr>
 <tr>
@@ -856,6 +872,14 @@
 </td>
 </tr>
 <tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MPW</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Modified Page Write - the thread which is responsible for flushing modified pages from the storage pool</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="the-storage-buffer-pool.html" class="topiclink">The Buffer Pool</a></p>
+</td>
+</tr>
+<tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MSCP</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Mass Storage Control Protocol: serves disks between OpenVMS cluster members.</p>
@@ -874,9 +898,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Npcap</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Windows packet-capture driver EmulatR uses to reach a real network. It is installed with Wireshark.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Windows packet-capture driver EMulatR uses to reach a real network. It is installed with Wireshark.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 </td>
 </tr>
 <tr>
@@ -1052,7 +1076,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Small Computer System Interface.</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">5.7 SCSI</a></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">6.7 SCSI</a></p>
 </td>
 </tr>
 <tr>
@@ -1082,7 +1106,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SPAM</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set-Partitioned Associative Memory: EmulatR's TLB model. It can shard, but the ITB and DTB are instantiated flat at 128 entries, so as shipped they are fully associative.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set-Partitioned Associative Memory: EMulatR's TLB model. It can shard, but the ITB and DTB are instantiated flat at 128 entries, so as shipped they are fully associative.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--addressing--tlb.html" class="topiclink">Addressing &amp; TLB</a></p>
 </td>
@@ -1090,7 +1114,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha console firmware (the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt) that EmulatR runs unmodified.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Alpha console firmware (the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt) that EMulatR runs unmodified.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="4_3-srm-console.html" class="topiclink">SRM Console</a></p>
 </td>
@@ -1202,10 +1226,43 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">OpenVMS</span> </h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Acronym</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Description</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Used</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">VIOC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Virtual I/O Cache - The VIOC is the cache associated with the virtual I/O subsystem. It provides caching of I/O data at the VMS virtual-I/O layer, particularly for disk/file-system I/O.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="storage-pool-considerations-for-rdb.html" class="topiclink">Storage Pool Considerations for Rdb</a></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">XFC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Extended File Cache - The OpenVMS XFC is the newer, system-wide file cache mechanism, replacing/augmenting the older traditional buffer cache. It caches file data in physical memory and is managed by the XFC subsystem.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="storage-pool-considerations-for-rdb.html" class="topiclink">Storage Pool Considerations for Rdb</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Overview</a></p>
-<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 <p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables</a></p>
 
 <!--ZOOMSTOP-->

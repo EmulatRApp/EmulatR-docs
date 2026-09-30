@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="C++20,CMake,MSVC,Python,Qt,SoftFloat,spdlog,Visual Studio" />
-   <meta name="description" content="What EmulatR is built with and what it relies on at build and run time. Versions are those the project currently builds against." />
+   <meta name="description" content="What EMulatR is built with and what it relies on at build and run time. Versions are those the project currently builds against." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">What EmulatR is built with and what it relies on at build and run time. Versions are those the project currently builds against.</p>
+<p class="p_Normal">What EMulatR is built with and what it relies on at build and run time. Versions are those the project currently builds against.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -154,7 +154,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">build system</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.21 in practice - the root asks 3.16 and schedLib 3.20, but the launcher (EmulatR-App) asks 3.21, so that is the floor for building the whole kit; Ninja generator</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.21 in practice - the root asks 3.16 and schedLib 3.20, but the launcher (EMulatR-App) asks 3.21, so that is the floor for building the whole kit; Ninja generator</p>
 </td>
 </tr>
 <tr>
@@ -166,11 +166,11 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Qt 6</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">host_firmware_decompressor.exe</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">console / UI periphery only</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">firmware decompressor: turns a compressed SRM console image into the pre-decompressed <span class="f_CodeExample">.rom</span> EMulatR boots</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.10.2 (Core / Network / Concurrent); the emulator core is deliberately Qt-free</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Built with EMulatR from <span class="f_CodeExample">common/tools/host_decompressor</span> (the DEC SRM algorithm: Mark Adler inflate c10p1 and a native harness); shipped in <span class="f_CodeExample">tools\</span>. See Firmware Images: .exe and .rom.</p>
 </td>
 </tr>
 <tr>
@@ -217,7 +217,7 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">EmulatR also depends on reference inputs it does not reimplement: the <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Alpha Architecture Reference Manual</span> and the original <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">DEC SRM console / PALcode sources</span> (the authoritative specification and the firmware image it loads), and the <span class="f_CodeExample">AXPBox</span> emulator used as a non-authoritative differential cross-check.</p>
+<p class="p_Normal">EMulatR also depends on reference inputs it does not reimplement: the <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Alpha Architecture Reference Manual</span> and the original <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">DEC SRM console / PALcode sources</span> (the authoritative specification and the firmware image it loads), and the <span class="f_CodeExample">AXPBox</span> emulator used as a non-authoritative differential cross-check.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--required-tools--frameworks.html" class="topiclink">Required Tools &amp; Frameworks</a></p>

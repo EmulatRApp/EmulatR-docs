@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.5 PALcode, HWRPB &amp; SMP &gt; SMP (MultiProcessor) Design</title>
+   <title>6. Architecture &amp; Internals &gt; 6.5 PALcode, HWRPB &amp; SMP &gt; SMP (MultiProcessor) Design</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?smp-(multiprocessor)-design.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="palcode-platform-bases.html">5.5 PALcode, HWRPB &amp; SMP</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="palcode-platform-bases.html">6.5 PALcode, HWRPB &amp; SMP</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SMP (MultiProcessor) Design</span></h1>
 
@@ -128,7 +128,7 @@
 
 <!--ZOOMRESTART-->
 <p class="p_CodeExample"><span class="f_CodeExample">================================================================================</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EmulatR&nbsp;V6&nbsp;--&nbsp;SMP&nbsp;Architecture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bachman&nbsp;data-structure&nbsp;diagram&nbsp;(ASCII-128)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMulatR&nbsp;V6&nbsp;--&nbsp;SMP&nbsp;Architecture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bachman&nbsp;data-structure&nbsp;diagram&nbsp;(ASCII-128)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">================================================================================</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;LEGEND&nbsp;&nbsp;+----+&nbsp;type&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;&nbsp;owns&nbsp;1:1&nbsp;|&nbsp;1:N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&gt;&nbsp;&nbsp;references&nbsp;N:1</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--|&gt;&nbsp;&nbsp;realizes&nbsp;(iface)&nbsp;&nbsp;&nbsp;[==&nbsp;stacked]&nbsp;=&nbsp;a&nbsp;1:N&nbsp;set</span></p>
@@ -218,10 +218,10 @@
 <p class="p_CodeExample"><span class="f_CodeExample">================================================================================</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">schedLib/AlphaCpuAgent.{h,cpp}</span><span class="f_NotesBox"> -- the per-CPU agent (step over Machine::stepCycle); realizes IAgent.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">schedLib/SmpDrivers.h</span><span class="f_NotesBox"> -- SequentialDriver (deterministic default) and ThreadedDriver; </span><span class="f_CodeExample">SmpHarness.h</span><span class="f_NotesBox"> -- the Dispatcher.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> -- run()'s Dispatcher / SequentialDriver setup; stepCycle = cpuKernel (PipelineDriver::step) + systemTick.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/CpuState.h</span><span class="f_NotesBox"> -- the per-agent CpuState (registers, IPRs, cpuSlot, reservation fields).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">schedLib/AlphaCpuAgent.{h,cpp}</span><span class="f_NotesBox"> -- the per-CPU agent (step over Machine::stepCycle); realizes IAgent.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">schedLib/SmpDrivers.h</span><span class="f_NotesBox"> -- SequentialDriver (deterministic default) and ThreadedDriver; </span><span class="f_CodeExample">SmpHarness.h</span><span class="f_NotesBox"> -- the Dispatcher.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> -- run()'s Dispatcher / SequentialDriver setup; stepCycle = cpuKernel (PipelineDriver::step) + systemTick.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/CpuState.h</span><span class="f_NotesBox"> -- the per-agent CpuState (registers, IPRs, cpuSlot, reservation fields).</span></p>
 <!--ZOOMSTOP-->
 </div></div>
 <script type="text/javascript">

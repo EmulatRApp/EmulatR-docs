@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.1 Execution, Decode &amp; Internals &gt; DispatchTables</title>
+   <title>6. Architecture &amp; Internals &gt; 6.1 Execution, Decode &amp; Internals &gt; DispatchTables</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--dispatchtables.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">5.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">6.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">DispatchTables</span></h1>
 
@@ -138,10 +138,10 @@
 <p class="p_Normal">Because the tables are generated, adding or correcting an instruction is a table edit plus a regeneration, not a hand change to decode logic -- the same source-of-truth discipline as the rest of grainFactoryLib. A row with no implemented leaf resolves to a stub (which logs and does not compute) or, if there is no row at all, the opcode takes a decode fault (OPCDEC).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/DispatchTables.cpp</span><span class="f_NotesBox"> -- the generated g_primaryTable + sparse secondary tables (GENERATED; do not hand-edit).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/DispatchAccess.h</span><span class="f_NotesBox"> -- DispatchKind + dispatchKindName().</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/GrainStubs.cpp</span><span class="f_NotesBox"> -- the stub leaves for unimplemented rows.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The grainFactoryLib codegen (</span><span class="f_CodeExample">genGrains.py</span><span class="f_NotesBox">) -- edit the master table and regenerate, never the emitted .cpp.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/DispatchTables.cpp</span><span class="f_NotesBox"> -- the generated g_primaryTable + sparse secondary tables (GENERATED; do not hand-edit).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/DispatchAccess.h</span><span class="f_NotesBox"> -- DispatchKind + dispatchKindName().</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/GrainStubs.cpp</span><span class="f_NotesBox"> -- the stub leaves for unimplemented rows.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The grainFactoryLib codegen (</span><span class="f_CodeExample">genGrains.py</span><span class="f_NotesBox">) -- edit the master table and regenerate, never the emitted .cpp.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--grainfactorylib.html" class="topiclink">grainFactoryLib</a></p>

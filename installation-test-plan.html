@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="adapter bindings,auto-detect,beta testing,EULA,EWA0,firmware folder,installation test,known gaps,neutral machine,Npcap,Npcap Packet Driver,Package Logs for Support,provision_enic.ps1,test plan,VC_redist" />
-   <meta name="description" content="Kit &nbsp; &nbsp; &nbsp;: EmulatR ____________ &nbsp; (copy it from the console banner)" />
+   <meta name="description" content="Kit &nbsp; &nbsp; &nbsp;: EMulatR ____________ &nbsp; (copy it from the console banner)" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,9 +127,10 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_CodeExample"><span class="f_CodeExample">Kit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;EmulatR&nbsp;____________&nbsp;&nbsp;&nbsp;(copy&nbsp;it&nbsp;from&nbsp;the&nbsp;console&nbsp;banner)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Kit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;EMulatR&nbsp;____________&nbsp;&nbsp;&nbsp;(copy&nbsp;it&nbsp;from&nbsp;the&nbsp;console&nbsp;banner)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Purpose&nbsp;&nbsp;:&nbsp;first&nbsp;install&nbsp;on&nbsp;a&nbsp;machine&nbsp;that&nbsp;is&nbsp;NOT&nbsp;the&nbsp;development&nbsp;host</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Written&nbsp;&nbsp;:&nbsp;2026-09-20</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Updated&nbsp;&nbsp;:&nbsp;2026-09-26&nbsp;(2.1&nbsp;beta:&nbsp;DS10,&nbsp;DS20&nbsp;and&nbsp;ES40&nbsp;run&nbsp;OpenVMS)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Tester&nbsp;&nbsp;&nbsp;:&nbsp;______________________&nbsp;&nbsp;&nbsp;Date:&nbsp;____________</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Machine&nbsp;&nbsp;:&nbsp;______________________________________________</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -138,7 +139,9 @@
 <p class="p_Normal">Several things in this kit have <span class="f_T_Emphasis">never run anywhere but the development host</span>, where the answer was already present: firmware already existed, Npcap was already installed, Visual Studio supplied the C++ run time, and a dedicated network adapter was already provisioned. Each is a place where the kit consistently depends on something it does not ship.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_T_Emphasis">Do not &quot;fix&quot; the machine to make a test pass.</span> A tester's machine will not be fixed either. If a step needs something the kit did not provide, that is the finding — record it and continue.</p>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 0 — Before you start</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 0 — Before you start</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -207,7 +210,9 @@
 </table>
 </div>
 <p class="p_Normal"><span class="f_T_Emphasis">Bring nothing else.</span> No Qt, no Python, no Wireshark. The kit either works or names what it needs.</p>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 1 — Installation</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 1 — Installation</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -225,7 +230,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.1</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Run <span class="f_CodeExample">EmulatR_setup.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Run <span class="f_CodeExample">EMulatR_setup.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">installer starts; no SmartScreen block that cannot be bypassed</p>
 </td>
@@ -285,6 +290,7 @@
 </tbody>
 </table>
 </div>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">1.7 — Installed tree</span></h3>
 <p class="p_Normal">Confirm each is present at the installation root:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -300,7 +306,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">present</p>
 </td>
@@ -308,7 +314,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EmulatrLaunch.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatRLaunch.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">present</p>
 </td>
@@ -340,7 +346,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">documentation\EmulatRGuide.pdf</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">documentation\EMulatRGuide.pdf</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">present, <span class="f_T_Emphasis">6,269,987 bytes</span></p>
 </td>
@@ -350,7 +356,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">config\</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.ini</span>, <span class="f_CodeExample">disk_types.json</span>, <span class="f_CodeExample">env_registry.json</span>, <span class="f_CodeExample">dec_disk_media_types.tsv</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR.ini</span>, <span class="f_CodeExample">disk_types.json</span>, <span class="f_CodeExample">env_registry.json</span>, <span class="f_CodeExample">dec_disk_media_types.tsv</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -366,7 +372,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">tools\wireshark\</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EmulatR-EWA0.zip</span>, <span class="f_CodeExample">README.md</span>, and <span class="f_CodeExample">EmulatR-EWA0\</span> with <span class="f_CodeExample">colorfilters</span>, <span class="f_CodeExample">dfilter_buttons</span>, <span class="f_CodeExample">dfilters</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR-EWA0.zip</span>, <span class="f_CodeExample">README.md</span>, and <span class="f_CodeExample">EMulatR-EWA0\</span> with <span class="f_CodeExample">colorfilters</span>, <span class="f_CodeExample">dfilter_buttons</span>, <span class="f_CodeExample">dfilters</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -399,7 +405,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.8</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Open <span class="f_CodeExample">documentation\EmulatRGuide.pdf</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Open <span class="f_CodeExample">documentation\EMulatRGuide.pdf</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">opens; contains a <span class="f_T_Emphasis">Terms of Use</span> topic and a <span class="f_T_Emphasis">Networking (EWA0)</span> topic</p>
 </td>
@@ -419,7 +425,9 @@
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 2 — Launcher first start</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 2 — Launcher first start</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -437,7 +445,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.1</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Start <span class="f_CodeExample">EmulatrLaunch.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Start <span class="f_CodeExample">EMulatRLaunch.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">window opens; <span class="f_T_Emphasis">no missing-DLL error</span> (this proves the Qt payload and the VC runtime)</p>
 </td>
@@ -457,7 +465,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.3</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Create a new named system; choose a platform (DS20 suggested)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Create a new named system; choose a platform (DS20 suggested; the DS10 and ES40 also boot OpenVMS)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">system created; run directory created</p>
 </td>
@@ -507,7 +515,9 @@
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 3 — Firmware and first boot</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 3 — Firmware and first boot</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -577,7 +587,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Observe the console to the SRM prompt</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches <span class="f_CodeExample">P00&gt;&gt;&gt;</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches <span class="f_CodeExample">P00&gt;&gt;&gt;</span> (<span class="f_CodeExample">&gt;&gt;&gt;</span> on the DS10)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -615,7 +625,9 @@
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 4 — Storage and an operating system </span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">(optional, needs your media)</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 4 — Storage and an operating system </span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">(optional, needs your media)</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -643,9 +655,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.2</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If you brought an ISO, attach it and <span class="f_CodeExample">b dqa1</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20: if you brought an ISO, attach it and <span class="f_CodeExample">b dqa1</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches the OpenVMS installation menu. <span class="f_T_Emphasis">Slow by design</span> — the console reads one sector per command packet</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches the OpenVMS installation menu. <span class="f_T_Emphasis">Slow by design</span> — the console reads one sector per command packet. Install on the DS20; on the ES40 see §K7</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -653,9 +665,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.3</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If you brought a prepared system disk, boot it</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If you brought a prepared system disk, boot it (DS10: <span class="f_CodeExample">b dka0</span>; DS20 and ES40: the SCSI disk it is attached as, for example <span class="f_CodeExample">b dka200</span>)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches a login prompt</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches the <span class="f_CodeExample">Username:</span> prompt</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -670,10 +682,32 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
 </tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.5</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40: boot a system disk installed on the DS20 (copy the disk image into the ES40 system's disks folder and attach it to its SCSI adapter)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reaches the <span class="f_CodeExample">Username:</span> prompt</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.6</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Optional: set <span class="f_CodeExample">EMulatR_JIT=off</span> and repeat 4.3 or 4.5 (the JIT is on by default)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">same result; record the elapsed time beside 4.4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 5 — Networking </span><span class="f_T_Emphasis">without</span><span class="f_Heading2"> Npcap</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 5 — Networking </span><span class="f_T_Emphasis">without</span><span class="f_Heading2"> Npcap</span></h2>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">This section exists because the kit does </span><span class="f_T_Emphasis">not</span> bundle Npcap. It mustdegrade honestly rather than fail.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -704,7 +738,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Read the startup output for an EWA0 line</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR <span class="f_T_Emphasis">states why</span> networking is unavailable and continues</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR <span class="f_T_Emphasis">states why</span> networking is unavailable and continues</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -732,7 +766,9 @@
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 6 — Networking </span><span class="f_T_Emphasis">with</span><span class="f_Heading2"> Npcap</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 6 — Networking </span><span class="f_T_Emphasis">with</span><span class="f_Heading2"> Npcap</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -760,9 +796,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.2</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">In <span class="f_T_Emphasis">Network Connections</span> (<span class="f_CodeExample">ncpa.cpl</span>), open <span class="f_T_Emphasis">Properties</span> on <span class="f_T_Emphasis">every adapter EXCEPT the dedicated EmulatR one</span>, and <span class="f_T_Emphasis">uncheck </span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Npcap Packet Driver (NPCAP)</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">In <span class="f_T_Emphasis">Network Connections</span> (<span class="f_CodeExample">ncpa.cpl</span>), open <span class="f_T_Emphasis">Properties</span> on <span class="f_T_Emphasis">every adapter EXCEPT the dedicated EMulatR one</span>, and <span class="f_T_Emphasis">uncheck </span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Npcap Packet Driver (NPCAP)</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Wireshark's installer enables Npcap on <span class="f_T_Emphasis">every</span> adapter. Afterwords it should be enabled on the EmulatR adapter <span class="f_T_Emphasis">only</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Wireshark's installer enables Npcap on <span class="f_T_Emphasis">every</span> adapter. Afterwords it should be enabled on the EMulatR adapter <span class="f_T_Emphasis">only</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
 </td>
@@ -770,7 +806,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.3</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Open <span class="f_T_Emphasis">Properties</span> on the <span class="f_T_Emphasis">dedicated EmulatR adapter</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Open <span class="f_T_Emphasis">Properties</span> on the <span class="f_T_Emphasis">dedicated EMulatR adapter</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">only</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Npcap Packet Driver (NPCAP)</span> is checked — every other protocol, client, service and filter unchecked</p>
 </td>
@@ -780,7 +816,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.4</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Restart the emulator with no <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> set</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Restart the emulator with no <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> set</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">auto-detect runs</p>
 </td>
@@ -820,7 +856,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.8</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> to that adapter and restart</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> to that adapter and restart</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EWA0 network backend ATTACHED to …</span></p>
 </td>
@@ -850,7 +886,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.11</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Import <span class="f_CodeExample">tools\wireshark\EmulatR-EWA0.zip</span> via <span class="f_T_Emphasis">Edit → Configuration Profiles → Import → from zip file</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Import <span class="f_CodeExample">tools\wireshark\EMulatR-EWA0.zip</span> via <span class="f_T_Emphasis">Edit → Configuration Profiles → Import → from zip file</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">profile imports; filter buttons appear</p>
 </td>
@@ -870,8 +906,10 @@
 </tbody>
 </table>
 </div>
-<p class="p_Normal"><span class="f_T_Emphasis">To check every adapter at once,</span> in PowerShell:<span class="f_CodeExample">Get-NetAdapterBinding | Where-Object ComponentID -like '*NPCAP*' | Format-Table Name, EnabledEnabled</span> must be <span class="f_CodeExample">True</span> for the EmulatR adapter and <span class="f_CodeExample">False</span> for every other. The pattern matches either Npcap component ID, <span class="f_CodeExample">NPCAP</span> or <span class="f_CodeExample">INSECURE_NPCAP</span>, which differ depending on how Npcap was installed.</p>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 7 — Shutdown, logs, uninstall</span></h2>
+<p class="p_Normal"><span class="f_T_Emphasis">To check every adapter at once,</span> in PowerShell:<span class="f_CodeExample">Get-NetAdapterBinding | Where-Object ComponentID -like '*NPCAP*' | Format-Table Name, EnabledEnabled</span> must be <span class="f_CodeExample">True</span> for the EMulatR adapter and <span class="f_CodeExample">False</span> for every other. The pattern matches either Npcap component ID, <span class="f_CodeExample">NPCAP</span> or <span class="f_CodeExample">INSECURE_NPCAP</span>, which differ depending on how Npcap was installed.</p>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Section 7 — Shutdown, logs, uninstall</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -939,7 +977,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7.6</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Uninstall EmulatR</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Uninstall EMulatR</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">removes cleanly</p>
 </td>
@@ -959,70 +997,7 @@
 </tbody>
 </table>
 </div>
-<hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">§K — Known gaps: expected, already recorded, </span><span class="f_T_Emphasis">do not file these</span></h2>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
-<thead>
-<tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">ID</span></p>
-</th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">What you will see</span></p>
-</th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Status</span></p>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K1</span> <span class="f_CodeExample">JRN-V2-LAUNCHVER-001</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">firmware_readme.txt</span> ends with <span class="f_CodeExample">EmulatrLaunch 1.0.0-alpha … 2026-07-29</span> that does not match the installed kit's version</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">open; fix next release</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K2</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">auto-detect</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">On a machine with WAN Miniport pseudo-adapters, auto-detect may list several candidates and decline to choose. Naming the adapter explicitly is the workaround</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">known; the live-wire filter permits &quot;connection status unknown&quot;</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K3</span> <span class="f_CodeExample">JRN-V2-PKGLOGS-001</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The package dialog says, in red, <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">&quot;Trace output was not included — it is far too large to send&quot;</span>, and never says where to send the zip</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">open; to be replaced with a forwarding instruction next release</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K4</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">ATAPI CD boot</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Booting an ISO is slow, with long silent stretches</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">by design</span> — the console's driver reads one sector per command packet</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K5</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">guest date prompt</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OpenVMS may ask for the date on a fresh TOY store</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">expected; one-time initialization, the battery-replacement equivalent</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">K6</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">guest reboot</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If VMS asks to reboot, EmulatR halts cleanly instead of restarting itself</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">known limitation; restart and boot again</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p class="p_Normal">&nbsp;</p>
 <hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">§R — What to bring back</span></h2>
 <p class="p_Normal">1. This sheet, filled in.</p>
 <p class="p_Normal">2. The <span class="f_T_Emphasis">verbatim</span> EWA0 back-end line from §6.5, and the adapter list from §6.6.</p>

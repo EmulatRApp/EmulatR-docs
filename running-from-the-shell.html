@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>3. Quick Start &gt; Running from the Shell</title>
+   <title>4. Quick Start &gt; Running from the Shell</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="--autosnapshot,background process,bash,command line,console log,disown,EMULATR_TRACE_DIR,--firmware,forked process,--log-file,--max-cycles,--mem,--no-autoload,nohup,run directory,switches,tee,--trace" />
-   <meta name="description" content="EmulatR is a console application driven from a command line. The standard execution shell is bash -- the project's own launch and trace scripts are bash, and the examples here..." />
+   <meta name="description" content="EMulatR is a console application driven from a command line. The standard execution shell is bash -- the project's own launch and trace scripts are bash, and the examples here..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Running EmulatR from the Shell</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Running EMulatR from the Shell</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?running-from-the-shell.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="3_-quick-start----------------.html">3. Quick Start</a>&nbsp;&gt;</p>
+      <a href="3_-quick-start----------------.html">4. Quick Start</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Running EmulatR from the Shell</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Running EMulatR from the Shell</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,26 +127,26 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR is a console application driven from a command line. The standard execution shell is <span class="f_CodeExample">bash</span> -- the project's own launch and trace scripts are bash, and the examples here assume it (on Windows, a bash shell such as Git Bash / MSYS, where the disk appears as <span class="f_CodeExample">/d/EmulatR</span>). Everything below is run from the run directory.</p>
+<p class="p_Normal">EMulatR is a console application driven from a command line. The standard execution shell is <span class="f_CodeExample">bash</span> -- the project's own launch and trace scripts are bash, and the examples here assume it (on Windows, a bash shell such as Git Bash / MSYS, where the disk appears as <span class="f_CodeExample">/d/EMulatR</span>). Everything below is run from the run directory.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The run directory</span></h2>
 <p class="p_Normal">The run directory is the folder that holds the built executable. CMake's post-build step lays it out so the program and its inputs sit together:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">&lt;run&gt;/&nbsp;Emulatr.exe&nbsp;the&nbsp;emulator</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&lt;run&gt;/&nbsp;EMulatR.exe&nbsp;the&nbsp;emulator</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;firmware/&nbsp;SRM&nbsp;images&nbsp;(e.g.&nbsp;ds10_v7_3.exe)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;tools/&nbsp;deployed&nbsp;bash&nbsp;helpers&nbsp;(trace_halt.sh,&nbsp;...)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;config/Emulatr.ini&nbsp;settings&nbsp;(memorySize,&nbsp;paths,&nbsp;...)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;config/EMulatR.ini&nbsp;settings&nbsp;(memorySize,&nbsp;paths,&nbsp;...)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;ds10_V7_3.rom&nbsp;persisted&nbsp;NVRAM&nbsp;/&nbsp;flash</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;snapshots/&nbsp;saved&nbsp;machine&nbsp;states&nbsp;(.axpsnap)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_Normal">Run EmulatR through a model launch script in <span class="f_CodeExample">tools/</span> -- <span class="f_CodeExample">run_&lt;model&gt;.sh</span> (plain boot), <span class="f_CodeExample">run_&lt;model&gt;_trace.sh</span> (full trace), or <span class="f_CodeExample">run_&lt;model&gt;_gate.sh</span> (gated retire window). Each self-locates the run directory from its own path, cd's there, sets the firmware, model, memory and console for you, and writes output under the run-dir <span class="f_CodeExample">logs/</span> and <span class="f_CodeExample">traces/</span>. Do NOT launch the executable directly -- the scripts are the supported entry point; pass any extra emulator flags after a bare <span class="f_CodeExample">--</span> (for example <span class="f_CodeExample">./tools/run_ds10.sh -- --max-cycles 0x100000</span>).</p>
+<p class="p_Normal">Run EMulatR through a model launch script in <span class="f_CodeExample">tools/</span> -- <span class="f_CodeExample">run_&lt;model&gt;.sh</span> (plain boot), <span class="f_CodeExample">run_&lt;model&gt;_trace.sh</span> (full trace), or <span class="f_CodeExample">run_&lt;model&gt;_gate.sh</span> (gated retire window). Each self-locates the run directory from its own path, cd's there, sets the firmware, model, memory and console for you, and writes output under the run-dir <span class="f_CodeExample">logs/</span> and <span class="f_CodeExample">traces/</span>. Do NOT launch the executable directly -- the scripts are the supported entry point; pass any extra emulator flags after a bare <span class="f_CodeExample">--</span> (for example <span class="f_CodeExample">./tools/run_ds10.sh -- --max-cycles 0x100000</span>).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Basic invocation</span></h2>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;out/build/&lt;tree&gt;-&lt;config&gt;/run</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">./tools/run_ds10.sh</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_Normal">With no <span class="f_CodeExample">--firmware</span>, the image comes from <span class="f_CodeExample">[ROM] firmwareImage</span> in the ini - and if that is empty the run stops with a configuration error rather than picking a default; with no <span class="f_CodeExample">--mem</span>, memory falls back to <span class="f_CodeExample">[System] memorySize</span> in the ini (1024 MB by default), and only then to the built-in 64 MiB default. The command line always wins over the ini. See Command Line Options for the full configuration-precedence model (defaults &lt; ini &lt; CLI) and how the <span class="f_CodeExample">EMULATR_*</span> env vars fit alongside it.</p>
+<p class="p_Normal">With no <span class="f_CodeExample">--firmware</span>, the image comes from <span class="f_CodeExample">[ROM] firmwareImage</span> in the ini - and if that is empty the run stops with a configuration error rather than picking a default; with no <span class="f_CodeExample">--mem</span>, memory falls back to <span class="f_CodeExample">[System] memorySize</span> in the ini (1024 MB by default), and only then to the built-in 64 MiB default. The command line always wins over the ini. See Command Line Options for the full configuration-precedence model (defaults &lt; ini &lt; CLI) and how the <span class="f_CodeExample">EMulatR_*</span> env vars fit alongside it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Command-line switches</span></h2>
 <p class="p_Normal">&nbsp;</p>
@@ -253,19 +253,19 @@
 <p class="p_CodeExample"><span class="f_CodeExample">./tools/run_ds10.sh&nbsp;--&nbsp;--log-disable&nbsp;chipset</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">./tools/run_ds10.sh&nbsp;--&nbsp;--log-file&nbsp;ide=logs/ide.log</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_Normal">Retire / instruction traces are written to the directory named by <span class="f_CodeExample">EMULATR_TRACE_DIR</span>; <span class="f_CodeExample">EMULATR_TRACE_WINDOW=1</span> arms a windowed sink so a cold boot does not emit a multi-gigabyte stream. A typical traced cold boot:</p>
+<p class="p_Normal">Retire / instruction traces are written to the directory named by <span class="f_CodeExample">EMulatR_TRACE_DIR</span>; <span class="f_CodeExample">EMulatR_TRACE_WINDOW=1</span> arms a windowed sink so a cold boot does not emit a multi-gigabyte stream. A typical traced cold boot:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMULATR_TRACE_DIR=/d/EmulatR/traces;&nbsp;mkdir&nbsp;-p&nbsp;&quot;$EMULATR_TRACE_DIR&quot;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMULATR_TRACE_WINDOW=1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMulatR_TRACE_DIR=/d/EMulatR/traces;&nbsp;mkdir&nbsp;-p&nbsp;&quot;$EMulatR_TRACE_DIR&quot;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMulatR_TRACE_WINDOW=1</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">./tools/run_ds10_trace.sh&nbsp;2&gt;&amp;1&nbsp;|&nbsp;tee&nbsp;logs/cold_$(date&nbsp;+%H%M%S).log</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_Normal">The full list of <span class="f_CodeExample">EMULATR_*</span> runtime variables (console port, flash path, idle warp, trace controls) is on the Environment Variables page.</p>
+<p class="p_Normal">The full list of <span class="f_CodeExample">EMulatR_*</span> runtime variables (console port, flash path, idle warp, trace controls) is on the Environment Variables page.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Running as a forked / background process</span></h2>
-<p class="p_Normal">Because the console is a RAW TCP server (reached by a terminal client over <span class="f_CodeExample">EMULATR_CONSOLE_PORT</span>), the emulator does not need the controlling terminal and can run detached. Launch it in the background, capture its output to a file, and note the process id:</p>
+<p class="p_Normal">Because the console is a RAW TCP server (reached by a terminal client over <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>), the emulator does not need the controlling terminal and can run detached. Launch it in the background, capture its output to a file, and note the process id:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">HEADLESS=1&nbsp;./tools/run_ds10.sh&nbsp;&gt;&nbsp;run.log&nbsp;2&gt;&amp;1&nbsp;&amp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;&quot;emulatr&nbsp;pid&nbsp;=&nbsp;$!&quot;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;&quot;EMulatR&nbsp;pid&nbsp;=&nbsp;$!&quot;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">To survive the shell closing, use <span class="f_CodeExample">nohup</span> and <span class="f_CodeExample">disown</span>, then connect from a separate terminal client:</p>
 <p class="p_Normal">&nbsp;</p>
@@ -274,12 +274,12 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">Stop a detached instance cleanly by ending its console session or signaling the captured pid; avoid a hard kill during a flash write, which can corrupt <span class="f_CodeExample">ds10_v7_3.rom</span>. To run two instances from one directory, give each its own flash and console port so they do not collide:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">PORT=10024&nbsp;EMULATR_FLASH_ROM=flash_b.rom&nbsp;HEADLESS=1&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">PORT=10024&nbsp;EMulatR_FLASH_ROM=flash_b.rom&nbsp;HEADLESS=1&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;./tools/run_ds10.sh&nbsp;&gt;&nbsp;run_b.log&nbsp;2&gt;&amp;1&nbsp;&amp;</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="command-line-options.html" class="topiclink">Command Line Options (EmulatR)</a></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="command-line-options.html" class="topiclink">Command Line Options (EMulatR)</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 <p class="p_Normal"><a href="--executing-two-instances.html" class="topiclink">Executing Two Instances</a></p>
 <p class="p_Normal"><a href="--configuring----------(moved-.html" class="topiclink">Configuring</a></p>
 

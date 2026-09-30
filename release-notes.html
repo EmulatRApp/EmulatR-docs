@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="changelog,known limitations,release notes,version,what's new" />
-   <meta name="description" content="EmulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. This chapter records what each release delivered: what..." />
+   <meta name="description" content="EMulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. This chapter records what each release delivered: what..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -112,9 +112,9 @@
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="performance-warp.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="es40-test-regression.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="releasenotesv1_6-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="releasenotesv2_1-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -127,10 +127,10 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. This chapter records what each release delivered: what landed, what was fixed, and what was still incomplete when the build shipped. Every release has its own page beneath this topic, newest first, so the current release is always the first entry in the chapter.</p>
+<p class="p_Normal">EMulatR brings the real DEC/Compaq/HP Alpha SRM console firmware to life on emulated Tsunami/Typhoon-class hardware. This chapter records what each release delivered: what landed, what was fixed, and what was still incomplete when the build shipped. Every release has its own page beneath this topic, newest first, so the current release is always the first entry in the chapter.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How to read a release page</span></h2>
-<p class="p_Normal">A release page is written against the build it names and is not revised afterward. Everything on it - the capabilities claimed, the packaging described, the known limitations listed - describes EmulatR as it behaved at that build, and is kept as the record of what was delivered then, not as current instructions. When a limitation is lifted or a behavior changes, the change is recorded on the newer page rather than by editing the older one. Read the newest page for the state of the emulator today.</p>
+<p class="p_Normal">A release page is written against the build it names and is not revised afterward. Everything on it - the capabilities claimed, the packaging described, the known limitations listed - describes EMulatR as it behaved at that build, and is kept as the record of what was delivered then, not as current instructions. When a limitation is lifted or a behavior changes, the change is recorded on the newer page rather than by editing the older one. Read the newest page for the state of the emulator today.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Release pages are written for the operator. They say what changed at the console, in the guest, or in the launcher. The granular developer history - commit ranges, JRN references, internal refactoring - belongs in <span class="f_CodeExample">CHANGELOG.md</span> and is deliberately left out here.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -186,14 +186,12 @@
 <p class="p_Normal">Quote that string exactly as displayed when reporting an issue. The build number distinguishes releases that share a version, and a release page applies only to the build it names.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Firmware is never included</span></h2>
-<p class="p_Normal">No release of EmulatR ships SRM firmware. The images are licensed, so you supply your own; a release page describes the emulator, never the firmware it loads. Anything derived from a firmware image at run time - the calibrated-delay census, the flash NVRAM, the console badge figure - is likewise generated on your machine and never shipped.</p>
+<p class="p_Normal">No release of EMulatR ships SRM firmware. The images are licensed, so you supply your own; a release page describes the emulator, never the firmware it loads. Anything derived from a firmware image at run time - the calibrated-delay census, the flash NVRAM, the console badge figure - is likewise generated on your machine and never shipped.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also</span></p>
 <p class="p_Normal"><a href="installing-with-the-windows-installer.html" class="topiclink">Installing with the Windows Installer</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
-<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
 <p class="p_SeeAlso" style="page-break-after: avoid;"><span class="f_SeeAlso">Versions Shipped</span></p>
-<p class="p_Normal"><a href="releasenotesv1_6-.html" class="topiclink">V1.6 (Beta)</a> <a href="releasenotesv2_0-.html" class="topiclink">v2.0 </a></p>
+<p class="p_Normal"><a href="releasenotesv1_6-.html" class="topiclink">V1.6 (Beta)</a> <a href="releasenotesv2_0-.html" class="topiclink">v2.0 </a> <a href="releasenotesv2_1-.html" class="topiclink">2.1 (In Development)</a></p>
 <p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->

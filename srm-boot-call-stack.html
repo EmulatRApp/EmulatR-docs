@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; SRM Boot Call-Stack</title>
+   <title>9. Appendices - Developer Reference &gt; 9.1 Platform Appendices &gt; SRM Boot Call-Stack</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?srm-boot-call-stack.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">9.1 Platform Appendices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Boot Call-Stack</span></h1>
 
@@ -218,7 +218,7 @@
 <p class="p_Normal">By default the console halts at the prompt rather than booting an operating system (<span class="f_CodeExample">auto_action = HALT</span>). A full annotated transcript is in <a href="--example---performance.html" class="topiclink">Example - Performance</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The CSERVE seam</span></h2>
-<p class="p_Normal">CSERVE is the call gate between the console and PALcode, and it is where most boot-path work actually lands. The console loads a function code into <span class="f_CodeExample">R16</span> and traps; EmulatR dispatches it in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span>. The architecture is run-the-guest-PAL: wherever possible a CSERVE call is routed into the guest's own handler rather than replicated in C++.</p>
+<p class="p_Normal">CSERVE is the call gate between the console and PALcode, and it is where most boot-path work actually lands. The console loads a function code into <span class="f_CodeExample">R16</span> and traps; EMulatR dispatches it in <span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span>. The architecture is run-the-guest-PAL: wherever possible a CSERVE call is routed into the guest's own handler rather than replicated in C++.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -284,14 +284,14 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The <span class="f_CodeExample">START</span> path is worth understanding before touching it. On a uniprocessor model there are no secondaries to start, which once made a no-op look harmless -- but the primary OS boot transfer runs through the same entry. It reaches <span class="f_CodeExample">sys__exit_console</span>, which restores the boot context from the per-CPU HWRPB slot, flushes the ITB and DTB, and restarts fetch at the slot's halt PC. Stubbing it stranded the whole hand-off. The current default routes faithfully into the guest PAL; <span class="f_CodeExample">EMULATR_CSERVE_START_MODE</span> selects <span class="f_CodeExample">guest</span> (the default), <span class="f_CodeExample">cpp</span> (a C++ replica, for testing) or <span class="f_CodeExample">off</span>. <a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot</a> covers that hand-off in full.</p>
+<p class="p_Normal">The <span class="f_CodeExample">START</span> path is worth understanding before touching it. On a uniprocessor model there are no secondaries to start, which once made a no-op look harmless -- but the primary OS boot transfer runs through the same entry. It reaches <span class="f_CodeExample">sys__exit_console</span>, which restores the boot context from the per-CPU HWRPB slot, flushes the ITB and DTB, and restarts fetch at the slot's halt PC. Stubbing it stranded the whole hand-off. The current default routes faithfully into the guest PAL; <span class="f_CodeExample">EMulatR_CSERVE_START_MODE</span> selects <span class="f_CodeExample">guest</span> (the default), <span class="f_CodeExample">cpp</span> (a C++ replica, for testing) or <span class="f_CodeExample">off</span>. <a href="reset-into-secondary-boot.html" class="topiclink">Reset into Secondary Boot</a> covers that hand-off in full.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Unimplemented CSERVE codes are a known divergence</span></h2>
 <p class="p_Normal">A function code with no case falls to the dispatch default, which returns with <span class="f_CodeExample">R0</span> untouched. That is a DIVERGENCE from real execution, not a tolerated no-op: the guest <span class="f_CodeExample">sys__cserve</span> would dispatch the same code to a handler with real side-effects.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The distinction was settled empirically. <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST disproved the earlier assumption that these were silicon-tolerated -- the console loops on it and re-initializes, because the guest handler never saves <span class="f_CodeExample">R18</span> into <span class="f_CodeExample">CNS__WORK_REQUEST</span>. Codes still landing in the default arm include <span class="f_CodeExample">0x0A</span>, <span class="f_CodeExample">0x0B-0x0D</span>, <span class="f_CodeExample">0x32-0x37</span>, <span class="f_CodeExample">0x45</span> JUMP_TO_ARC and <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST.</p>
+<p class="p_Normal">The distinction was settled empirically. <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST disproved the earlier assumption that these were REAL_HW-tolerated -- the console loops on it and re-initializes, because the guest handler never saves <span class="f_CodeExample">R18</span> into <span class="f_CodeExample">CNS__WORK_REQUEST</span>. Codes still landing in the default arm include <span class="f_CodeExample">0x0A</span>, <span class="f_CodeExample">0x0B-0x0D</span>, <span class="f_CodeExample">0x32-0x37</span>, <span class="f_CodeExample">0x45</span> JUMP_TO_ARC and <span class="f_CodeExample">0x65</span> MP_WORK_REQUEST.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Set <span class="f_CodeExample">EMULATR_CSERVE_AUDIT=1</span> to capture the missing contract for each: the function code and its inputs, the caller PC, and whether the call is one-shot or a polling loop. That capture is what lets a code be closed against the corresponding guest handler in the apisrm source.</p>
+<p class="p_Normal">Set <span class="f_CodeExample">EMulatR_CSERVE_AUDIT=1</span> to capture the missing contract for each: the function code and its inputs, the caller PC, and whether the call is one-shot or a polling loop. That capture is what lets a code be closed against the corresponding guest handler in the apisrm source.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Localizing a stall</span></h2>
 <p class="p_Normal">Read the last console line and map it to the table above. A boot that stops after a device-probe line and before any prompt is in enumeration; one that stops at <span class="f_CodeExample">UPD&gt;</span> is waiting in LFU, not hung. A boot that produces no output at all never reached the banner, which puts it in one of the three pre-console stages -- and there the only instrument is a trace, because the console cannot yet report on itself.</p>

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.1 Configuring &amp; Running &gt; Executing Two Instances</title>
+   <title>5. Operating EmulatR &gt; 5.1 Configuring &amp; Running &gt; Executing Two Instances</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--executing-two-instances.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">4.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">5.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Executing Two Instances</span></h1>
 
@@ -127,16 +127,16 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Two instances launched from the same directory share <span class="f_CodeExample">ds10_v7_3.rom</span> and the <span class="f_CodeExample">snapshots/</span> directory, and concurrent NVRAM writes can corrupt the flash. Give each console its own port with <span class="f_CodeExample">EMULATR_CONSOLE_PORT</span>, and if a run will write NVRAM (any <span class="f_CodeExample">set</span> or <span class="f_CodeExample">update</span> at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt), isolate its flash first.</p>
+<p class="p_Normal">Two instances launched from the same directory share <span class="f_CodeExample">ds10_v7_3.rom</span> and the <span class="f_CodeExample">snapshots/</span> directory, and concurrent NVRAM writes can corrupt the flash. Give each console its own port with <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>, and if a run will write NVRAM (any <span class="f_CodeExample">set</span> or <span class="f_CodeExample">update</span> at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt), isolate its flash first.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">Refer&nbsp;to&nbsp;EmulatRLauncher</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Refer&nbsp;to&nbsp;EMulatRLauncher</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">With a separate <span class="f_CodeExample">EMULATR_FLASH_ROM</span> per instance, NVRAM writes no longer collide. Confirm the second instance came up on its own port by checking its log for &quot;Listening on TCP port 10024&quot;.</p>
+<p class="p_Normal">With a separate <span class="f_CodeExample">EMulatR_FLASH_ROM</span> per instance, NVRAM writes no longer collide. Confirm the second instance came up on its own port by checking its log for &quot;Listening on TCP port 10024&quot;.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--executing------------(moved).html" class="topiclink">Executing</a></p>
 <p class="p_Normal"><a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a></p>
-<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EmulatR</a></p>
+<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EMulatR</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

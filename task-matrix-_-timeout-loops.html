@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; Appendix - DS10 &gt; Task Matrix &amp; TimeOut Loops</title>
+   <title>9. Appendices - Developer Reference &gt; 9.1 Platform Appendices &gt; Appendix - DS10 &gt; Task Matrix &amp; TimeOut Loops</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?task-matrix-_-timeout-loops.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a> &gt; <a href="--appendix---ds10.html">Appendix - DS10</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">9.1 Platform Appendices</a> &gt; <a href="--appendix---ds10.html">Appendix - DS10</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Task Matrix &amp; TimeOut Loops</span></h1>
 
@@ -172,7 +172,7 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The warp levers that used to collapse these waits - <span class="f_CodeExample">EMULATR_IDLEWARP</span> and its family - were removed on 1 August 2026: they advanced the guest clock without replaying the timer edges, and the launcher now strips them from every child environment. <span class="f_CodeExample">EMULATR_UDELAYWARP</span> is the surviving lever and is safe by construction: it advances only as far as the next timer edge, so no boundary is skipped. A separate, much longer pause -- the <span class="f_CodeExample">krn$_sleep</span>-based option-firmware scan after &quot;Checking dva0.0.0.0.0 for the option firmware files. . .&quot; -- is a timed sleep rather than a device-wait loop and is a known performance item.</p>
+<p class="p_Normal">The warp levers that used to collapse these waits - <span class="f_CodeExample">EMulatR_IDLEWARP</span> and its family - were removed on 1 August 2026: they advanced the guest clock without replaying the timer edges, and the launcher now strips them from every child environment. <span class="f_CodeExample">EMulatR_UDELAYWARP</span> is the surviving lever and is safe by construction: it advances only as far as the next timer edge, so no boundary is skipped. A separate, much longer pause -- the <span class="f_CodeExample">krn$_sleep</span>-based option-firmware scan after &quot;Checking dva0.0.0.0.0 for the option firmware files. . .&quot; -- is a timed sleep rather than a device-wait loop and is a known performance item.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Task matrix (engineering status)</span></h2>
 <p class="p_Normal">A snapshot of DS10 engineering work, grouped by theme, with what has since closed marked DONE. This is a moving target; treat it as orientation, not a contract.</p>
@@ -186,7 +186,6 @@
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--firmware-hangs-_-slow-boot-_.html" class="topiclink">Firmware Hangs, Slow Boot, and Missing Devices</a></p>
 <p class="p_Normal"><a href="--halt-button-is-in_-boot-not-.html" class="topiclink">Halt Button is IN, BOOT NOT POSSIBLE</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

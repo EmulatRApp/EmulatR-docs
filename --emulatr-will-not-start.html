@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>7. Troubleshooting &gt; EmulatR will not start</title>
+   <title>8. Troubleshooting &gt; EmulatR will not start</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="console port,EMULATR_CONSOLE_PORT,EMULATR_FLASH_ROM,--firmware,platform manifest,port in use" />
-   <meta name="description" content="Console port already in use. Check with netstat -ano | findstr 10023 and free it, or set EMULATR_CONSOLE_PORT." />
+   <meta name="description" content="Console port already in use. Check with netstat -ano | findstr 10023 and free it, or set EMulatR_CONSOLE_PORT." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR will not start</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR will not start</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--emulatr-will-not-start.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="7_-troubleshooting------------.html">7. Troubleshooting</a>&nbsp;&gt;</p>
+      <a href="7_-troubleshooting------------.html">8. Troubleshooting</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR will not start</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR will not start</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,11 +127,11 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_NotesBox"><span class="f_NotesBox">Console port already in use. Check with netstat -ano | findstr 10023 and free it, or set EMULATR_CONSOLE_PORT.</span></p>
-<p class="p_NotesBox"><span class="f_NotesBox">The launch script exits immediately and prints nothing. You ran the COPY of </span><span class="f_CodeExample">emulatr_launch.sh</span><span class="f_NotesBox"> that the build stages into the run directory's own </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox">. That copy works out where it is by looking at its own location, and from inside a run directory it gets the wrong answer and gives up without a message. Run the script from the source tree's </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> instead - that copy is fine. This is a defect on the fix list, not a rule you need to learn.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">Console port already in use. Check with netstat -ano | findstr 10023 and free it, or set EMulatR_CONSOLE_PORT.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">The launch script exits immediately and prints nothing. You ran the COPY of </span><span class="f_CodeExample">EMulatR_launch.sh</span><span class="f_NotesBox"> that the build stages into the run directory's own </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox">. That copy works out where it is by looking at its own location, and from inside a run directory it gets the wrong answer and gives up without a message. Run the script from the source tree's </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> instead - that copy is fine. This is a defect on the fix list, not a rule you need to learn.</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox">Firmware not found. There is no ini default to fall back on, and a set [ROM] firmwareImage is a path resolved against the working directory -- pass --firmware ./firmware/ds10_v7_3.exe, or launch from the directory that holds firmware/.</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox">Missing platform manifest. This does NOT stop the run, which is the trap: the emulator warns and falls back to the compiled-in DS10 device tree, so a DS20 or ES40 run quietly becomes a DS10 one. Watch the log for </span><span class="f_CodeExample">PlatformConfig: using built-in default DS10 manifest</span><span class="f_NotesBox"> before blaming the platform.</span></p>
-<p class="p_NotesBox"><span class="f_NotesBox">Two instances from one directory share </span><span class="f_CodeExample">ds10_v7_3.rom</span><span class="f_NotesBox"> and snapshots/; concurrent NVRAM writes can corrupt the flash. Isolate with EMULATR_FLASH_ROM=&lt;copy&gt; (see Executing Two Instances).</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">Two instances from one directory share </span><span class="f_CodeExample">ds10_v7_3.rom</span><span class="f_NotesBox"> and snapshots/; concurrent NVRAM writes can corrupt the flash. Isolate with EMulatR_FLASH_ROM=&lt;copy&gt; (see Executing Two Instances).</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>

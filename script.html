@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; script</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; script</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="build,diagnostics,EmulatR,runbook,script,tooling,tools" />
-   <meta name="description" content="The tools topic-hive documents the developer and operator scripts that live in the EmulatR V4 source tools/ directory. The shell scripts are deployed beside Emulatr.exe in..." />
+   <meta name="description" content="The tools topic-hive documents the developer and operator scripts that live in the EMulatR V4 source tools/ directory. The shell scripts are deployed beside EMulatR.exe in..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,14 +105,14 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?script.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">script</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="qt-creator.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="wireshark-and-packet-captures.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="8_4-tools.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="alpha_diasm.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -127,9 +127,9 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The tools topic-hive documents the developer and operator scripts that live in the EmulatR V4 source <span class="f_CodeExample">tools/</span> directory. The shell scripts are deployed beside <span class="f_CodeExample">Emulatr.exe</span> in <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by the CMake POST_BUILD step and anchor to the run-dir root; the Python utilities run directly from the source tree. All shell scripts target Git Bash on Windows.</p>
+<p class="p_Normal">The tools topic-hive documents the developer and operator scripts that live in the EMulatR V4 source <span class="f_CodeExample">tools/</span> directory. The shell scripts are deployed beside <span class="f_CodeExample">EMulatR.exe</span> in <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by the CMake POST_BUILD step and anchor to the run-dir root; the Python utilities run directly from the source tree. All shell scripts target Git Bash on Windows.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Most scripts locate the run-dir by anchoring to their own directory and expect <span class="f_CodeExample">Emulatr.exe</span>, the firmware, and <span class="f_CodeExample">config/Emulatr.ini</span> beside it. None of them build except where the name says so (<span class="f_CodeExample">build_test_run</span>); the rest are run-only or diagnosis-only.</p>
+<p class="p_Normal">Most scripts locate the run-dir by anchoring to their own directory and expect <span class="f_CodeExample">EMulatR.exe</span>, the firmware, and <span class="f_CodeExample">config/EMulatR.ini</span> beside it. None of them build except where the name says so (<span class="f_CodeExample">build_test_run</span>); the rest are run-only or diagnosis-only.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Build, run, and boot</span></h2>
 <p class="p_Normal"><a href="build_test_run2.html" class="topiclink">build_test_run</a> -- Rebuild (RelWithDebInfo), run the chipset halt-register doctest, then hand off to the OpenVMS boot.</p>
@@ -156,7 +156,7 @@
 <p class="p_Normal"><a href="phase1-dispatch-gate.html" class="topiclink">phase1 dispatch gate</a> -- Prove the <span class="f_CodeExample">AlphaCpuAgent</span> dispatcher boot is byte-identical to the legacy boot.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also</span></p>
-<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

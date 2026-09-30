@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Block-MAX-Internals</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock &gt; Block-MAX-Internals</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMULATR_BLOCK_MAX</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR_BLOCK_MAX</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?block-max-internals.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">6.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMULATR_BLOCK_MAX</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR_BLOCK_MAX</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -160,15 +160,15 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">1. One sentence</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX</span> is the <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">maximum number of instruction descriptors the block executor will place in a single block</span> -- i.e. the longest run of straight-line guest instructions EmulatR will execute before returning to the run loop to service time and interrupts.</p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX</span> is the <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">maximum number of instruction descriptors the block executor will place in a single block</span> -- i.e. the longest run of straight-line guest instructions EMulatR will execute before returning to the run loop to service time and interrupts.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">It is a performance dial, not a correctness switch. That sentence is only true as of the F-1 fix; section 7 explains why it was not true before, and why that history matters when reading older measurements.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. Where it lives</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX descriptor cap per blockdefault 32, clamped 2 .. kMaxCap (256)pipelineLib/BlockCache.h blockMax()</span></p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX descriptor cap per blockdefault 32, clamped 2 .. kMaxCap (256)pipelineLib/BlockCache.h blockMax()</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Companion geometry dial, frequently confused with it:</p>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS number of block FRAMES in the cachedefault 8192, floor 256, rounded DOWN to apower of two (the slot index is a mask)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCKCACHE_BLOCKS number of block FRAMES in the cachedefault 8192, floor 256, rounded DOWN to apower of two (the slot index is a mask)</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_CodeExample">BLOCK_MAX</span> is the depth of one block. <span class="f_CodeExample">BLOCKCACHE_BLOCKS</span> is how many blocks are retained. They are independent, and confusing them produces nonsense conclusions about memory.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -194,10 +194,10 @@
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">3.1 A block is not a translation</span></h3>
 <p class="p_Normal">Nothing is compiled, and no semantics are rewritten. Execution replays the faithful back-end verbatim, per instruction:</p>
 <p class="p_Normal"><span class="f_CodeExample">PipelineDriver::buildCtx </span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(GR)grain execFn </span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(EX)MemDrainer::drain </span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(MEM)PipelineDriver::retire </span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(WB)</span>plus the same per-retire bookkeeping the faithful path performs -- cycle tick, RetireProfiler, profile counters, the BYTECHECK seam, the trace hook. A traced block run therefore feeds the same retire stream the reference path produces, which is what makes the Gate 2 retire-diff meaningful.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(GR)grain execFn </span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(EX)MemDrainer::drain </span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(MEM)PipelineDriver::retire </span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">(WB)</span>plus the same per-retire bookkeeping the faithful path performs -- cycle tick, RetireProfiler, profile counters, the BYTECHECK seam, the trace hook. A traced block run therefore feeds the same retire stream the reference path produces, which is what makes the Gate 2 retire-diff meaningful.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">What the block eliminates is not the work of executing an instruction. It is the per-instruction approach work: the fetch/decode probe, and the run loop's boundary predicates.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -261,7 +261,7 @@
 <tr>
 <td style="vertical-align:top; width:117px; padding:0; border:solid thin #000000;"><p class="p_Normal">6</p>
 </td>
-<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EMULATR_BLOCK_MAX</span> descriptors</p>
+<td style="vertical-align:top; width:796px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EMulatR_BLOCK_MAX</span> descriptors</p>
 </td>
 <td style="vertical-align:top; width:682px; padding:0; border:solid thin #000000;"><p class="p_Normal">stop at cap</p>
 </td>
@@ -276,9 +276,9 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">4.1 What terminates a running block</span></h3>
 <p class="p_Normal">Execution exits early -- before <span class="f_CodeExample">count</span> -- on any of:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cpu.halted</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Divergence</span><span class="f_NotesBox">: </span><span class="f_CodeExample">cpu.pc != slot.grain.pc + 4</span><span class="f_NotesBox"> (a taken branch, a divert, or a fault delivery)</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">F-2 interrupt break-out</span><span class="f_NotesBox"> (section 5.2)</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cpu.halted</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Divergence</span><span class="f_NotesBox">: </span><span class="f_CodeExample">cpu.pc != slot.grain.pc + 4</span><span class="f_NotesBox"> (a taken branch, a divert, or a fault delivery)</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">F-2 interrupt break-out</span><span class="f_NotesBox"> (section 5.2)</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">5. How it moves run time</span></h2>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">5.1 The mechanism: amortizing the boundary, not the instruction</span></h3>
@@ -298,9 +298,9 @@
 <p class="p_Normal"><span class="f_CodeExample">systemLib::Machine</span> pushes the Cchip's <span class="f_CodeExample">DRIR</span>/<span class="f_CodeExample">DIM</span> words and the mask into <span class="f_CodeExample">pipelineLib</span> at construction (a one-way push, so <span class="f_CodeExample">pipelineLib</span> gains no chipset dependency). The pointers default to a shared zero word rather than <span class="f_CodeExample">nullptr</span>, so the hot loop needs no null check -- unpushed, the test folds to false. Cost: two relaxed loads, two ANDs, one predicted-not-taken branch.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Three properties make this sound:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Breaking out early is always safe.</span><span class="f_NotesBox"> The loop returns; the caller's </span><span class="f_CodeExample">systemTick</span><span class="f_NotesBox"> runs exactly as at any block exit and decides delivery (IPL, DIM, PAL state). This relocates detection, never delivery.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Forward progress</span><span class="f_NotesBox"> is guaranteed by </span><span class="f_CodeExample">i != 0</span><span class="f_NotesBox">: every entry retires at least one instruction. Without that guard, an interrupt the CPU cannot yet accept (IPL masked) would break at </span><span class="f_CodeExample">i = 0</span><span class="f_NotesBox"> forever -- zero retires, livelock. With it, the degenerate case is one retire per </span><span class="f_CodeExample">tryRun</span><span class="f_NotesBox">: exactly the reference path's granularity and cost, never worse.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">No PC bookkeeping</span><span class="f_NotesBox"> is needed: the divergence check guarantees </span><span class="f_CodeExample">pc == head + 4*i</span><span class="f_NotesBox"> at the top of iteration </span><span class="f_CodeExample">i</span><span class="f_NotesBox">.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Breaking out early is always safe.</span><span class="f_NotesBox"> The loop returns; the caller's </span><span class="f_CodeExample">systemTick</span><span class="f_NotesBox"> runs exactly as at any block exit and decides delivery (IPL, DIM, PAL state). This relocates detection, never delivery.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Forward progress</span><span class="f_NotesBox"> is guaranteed by </span><span class="f_CodeExample">i != 0</span><span class="f_NotesBox">: every entry retires at least one instruction. Without that guard, an interrupt the CPU cannot yet accept (IPL masked) would break at </span><span class="f_CodeExample">i = 0</span><span class="f_NotesBox"> forever -- zero retires, livelock. With it, the degenerate case is one retire per </span><span class="f_CodeExample">tryRun</span><span class="f_NotesBox">: exactly the reference path's granularity and cost, never worse.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">No PC bookkeeping</span><span class="f_NotesBox"> is needed: the divergence check guarantees </span><span class="f_CodeExample">pc == head + 4*i</span><span class="f_NotesBox"> at the top of iteration </span><span class="f_CodeExample">i</span><span class="f_NotesBox">.</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox">&nbsp;</span></p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Net: device-interrupt latency is one instruction at any depth.</span></p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Do not raise </span><span class="f_CodeExample">kMaxCap</span> on a tree without F-2. There, depth N really does mean N-instruction device latency.</p>
@@ -344,7 +344,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX=4</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX=4</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">48.0 min</p>
 </td>
@@ -352,7 +352,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX=64</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX=64</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">45.6 min</p>
 </td>
@@ -360,7 +360,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX=256</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX=256</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">29.0 min</p>
 </td>
@@ -381,7 +381,7 @@
 <p class="p_Normal"><span class="f_CodeExample">desc[kMaxCap]</span> is sized at compile time. </p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Therefore:</p>
-<p class="p_Normal">Setting <span class="f_CodeExample">EMULATR_BLOCK_MAX=4</span> does not reduce memory. It still allocates 256 descriptor slots per frame and simply refuses to fill past 4. Only changing <span class="f_CodeExample">kMaxCap</span> (a rebuild) changes the footprint; only <span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span> changes it at run time.</p>
+<p class="p_Normal">Setting <span class="f_CodeExample">EMulatR_BLOCK_MAX=4</span> does not reduce memory. It still allocates 256 descriptor slots per frame and simply refuses to fill past 4. Only changing <span class="f_CodeExample">kMaxCap</span> (a rebuild) changes the footprint; only <span class="f_CodeExample">EMulatR_BLOCKCACHE_BLOCKS</span> changes it at run time.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_CodeExample">count</span> is <span class="f_CodeExample">uint16_t</span>, so the structural ceiling is 65535 -- do not exceed it without widening the field.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -392,13 +392,13 @@
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Consequence for anyone reading pre-2026-08-26 measurements:</span> a stall or anomaly attributed to block depth in that era is very likely the timer defect, not a property of depth. Do not carry those conclusions forward.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">8. Interactions and caveats</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Overshoot.</span><span class="f_NotesBox"> With blocks on, </span><span class="f_CodeExample">--max-cycles</span><span class="f_NotesBox"> overshoot is bounded by </span><span class="f_CodeExample">BLOCK_MAX - 1</span><span class="f_NotesBox">. A run will not stop exactly on the requested cycle.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Retire shift.</span><span class="f_NotesBox"> Interrupt delivery may legitimately shift by up to </span><span class="f_CodeExample">BLOCK_MAX</span><span class="f_NotesBox"> cycles between runs; </span><span class="f_CodeExample">tools/cmp_retire_shift.py</span><span class="f_NotesBox"> takes this as a tolerance parameter. Its default still says 64 -- pass the depth you actually ran.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">PAL mode never enters a block</span><span class="f_NotesBox"> (</span><span class="f_CodeExample">(cpu.pc &amp; 1) != 0</span><span class="f_NotesBox"> returns false), so depth has no effect inside PALcode.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Flagged pages</span><span class="f_NotesBox"> run on the reference path. Today that set is exactly the UDELAYWARP anchor page: a block containing the anchor would hide the warp trigger. Other armed instruments (PC/value gates, DIAG PC windows) force the executor off globally -- the S-3b lesson, that a census which can be incomplete must fail safe rather than silent.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Snapshots start cold.</span><span class="f_NotesBox"> The cache is transient host state and is never serialised, so the first post-resume execution re-fills. Depth does not survive a resume; a resumed run's early throughput is not comparable to a warm one's.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">The spin census depends on blocks being on.</span><span class="f_NotesBox"> </span><span class="f_CodeExample">BlockExecutor::noteSpin</span><span class="f_NotesBox"> feeds </span><span class="f_CodeExample">traceLib::WarpProfile</span><span class="f_NotesBox"> and is the only detector that can see delay loops the 0xB740 RSCC anchor is blind to (the anchor page is deliberately kept off the block path, making the two complementary). With </span><span class="f_CodeExample">EMULATR_BLOCKEXEC=0</span><span class="f_NotesBox"> that census is silent.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Not a fidelity lever.</span><span class="f_NotesBox"> Depth changes when boundary work happens, never what an instruction does. If a guest-visible behaviour changes with depth, that is a defect in the boundary machinery -- as F-1 was -- and must be chased as one, not tuned around.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Overshoot.</span><span class="f_NotesBox"> With blocks on, </span><span class="f_CodeExample">--max-cycles</span><span class="f_NotesBox"> overshoot is bounded by </span><span class="f_CodeExample">BLOCK_MAX - 1</span><span class="f_NotesBox">. A run will not stop exactly on the requested cycle.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Retire shift.</span><span class="f_NotesBox"> Interrupt delivery may legitimately shift by up to </span><span class="f_CodeExample">BLOCK_MAX</span><span class="f_NotesBox"> cycles between runs; </span><span class="f_CodeExample">tools/cmp_retire_shift.py</span><span class="f_NotesBox"> takes this as a tolerance parameter. Its default still says 64 -- pass the depth you actually ran.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">PAL mode never enters a block</span><span class="f_NotesBox"> (</span><span class="f_CodeExample">(cpu.pc &amp; 1) != 0</span><span class="f_NotesBox"> returns false), so depth has no effect inside PALcode.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Flagged pages</span><span class="f_NotesBox"> run on the reference path. Today that set is exactly the UDELAYWARP anchor page: a block containing the anchor would hide the warp trigger. Other armed instruments (PC/value gates, DIAG PC windows) force the executor off globally -- the S-3b lesson, that a census which can be incomplete must fail safe rather than silent.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Snapshots start cold.</span><span class="f_NotesBox"> The cache is transient host state and is never serialised, so the first post-resume execution re-fills. Depth does not survive a resume; a resumed run's early throughput is not comparable to a warm one's.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">The spin census depends on blocks being on.</span><span class="f_NotesBox"> </span><span class="f_CodeExample">BlockExecutor::noteSpin</span><span class="f_NotesBox"> feeds </span><span class="f_CodeExample">traceLib::WarpProfile</span><span class="f_NotesBox"> and is the only detector that can see delay loops the 0xB740 RSCC anchor is blind to (the anchor page is deliberately kept off the block path, making the two complementary). With </span><span class="f_CodeExample">EMulatR_BLOCKEXEC=0</span><span class="f_NotesBox"> that census is silent.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Not a fidelity lever.</span><span class="f_NotesBox"> Depth changes when boundary work happens, never what an instruction does. If a guest-visible behaviour changes with depth, that is a defect in the boundary machinery -- as F-1 was -- and must be chased as one, not tuned around.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">9. Practical guidance</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -420,13 +420,13 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Best measured boot time</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCK_MAX=256</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCK_MAX=256</span></p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bisecting a suspected block defect</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_BLOCKEXEC=0</span> (whole path off)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_BLOCKEXEC=0</span> (whole path off)</p>
 </td>
 </tr>
 <tr>
@@ -444,7 +444,7 @@
 </tbody>
 </table>
 </div>
-<p class="p_Normal">Related: <span class="f_CodeExample">EMULATR_BLOCKEXEC</span> (default on since the 2026-08-26 ruling; <span class="f_CodeExample">=0</span> disables for bisection -- polarity deliberately not inverted, so the name never contradicts its effect).</p>
+<p class="p_Normal">Related: <span class="f_CodeExample">EMulatR_BLOCKEXEC</span> (default on since the 2026-08-26 ruling; <span class="f_CodeExample">=0</span> disables for bisection -- polarity deliberately not inverted, so the name never contradicts its effect).</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also</span></p>
 <p class="p_Normal"><a href="pipeline-execution-(internals).html" class="topiclink">Pipeline Execution (Internals)</a></p>

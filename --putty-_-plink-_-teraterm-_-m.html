@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.2 Console Connectivity &gt; Terminal Clients (PuTTY / Plink / TeraTerm / MobaXterm / Netcat)</title>
+   <title>5. Operating EmulatR &gt; 5.2 Console Connectivity &gt; Terminal Clients (PuTTY / Plink / TeraTerm / MobaXterm / Netcat)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--putty-_-plink-_-teraterm-_-m.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_2-console-connectivity.html">4.2 Console Connectivity</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_2-console-connectivity.html">5.2 Console Connectivity</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Terminal Clients</span></h1>
 
@@ -114,7 +114,7 @@
       
       <a href="--tcp-console-overview.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="4_2-console-connectivity.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="4_3-srm-console.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="console-control-keys.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -150,13 +150,13 @@
 <p class="p_Normal">Useful for scripting and automated testing.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Telnet</span></h2>
-<p class="p_Normal">Some telnet clients connect (<span class="f_CodeExample">telnet localhost 10023</span>), but because EmulatR uses a raw socket and performs no Telnet option negotiation, a raw-capable client (PuTTY Raw, Plink <span class="f_CodeExample">-raw</span>, Tera Term TCP/IP, MobaXterm TCP) is preferred.</p>
+<p class="p_Normal">Some telnet clients connect (<span class="f_CodeExample">telnet localhost 10023</span>), but because EMulatR uses a raw socket and performs no Telnet option negotiation, a raw-capable client (PuTTY Raw, Plink <span class="f_CodeExample">-raw</span>, Tera Term TCP/IP, MobaXterm TCP) is preferred.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Verifying the connection</span></h2>
 <p class="p_Normal">After connecting you should see console output -- a banner, the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, or an in-progress power-up sequence -- depending on the current emulator state.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Troubleshooting</span></h2>
-<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Connection refused:</span> verify EmulatR is running, the console server is enabled, and the port number is correct.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Connection refused:</span> verify EMulatR is running, the console server is enabled, and the port number is correct.</p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Connection timeout:</span> verify firewall configuration and the host address, and that the listener is active.</p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">No console output:</span> verify the boot has progressed, console output is enabled, and you are on the right port.</p>
 <p class="p_Normal">&nbsp;</p>

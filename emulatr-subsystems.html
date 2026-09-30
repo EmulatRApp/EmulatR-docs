@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.8 Logging &amp; Diagnostics &gt; Logging Subsystems</title>
+   <title>5. Operating EmulatR &gt; 5.8 Logging &amp; Diagnostics &gt; Logging Subsystems</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="Cbox,ChipsetCsr,diagnostic logging,EMULATR_DIAGNOSTIC_LOGGING,IntervalTimer,log subsystem,--log-disable,--log-file,logging subsystems,--log-only,--log-verbose,Snapshot,subsys,throttle" />
-   <meta name="description" content="EmulatR routes its diagnostic output through a small set of named subsystems. Each is the &lt;subsys&gt; argument accepted by the logging command-line options: --log-disable,..." />
+   <meta name="description" content="EMulatR routes its diagnostic output through a small set of named subsystems. Each is the &lt;subsys&gt; argument accepted by the logging command-line options: --log-disable,..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Logging Subsystems (EmulatR)</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Logging Subsystems (EMulatR)</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?emulatr-subsystems.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">4.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">5.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Logging Subsystems (EmulatR)</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Logging Subsystems (EMulatR)</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR routes its diagnostic output through a small set of named subsystems. Each is the <span class="f_CodeExample">&lt;subsys&gt;</span> argument accepted by the logging command-line options: <span class="f_CodeExample">--log-disable</span>, <span class="f_CodeExample">--log-only</span>, <span class="f_CodeExample">--log-verbose</span>, and <span class="f_CodeExample">--log-file</span>. Names are case-insensitive (Cbox, cbox, and CBOX all match). The facility is compiled in only when the binary is built with <span class="f_CodeExample">EMULATR_DIAGNOSTIC_LOGGING=ON</span>; otherwise these options have no effect.</p>
+<p class="p_Normal">EMulatR routes its diagnostic output through a small set of named subsystems. Each is the <span class="f_CodeExample">&lt;subsys&gt;</span> argument accepted by the logging command-line options: <span class="f_CodeExample">--log-disable</span>, <span class="f_CodeExample">--log-only</span>, <span class="f_CodeExample">--log-verbose</span>, and <span class="f_CodeExample">--log-file</span>. Names are case-insensitive (Cbox, cbox, and CBOX all match). The facility is compiled in only when the binary is built with <span class="f_CodeExample">EMulatR_DIAGNOSTIC_LOGGING=ON</span>; otherwise these options have no effect.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -211,11 +211,40 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Throttle Policies</span></h2>
 <p class="p_Normal">Each subsystem has a default throttle that bounds how much it emits to stderr. The default-on policies keep a long run readable while still surfacing the first events.</p>
-<p class="p_Normal"><span class="f_CodeExample">Unthrottled - </span>every event is emitted.</p>
-<p class="p_Normal"><span class="f_CodeExample">Loud-then-summary</span> – the first 16 events emit in full, then one INFO heartbeat per 256K events.</p>
-<p class="p_Normal"><span class="f_CodeExample">Loud-then-mute</span> – the first 32 events emit, then the subsystem goes silent on stderr.</p>
-<p class="p_Normal"><span class="f_CodeExample">Off</span> – never emits to stderr (a configured file sink may still receive writes).</p>
-<p class="p_Normal"><span class="f_CodeExample">--log-verbose &lt;subsys&gt;</span> forces a subsystem to Unthrottled; <span class="f_CodeExample">--log-disable &lt;subsys&gt;</span> turns it Off; <span class="f_CodeExample">--log-only &lt;csv&gt;</span> turns everything Off except the listed subsystems.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Unthrottled</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">every event is emitted.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Loud-then-summary</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the first 16 events emit in full, then one INFO heartbeat per 256K events.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Loud-then-mute</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the first 32 events emit, then the subsystem goes silent on stderr.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Off</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">never emits to stderr (a configured file sink may still receive writes).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--log-verbose &lt;subsys&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">forces a subsystem to Unthrottled; <span class="f_CodeExample">--log-disable &lt;subsys&gt;</span> turns it Off; <span class="f_CodeExample">--log-only &lt;csv&gt;</span> turns everything Off except the listed subsystems.</p>
+</td>
+</tr>
+</table>
+</div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Examples</span></h2>
 <p class="p_Normal"><span class="f_CodeExample">./tools/run_ds10.sh -- --log-only ChipsetCsr,Cbox</span></p>
@@ -223,7 +252,7 @@
 <p class="p_Normal"><span class="f_CodeExample">./tools/run_ds10.sh -- --log-verbose Snapshot</span></p>
 <p class="p_Normal"><span class="f_CodeExample">./tools/run_ds10.sh -- --log-file ChipsetCsr=traces\csr.log</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_SeeAlso">See Also:</span> <a href="command-line-options.html" class="topiclink">Command Line Options (EmulatR)</a> <a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also:</span> <a href="command-line-options.html" class="topiclink">Command Line Options (EMulatR)</a> <a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

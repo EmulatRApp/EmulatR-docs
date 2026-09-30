@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.7 Guest Boot</title>
+   <title>5. Operating EmulatR &gt; 5.7 Guest Boot</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?4_7-guest-boot----------------.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Guest Boot</span></h1>
 
@@ -134,7 +134,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">SRM environment variables (the boot register settings)</span></h2>
 <p class="p_Normal">Set with <span class="f_CodeExample">set</span>, inspect with <span class="f_CodeExample">show</span>. These are held in NVRAM and survive a guest reboot - a machine left with <span class="f_CodeExample">bootdef_dev</span> and <span class="f_CodeExample">auto_action</span> set will boot itself from a cold start with no operator input, which is how the hands-off boot works.</p>
-<p class="p_NotesBox"><span class="f_NotesBox">Whether a setting also survives stopping and relaunching EmulatR itself, in the same run directory, is still being confirmed. If a value you set does not come back after a restart, the console line </span><span class="f_CodeExample">Flash ROM writes are disabled</span><span class="f_NotesBox"> is the first thing to look for in the log - re-set the variable and carry on rather than assuming the machine is misconfigured.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">Whether a setting also survives stopping and relaunching EMulatR itself, in the same run directory, is still being confirmed. If a value you set does not come back after a restart, the console line </span><span class="f_CodeExample">Flash ROM writes are disabled</span><span class="f_NotesBox"> is the first thing to look for in the log - re-set the variable and carry on rather than assuming the machine is misconfigured.</span></p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -221,22 +221,22 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Boot flags -- Tru64 UNIX</span></h2>
 <p class="p_Normal">Tru64 (OSF/1) also boots from the SRM console, but it has no SYSGEN conversational prompt; its analog is single-user mode. Tru64 uses letter flags stored in <span class="f_CodeExample">boot_osflags</span> (or passed with <span class="f_CodeExample">-fl</span>, which overrides the stored default): <span class="f_CodeExample">a</span> = normal multi-user boot, <span class="f_CodeExample">s</span> = single-user shell, <span class="f_CodeExample">i</span> = interactive (prompt for an alternate kernel, then continue). So <span class="f_CodeExample">boot dqa0 -fl s</span> brings up the single-user shell, from which the kernel and startup can be controlled before going multi-user.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Install from CD (the EmulatR acceptance path)</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Install from CD (the EMulatR acceptance path)</span></h2>
 <p class="p_Normal">The standard install flow uses the ATAPI CD to boot an installer that writes onto the blank ATA disk, after which the installed disk is bootable:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;boot&nbsp;dqa1&nbsp;(boot&nbsp;the&nbsp;installer&nbsp;from&nbsp;the&nbsp;CD&nbsp;/&nbsp;ISO)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;...&nbsp;installer&nbsp;writes&nbsp;the&nbsp;system&nbsp;onto&nbsp;dqa0</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;boot&nbsp;dqa0&nbsp;(boot&nbsp;the&nbsp;installed&nbsp;system)</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox"><span class="f_NotesBox">Not available yet. This is the intended acceptance path, not a procedure you can follow today: the emulated IDE channel has no write command, so an installer cannot write to </span><span class="f_CodeExample">dqa0</span><span class="f_NotesBox"> (gap G-30), and the SCSI CD lacks the media-change reporting an installer expects (G-29). The writable disk today is the SCSI one, </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox">, which is also what </span><span class="f_CodeExample">bootdef_dev</span><span class="f_NotesBox"> defaults to. See <a href="known-gaps.html" class="topiclink">EmulatR - Known Gaps</a>.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">Not available yet. This is the intended acceptance path, not a procedure you can follow today: the emulated IDE channel has no write command, so an installer cannot write to </span><span class="f_CodeExample">dqa0</span><span class="f_NotesBox"> (gap G-30), and the SCSI CD lacks the media-change reporting an installer expects (G-29). The writable disk today is the SCSI one, </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox">, which is also what </span><span class="f_CodeExample">bootdef_dev</span><span class="f_NotesBox"> defaults to. </span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Requirement: a complete PCI interface</span></h2>
-<p class="p_Normal">Reaching <span class="f_CodeExample">SYSBOOT&gt;</span> (and the OS device configuration that follows) requires the EmulatR PCI interface to be complete -- config cycles, BAR assignment, and dynamic BAR-to-range rebind. The SRM console probe is enough to enumerate <span class="f_CodeExample">dqa</span>, but VMB, SYSBOOT, and the early OS adapter initialization traverse PCI config space to reach the boot device. Until PCI is complete, a conversational boot cannot be expected to reach <span class="f_CodeExample">SYSBOOT&gt;</span>. See Current Development Status.</p>
+<p class="p_Normal">Reaching <span class="f_CodeExample">SYSBOOT&gt;</span> (and the OS device configuration that follows) requires the EMulatR PCI interface to be complete -- config cycles, BAR assignment, and dynamic BAR-to-range rebind. The SRM console probe is enough to enumerate <span class="f_CodeExample">dqa</span>, but VMB, SYSBOOT, and the early OS adapter initialization traverse PCI config space to reach the boot device. Until PCI is complete, a conversational boot cannot be expected to reach <span class="f_CodeExample">SYSBOOT&gt;</span>. See Current Development Status.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--create-guest-disk-storage---.html" class="topiclink">Create Guest Disk Storage</a></p>
 <p class="p_Normal"><a href="boot.html" class="topiclink">boot</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

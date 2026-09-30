@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; Virtual Disk Images</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; Virtual Disk Images</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--virtual-disk-images.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Virtual Disk Images</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">An emulated fixed disk is backed by a plain raw, flat image file: the byte at offset LBA × sector-size is the first byte of that logical block. The ATA fixed disk (device <span class="f_CodeExample">dqa0</span>) uses 512-byte sectors. The image file itself is an ordinary read-write file, but the emulated IDE channel does not implement a write command yet - it reads sectors and aborts everything else - so nothing can be installed onto an IDE disk today. See gap G-30 in <a href="known-gaps.html" class="topiclink">EmulatR - Known Gaps</a>.</p>
+<p class="p_Normal">An emulated fixed disk is backed by a plain raw, flat image file: the byte at offset LBA × sector-size is the first byte of that logical block. The ATA fixed disk (device <span class="f_CodeExample">dqa0</span>) uses 512-byte sectors. The image file itself is an ordinary read-write file, but the emulated IDE channel does not implement a write command yet - it reads sectors and aborts everything else - so nothing can be installed onto an IDE disk today. </p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Images are created from the geometry catalog -- automatically at boot via <span class="f_CodeExample">create_if_missing</span>, or manually with <span class="f_CodeExample">tools/mkdisk.py</span> (see Create Guest Disk Storage). The file is bare: no partition table or DEC disklabel until the guest install writes them.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -141,7 +141,7 @@
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--create-guest-disk-storage---.html" class="topiclink">Create Guest Disk Storage</a></p>
 <p class="p_Normal"><a href="--virtual-cdrom.html" class="topiclink">Virtual CDROM</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

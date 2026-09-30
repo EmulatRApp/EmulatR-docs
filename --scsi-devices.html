@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; SCSI Devices</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; SCSI Devices</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="HBA,RZ28,RZ29,scsi_poll,scsi_reset,SCSI,VirtualScsiDevice" />
-   <meta name="description" content="SCSI is the working storage path. EmulatR models an NCR 53C810 host adapter (KZPAA lineage), presented at PCI bus 0, slot 8, function 0 with vendor/device 0x1000/0x0001 and..." />
+   <meta name="keywords" content="HBA,RZ28,RZ29,SCSI,scsi_poll,scsi_reset,VirtualScsiDevice" />
+   <meta name="description" content="SCSI is the working storage path. EMulatR models an NCR 53C810 host adapter (KZPAA lineage), presented at PCI bus 0, slot 8, function 0 with vendor/device 0x1000/0x0001 and..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--scsi-devices.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SCSI Devices</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">SCSI is the working storage path. EmulatR models an NCR 53C810 host adapter (KZPAA lineage), presented at PCI bus 0, slot 8, function 0 with vendor/device <span class="f_CodeExample">0x1000</span>/<span class="f_CodeExample">0x0001</span> and class <span class="f_CodeExample">0x010000</span>. The console names it <span class="f_CodeExample">pka0</span> and its drives <span class="f_CodeExample">dka</span>; the DS20 v7.3-2 console carries the matching <span class="f_CodeExample">pke</span> driver. This is the adapter OpenVMS boots from - the system disk convention is <span class="f_CodeExample">dka0.vdisk</span>.</p>
+<p class="p_Normal">SCSI is the working storage path. EMulatR models an NCR 53C810 host adapter (KZPAA lineage), presented at PCI bus 0, slot 8, function 0 with vendor/device <span class="f_CodeExample">0x1000</span>/<span class="f_CodeExample">0x0001</span> and class <span class="f_CodeExample">0x010000</span>. The console names it <span class="f_CodeExample">pka0</span> and its drives <span class="f_CodeExample">dka</span>; the DS20 v7.3-2 console carries the matching <span class="f_CodeExample">pke</span> driver. This is the adapter OpenVMS boots from - the system disk convention is <span class="f_CodeExample">dka0.vdisk</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Unit naming follows the SRM rule <span class="f_CodeExample">dka&lt;id*100+lun&gt;</span>, so target id 0 is <span class="f_CodeExample">dka0</span>, id 1 is <span class="f_CodeExample">dka100</span>, id 2 is <span class="f_CodeExample">dka200</span>, and so on. Id 7 is the adapter itself and cannot carry a drive.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -210,13 +210,12 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/VirtualScsiDevice.h</span><span class="f_NotesBox"> -- dka endpoint class (planned; no HBA modeled yet).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/ScsiCommand.h</span><span class="f_NotesBox"> -- SCSI command model (with ScsiTypes.h).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">config/dec_disk_media_types.tsv</span><span class="f_NotesBox"> -- RZ-series geometry catalog.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/VirtualScsiDevice.h</span><span class="f_NotesBox"> -- dka endpoint class (planned; no HBA modeled yet).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/ScsiCommand.h</span><span class="f_NotesBox"> -- SCSI command model (with ScsiTypes.h).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">config/dec_disk_media_types.tsv</span><span class="f_NotesBox"> -- RZ-series geometry catalog.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--create-guest-disk-storage---.html" class="topiclink">Create Guest Disk Storage</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

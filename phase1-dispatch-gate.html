@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; script &gt; phase1 dispatch gate</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; script &gt; phase1 dispatch gate</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="AlphaCpuAgent,byte-identical,dispatch,gate,phase1_dispatch_gate,SequentialDriver,stepCycle" />
-   <meta name="description" content="AlphaCpuAgent Phase-1 acceptance gate. It proves that the dispatcher-driven boot (EMULATR_DISPATCH=1, one AlphaCpuAgent under SequentialDriver calling Machine::stepCycle) is..." />
+   <meta name="description" content="AlphaCpuAgent Phase-1 acceptance gate. It proves that the dispatcher-driven boot (EMulatR_DISPATCH=1, one AlphaCpuAgent under SequentialDriver calling Machine::stepCycle) is..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?phase1-dispatch-gate.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">phase1_dispatch_gate</span></h1>
 
@@ -127,16 +127,16 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal"><span class="f_CodeExample">AlphaCpuAgent</span> Phase-1 acceptance gate. It proves that the dispatcher-driven boot (<span class="f_CodeExample">EMULATR_DISPATCH=1</span>, one AlphaCpuAgent under SequentialDriver calling <span class="f_CodeExample">Machine::stepCycle</span>) is byte-identical to the legacy <span class="f_CodeExample">Machine::run</span> boot. Both paths delegate to the identical per-cycle kernel, so a passing gate confirms the loop, clock, and dispatch wiring is pure -- it does not re-verify the CPU kernel. This script does not build.</p>
+<p class="p_Normal"><span class="f_CodeExample">AlphaCpuAgent</span> Phase-1 acceptance gate. It proves that the dispatcher-driven boot (<span class="f_CodeExample">EMulatR_DISPATCH=1</span>, one AlphaCpuAgent under SequentialDriver calling <span class="f_CodeExample">Machine::stepCycle</span>) is byte-identical to the legacy <span class="f_CodeExample">Machine::run</span> boot. Both paths delegate to the identical per-cycle kernel, so a passing gate confirms the loop, clock, and dispatch wiring is pure -- it does not re-verify the CPU kernel. This script does not build.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Usage</span></h2>
 <p class="p_Normal"><span class="f_CodeExample">./phase1_dispatch_gate.sh [model] [max-cycles]</span> -- model is <span class="f_CodeExample">ds10|ds20|ds25|es40|es45</span> (default <span class="f_CodeExample">ds20</span>), max-cycles is a hex or decimal cap (default <span class="f_CodeExample">0x40000000</span>).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Method</span></h2>
-<p class="p_Normal">host&gt; cmd&gt;delete &lt;firmware&gt;<span class="f_CodeExample">_.rom</span> before each run so both boots build NVRAM identically; run two cold boots via <span class="f_CodeExample">run_fw.sh</span> (legacy and <span class="f_CodeExample">EMULATR_DISPATCH=1</span>); normalize volatile tokens (timestamps, snapshot and log filenames, the RPCC-probe line, the dispatch banner); then diff the normalized host logs. An empty diff is a PASS.</p>
+<p class="p_Normal">host&gt; cmd&gt;delete &lt;firmware&gt;<span class="f_CodeExample">_.rom</span> before each run so both boots build NVRAM identically; run two cold boots via <span class="f_CodeExample">run_fw.sh</span> (legacy and <span class="f_CodeExample">EMulatR_DISPATCH=1</span>); normalize volatile tokens (timestamps, snapshot and log filenames, the RPCC-probe line, the dispatch banner); then diff the normalized host logs. An empty diff is a PASS.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Notes</span></h2>
-<p class="p_Normal">Locates <span class="f_CodeExample">Emulatr.exe</span> by probing <span class="f_CodeExample">EMULATR_RUNDIR</span>, the current directory, and the script directory -- run it from the build-run dir or set <span class="f_CodeExample">EMULATR_RUNDIR</span> first. For belt-and-suspenders, the guest SRM console on TCP 10023 can be captured with <span class="f_CodeExample">plink</span> and diffed the same way.</p>
+<p class="p_Normal">Locates <span class="f_CodeExample">EMulatR.exe</span> by probing <span class="f_CodeExample">EMulatR_RUNDIR</span>, the current directory, and the script directory -- run it from the build-run dir or set <span class="f_CodeExample">EMulatR_RUNDIR</span> first. For belt-and-suspenders, the guest SRM console on TCP 10023 can be captured with <span class="f_CodeExample">plink</span> and diffed the same way.</p>
 
 <!--ZOOMSTOP-->
 </div></div>

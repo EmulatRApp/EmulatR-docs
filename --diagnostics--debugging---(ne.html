@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.8 Logging &amp; Diagnostics &gt; Diagnostics &amp; Debugging</title>
+   <title>5. Operating EmulatR &gt; 5.8 Logging &amp; Diagnostics &gt; Diagnostics &amp; Debugging</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="EMULATR_BREAK_ON_PA10,EMULATR_CHECKPOINTS,EMULATR_CHIPSET_DIAG_ON,EMULATR_FLASH_TRACE,EMULATR_GATE,EMULATR_GCT_WATCH,EMULATR_IIC_TRACE,EMULATR_MEMDIAG,EMULATR_PIC_TRACE,EMULATR_RETIRE_TRACE_DIR,EMULATR_TRACE_WINDOW,spdlog" />
-   <meta name="description" content="Diagnostics are turned on with runtime EMULATR_* environment variables, set in the launching shell before the process starts. The complete table lives in the Reference..." />
+   <meta name="description" content="Diagnostics are turned on with runtime EMulatR_* environment variables, set in the launching shell before the process starts. The complete table lives in the Reference..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--diagnostics--debugging---(ne.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">4.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">5.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Diagnostics &amp; Debugging</span></h1>
 
@@ -114,7 +114,7 @@
       
       <a href="--srm-performance-logging.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="4_8-logging--diagnostics.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="bring-up-probes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="console-trace-hotkey.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -127,24 +127,24 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Diagnostics are turned on with runtime <span class="f_CodeExample">EMULATR_*</span> environment variables, set in the launching shell before the process starts. The complete table lives in the Reference section's Environment Variables page; this page groups them by what they do.</p>
+<p class="p_Normal">Diagnostics are turned on with runtime <span class="f_CodeExample">EMulatR_*</span> environment variables, set in the launching shell before the process starts. The complete table lives in the Reference section's Environment Variables page; this page groups them by what they do.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Three gotchas to know first</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Presence, not value. Most gates test only that the variable is set, so VAR=0 still ENABLES them. The few that parse a value (the autosnapshot / marker / path / numeric knobs) are noted in the reference.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Read once. The trace and probe gates cache their result on first call, so they are effectively read at process start; exporting them mid-run has no effect.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Paths are CWD-relative. Launch from the Emulatr root so relative output and snapshot paths resolve to the canonical set.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Presence, not value. Most gates test only that the variable is set, so VAR=0 still ENABLES them. The few that parse a value (the autosnapshot / marker / path / numeric knobs) are noted in the reference.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Read once. The trace and probe gates cache their result on first call, so they are effectively read at process start; exporting them mid-run has no effect.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Paths are CWD-relative. Launch from the EMulatR root so relative output and snapshot paths resolve to the canonical set.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Device / subsystem traces</span></h2>
-<p class="p_Normal">Presence-gated, read once, written to stderr: <span class="f_CodeExample">EMULATR_IIC_TRACE</span> (PCF8584 IIC bus transactions), <span class="f_CodeExample">EMULATR_FLASH_TRACE</span> (FlashRom command / erase / write activity), <span class="f_CodeExample">EMULATR_PIC_TRACE</span> (the 8259 PIC pair -- IRQ assert / EOI). Redirect to per-trace logs, for example <span class="f_CodeExample">2&gt; iic.log</span>.</p>
+<p class="p_Normal">Presence-gated, read once, written to stderr: <span class="f_CodeExample">EMulatR_IIC_TRACE</span> (PCF8584 IIC bus transactions), <span class="f_CodeExample">EMulatR_FLASH_TRACE</span> (FlashRom command / erase / write activity), <span class="f_CodeExample">EMulatR_PIC_TRACE</span> (the 8259 PIC pair -- IRQ assert / EOI). Redirect to per-trace logs, for example <span class="f_CodeExample">2&gt; iic.log</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Chipset diagnostics and retire trace</span></h2>
-<p class="p_Normal">The chipset CSR diagnostic stream is OFF by default; set <span class="f_CodeExample">EMULATR_CHIPSET_DIAG_ON</span> to any value other than <span class="f_CodeExample">0</span> or <span class="f_CodeExample">false</span> to enable it for a run. (Before 10 June 2026 the sense was inverted and the knob was <span class="f_CodeExample">EMULATR_CHIPSET_DIAG_OFF</span>; that name is no longer read.) <span class="f_CodeExample">EMULATR_TRACE_WINDOW</span> forces the retire-compact trace window, and <span class="f_CodeExample">EMULATR_RETIRE_TRACE_DIR</span> sets the output directory for the retire / breakpoint / profiler trace files (see SRM Performance Logging).</p>
+<p class="p_Normal">The chipset CSR diagnostic stream is OFF by default; set <span class="f_CodeExample">EMulatR_CHIPSET_DIAG_ON</span> to any value other than <span class="f_CodeExample">0</span> or <span class="f_CodeExample">false</span> to enable it for a run. (Before 10 June 2026 the sense was inverted and the knob was <span class="f_CodeExample">EMulatR_CHIPSET_DIAG_OFF</span>; that name is no longer read.) <span class="f_CodeExample">EMulatR_TRACE_WINDOW</span> forces the retire-compact trace window, and <span class="f_CodeExample">EMulatR_RETIRE_TRACE_DIR</span> sets the output directory for the retire / breakpoint / profiler trace files (see SRM Performance Logging).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Probe and break gates</span></h2>
-<p class="p_Normal">For pinpoint debugging: <span class="f_CodeExample">EMULATR_GCT_WATCH</span> (store-watch on the GCT / FRU config-tree region), <span class="f_CodeExample">EMULATR_BREAK_ON_PA10</span> (conditional break on accesses to PA 0x10..0x17), <span class="f_CodeExample">EMULATR_CHECKPOINTS</span> (named PC checkpoints), and <span class="f_CodeExample">EMULATR_GATE</span> (a PC / condition gate controlling trace windowing). The ES40 bring-up probes -- <span class="f_CodeExample">EMULATR_TIG_RESET</span>, <span class="f_CodeExample">EMULATR_UDELAYWARP</span>, <span class="f_CodeExample">EMULATR_TIG_TRACE</span>, and <span class="f_CodeExample">EMULATR_RSCC_DIAG</span> -- are gated behind the compile-time <span class="f_CodeExample">EMULATR_BRINGUP_PROBES</span> and are experimental.</p>
+<p class="p_Normal">For pinpoint debugging: <span class="f_CodeExample">EMulatR_GCT_WATCH</span> (store-watch on the GCT / FRU config-tree region), <span class="f_CodeExample">EMulatR_BREAK_ON_PA10</span> (conditional break on accesses to PA 0x10..0x17), <span class="f_CodeExample">EMulatR_CHECKPOINTS</span> (named PC checkpoints), and <span class="f_CodeExample">EMulatR_GATE</span> (a PC / condition gate controlling trace windowing). The ES40 bring-up probes -- <span class="f_CodeExample">EMulatR_TIG_RESET</span>, <span class="f_CodeExample">EMulatR_UDELAYWARP</span>, <span class="f_CodeExample">EMulatR_TIG_TRACE</span>, and <span class="f_CodeExample">EMulatR_RSCC_DIAG</span> -- are gated behind the compile-time <span class="f_CodeExample">EMulatR_BRINGUP_PROBES</span> and are experimental.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Compile-time diagnostics (NOT runtime env vars)</span></h2>
-<p class="p_Normal">Some <span class="f_CodeExample">EMULATR_*</span> names are CMake options baked in at build time -- setting them in the shell does nothing. The important one is <span class="f_CodeExample">EMULATR_MEMDIAG</span>: a per-retired-instruction fprintf+fflush that imposes roughly a 900x slowdown and must stay OFF for normal use. <span class="f_CodeExample">EMULATR_DIAGNOSTIC_LOGGING</span> (centralized per-subsystem logging, non-Release builds) and the <span class="f_CodeExample">EMULATR_LOG_*</span> spdlog level macros are also build-time.</p>
+<p class="p_Normal">Some <span class="f_CodeExample">EMulatR_*</span> names are CMake options baked in at build time -- setting them in the shell does nothing. The important one is <span class="f_CodeExample">EMulatR_MEMDIAG</span>: a per-retired-instruction fprintf+fflush that imposes roughly a 900x slowdown and must stay OFF for normal use. <span class="f_CodeExample">EMulatR_DIAGNOSTIC_LOGGING</span> (centralized per-subsystem logging, non-Release builds) and the <span class="f_CodeExample">EMulatR_LOG_*</span> spdlog level macros are also build-time.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">For traced-boot command recipes, see Executing.</p>
 <p class="p_Normal">&nbsp;</p>

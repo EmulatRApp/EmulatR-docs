@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>3. Platform Editor &gt; The Configure Wizard</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="CD-ROM,Configure,disk folder,disks,drive model,MAC address,Make Disk,network,tape,Undo Configure,wizard" />
+   <meta name="description" content="Tools &gt; Configure... (Ctrl+K, or the Configure... button) adds disks, a CD-ROM and a MAC address to the open manifest in one pass. It asks plain questions, works out every..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "platform-editor-configure-wizard.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">The Configure Wizard</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-editor-configure-wizard.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="3_-platform-editor.html">3. Platform Editor</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">The Configure Wizard</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="platform-editor-editing.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="3_-platform-editor.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="platform-editor-validation.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal"><span class="f_CodeExample">Tools &gt; Configure...</span> (<span class="f_CodeExample">Ctrl+K,</span> or the Configure... button) adds disks, a CD-ROM and a MAC address to the open manifest in one pass. It asks plain questions, works out every address and value from the same rules the rest of the editor uses, shows the whole plan, and changes nothing until you press Finish.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The wizard only adds. It never removes or changes an existing device; do that in the tree.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 1 -- Disks</span></h2>
+<p class="p_Normal">Shows the platform, how many disks and CD-ROMs the manifest has now, and each storage controller with its free units, for example <span class="f_CodeExample">pka_53c810 (SCSI): full; cypress_ide (IDE): 3 free; cypress_ide2 (IDE): 4 free</span>. Enter the total number of disks the system should have. The number cannot go below the current count, or above the current count plus every free unit.</p>
+<p class="p_Notes"><span class="f_Notes">Note: The emulator supports one SCSI controller and one IDE pair, so a system cannot have more disks than those controllers' free units. Adding controllers needs multi-controller support in the emulator.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 2 -- New disks</span></h2>
+<p class="p_Normal">One row per new disk:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Column</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bus</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The controller. Defaults to the first bus with room, SCSI before IDE; you can change it.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Drive model</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">From <span class="f_CodeExample">disk_types.json</span>: SCSI disks offer EMulatR-512M, EMulatR-4G, RZ28L and RZ29L; IDE disks offer EMulatR-ATA. The model sets the disk the guest sees and the image size. RZ40 is not offered: its size is not a whole number of 4 KB pages, which the storage pool needs.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Image file</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The file name. The <span class="f_CodeExample">...</span> button picks an existing image (and clears New).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">New</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Ticked: the image is created when you press Finish. Unticked: an existing image is used.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Size (MB)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Only for a new EMulatR-ATA image, whose size is not fixed by the model.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">Above the rows is the Disk folder: where new images are created. It starts from <span class="f_CodeExample">EMulatR_DISK_DIR</span>, else the <span class="f_CodeExample">[Storage] diskDir</span> of the system's <span class="f_CodeExample">EMulatR.ini</span> (the one the launcher passes, or one beside the manifest or in the run directory; an empty or relative diskDir means the directory the emulator runs in), else the last folder used. The manifest keeps only the file name, so a run must use this folder as its disk directory.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 3 -- CD-ROM</span></h2>
+<p class="p_Normal">If the manifest already has a CD-ROM, the page shows where it is and which ISO it uses, and there is nothing to add; change its ISO in the tree, or use + Device for a second drive. Otherwise tick Use a CD-ROM and choose an ISO file. The CD-ROM goes on IDE when a unit is free, otherwise on SCSI.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 4 -- Tape</span></h2>
+<p class="p_Normal">Virtual tape is not yet supported; no tape drives are created. The page lists any tape rows the manifest has so you can remove them (the emulator cannot use them -- see V-45).</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 5 -- Network</span></h2>
+<p class="p_Normal">Shows the network controller: its slot, its interrupt route (from the same table the emulator uses) and its MAC address. The emulator supports one network controller, so there is nothing to count. This host's network binding (<span class="f_CodeExample">EMulatR_NET_ADAPTER</span>, or auto-detect) is shown for information; it is a host setting, not part of the manifest.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A controller without a MAC in the manifest uses the built-in <span class="f_CodeExample">08-00-2B-E5-40-00</span>, which every such system shares; two of them on the same network would collide. The box Give ... its own MAC address (ticked by default) adds a random, locally administered address that no other manifest in the folder uses. A MAC can be changed later in the tree; <span class="f_CodeExample">08-00-2B-...</span> values are allowed there.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page 6 -- Summary</span></h2>
+<p class="p_Normal">Lists everything Finish will do: <span class="f_CodeExample">SET</span> lines for MAC addresses, <span class="f_CodeExample">ADD</span> lines for each disk and CD-ROM with its controller and address, the images to create with their full paths and sizes, and notes. Anything that would stop the plan is listed as BLOCKED or ERROR, and Finish stays disabled until you go Back and fix it -- for example an image name that already exists, no disk folder, not enough free space, or a change that would break a validation rule.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What Finish does</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>Checks the names and the free space for every new image.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Creates all the new images. Each is sized to the drive model, rounded up to whole 4 KB pages, and reads back as zeros; creation is instant and uses no disk space until the guest writes.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span>Only then adds the rows and MAC addresses to the manifest.</p>
+<p class="p_Normal">If anything fails, no row is added, and the message lists any images already created (they are left in place). The manifest is not saved automatically: use <span class="f_CodeExample">File &gt; Save.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Undo</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">Edit &gt;</span> Undo Configure returns the manifest to how it was before Finish, as long as you have made no other edit since. It never deletes image files.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="3_-platform-editor.html" class="topiclink">Platform Editor</a></p>
+<p class="p_Normal"><a href="platform-editor-window.html" class="topiclink">The Platform Editor Window</a></p>
+<p class="p_Normal"><a href="platform-editor-validation.html" class="topiclink">Validation Messages</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Operating EmulatR &gt; 5.10 Platform Guides &gt; AlphaServer ES40</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="67CLIPPER,ALi M1543C,AlphaServer ES40,cl67srmrom,cl67srmrom.sys,CLIPPER,ES40,es40_v7_3.exe,es40_v7_3.rom,es40_v7_3_platform.json,EV68CB,extract_es40_cl67.py,firmware preparation,flash,LFU,M5229,PALcode/CPU Mismatch,quad CPU,REAL_HW,REAL_HW mode,SMP,Typhoon" />
+   <meta name="description" content="The ES40 is a four-processor Typhoon system with the ALi M1543C south bridge in place of the Cypress part the DS10 and DS20 use. Its SRM console powers up cleanly to P00&gt;&gt;&gt;..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "platform-es40.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">AlphaServer ES40</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-es40.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_10-platform-guides.html">5.10 Platform Guides</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">AlphaServer ES40</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="platform-ds20.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="4_10-platform-guides.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="5_-architecture--internals----.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The ES40 is a four-processor Typhoon system with the ALi M1543C south bridge in place of the Cypress part the DS10 and DS20 use. Its SRM console powers up cleanly to <span class="f_CodeExample">P00&gt;&gt;&gt;</span> with every device present, and it boots OpenVMS V8.3 from its SCSI system disk to the <span class="f_CodeExample">Username:</span> prompt.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">At a glance</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; width:175px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Item</span></p>
+</th>
+<th style="vertical-align:top; width:523px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">ES40</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal">Alpha 21264B (EV68CB, pass 4.0); four in hardware, one in EMulatR today</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">Core logic</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal">DECchip 21272 (Typhoon): Cchip 21272-CA, Dchip 21272-DA, two Pchips 21272-EA</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">South bridge</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi M1543C: ISA bridge, M5229 IDE, M5237 USB, M7101 power management</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">Memory</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal">4 GB by default, up to 32 GB</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">Console firmware</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal">HP 67CLIPPER SRM V7.3-1, from HP's <span class="f_CodeExample">cl67srmrom.exe</span>; no other ES40 firmware works (see Console firmware). Either prepared and staged as <span class="f_CodeExample">es40_v7_3.exe</span> (the usual way), or decompressed ahead of time to a <span class="f_CodeExample">.rom</span> with <span class="f_CodeExample">tools\host_firmware_decompressor.exe</span> (see Pre-decompressing the Firmware).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:175px; padding:0; border:solid thin #000000;"><p class="p_Normal">Platform manifest</p>
+</td>
+<td style="vertical-align:top; width:523px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">es40_v7_3_platform.json</span> (execution mode <span class="f_CodeExample">REAL_HW</span>; the manifest key reads <span class="f_CodeExample">&quot;execution_mode&quot;: &quot;silicon&quot;</span>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Devices</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Slot.Func</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Device</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Vendor:Device</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">SRM name</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">NCR 53C810 SCSI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1000:0001</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">pka0</span>; disks <span class="f_CodeExample">dka0</span>, <span class="f_CodeExample">dka200</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DE500 (DECchip 21143) Ethernet</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1011:0019</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ewa0</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi M1543C ISA bridge</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">10B9:1533</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(bridge to ISA bus 1)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">15.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi M5229 IDE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">10B9:5229</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dqa</span>, <span class="f_CodeExample">dqb</span>; the CD is <span class="f_CodeExample">dqa1</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">17.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi M7101 power management</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">10B9:7101</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">19.0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi M5237 USB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">10B9:5237</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On ISA: the floppy (<span class="f_CodeExample">dva0</span>).</p>
+<p class="p_Normal">These are the positions a real ES40 uses. The four parts of the ALi M1543C are four separate single-function PCI devices, each on its own device number: the ISA bridge at 7, the IDE controller at 15, power management at 17 and USB at 19. The positions are fixed by the board and are not relocatable in the platform manifest. OpenVMS depends on them: its ES40 support expects the IDE controller as function 0 of device 15, and stopped with a bugcheck during startup while EMulatR presented it anywhere else.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Console firmware</span></h2>
+<p class="p_NotesBox"><span class="f_T_Emphasis">Required firmware.</span><span class="f_NotesBox"> The ES40 works only with HP's </span><span class="f_T_Emphasis">67CLIPPER</span><span class="f_NotesBox"> SRM console, </span><span class="f_T_Emphasis">V7.3-1</span><span class="f_NotesBox">. That is the firmware EMulatR is tested with: the console completes its power-up and stops at </span><span class="f_CodeExample">P00&gt;&gt;&gt;</span><span class="f_NotesBox"> with every device present, and OpenVMS V8.3 boots from the SCSI system disk to the </span><span class="f_CodeExample">Username:</span><span class="f_NotesBox"> prompt with the JIT off and on. No other ES40 firmware works with EMulatR at this time.</span></p>
+<p class="p_Normal">EMulatR does not ship firmware (see <a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a>). You obtain the file, prepare it once, and copy it into the system's <span class="f_CodeExample">firmware</span> folder under the name <span class="f_CodeExample">es40_v7_3.exe</span>. The steps below cover each part.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Which file to use</span></h3>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">File</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Version</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Use it?</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cl67srmrom.exe</span> (693,248 bytes)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">67CLIPPER V7.3-1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">Yes.</span> This is the file to obtain. Prepare it as described below.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cl67srmrom.sys</span> (693,760 bytes, in the same zip)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">67CLIPPER V7.3-1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Yes. The same console in slightly different packaging; prepare it the same way (the offset differs).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">es40_v7_3.exe</span>, or any <span class="f_CodeExample">es40_vN_N.exe</span>, from HP's ES40 firmware update</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Update utility</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_T_Emphasis">No.</span> Despite the name, this is HP's Loadable Firmware Update (LFU) program, not the console. It runs the update utility and never reaches <span class="f_CodeExample">P00&gt;&gt;&gt;</span>.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cl67srmrom.sys</span> inside <span class="f_CodeExample">ES40FSL.ZIP</span> on HP's V7.3 firmware update CD</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">67CLIPPER V7.2-1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No. The V7.3 CD carries the older V7.2-1 console in this file.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cl67srmrom.exe</span> from older firmware CDs</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">67CLIPPER V6.2-1 and earlier</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No. Not tested.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cl67srmrom.exe</span> / <span class="f_CodeExample">cl67srmrom.sys</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CLIPPER V7.3-1 (for the EV6)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No. EMulatR presents an EV68CB processor, which the CLIPPER build is not for.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Where to get it</span></h3>
+<p class="p_Normal">HP's V7.3 ES40 console files were published on Digital's firmware FTP site as a single zip, <span class="f_CodeExample">es40.zip</span>, which is preserved in a public archive of that site:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">https://ftp.zx.net.nz/pub/archive/ftp.digital.com/pub/DEC/Alpha/firmware/v7.3/es40/es40.zip</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The zip is 4,209,297 bytes and dated 4 March 2007. It holds eight files: the 67CLIPPER console (<span class="f_CodeExample">cl67srmrom.exe</span> and <span class="f_CodeExample">cl67srmrom.sys</span>), the CLIPPER console (<span class="f_CodeExample">cls67rmrom.exe</span>, <span class="f_CodeExample">cl67srmrom.sys</span>), the AlphaBIOS console (<span class="f_CodeExample">clarcrom.exe</span>), and HP's <span class="f_CodeExample">clu.exe</span>, <span class="f_CodeExample">mkboot.exe</span> and <span class="f_CodeExample">mkbootfirm</span>. Only <span class="f_CodeExample">cl67srmrom.exe</span> (or <span class="f_CodeExample">cl67srmrom.sys</span>) is needed.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Check the download, then unzip it. In PowerShell, in the folder that holds the zip:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">Get-FileHash&nbsp;.\es40.zip</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Expand-Archive&nbsp;.\es40.zip&nbsp;-DestinationPath&nbsp;.\es40</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Get-FileHash&nbsp;.\es40\cl67srmrom.exe</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The two hashes must be, in order:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">C42397A55F7DEF1E0A818E86D41A4CA6044DE5B0FA0C11989E104F995933A537</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">392546CD375A734883A48026D36F6F48E3B0FCE636F6DD9EE190D49A042FC885</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The second is the file EMulatR is tested with, wherever it comes from; the same <span class="f_CodeExample">cl67srmrom.exe</span> circulates on other sites too. A different hash means a different file: another version, another platform, or a damaged download. Do not use it.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Why the file must be prepared</span></h3>
+<p class="p_Normal">HP packages the console as an input to its firmware update utility, not as a bare console image. The file holds, in order: a 512-byte update wrapper (1,024 bytes in the <span class="f_CodeExample">.sys</span>), a 64-byte flash header naming the version and platform, the console image itself (692,224 bytes), and a checksum.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR loads a firmware file into the emulated machine's memory exactly as it is on disk, so the wrapper and header must be removed first. Preparing the file does only that: it copies out the console image unchanged. <span class="f_T_Emphasis">Nothing is decompressed.</span> The console image is compressed, exactly as it sits in a real ES40's flash, and it decompresses itself each time the emulated machine starts, as the real console does.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Preparing it with PowerShell</span></h3>
+<p class="p_Normal">Needs nothing beyond Windows. In the folder that holds <span class="f_CodeExample">cl67srmrom.exe</span> (the <span class="f_CodeExample">es40</span> folder the zip was expanded into):</p>
+<p class="p_CodeExample"><span class="f_CodeExample">$b&nbsp;=&nbsp;[IO.File]::ReadAllBytes(&quot;$PWD\cl67srmrom.exe&quot;)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">$o&nbsp;=&nbsp;New-Object&nbsp;byte[]&nbsp;692224</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">[Array]::Copy($b,&nbsp;576,&nbsp;$o,&nbsp;0,&nbsp;692224)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">[IO.File]::WriteAllBytes(&quot;$PWD\es40_v7_3.exe&quot;,&nbsp;$o)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Get-FileHash&nbsp;.\es40_v7_3.exe</span></p>
+<p class="p_Normal">For <span class="f_CodeExample">cl67srmrom.sys</span>, read that file instead and use <span class="f_CodeExample">1088</span> in place of <span class="f_CodeExample">576</span>. The prepared file must be exactly 692,224 bytes, and its hash must be:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">968876CB19D2330B0FFDA806CE7A7A10CD983E6049AE31C8A86A1BDDF8787D6D</span></p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Preparing it with the EMulatR tool (source tree)</span></h3>
+<p class="p_Normal">The source tree has a script that does the same thing and checks the file first: it confirms the 67CLIPPER platform, version V7.3-1 and HP's checksum, refuses anything else (including HP's update image and the V7.2-1 and V6.2-1 consoles), and reports the hash of what it wrote. It accepts the <span class="f_CodeExample">.exe</span> or the <span class="f_CodeExample">.sys</span>:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">python&nbsp;tools/extract_es40_cl67.py&nbsp;cl67srmrom.exe&nbsp;es40_v7_3.exe</span></p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Naming it and putting it in place</span></h3>
+<p class="p_Normal">Name the prepared file <span class="f_CodeExample">es40_v7_3.exe</span> and copy it into the system's <span class="f_CodeExample">firmware</span> folder. In the launcher, press <span class="f_T_Emphasis">Open firmware folder</span> on the Named System Details tab, copy the file there, then select it in the Firmware control.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The name matters. EMulatR names everything that belongs to a firmware image after the file name: the platform manifest <span class="f_CodeExample">es40_v7_3_platform.json</span>, the flash (console settings) <span class="f_CodeExample">es40_v7_3.rom</span>, and the speed-up and badge profiles. Under any other name, <span class="f_CodeExample">es40_cl67.exe</span> or <span class="f_CodeExample">cl67srmrom.exe</span> for example, </p>
+<p class="p_Normal">EMulatR finds no ES40 manifest, falls back to its built-in DS10 platform, and the run stops with a <span class="f_CodeExample">PLATFORM MISMATCH</span> error.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Note the name clash: HP's ES40 update file is also called <span class="f_CodeExample">es40_v7_3.exe</span>. If a system misbehaves, check that the <span class="f_CodeExample">es40_v7_3.exe</span> in its <span class="f_CodeExample">firmware</span> folder is 692,224 bytes and carries the hash above. HP's update file is 2,822,144 bytes.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Or: a pre-decompressed image</span></h3>
+<p class="p_Normal">Instead of the prepared <span class="f_CodeExample">es40_v7_3.exe</span>, EMulatR can boot the console already decompressed, as a <span class="f_CodeExample">.rom</span>. Make it with the tool shipped in the <span class="f_CodeExample">tools</span> folder; it accepts HP's <span class="f_CodeExample">cl67srmrom.exe</span> as downloaded or the prepared <span class="f_CodeExample">es40_v7_3.exe</span>, and both give the same file:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools\host_firmware_decompressor.exe&nbsp;cl67srmrom.exe&nbsp;--rom&nbsp;console\es40_v7_3.rom</span></p>
+<p class="p_Normal">The result is byte-for-byte identical to the reference image EMulatR's loader was validated with. It is optional: see <a href="firmware-predecompress.html" class="topiclink">Pre-decompressing the Firmware</a> for how to boot it and what it does and does not gain today.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">In the source tree</span></h3>
+<p class="p_Normal">For developers building EMulatR: the prepared image is kept as <span class="f_CodeExample">common/firmware/es40_v7_3_cl67srm.exe</span>, and the build copies it to <span class="f_CodeExample">firmware/es40_v7_3.exe</span> beside <span class="f_CodeExample">EMulatR.exe</span>. HP's update image is kept as <span class="f_CodeExample">common/firmware/es40_v7_3.exe_do_not_use</span> and is never copied.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Background</span></h3>
+<p class="p_Normal">Earlier builds used HP's firmware-update image, which is a different program: it boots the Loadable Firmware Update utility (LFU) instead of the console, runs it on every cold boot, and on the ES40 never returns to a console prompt after the utility exits. That image is kept for firmware-update testing but is no longer staged.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">HP ships two SRM builds for the ES40: <span class="f_T_Emphasis">CLIPPER</span> for the EV6 processor and <span class="f_T_Emphasis">67CLIPPER</span> for the EV67 and EV68. EMulatR uses 67CLIPPER, and presents the processor that build expects: an Alpha 21264B (EV68CB), a part real ES40 systems shipped with. Earlier builds presented an EV6, and the console printed <span class="f_CodeExample">*** Warning - PALcode/CPU Mismatch - Reload SRM Firmware ***</span> at every power-up; it no longer does. The processor identity is set per platform, so the DS10 and DS20 are unchanged.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Flash and console settings</span></h2>
+<p class="p_Normal">The ES40 keeps its SRM environment variables in its 2 MB flash, not in a separate NVRAM file. EMulatR stores the flash in <span class="f_CodeExample">firmware/es40_v7_3.rom</span> in the run directory and writes it back on a clean shutdown. The flash also holds the firmware images an LFU update writes:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Flash offset</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Contents</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Sector 0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">TIG code</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0x010000</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM console image</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Sector 15</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SRM environment variables</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Sectors 16-17</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Serial ROM (SROM)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0x120000</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AlphaBIOS (ARC) image</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">To start from factory-fresh settings, shut the machine down, then rename <span class="f_CodeExample">es40_v7_3.rom</span> (do not delete it) before the next launch. EMulatR creates a new, blank flash when the file is missing.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Running an ES40</span></h2>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project&nbsp;&amp;&amp;&nbsp;v2.1/tools/EMulatR_launch.sh&nbsp;es40&nbsp;run&nbsp;--&nbsp;--no-autoload&nbsp;--autosnapshot&nbsp;off</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What show config reports</span></h2>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;show&nbsp;config</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;hp&nbsp;AlphaServer&nbsp;ES40</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Firmware</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">SRM&nbsp;Console:&nbsp;V7.3-1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">PALcode:&nbsp;OpenVMS&nbsp;PALcode&nbsp;V1.98-104,&nbsp;Tru64&nbsp;UNIX&nbsp;PALcode&nbsp;V1.92-105</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Serial&nbsp;ROM:&nbsp;V2.22G</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Processors</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">CPU&nbsp;0&nbsp;Alpha&nbsp;EV68CB&nbsp;pass&nbsp;4.0&nbsp;28&nbsp;MHz&nbsp;8MB&nbsp;Bcache</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Core&nbsp;Logic</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Cchip&nbsp;DECchip&nbsp;21272-CA&nbsp;Rev&nbsp;9(C4)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Dchip&nbsp;DECchip&nbsp;21272-DA&nbsp;Rev&nbsp;2</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Pchip&nbsp;0&nbsp;DECchip&nbsp;21272-EA&nbsp;Rev&nbsp;1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Pchip&nbsp;1&nbsp;DECchip&nbsp;21272-EA&nbsp;Rev&nbsp;4</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample"> </span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;Slot&nbsp;Option&nbsp;Hose&nbsp;0,&nbsp;Bus&nbsp;0,&nbsp;PCI</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;3&nbsp;NCR&nbsp;53C810&nbsp;pka0.7.0.3.0&nbsp;SCSI&nbsp;Bus&nbsp;ID&nbsp;7</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;dka0.0.0.3.0&nbsp;RZ29L-AA</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;dka200.2.0.3.0&nbsp;RZ29L-AA</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;4&nbsp;DECchip&nbsp;21143-AA&nbsp;ewa0.0.0.4.0&nbsp;08-00-2B-E5-40-00</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;7&nbsp;Acer&nbsp;Labs&nbsp;M1543C&nbsp;Bridge&nbsp;to&nbsp;Bus&nbsp;1,&nbsp;ISA</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;15&nbsp;Acer&nbsp;Labs&nbsp;M1543C&nbsp;IDE&nbsp;dqa.0.0.15.0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;dqb.0.1.15.0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;dqa1.1.0.15.0&nbsp;EMulatR&nbsp;VIRTUAL&nbsp;CDROM</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;17&nbsp;Acer&nbsp;Labs&nbsp;M1543C&nbsp;PMU</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;19&nbsp;Acer&nbsp;Labs&nbsp;M1543C&nbsp;USB</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;Option&nbsp;Hose&nbsp;0,&nbsp;Bus&nbsp;1,&nbsp;ISA</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;Floppy&nbsp;dva0.0.0.1000.0</span></p>
+<p class="p_Normal">Abridged. The MHz figure is EMulatR's calibrated clock, not a measure of host speed.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Status</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>SRM console to <span class="f_CodeExample">P00&gt;&gt;&gt;</span> with every device present.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>OpenVMS V8.3 boots from the SCSI system disk (<span class="f_CodeExample">b dka200</span>) through startup to the <span class="f_CodeExample">Username:</span> prompt, with the JIT off and with it on (<span class="f_CodeExample">EMulatR_JIT=fused</span>).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The IDE controller (ALi M5229) presents its interrupt, its base address registers and its bus-master registers as the real part does. The console lists the CD as <span class="f_CodeExample">dqa1</span> and boots from it.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Known limitations</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Installing OpenVMS from the CD (<span class="f_CodeExample">b dqa1</span>) does not complete yet. The CD boots and OpenVMS starts to load, then waits indefinitely when it begins to use the IDE controller. Install on a DS20 and copy the disk, or boot the ES40 from an installed SCSI disk.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">show config</span> shows an unreadable AlphaBIOS (ARC) version, and placeholder versions for the RMC and the TIG.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>After an LFU update, the update utility does not return to the console on its own: the TIG module reset it relies on is not modelled. See ES40 TIG Module Reset.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Only the 67CLIPPER SRM console (<span class="f_CodeExample">cl67srmrom.exe</span>) works. HP's ES40 firmware-update images (<span class="f_CodeExample">es40_vN_N.exe</span>) and the CLIPPER (EV6) console are not supported yet.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">SMP considerations</span></h2>
+<p class="p_Normal">The ES40 supports four CPUs; EMulatR runs one. Running more than one CPU (SMP) is planned for release 2.3, with every CPU on one host thread so that a run stays deterministic and repeatable. A threaded mode, one host thread per CPU, follows in release 3.1. Everything in the DS20 guide's SMP section applies. What the ES40 adds:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Four CPUs, not two.</span> Every per-CPU structure in the Typhoon chipset (interrupt masks and summaries, inter-processor interrupts) must hold four entries, and the one-thread schedule has to be fair across four.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">CPU identity.</span> The console checks the processor type against its PALcode build. EMulatR now presents an EV68CB, the identity the 67CLIPPER console expects, and applies it to every CPU, so the secondary CPUs will carry the same identity when SMP arrives.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The TIG.</span> EMulatR's design releases the secondary CPUs through the TIG, and on the ES40 the TIG is also where the unmodelled module reset lives. Both have to work before the ES40 runs more than one CPU.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="4_10-platform-guides.html" class="topiclink">5.10 Platform Guides</a></p>
+<p class="p_Normal"><a href="--appendix-ds20-_-es40-_-es45.html" class="topiclink">Appendix DS20 / ES40 / ES45</a></p>
+<p class="p_Normal"><a href="ali-m1543c-south-bridge-interf.html" class="topiclink">ALi M1543C South-Bridge Interface</a></p>
+<p class="p_Normal"><a href="--es40-tig-module-reset.html" class="topiclink">ES40 TIG Module Reset (Experimental)</a></p>
+<p class="p_Normal"><a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a></p>
+<p class="p_Normal"><a href="smp-(multiprocessor)-design.html" class="topiclink">SMP (MultiProcessor) Design</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

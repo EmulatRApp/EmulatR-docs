@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; SDI / DSSI / ST506 Devices</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; SDI / DSSI / ST506 Devices</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--sdi-devices-_-dssi-devices-_.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SDI / DSSI / ST506 Devices</span></h1>
 
@@ -127,17 +127,16 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">These are legacy DEC / PC disk interconnects, included here for reference. None is present on the DS10, which uses the CY82C693 IDE / ATAPI channel exclusively; they are not modeled by EmulatR.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-SDI (Standard Disk Interconnect) -- the serial interface DEC used between an HSC / KDM controller and RA-series disks on large VAX systems.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">DSSI (Digital Storage Systems Interconnect) -- a multi-host bus used to share RF-series disks across clustered VAX / Alpha nodes.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">ST506 -- the early MFM / RLL hard-disk interface of the PC / workstation era, predating IDE.</span></p>
+<p class="p_Normal">These are legacy DEC / PC disk interconnects, included here for reference. None is present on the DS10, which uses the CY82C693 IDE / ATAPI channel exclusively; they are not modeled by EMulatR.</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-SDI (Standard Disk Interconnect) -- the serial interface DEC used between an HSC / KDM controller and RA-series disks on large VAX systems.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">DSSI (Digital Storage Systems Interconnect) -- a multi-host bus used to share RF-series disks across clustered VAX / Alpha nodes.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">ST506 -- the early MFM / RLL hard-disk interface of the PC / workstation era, predating IDE.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Confirmed reference-only: no SDI, DSSI, or ST506 storage entry appears in any platform manifest (DS10, DS20, DS25, ES40, ES45). The storage types actually declared are <span class="f_CodeExample">scsi_disk</span>, <span class="f_CodeExample">ata_disk</span> and <span class="f_CodeExample">atapi_cdrom</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/BlockMediaFactory.h</span><span class="f_NotesBox"> -- closest real seam; SDI/DSSI/ST506 are not modeled.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">config/dec_disk_media_types.tsv</span><span class="f_NotesBox"> -- DEC media geometry catalog (reference).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/BlockMediaFactory.h</span><span class="f_NotesBox"> -- closest real seam; SDI/DSSI/ST506 are not modeled.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">config/dec_disk_media_types.tsv</span><span class="f_NotesBox"> -- DEC media geometry catalog (reference).</span></p>
 <p class="p_Normal">This topic is intentionally reference-only: no SDI, DSSI, or ST506 device is modeled in the tree.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>

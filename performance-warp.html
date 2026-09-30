@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>9. Performance &gt; Warp</title>
+   <title>10. Performance &gt; Warp</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?performance-warp.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="performance.html">9. Performance</a>&nbsp;&gt;</p>
+      <a href="performance.html">10. Performance</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Warp</span></h1>
 
@@ -114,7 +114,7 @@
       
       <a href="9-iteration-baseline.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="performance.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="release-notes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="test-settings.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -129,13 +129,13 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">Firmware waits for hardware by spinning: during probes and resets the SRM busy-waits on the cycle counter (RSCC) for a fixed interval. Executed instruction by instruction, those calibrated delays are pure cost. Warp recognises each such loop and collapses it -- the emulated cycles the loop would have spent are skipped rather than executed.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How it behaves</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Always on.</span> The warp and its census run on every boot; there is nothing to enable.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Discovered once, reused after.</span> The first boot of a firmware image finds its delay loops and pays a one-time discovery cost. Every later boot loads what was found, confirms a known loop after a few re-reads instead of the full spin, adds anything new, and writes the result back at clean exit.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Stored beside the firmware.</span> The findings live in <span class="f_CodeExample">&lt;stem&gt;_warp.json</span>, a run product like the flash NVRAM: it never ships and is never copied between machines. A fresh install builds its own on first boot.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Bound to the exact firmware.</span> The file records the size and FNV-1a hash of the image it was measured against. A census for different firmware bytes is refused as stale, renamed to <span class="f_CodeExample">&lt;stem&gt;_warp.stale-&lt;fnv64&gt;.json</span>, and replaced at clean exit.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Idle loops are paced, not skipped.</span> A block loop that has been reviewed and marked audited is warped at most one timer tick per 12000 executed instructions, which keeps an idle guest near real time and every run reproducible. No loop is audited in this release, so none is paced by default.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Always on.</span> The warp and its census run on every boot; there is nothing to enable.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Discovered once, reused after.</span> The first boot of a firmware image finds its delay loops and pays a one-time discovery cost. Every later boot loads what was found, confirms a known loop after a few re-reads instead of the full spin, adds anything new, and writes the result back at clean exit.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Stored beside the firmware.</span> The findings live in <span class="f_CodeExample">&lt;stem&gt;_warp.json</span>, a run product like the flash NVRAM: it never ships and is never copied between machines. A fresh install builds its own on first boot.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Bound to the exact firmware.</span> The file records the size and FNV-1a hash of the image it was measured against. A census for different firmware bytes is refused as stale, renamed to <span class="f_CodeExample">&lt;stem&gt;_warp.stale-&lt;fnv64&gt;.json</span>, and replaced at clean exit.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Idle loops are paced, not skipped.</span> A block loop that has been reviewed and marked audited is warped at most one timer tick per 12000 executed instructions, which keeps an idle guest near real time and every run reproducible. No loop is audited in this release, so none is paced by default.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Turning it off for a comparison</span></h2>
-<p class="p_Normal">Set <span class="f_CodeExample">EMULATR_UDELAYWARP=0</span> before starting EmulatR to run without the warp; the census is still loaded and saved. This exists so the warp's effect can be compared in two runs rather than two builds. Any other value, or none, leaves the warp on.</p>
+<p class="p_Normal">Set <span class="f_CodeExample">EMulatR_UDELAYWARP=0</span> before starting EMulatR to run without the warp; the census is still loaded and saved. This exists so the warp's effect can be compared in two runs rather than two builds. Any other value, or none, leaves the warp on.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Timing runs</span></h2>
 <p class="p_Normal">Because each clean exit updates the census, two runs of the same workload are only comparable if they start from the same census. Make <span class="f_CodeExample">&lt;stem&gt;_warp.json</span> read-only: a read-only census is used but never rewritten, so every run starts from identical findings. Discard the first boot after a firmware change -- it is the one that pays the discovery cost.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Details</span></h2>

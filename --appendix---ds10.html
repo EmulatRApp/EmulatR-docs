@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; Appendix - DS10</title>
+   <title>9. Appendices - Developer Reference &gt; 9.1 Platform Appendices &gt; Appendix - DS10</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21264,21272,AlphaServer DS10,BAR,Cypress CY82C693,DE500,dqa0,dqa1,ds10_platform.json,EV6,FRU EEPROM,IIC,PCI device manifest,Tsunami,tulip" />
-   <meta name="description" content="Reference material specific to the DS10 platform -- EmulatR's reference model, driven end to end to the SRM prompt (DS20 also boots to the prompt; ES40 is in active bring-up)...." />
+   <meta name="description" content="Reference material specific to the DS10 platform -- EMulatR's reference model, driven end to end to the SRM prompt (DS20 also boots to the prompt; ES40 is in active bring-up)...." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--appendix---ds10.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">9.1 Platform Appendices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Appendix - DS10</span></h1>
 
@@ -127,10 +127,10 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Reference material specific to the DS10 platform -- EmulatR's reference model, driven end to end to the SRM prompt (DS20 also boots to the prompt; ES40 is in active bring-up). This page summarizes the hardware EmulatR presents and the device manifest that defines it; the sub-topics carry the environment-variable reference, the SRM and SuperIO analysis, and the engineering status.</p>
+<p class="p_Normal">Reference material specific to the DS10 platform -- EMulatR's reference model, driven end to end to the SRM prompt (DS20 also boots to the prompt; ES40 is in active bring-up). This page summarizes the hardware EMulatR presents and the device manifest that defines it; the sub-topics carry the environment-variable reference, the SRM and SuperIO analysis, and the engineering status.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Hardware summary</span></h2>
-<p class="p_Normal">The AlphaServer DS10 is a single-processor Tsunami-family workstation. EmulatR presents a single 21264 (EV6) CPU, the 21272 (Tsunami) core-logic chipset, and a Cypress CY82C693 combination ISA bridge / IDE controller / SuperIO. The default configuration reports 1024 MB of memory and a 268 MHz cycle clock. The platform is defined declaratively by <span class="f_CodeExample">ds10_platform.json</span>; a missing manifest is a hard start-up error with no fallback.</p>
+<p class="p_Normal">The AlphaServer DS10 is a single-processor Tsunami-family workstation. EMulatR presents a single 21264 (EV6) CPU, the 21272 (Tsunami) core-logic chipset, and a Cypress CY82C693 combination ISA bridge / IDE controller / SuperIO. The default configuration reports 1024 MB of memory and a 268 MHz cycle clock. The platform is defined declaratively by <span class="f_CodeExample">ds10_platform.json</span>; a missing manifest is a hard start-up error with no fallback.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">PCI device manifest</span></h2>
 <p class="p_Normal">All devices sit on hose 0, bus 0. From <span class="f_CodeExample">ds10_platform.json</span>:</p>
@@ -197,10 +197,10 @@
 <p class="p_Normal">The DS10 manifest also models the IIC (I2C) bus the firmware probes during GCT/FRU initialization: two system-status devices (0x70, 0x72), an SMB FRU EEPROM for the DS10 board (0xA2) and one for the EV6 CPU (0xA4), and a 256-byte RCM NVRAM (0xC0). The PCI vendor/device IDs and BAR sizes are marked provisional in the manifest pending a real hardware dump.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/PlatformConfig.{h,cpp}</span><span class="f_NotesBox"> -- loads ds10_platform.json (hard error on a missing manifest).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- the Cypress ISA bridge + IDE.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">IicPcf8584 + ToyRtc, </span><span class="f_CodeExample">chipsetLib/FlashRom.h</span><span class="f_NotesBox"> -- the IIC / FRU EEPROM / RCM NVRAM devices.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">firmware/ds10_platform.json</span><span class="f_NotesBox"> -- the declarative device manifest.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/PlatformConfig.{h,cpp}</span><span class="f_NotesBox"> -- loads ds10_platform.json (hard error on a missing manifest).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- the Cypress ISA bridge + IDE.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">IicPcf8584 + ToyRtc, </span><span class="f_CodeExample">chipsetLib/FlashRom.h</span><span class="f_NotesBox"> -- the IIC / FRU EEPROM / RCM NVRAM devices.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">firmware/ds10_platform.json</span><span class="f_NotesBox"> -- the declarative device manifest.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="srm-boot-_-srm-commands-prompt.html" class="topiclink">SuperIO Controller</a></p>

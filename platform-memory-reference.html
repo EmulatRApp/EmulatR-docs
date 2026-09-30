@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; Platform Memory Reference</title>
+   <title>9. Appendices - Developer Reference &gt; 9.1 Platform Appendices &gt; Platform Memory Reference</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21264C,21272,21274,AlphaServer,C-chip,D-chip,DIMM,DS10,DS15,DS15a,DS20,DS20e,DS25,ECC,ES40,ES45,EV68C,EV68CB,interleaving,maximum memory,memory architecture,memory motherboard,MS620,P-chip,silicon maximum,Titan,Tsunami,Typhoon" />
-   <meta name="description" content="This appendix records the vendor memory specifications for the AlphaServer models EmulatR models or plans to model: how much memory each chassis physically holds, how its..." />
+   <meta name="description" content="This appendix records the vendor memory specifications for the AlphaServer models EMulatR models or plans to model: how much memory each chassis physically holds, how its..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-memory-reference.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">9.1 Platform Appendices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Platform Memory Reference</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">This appendix records the vendor memory specifications for the AlphaServer models EmulatR models or plans to model: how much memory each chassis physically holds, how its memory subsystem is organized, and where each figure came from. The maximum-memory column is the basis for EmulatR's per-model silicon clamp; what the clamp does, and when it applies, is described in Platform Identity &amp; Memory Geometry rather than here.</p>
+<p class="p_Normal">This appendix records the vendor memory specifications for the AlphaServer models EMulatR models or plans to model: how much memory each chassis physically holds, how its memory subsystem is organized, and where each figure came from. The maximum-memory column is the basis for EMulatR's per-model REAL_HW clamp; what the clamp does, and when it applies, is described in Platform Identity &amp; Memory Geometry rather than here.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -207,22 +207,22 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The vendor figures are quoted in GB as the source documents write them. EmulatR implements each ceiling as the binary equivalent -- a 2 GB DS10 is clamped at <span class="f_CodeExample">2147483648</span> bytes -- which is the reading these memory specifications intend.</p>
+<p class="p_Normal">The vendor figures are quoted in GB as the source documents write them. EMulatR implements each ceiling as the binary equivalent -- a 2 GB DS10 is clamped at <span class="f_CodeExample">2147483648</span> bytes -- which is the reading these memory specifications intend.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">DS15 / DS15a</span></h2>
 <p class="p_Normal">Maximum memory is 4 GB. The DS15 is built around the single-CPU Alpha 21264C (EV68C) platform architecture, and uses standard error-correcting code (ECC) memory configurations, reaching its maximum via 1 GB DIMM modules.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">DS20 / DS20e</span></h2>
-<p class="p_Normal">Maximum memory is 4 GB. DS20 is a Tsunami (21272) box; EmulatR models the ceiling as four 1 GB banks.</p>
+<p class="p_Normal">Maximum memory is 4 GB. DS20 is a Tsunami (21272) box; EMulatR models the ceiling as four 1 GB banks.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">DS25</span></h2>
 <p class="p_Normal">Maximum memory is 16 GB across 16 DIMM slots, on the Titan (21274) chipset.</p>
-<p class="p_Normal">This figure is the one EmulatR already applies, and it is consistent with the chassis slot count, but it is the one entry in this appendix with no named source document behind it -- the reference set that supplied the other platforms grouped DS25 under a DS20 heading without giving it a separate maximum. Treat the 16 GB as sound but uncited until a DS25 QuickSpec is attached.</p>
+<p class="p_Normal">This figure is the one EMulatR already applies, and it is consistent with the chassis slot count, but it is the one entry in this appendix with no named source document behind it -- the reference set that supplied the other platforms grouped DS25 under a DS20 heading without giving it a separate maximum. Treat the 16 GB as sound but uncited until a DS25 QuickSpec is attached.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES40</span></h2>
 <p class="p_Normal">The ES40 ships in two memory builds. Model 1, the entry-level configuration, holds up to 16 GB across 16 DIMM slots on its memory motherboards. Model 2, the expanded configuration, holds up to 32 GB across 32 DIMM slots, at 8 DIMMs per memory motherboard.</p>
 <p class="p_Normal">The memory subsystem is built on a switch-based interconnect driven by a chipset of one C-chip (command), eight D-chips (data paths) and two P-chips (PCI interface). It carries two 256-bit memory buses supporting multiple memory arrays, which yields high-bandwidth interleaving of up to 5.2 GB/sec.</p>
-<p class="p_Normal">EmulatR clamps ES40 at the Model 2 figure of 32 GB. That bounds the more capable build, so a Model 1 machine modeled under the same name is not protected by the clamp at its own 16 GB ceiling.</p>
+<p class="p_Normal">EMulatR clamps ES40 at the Model 2 figure of 32 GB. That bounds the more capable build, so a Model 1 machine modeled under the same name is not protected by the clamp at its own 16 GB ceiling.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES45</span></h2>
 <p class="p_Normal">Maximum memory is 32 GB, using up to 32 DIMM slots across 8 memory options and arrays.</p>

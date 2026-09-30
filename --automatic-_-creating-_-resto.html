@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.5 Snapshots &amp; Boot Acceleration</title>
+   <title>5. Operating EmulatR &gt; 5.5 Snapshots &amp; Boot Acceleration</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content=".axpsnap,autoload-newest,--autosnapshot,EMULATR_AUTOSNAP,EMULATR_CONSOLE_SNAPSHOT,EMULATR_NO_AUTOLOAD,EMULATR_SNAPSHOT_MARKER,EMULATR_SNAPSHOT_PRUNE,--no-autoload,--snapshot-on-pc,snapshots directory" />
-   <meta name="description" content="Automatic snapshots Periodic auto_*.axpsnap saves are on by default. Disable them for clean cold-boot / profiling runs: &nbsp;--autosnapshot off # or EMULATR_AUTOSNAP=off On startup" />
+   <meta name="description" content="Automatic snapshots Periodic auto_*.axpsnap saves are on by default. Disable them for clean cold-boot / profiling runs: &nbsp;--autosnapshot off # or EMulatR_AUTOSNAP=off On startup" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,14 +105,14 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--automatic-_-creating-_-resto.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Snapshot Operations</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="virtual-floppy-(dva0).html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="virtual-tape-drives.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="4_-operating-emulatr----------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="--boot-acceleration-entry-snap.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -130,35 +130,35 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Automatic snapshots</span></h2>
 <p class="p_Normal">Periodic <span class="f_CodeExample">auto_*.axpsnap</span> saves are on by default. Disable them for clean cold-boot / profiling runs:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">--autosnapshot&nbsp;off&nbsp;#&nbsp;or&nbsp;EMULATR_AUTOSNAP=off</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">--autosnapshot&nbsp;off&nbsp;#&nbsp;or&nbsp;EMulatR_AUTOSNAP=off</span></p>
 <p class="p_Normal">On startup the newest snapshot is auto-loaded unless you force a cold boot:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">--no-autoload&nbsp;#&nbsp;or&nbsp;EMULATR_NO_AUTOLOAD=1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">--no-autoload&nbsp;#&nbsp;or&nbsp;EMulatR_NO_AUTOLOAD=1</span></p>
 <p class="p_Normal">Disabling autosnapshot on mint cold-boot runs avoids the per-save disk cost.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Creating snapshots</span></h2>
 <p class="p_Normal">Two capture mechanisms beyond the automatic saves:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">- Console marker -- arm with EMULATR_CONSOLE_SNAPSHOT=1; when a console input line matches the marker (default &quot;set oem_string snapshot&quot;), a snapshots/predig_oemsnap_cyc&lt;N&gt;.axpsnap is written. Change the marker with EMULATR_SNAPSHOT_MARKER (leading / trailing whitespace trimmed; internal whitespace is NOT normalized).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox"> PC-triggered -- --snapshot-on-pc &lt;pc&gt;[,...], optionally named with --snapshot-name-tag &lt;s&gt;.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Console marker -- arm with EMulatR_CONSOLE_SNAPSHOT=1; when a console input line matches the marker (default &quot;set oem_string snapshot&quot;), a snapshots/predig_oemsnap_cyc&lt;N&gt;.axpsnap is written. Change the marker with EMulatR_SNAPSHOT_MARKER (leading / trailing whitespace trimmed; internal whitespace is NOT normalized).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">PC-triggered -- --snapshot-on-pc &lt;pc&gt;[,...], optionally named with --snapshot-name-tag &lt;s&gt;.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Restoring snapshots</span></h2>
-<p class="p_Normal">By default, startup restores the newest snapshot automatically (autoload-newest). To ignore snapshots and force a genuine cold boot, launch with <span class="f_CodeExample">--no-autoload</span> (<span class="f_CodeExample">EMULATR_NO_AUTOLOAD=1</span>). Snapshot files are resolved in the CWD-relative <span class="f_CodeExample">snapshots/</span> directory, so launch from the Emulatr root for the canonical set.</p>
+<p class="p_Normal">By default, startup restores the newest snapshot automatically (autoload-newest). To ignore snapshots and force a genuine cold boot, launch with <span class="f_CodeExample">--no-autoload</span> (<span class="f_CodeExample">EMulatR_NO_AUTOLOAD=1</span>). Snapshot files are resolved in the CWD-relative <span class="f_CodeExample">snapshots/</span> directory, so launch from the EMulatR root for the canonical set.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Pruning snapshots</span></h2>
 <p class="p_Normal">Pruning of old snapshots is off by default -- without the gate, <span class="f_CodeExample">pruneOldSnapshots</span> is a no-op and nothing is evicted. Enable it with:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_SNAPSHOT_PRUNE=1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_SNAPSHOT_PRUNE=1</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Boot-acceleration snapshot</span></h2>
-<p class="p_Normal">A specialized use of this machinery mints a snapshot at the firmware's decompression hand-off and reuses it to skip the decompressor on later runs, under the <span class="f_CodeExample">EMULATR_FAST_DECOMPRESS</span> lever. That lever is NOT implemented in this build -- see Boot Acceleration - Entry Snapshot, which is kept as the design of record.</p>
+<p class="p_Normal">A specialized use of this machinery mints a snapshot at the firmware's decompression hand-off and reuses it to skip the decompressor on later runs, under the <span class="f_CodeExample">EMulatR_FAST_DECOMPRESS</span> lever. That lever is NOT implemented in this build -- see Boot Acceleration - Entry Snapshot, which is kept as the design of record.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Snapshot.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">systemLib/Snapshot.cpp</span><span class="f_NotesBox"> -- save / load / autoloadLatest; checksum + version + chipset-variant validation; pruneOldSnapshots.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> -- armSnapshotOnPc / addSnapshotOnPc (PC triggers), console-marker + periodic saves in systemTick, enableEntrySnapshot.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">main.cpp</span><span class="f_NotesBox"> -- --snapshot-on-pc / --autosnapshot / --no-autoload handling and the autoload-newest call.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Snapshot.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">systemLib/Snapshot.cpp</span><span class="f_NotesBox"> -- save / load / autoloadLatest; checksum + version + chipset-variant validation; pruneOldSnapshots.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/Machine.cpp</span><span class="f_NotesBox"> -- armSnapshotOnPc / addSnapshotOnPc (PC triggers), console-marker + periodic saves in systemTick, enableEntrySnapshot.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">main.cpp</span><span class="f_NotesBox"> -- --snapshot-on-pc / --autosnapshot / --no-autoload handling and the autoload-newest call.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--boot-acceleration-entry-snap.html" class="topiclink">Boot Acceleration - Entry Snapshot</a></p>
-<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EmulatR</a></p>
+<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EMulatR</a></p>
 <p class="p_Normal"><a href="--executing-two-instances.html" class="topiclink">Executing Two Instances</a></p>
 <p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables</a></p>
 

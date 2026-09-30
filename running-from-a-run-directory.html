@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>3. Quick Start &gt; Running from a Run Directory</title>
+   <title>4. Quick Start &gt; Running from a Run Directory</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?running-from-a-run-directory.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="3_-quick-start----------------.html">3. Quick Start</a>&nbsp;&gt;</p>
+      <a href="3_-quick-start----------------.html">4. Quick Start</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Running from a Run Directory</span></h1>
 
@@ -135,13 +135,13 @@
 <p class="p_CodeExample"><span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/tools/&lt;script&gt;.sh</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why it runs from anywhere</span></h2>
-<p class="p_Normal">Every runtime script sources <span class="f_CodeExample">tools/_emulatr_runenv.sh</span>, which locates the run directory from the script's own path (via <span class="f_CodeExample">BASH_SOURCE</span>) -- never a hardcoded or source-tree path. It then <span class="f_CodeExample">cd</span>s into the run directory and pre-creates <span class="f_CodeExample">logs/ traces/ snapshots/</span>. Because the emulator also writes relative to its current directory, all output lands under the run directory automatically. The current working directory does not matter -- these are equivalent:</p>
+<p class="p_Normal">Every runtime script sources <span class="f_CodeExample">tools/_EMulatR_runenv.sh</span>, which locates the run directory from the script's own path (via <span class="f_CodeExample">BASH_SOURCE</span>) -- never a hardcoded or source-tree path. It then <span class="f_CodeExample">cd</span>s into the run directory and pre-creates <span class="f_CodeExample">logs/ traces/ snapshots/</span>. Because the emulator also writes relative to its current directory, all output lands under the run directory automatically. The current working directory does not matter -- these are equivalent:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;out/build/v6-relwithdebinfo/run&nbsp;&amp;&amp;&nbsp;./tools/run_ds10_trace.sh</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">/any/where&nbsp;$&nbsp;/full/path/out/build/v6-relwithdebinfo/run/tools/run_ds10_trace.sh</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Distributing a build (download, unzip, run)</span></h2>
-<p class="p_Normal">A distributed artifact is the run directory itself: zip <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span> (Emulatr.exe, the Qt DLLs, firmware/, config/, the platform manifests, and tools/). The end user unzips it anywhere, opens <span class="f_CodeExample">tools/</span>, and runs a script -- for example:</p>
+<p class="p_Normal">A distributed artifact is the run directory itself: zip <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span> (EMulatR.exe, the Qt DLLs, firmware/, config/, the platform manifests, and tools/). The end user unzips it anywhere, opens <span class="f_CodeExample">tools/</span>, and runs a script -- for example:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">./tools/run_ds10_trace.sh</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
@@ -187,7 +187,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">config/</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulatr.ini (model set per run, restored on exit).</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR.ini (model set per run, restored on exit).</p>
 </td>
 </tr>
 </tbody>
@@ -228,7 +228,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">set&nbsp;-euo&nbsp;pipefail</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">SELF_DIR=&quot;$(cd&nbsp;&quot;$(dirname&nbsp;&quot;${BASH_SOURCE[0]}&quot;)&quot;&nbsp;&amp;&amp;&nbsp;pwd)&quot;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">source&nbsp;&quot;$SELF_DIR/_emulatr_runenv.sh&quot;&nbsp;#&nbsp;sets&nbsp;RUN_DIR,&nbsp;BIN,&nbsp;HOST;&nbsp;cd's&nbsp;in</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">source&nbsp;&quot;$SELF_DIR/_EMulatR_runenv.sh&quot;&nbsp;#&nbsp;sets&nbsp;RUN_DIR,&nbsp;BIN,&nbsp;HOST;&nbsp;cd's&nbsp;in</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">3. Use only run-dir-relative paths for output (<span class="f_CodeExample">logs/</span>, <span class="f_CodeExample">traces/</span>, ...).</p>
 <p class="p_Normal">4. Rebuild -- CMake auto-deploys it to <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/tools/</span>.</p>
@@ -237,7 +237,7 @@
 <p class="p_Normal"><a href="running-from-the-shell.html" class="topiclink">Running from the Shell</a></p>
 <p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
 <p class="p_Normal"><a href="command-line-options.html" class="topiclink">Command Line Options</a></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

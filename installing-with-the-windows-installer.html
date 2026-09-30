@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="Add/Remove Programs,beta,firmware,installer,MSI,Program Files,reinstall,setup.exe,uninstall,upgrade" />
-   <meta name="description" content="Beta and release builds of EmulatR are distributed as a single Windows setup program (EmulatR_V&lt;version&gt;-setup.exe). The installer places a complete, ready-to-run installation..." />
+   <meta name="description" content="Beta and release builds of EMulatR are distributed as a single Windows setup program (EMulatR_V&lt;version&gt;-setup.exe). The installer places a complete, ready-to-run installation..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,14 +127,14 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Beta and release builds of EmulatR are distributed as a single Windows setup program (<span class="f_CodeExample">EmulatR_V&lt;version&gt;-setup.exe</span>). The installer places a complete, ready-to-run installation under:</p>
+<p class="p_Normal">Beta and release builds of EMulatR are distributed as a single Windows setup program (<span class="f_CodeExample">EMulatR_V&lt;version&gt;-setup.exe</span>). The installer places a complete, ready-to-run installation under:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EmulatR</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">No source tree, compiler, or Qt installation is required -- the installer carries everything the applications need. Building from source remains available for developers and is described in <a href="--building-from-source.html" class="topiclink">Building from Source</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Upgrading or reinstalling: uninstall first</span></h2>
-<p class="p_NotesBox"><span class="f_NotesBox">Before installing a new build over an existing installation, uninstall the existing one first: open Windows Settings, then Apps, then Installed apps (on older Windows: Control Panel, Add/Remove Programs), locate ASA EmulatR, and choose Uninstall. Then run the new installer.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">Before installing a new build over an existing installation, uninstall the existing one first: open Windows Settings, then Apps, then Installed apps (on older Windows: Control Panel, Add/Remove Programs), locate ASA EMulatR, and choose Uninstall. Then run the new installer.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is the recommended upgrade path for every new build. Installing on top of an existing installation can leave files from the previous version behind, and Windows loads DLLs from the application directory before anywhere else -- a stale library alongside a new executable can cause startup failures that look like a broken build. A clean uninstall/install guarantees the installation directory contains exactly one consistent version.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -152,21 +152,21 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">Emulatr.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The emulator itself, with its <span class="f_CodeExample">config\</span> data and the platform manifests.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EmulatrLaunch.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatRLaunch.exe</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The launcher -- the recommended front door. It creates and manages named systems, run directories, and disk images, and starts the emulator for you.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">editors\platedit_qt.exe</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">editors\platedit_wx.exe</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Platform Editor for authoring and validating platform manifests.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The Platform Editor for authoring and validating platform manifests (see chapter 3). The earlier Qt edition, <span class="f_CodeExample">platedit_qt.exe</span>, is installed beside it as a fallback.</p>
 </td>
 </tr>
 <tr>
@@ -187,10 +187,10 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">After installing</span></h2>
 <p class="p_Normal">1. Copy your SRM firmware image(s) into the installation's <span class="f_CodeExample">firmware\</span> folder.</p>
-<p class="p_Normal">2. Start <span class="f_CodeExample">EmulatrLaunch.exe</span> and create a named system -- the launcher builds the run directory, disk images, and configuration for you.</p>
+<p class="p_Normal">2. Start <span class="f_CodeExample">EMulatRLaunch.exe</span> and create a named system -- the launcher builds the run directory, disk images, and configuration for you.</p>
 <p class="p_Normal">3. Boot, and connect to the console. See <a href="--first-startup.html" class="topiclink">First Startup</a>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_T_Emphasis">Before the first run:</span> exclude EmulatR's folders from antivirus scanning, and keep run directories out of cloud-synced folders such as OneDrive. See <a href="antivirus-and-cloud-sync.html" class="topiclink">Antivirus and Cloud Sync</a>.</p>
+<p class="p_Normal"><span class="f_T_Emphasis">Before the first run:</span> exclude EMulatR's folders from antivirus scanning, and keep run directories out of cloud-synced folders such as OneDrive. See <a href="antivirus-and-cloud-sync.html" class="topiclink">Antivirus and Cloud Sync</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="installation-test-plan.html" class="topiclink">Installation Test Plan</a></p>

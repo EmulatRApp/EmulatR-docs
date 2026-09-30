@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.1 Configuring &amp; Running &gt; Platform Identity &amp; Memory Geometry</title>
+   <title>5. Operating EmulatR &gt; 5.1 Configuring &amp; Running &gt; Platform Identity &amp; Memory Geometry</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="--firmware,--mem,[System] model,argument resolution,clamp-and-continue,DS10,DS15,DS20,DS25,ES40,ES45,firmware stem,GAP-PLAT-001,JRN-PLATID-001,memory geometry,memorySize,model derivation,platform identity,platform latch,PLATFORM MISMATCH,silicon maximum,stem-wins,Titan 21274" />
-   <meta name="description" content="Two rules settle what machine EmulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the..." />
+   <meta name="description" content="Two rules settle what machine EMulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-identity-and-geometry.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">4.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">5.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Platform Identity &amp; Memory Geometry</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Two rules settle what machine EmulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the requested memory size is capped at what that model's silicon could physically hold.</p>
+<p class="p_Normal">Two rules settle what machine EMulatR is about to be, and both run at argument resolution -- before the machine is constructed. The firmware image names the model, and the requested memory size is capped at what that model's REAL_HW could physically hold.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The firmware stem names the model</span></h2>
 <p class="p_Normal">When <span class="f_CodeExample">--firmware</span> is given, the model is derived from the firmware stem's leading token -- the text before the first underscore, upcased. <span class="f_CodeExample">ds10_v7_3.exe</span> gives DS10. A recognized token overrides the <span class="f_CodeExample">[System] model</span> line in the ini, and the override is announced on stderr when the two disagree.</p>
@@ -136,7 +136,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Before this rule the platform had two identity channels. The manifest was already keyed to the firmware stem, but the model rode the ini -- so an ini reading <span class="f_CodeExample">model=DS20</span> launched with <span class="f_CodeExample">--firmware ds10_v7_3.exe</span> booted a DS10 device bus under a DS20 model. South-bridge selection, the capability latch and the memory-geometry expectations all followed the wrong machine, while the guest firmware badged itself from the DS10 IIC bus it actually probed. The platform latch reports that split as <span class="f_CodeExample">PLATFORM MISMATCH</span>; it stays in place as the second line of defense for firmware whose stem is unrecognized.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory is clamped to the silicon maximum</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory is clamped to the REAL_HW maximum</span></h2>
 <p class="p_Normal">A requested memory size larger than the modeled machine could physically hold is reset to that maximum, and the change is announced on stderr. The policy is clamp-and-continue rather than fail: the ini carries a single <span class="f_CodeExample">memorySize</span> shared by every model, and a DS10 run should not die because the ini was last tuned for an ES40.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -203,7 +203,7 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">DS15 is in the table because the launcher enforces its ceiling, but the binary does not yet. EmulatR recognizes DS10, DS20, DS25, ES40 and ES45 in both its stem-token list and its clamp table, and DS15 is in neither, so a DS15 run takes its model from the ini and is not clamped inside the emulator at all -- the 4 GiB ceiling holds only because <span class="f_CodeExample">tools/emulatr_launch.sh</span> applies it before launch. Adding DS15 to those two tables closes the gap.</p>
+<p class="p_Normal">DS15 is in the table because the launcher enforces its ceiling, but the binary does not yet. EMulatR recognizes DS10, DS20, DS25, ES40 and ES45 in both its stem-token list and its clamp table, and DS15 is in neither, so a DS15 run takes its model from the ini and is not clamped inside the emulator at all -- the 4 GiB ceiling holds only because <span class="f_CodeExample">tools/EMulatR_launch.sh</span> applies it before launch. Adding DS15 to those two tables closes the gap.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">These are BOX ceilings -- what the chassis holds in DIMMs -- not chipset addressing limits, and the two differ. Titan (21274), the core logic behind DS15, DS25 and ES45, addresses 32 GiB, so a DS25 clamped at 16 GiB is bounded by its 16 DIMM slots rather than by anything Titan cannot reach. The ES40 shows the same split from the other side: 32 GiB is the Model 2 figure, with 32 DIMMs at eight per memory motherboard, while Model 1 carries 16 DIMMs and tops out at 16 GiB. Where one model name covers both builds, the clamp table takes the larger figure, so it bounds the most capable machine of that name and leaves a smaller build of it unprotected.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -248,7 +248,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">memory granted</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the lesser of the request and the model's silicon maximum</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the lesser of the request and the model's REAL_HW maximum</p>
 </td>
 </tr>
 </tbody>
@@ -258,7 +258,7 @@
 <p class="p_Normal">All four are settled before the machine is constructed, so every downstream consumer -- the chipset and the Cchip address-array registers among them -- sees the clamped value rather than the request.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What these rules do not do</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">Neither rule overrides the platform manifest.</span> <span class="f_CodeExample">EMULATR_PLATFORM_CONFIG</span> still points the manifest wherever an experiment needs it. The model still follows the stem, and the latch still reports a hybrid combination rather than accepting one silently -- an experiment may want a hybrid, but it must not get one by accident.</p>
+<p class="p_Normal"><span class="f_CodeExample">Neither rule overrides the platform manifest.</span> <span class="f_CodeExample">EMulatR_PLATFORM_CONFIG</span> still points the manifest wherever an experiment needs it. The model still follows the stem, and the latch still reports a hybrid combination rather than accepting one silently -- an experiment may want a hybrid, but it must not get one by accident.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The clamp is a ceiling, not geometry validation. DIMM interleave legality, array counts and alignment are not checked -- only the total size. Faithful geometry modelling, of the kind the ES40 banner reports, is future work.</p>
 <p class="p_Normal">&nbsp;</p>

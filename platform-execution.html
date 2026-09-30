@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Platform Execution</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock &gt; Platform Execution</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?platform-execution.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">6.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Platform Execution</span></h1>
 
@@ -130,16 +130,16 @@
 <p class="p_Normal">Every supported model is launched the same way, through one script. The model is not really a flag you choose -- it follows the firmware image the run loads.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The launcher</span></h2>
-<p class="p_CodeExample"><span class="f_CodeExample">tools/emulatr_launch.sh&nbsp;ds20&nbsp;bgate</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools/EMulatR_launch.sh&nbsp;ds20&nbsp;bgate</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The full form is <span class="f_CodeExample">tools/emulatr_launch.sh &lt;ds10|ds15|ds20|ds25|es40|es45&gt; [purpose] [-- extra Emulatr args]</span>. The platform argument is the single input, and it fixes all three identity channels together -- firmware, memory ceiling and ini model -- so a mis-badged or over-allocated launch cannot be typed by hand. For one run the script:</p>
+<p class="p_Normal">The full form is <span class="f_CodeExample">tools/EMulatR_launch.sh &lt;ds10|ds15|ds20|ds25|es40|es45&gt; [purpose] [-- extra EMulatR args]</span>. The platform argument is the single input, and it fixes all three identity channels together -- firmware, memory ceiling and ini model -- so a mis-badged or over-allocated launch cannot be typed by hand. For one run the script:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">- resolves <span class="f_CodeExample">firmware/&lt;stem&gt;.exe</span> and passes it as <span class="f_CodeExample">--firmware</span>;</p>
-<p class="p_Normal">- requests 4 GiB of guest memory, clamped down to that model's silicon ceiling;</p>
-<p class="p_Normal">- sets the <span class="f_CodeExample">[System] model</span> line in <span class="f_CodeExample">config/Emulatr.ini</span> and restores the original on exit;</p>
-<p class="p_Normal">- always raises the PuTTY console -- it unsets <span class="f_CodeExample">EMULATR_NO_PUTTY</span> and sets <span class="f_CodeExample">EMULATR_CONSOLE_MIRROR</span> -- because diagnostic runs are driven by an operator at the console;</p>
+<p class="p_Normal">- requests 4 GiB of guest memory, clamped down to that model's REAL_HW ceiling;</p>
+<p class="p_Normal">- sets the <span class="f_CodeExample">[System] model</span> line in <span class="f_CodeExample">config/EMulatR.ini</span> and restores the original on exit;</p>
+<p class="p_Normal">- always raises the PuTTY console -- it unsets <span class="f_CodeExample">EMulatR_NO_PUTTY</span> and sets <span class="f_CodeExample">EMulatR_CONSOLE_MIRROR</span> -- because diagnostic runs are driven by an operator at the console;</p>
 <p class="p_Normal">- writes a stem-keyed log to <span class="f_CodeExample">logs/&lt;stem&gt;_&lt;purpose&gt;_&lt;timestamp&gt;.log</span>;</p>
-<p class="p_Normal">- passes everything after <span class="f_CodeExample">--</span> to Emulatr.exe verbatim, and forwards diagnostic environment variables (<span class="f_CodeExample">EMULATR_VALUE_GATE</span> and the like) from the calling shell;</p>
+<p class="p_Normal">- passes everything after <span class="f_CodeExample">--</span> to EMulatR.exe verbatim, and forwards diagnostic environment variables (<span class="f_CodeExample">EMulatR_VALUE_GATE</span> and the like) from the calling shell;</p>
 <p class="p_Normal">- on exit, echoes the platform-latched line and flags any <span class="f_CodeExample">PLATFORM MISMATCH</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The run directory is <span class="f_CodeExample">$RUN_DIR</span>, defaulting to <span class="f_CodeExample">out/build/v6-relwithdebinfo/run</span>. Set it in the environment to run a different configuration; the script changes into it before launching, so relative paths resolve the same way whichever build you point at.</p>
@@ -216,7 +216,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">DS10, DS20 and ES40 additionally form a standing three-platform gate: all three must still reach the prompt before any shared core, chipset or device change is committed.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">DS15 is the newest entry and the least finished. Its wrapper exists, but no <span class="f_CodeExample">ds15_v7_3.exe</span> is staged in the run directory, so the launcher stops with a FATAL before the emulator starts; the v7.3 image is in the firmware archive and staging it is what the platform waits on. DS15 is also the one model EmulatR itself does not recognize -- see <a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a>.</p>
+<p class="p_Normal">DS15 is the newest entry and the least finished. Its wrapper exists, but no <span class="f_CodeExample">ds15_v7_3.exe</span> is staged in the run directory, so the launcher stops with a FATAL before the emulator starts; the v7.3 image is in the firmware archive and staging it is what the platform waits on. DS15 is also the one model EMulatR itself does not recognize -- see <a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Cold boots</span></h2>
 <p class="p_Normal">The launcher has no <span class="f_CodeExample">cold</span> keyword. A genuinely cold boot is requested by passing the emulator flags through: <span class="f_CodeExample">tools/run_ds20.sh cold -- --no-autoload</span>, where the first word is only the log tag. Stale <span class="f_CodeExample">auto_*.axpsnap</span> files are not purged for you, so a run that must not restore from a snapshot should pass <span class="f_CodeExample">--no-autoload</span> explicitly rather than rely on the snapshot directory being empty.</p>
@@ -224,15 +224,15 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What the launcher does not decide</span></h2>
 <p class="p_Normal">It still rewrites the ini <span class="f_CodeExample">model</span> line, but that is belt and braces rather than the authority: the model is derived from the firmware stem whenever <span class="f_CodeExample">--firmware</span> is given, so <span class="f_CodeExample">ds10_v7_3.exe</span> means DS10 regardless of what the ini says. The rewrite covers the case where the binary in the run directory predates that rule.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Memory is clamped twice, and for most models the two agree. The launcher clamps its request to the model's ceiling before launching, and EmulatR clamps again at argument resolution. On a DS10 the 4 GiB default becomes 2 GiB at the first clamp and passes the second untouched. DS15 is the exception: EmulatR does not know the model, so only the launcher's clamp applies, and a bare <span class="f_CodeExample">Emulatr.exe</span> invocation for a DS15 is unprotected. Both clamps announce themselves on stderr; neither is a failure.</p>
+<p class="p_Normal">Memory is clamped twice, and for most models the two agree. The launcher clamps its request to the model's ceiling before launching, and EMulatR clamps again at argument resolution. On a DS10 the 4 GiB default becomes 2 GiB at the first clamp and passes the second untouched. DS15 is the exception: EMulatR does not know the model, so only the launcher's clamp applies, and a bare <span class="f_CodeExample">EMulatR.exe</span> invocation for a DS15 is unprotected. Both clamps announce themselves on stderr; neither is a failure.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">run_fw.sh, and why it is superseded</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">run_fw.sh</span> is the earlier launcher, still staged in the run directory and still working for the five models it knows. It is no longer the recommended entry point. It requests a flat 4 GiB with no per-model ceiling of its own, leaving over-allocation to be caught by EmulatR rather than prevented; it does not know DS15; it writes <span class="f_CodeExample">fw_&lt;name&gt;_&lt;timestamp&gt;.out</span> to the run-directory root instead of the stem-keyed name under <span class="f_CodeExample">logs/</span>; and it copies the firmware image in from the source tree on every run. Prefer <span class="f_CodeExample">emulatr_launch.sh</span> or a platform wrapper for new work.</p>
+<p class="p_Normal"><span class="f_CodeExample">run_fw.sh</span> is the earlier launcher, still staged in the run directory and still working for the five models it knows. It is no longer the recommended entry point. It requests a flat 4 GiB with no per-model ceiling of its own, leaving over-allocation to be caught by EMulatR rather than prevented; it does not know DS15; it writes <span class="f_CodeExample">fw_&lt;name&gt;_&lt;timestamp&gt;.out</span> to the run-directory root instead of the stem-keyed name under <span class="f_CodeExample">logs/</span>; and it copies the firmware image in from the source tree on every run. Prefer <span class="f_CodeExample">EMulatR_launch.sh</span> or a platform wrapper for new work.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Which build to run</span></h2>
 <p class="p_Normal">The run directory is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run</span>, where <span class="f_CodeExample">&lt;config&gt;</span> is one of <span class="f_CodeExample">release</span>, <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span>. The launcher lives in the repository's <span class="f_CodeExample">tools/</span> directory rather than being staged beside the executable, and changes into <span class="f_CodeExample">$RUN_DIR</span> itself, so it can be invoked from anywhere in the tree.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Use <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span> for any diagnostic capture. The <span class="f_CodeExample">EMULATR_DIAG_*</span> retire-time facility is compiled out of <span class="f_CodeExample">release</span> entirely, so a release build will silently produce no diagnostic output rather than warn you.</p>
+<p class="p_Normal">Use <span class="f_CodeExample">relwithdebinfo</span> or <span class="f_CodeExample">debug</span> for any diagnostic capture. The <span class="f_CodeExample">EMulatR_DIAG_*</span> retire-time facility is compiled out of <span class="f_CodeExample">release</span> entirely, so a release build will silently produce no diagnostic output rather than warn you.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a></p>

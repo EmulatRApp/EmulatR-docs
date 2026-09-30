@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>9. Performance &gt; 9-Iteration-Baseline</title>
+   <title>10. Performance &gt; 9-Iteration-Baseline</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?9-iteration-baseline.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="performance.html">9. Performance</a>&nbsp;&gt;</p>
+      <a href="performance.html">10. Performance</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Iteration-Baseline (9 Samples)</span></h1>
 
@@ -266,19 +266,19 @@
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <tr>
-<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_BLOCKEXEC</span></p>
+<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_BLOCKEXEC</span></p>
 </td>
 <td style="vertical-align:top; width:1097px; padding:0; border:solid thin #000000;"><p class="p_Normal">flag, default OFF, tier dev. Enables the block executor: straight-line decoded-descriptor runs execute from the block cache with boundary predicates at block exits. Certification pending (BRIEF-BLOCKEXEC-001); yields automatically to armed diagnostic instruments. Anchor: systemLib/Machine.cpp:1594.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_BLOCK_MAX</span></p>
+<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_BLOCK_MAX</span></p>
 </td>
 <td style="vertical-align:top; width:1097px; padding:0; border:solid thin #000000;"><p class="p_Normal"> integer, default 32, bounds 2..64, tier dev. Descriptor cap per block; delivery latency bounds at this many cycles. Registered tuning dial (SPEC-BATCH-001 §7.2): every measurement pins it explicitly; a release ships one frozen default. Anchor: pipelineLib/BlockCache.h:91.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS&nbsp;</span></p>
+<td style="vertical-align:top; width:465px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_BLOCKCACHE_BLOCKS&nbsp;</span></p>
 </td>
 <td style="vertical-align:top; width:1097px; padding:0; border:solid thin #000000;"><p class="p_Normal">integer, default 8192, min 256 (no code ceiling; rounded down to a power of two), tier dev. Block-cache frame count, the geometry dial. Anchor: pipelineLib/BlockCache.h:103.</p>
 </td>
@@ -289,13 +289,13 @@
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <tr>
-<td style="vertical-align:top; width:464px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_IRQ_MODULUS</span></p>
+<td style="vertical-align:top; width:464px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_IRQ_MODULUS</span></p>
 </td>
 <td style="vertical-align:top; width:1098px; padding:0; border:solid thin #000000;"><p class="p_Normal">iinteger, default 1, bounds 1..524288, tier dev. Runs the IRQ-poll/interval-timer/delivery section once every N guest cycles instead of every retire (rounded up to a power of two, capped at the interval-timer period so a timer boundary is always a sweep boundary); device-interrupt latency becomes ≤N cycles. Cycle-keyed per Option C, coherent across a warp. Anchor: systemLib/Machine.cpp:2319.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; width:464px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TICK_CADENCE</span></p>
+<td style="vertical-align:top; width:464px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_TICK_CADENCE</span></p>
 </td>
 <td style="vertical-align:top; width:1098px; padding:0; border:solid thin #000000;"><p class="p_Normal">iinteger, default 1, same bounds, tier dev. Measurement knob, not a tuning dial — the legacy retire-keyed P0-1 form, kept for reproducibility. Anchor: systemLib/Machine.cpp:2321.</p>
 </td>
@@ -304,7 +304,7 @@
 </div>
 <p class="p_Normal">The bounds paragraph (this closes JRN-V2-ENVBOUNDS-DOC-001's F-1)</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Bounds and out-of-range values. The min/max shown for integer variables mirror the code's own clamp — the binary enforces, the registry documents. A value outside the range does not error and is not silently honored: it reverts to the code-defined bound. Per-variable shapes: <span class="f_CodeExample">EMULATR_IRQ_MODULUS/EMULATR_TICK_CADENCE</span> round up to a power of two and cap at 524288 (0 becomes 1); <span class="f_CodeExample">EMULATR_BLOCK_MAX</span> clamps into 2..64; <span class="f_CodeExample">EMULATR_BLOCKCACHE_BLOCKS</span> floors at 256 and rounds down to a power of two, with no upper code bound.</p>
+<p class="p_Normal">Bounds and out-of-range values. The min/max shown for integer variables mirror the code's own clamp — the binary enforces, the registry documents. A value outside the range does not error and is not silently honored: it reverts to the code-defined bound. Per-variable shapes: <span class="f_CodeExample">EMulatR_IRQ_MODULUS/EMulatR_TICK_CADENCE</span> round up to a power of two and cap at 524288 (0 becomes 1); <span class="f_CodeExample">EMulatR_BLOCK_MAX</span> clamps into 2..64; <span class="f_CodeExample">EMulatR_BLOCKCACHE_BLOCKS</span> floors at 256 and rounds down to a power of two, with no upper code bound.</p>
 
 <!--ZOOMSTOP-->
 </div></div>

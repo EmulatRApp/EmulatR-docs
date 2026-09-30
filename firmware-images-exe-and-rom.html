@@ -114,7 +114,7 @@
       
       <a href="--firmware-requirements.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="--firmware-requirements.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="--building-from-source.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="firmware-predecompress.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -147,13 +147,13 @@
 </td>
 <td style="vertical-align:top; width:260px; padding:0; border:solid thin #000000;"><p class="p_Normal">The vendor firmware UPDATE DISTRIBUTION image - a self-decompressing blob shipped by Digital / Compaq.</p>
 </td>
-<td style="vertical-align:top; width:660px; padding:0; border:solid thin #000000;"><p class="p_Normal">This is what EmulatR boots. The decompressor stub sits at the very start of the file; it is loaded and run, unpacks the PALcode and SRM console, and hands control to the console. Because it is the update image, it also walks the firmware-update prompts on the way through - see <a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a>.</p>
+<td style="vertical-align:top; width:660px; padding:0; border:solid thin #000000;"><p class="p_Normal">This is what EMulatR boots. The decompressor stub sits at the very start of the file; it is loaded and run, unpacks the PALcode and SRM console, and hands control to the console. Because it is the update image, it also walks the firmware-update prompts on the way through - see <a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a>.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; width:230px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">ds20_v7_3.rom</span></p>
 </td>
-<td style="vertical-align:top; width:260px; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR's flash / NVRAM backing file: 2 MiB, the contents of the emulated flash device.</p>
+<td style="vertical-align:top; width:260px; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR's flash / NVRAM backing file: 2 MiB, the contents of the emulated flash device.</p>
 </td>
 <td style="vertical-align:top; width:660px; padding:0; border:solid thin #000000;"><p class="p_Normal">Not booted. It is bound automatically alongside the firmware image and is where the machine's persistent state lives - SRM environment variables, and whatever a firmware update writes. It is a PRODUCT of running the <span class="f_CodeExample">.exe</span>, not an alternative to it.</p>
 </td>
@@ -163,13 +163,19 @@
 </td>
 <td style="vertical-align:top; width:260px; padding:0; border:solid thin #000000;"><p class="p_Normal">A pre-decompressed console image (AXPBox layout): a 16-byte header followed by a 2 MiB console image.</p>
 </td>
-<td style="vertical-align:top; width:660px; padding:0; border:solid thin #000000;"><p class="p_Normal">Bootable, and the only kind of <span class="f_CodeExample">.rom</span> the loader will accept. The header carries the entry PC and PAL_BASE, the image is already unpacked, so there is no decompression stage at all.</p>
+<td style="vertical-align:top; width:660px; padding:0; border:solid thin #000000;"><p class="p_Normal">Bootable, and the only kind of <span class="f_CodeExample">.rom</span> the loader will accept. The header carries the entry PC and PAL_BASE, the image is already unpacked, so there is no decompression stage at all. Made from a compressed console with <span class="f_CodeExample">tools\host_firmware_decompressor.exe</span> (below).</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Making a pre-decompressed image</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">tools\host_firmware_decompressor.exe</span> runs the same decompression the firmware runs at every cold boot -- DEC's own algorithm, built natively -- and writes the result in the format above:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools\host_firmware_decompressor.exe&nbsp;cl67srmrom.exe&nbsp;--rom&nbsp;console\es40_v7_3.rom</span></p>
+<p class="p_Normal">It finds the compressed console in the file, decompresses it, takes the PAL_BASE value from the firmware's own start-up code, and writes the 16-byte header (entry PC = load address + 1, for PALmode) followed by the 2 MiB image with the console at its load address. It prints what it did:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">wrote&nbsp;console\es40_v7_3.rom&nbsp;(entry&nbsp;PC&nbsp;0x8001,&nbsp;PAL_BASE&nbsp;0x600000&nbsp;from&nbsp;stub@0x240,&nbsp;2097168&nbsp;bytes)</span></p>
+<p class="p_Normal">Without <span class="f_CodeExample">--rom</span> it writes only the raw decompressed console (<span class="f_CodeExample">ref_decompressed.bin</span>), for inspection. From HP's <span class="f_CodeExample">cl67srmrom.exe</span> the <span class="f_CodeExample">.rom</span> is identical, byte for byte, to <span class="f_CodeExample">cl67_decompressed.rom</span>. How to boot it, and when it is worth doing: <a href="firmware-predecompress.html" class="topiclink">Pre-decompressing the Firmware</a>.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the loader chooses</span></h2>
 <p class="p_Normal">The extension selects the loader, and <span class="f_CodeExample">--firmware-format</span> overrides it:</p>
 <p class="p_Normal">&nbsp;</p>
@@ -183,7 +189,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Which flash file gets bound</span></h2>
 <p class="p_Normal">The flash backing is resolved in this order, first match wins:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_FLASH_ROM&nbsp;&gt;&nbsp;ini&nbsp;[ROM]&nbsp;flashImage&nbsp;&gt;&nbsp;&lt;firmware-stem&gt;.rom&nbsp;&gt;&nbsp;ds10_v7_3.rom</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_FLASH_ROM&nbsp;&gt;&nbsp;ini&nbsp;[ROM]&nbsp;flashImage&nbsp;&gt;&nbsp;&lt;firmware-stem&gt;.rom&nbsp;&gt;&nbsp;ds10_v7_3.rom</span></p>
 <p class="p_Normal">So booting <span class="f_CodeExample">firmware/ds20_v7_3.exe</span> binds <span class="f_CodeExample">firmware/ds20_v7_3.rom</span> beside it without being told to, and reports which file it picked:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">FlashRom:&nbsp;NVRAM&nbsp;backing&nbsp;-&gt;&nbsp;'firmware/ds20_v7_3.rom'</span></p>
 <p class="p_Normal">Give each concurrently running instance its own flash file - two machines sharing one backing file will corrupt it.</p>
@@ -192,11 +198,11 @@
 <p class="p_Normal">Setting the firmware to the flash backing file is the natural mistake, because the name matches and the file is obviously firmware-shaped. It does not boot, and it fails immediately and specifically rather than misbehaving later.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The flash backing is exactly 2 MiB of device contents. The pre-decompressed loader wants a 16-byte header in front of the same-sized image, so the size check rejects it before anything is loaded:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">Emulatr:&nbsp;SrmLoader:&nbsp;decompressed.rom&nbsp;wrong&nbsp;size&nbsp;(got&nbsp;2097152,&nbsp;expected&nbsp;2097168):&nbsp;firmware/ds20_v7_3.rom</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR:&nbsp;SrmLoader:&nbsp;decompressed.rom&nbsp;wrong&nbsp;size&nbsp;(got&nbsp;2097152,&nbsp;expected&nbsp;2097168):&nbsp;firmware/ds20_v7_3.rom</span></p>
 <p class="p_Normal">The emulator then exits with status 2, the firmware-load failure code. The sixteen bytes are the whole difference: 2097168 minus 2097152.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Forcing the SRM loader onto the same file fails differently, and the second message is worth recognising because it also appears when a genuinely damaged <span class="f_CodeExample">.exe</span> is offered:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">Emulatr:&nbsp;SrmLoader:&nbsp;decompressor&nbsp;signature&nbsp;not&nbsp;found&nbsp;in&nbsp;first&nbsp;4096&nbsp;bytes&nbsp;of&nbsp;firmware/ds20_v7_3.rom</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR:&nbsp;SrmLoader:&nbsp;decompressor&nbsp;signature&nbsp;not&nbsp;found&nbsp;in&nbsp;first&nbsp;4096&nbsp;bytes&nbsp;of&nbsp;firmware/ds20_v7_3.rom</span></p>
 <p class="p_Normal">That is not an arbitrary refusal. In a firmware update image the decompressor stub is the first thing in the file, at offset zero. In a flash backing the low addresses are erased device space - all <span class="f_CodeExample">0xFF</span> - and the console content sits far higher up, well past the 4096-byte header window the loader scans. The signature exists in the file; it is simply nowhere near the front, because a flash image is not laid out like a distribution image.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">A correctly formed pre-decompressed image, by contrast, loads with no decompression stage and no announcement: the console image goes to physical address 0 and execution starts at the entry PC from the header - typically <span class="f_CodeExample">0x8000</span> in PAL mode, with PAL_BASE <span class="f_CodeExample">0x600000</span>.</p>

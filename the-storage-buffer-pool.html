@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.9 Storage Engine &gt; The Buffer Pool</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="4 KB,back-pressure,buffer pool,cache_max_mb,cache_min_mb,CLOCK,coalescing,copy-on-write,COW,eviction,frame,large pages,max_pending_mb,MPW,NUMA,ordered writer,page,pool_mb,read-modify-write,RMW,StoragePool,VirtualLock,write_cache" />
+   <meta name="description" content="The storage pool (storageLib/StoragePool.h) is a page cache that EMulatR owns and keeps resident. The emulator thread that runs the guest -- the vCPU -- only ever touches the..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "the-storage-buffer-pool.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">The Buffer Pool</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?the-storage-buffer-pool.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="5_9-storage-engine.html">6.9 Storage Engine</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">The Buffer Pool</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="storage-paths-and-the-block-media-seam.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_9-storage-engine.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="storage-threading-and-isolation.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The storage pool (<span class="f_CodeExample">storageLib/StoragePool.h</span>) is a page cache that EMulatR owns and keeps resident. The emulator thread that runs the guest -- the vCPU -- only ever touches the pool's memory: it never holds a file handle, never issues a host call, and never takes a host page fault on disk data.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory</span></h2>
+<p class="p_Normal">The pool is one allocation of <span class="f_CodeExample">pool_mb</span> megabytes (default 512), divided into 4 KB pages. At start the pool:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">allocates on the NUMA node of the thread that creates it (the vCPU's node);</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">tries Windows large pages, which are locked in memory, when the process holds the lock-pages privilege;</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">otherwise raises the process working set and locks the allocation with </span><span class="f_CodeExample">VirtualLock</span><span class="f_NotesBox">;</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">if neither succeeds, runs with ordinary pageable memory.</span></p>
+<p class="p_Normal">The run log names the outcome, for example <span class="f_CodeExample">STORAGE: pool 512 MB (131072 pages of 4096 B) on NUMA node 0 -- locked (VirtualLock); dump F:/...</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Pages and frames</span></h2>
+<p class="p_Normal">The page size is 4 KB. The guest addresses 512-byte sectors, so each page holds eight guest sectors, and requests may begin and end on any sector. The pool refuses an image whose size is not a whole number of pages, or that sits on a volume whose sector size does not divide 4 KB, because unbuffered 4 KB host I/O would then not be well-formed.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A frame maps one page of one disk to one buffer. A frame is Free, Filling (a host read is in progress), Valid, or Error. The frame always points at the newest version of its page.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Reads</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Hit: the page is copied out of the buffer. Nothing else runs.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Miss: the page is handed to that disk's read worker, which fills the frame from the host; the vCPU waits for the fill. Guest time does not advance while it waits, so the outcome is the same however long the host takes.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Writes</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The guest's data is copied into the page. If the write covers only part of a page that is not resident, the page is first read from the host (read-modify-write), so a modified page is always fully valid. A write that covers a whole cold page needs no read.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The write is then queued on the one machine-wide ordered queue (the MPW queue) as disk, page, version and a sequence number, and the writer thread takes it from there (see Storage Threading and Isolation).</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Copy-on-write versions</span></h2>
+<p class="p_Normal">If a page is rewritten while an earlier write of it is still queued, the new data goes into a new buffer. The frame moves to the new buffer (so the guest reads what it last wrote), and each queued entry still writes the buffer it captured. Writes A (first version), B, A (second version) therefore reach the host as A1, B, A2 -- never A2 in A1's place, which would break write ordering if the host failed between them.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Eviction</span></h2>
+<p class="p_Normal">When a page is needed and none is free, a CLOCK (second-chance) sweep chooses a victim. Only clean frames are eligible: Valid or Error, not pinned by an in-progress request, and not referenced by any queued write or host call. A modified page is never evicted; it becomes clean once the writer has made it durable.</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cache_min_mb</span><span class="f_NotesBox"> per disk: that disk keeps at least this much resident; the global sweep skips a disk at its minimum. It must hold one maximum-size transfer (128 KB).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cache_max_mb</span><span class="f_NotesBox"> per disk: that disk never holds more than this; when it reaches the cap it evicts its own pages first. 0 means no per-disk cap.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Back-pressure</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">max_pending_mb</span> (default 64) bounds the data waiting in the MPW queue. When every resident page is modified or pinned, the next request waits for the writer to make a page clean. This costs wall time only -- guest time is frozen during the wait -- and is counted as a pressure stall.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Startup check</span></h2>
+<p class="p_Normal">The pool refuses to start when <span class="f_CodeExample">pool_mb</span> is not greater than <span class="f_CodeExample">max_pending_mb</span> plus the sum of every disk's <span class="f_CodeExample">cache_min_mb</span>, or when a disk's <span class="f_CodeExample">cache_max_mb</span> is smaller than its <span class="f_CodeExample">cache_min_mb</span>. On the pool engine a refused disk falls back to the direct engine, and the run log says why.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Statistics</span></h2>
+<p class="p_Normal">At shutdown the run log carries one line of pool statistics, for example: <span class="f_CodeExample">Storage: pool at shutdown -- drained; reads H hit / M miss, F fills, E evictions, D durable pages in W host writes, R RMW fills, C COW, P pressure stalls</span>. Durable pages divided by host writes is the coalescing factor.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="5_9-storage-engine.html" class="topiclink">6.9 Storage Engine</a></p>
+<p class="p_Normal"><a href="storage-threading-and-isolation.html" class="topiclink">Storage Threading and Isolation</a></p>
+<p class="p_Normal"><a href="storage-configuration-reference.html" class="topiclink">Storage Configuration Reference</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

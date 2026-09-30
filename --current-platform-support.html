@@ -114,7 +114,7 @@
       
       <a href="--supported-systems.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="--feature-matrix.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="version-administration.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">A platform manifest describes the machine's device tree. It is named after the FIRMWARE IMAGE that actually loaded, not after the model name: <span class="f_CodeExample">firmware/ds20_v7_3.exe</span> selects <span class="f_CodeExample">ds20_v7_3_platform.json</span>. Keying the manifest to the firmware means the model and its firmware cannot drift apart, and a firmware variant can carry its own device set. The file is resolved next to the executable, not in the directory you launched from.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The table below summarizes current status. &quot;Boots to <span class="f_CodeExample">&gt;&gt;&gt;</span>&quot; means the platform has been driven to the interactive SRM prompt in EmulatR; DS10, DS20 and ES40 additionally form a standing three-platform gate that must stay green before any shared change is committed.</p>
+<p class="p_Normal">The table below summarizes current status. &quot;Boots to <span class="f_CodeExample">&gt;&gt;&gt;</span>&quot; means the platform has been driven to the interactive SRM prompt in EMulatR; DS10, DS20 and ES40 additionally form a standing three-platform gate that must stay green before any shared change is committed.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -152,7 +152,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV6 / 21272</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to &gt;&gt;&gt;</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to <span class="f_CodeExample">&gt;&gt;&gt;</span>; OpenVMS V8.3 boots from SCSI to the <span class="f_CodeExample">Username:</span> prompt</p>
 </td>
 </tr>
 <tr>
@@ -162,7 +162,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV6 / 21272</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to &gt;&gt;&gt;</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to <span class="f_CodeExample">P00&gt;&gt;&gt;</span>; OpenVMS V8.3 boots to the <span class="f_CodeExample">Username:</span> prompt, and installs from the CD image (<span class="f_CodeExample">dqa1</span>)</p>
 </td>
 </tr>
 <tr>
@@ -170,9 +170,9 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">es40_v7_3_platform.json</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV6 / 21272 (Typhoon)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV68CB (21264B) / 21272 (Typhoon)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to &gt;&gt;&gt;; <span class="f_CodeExample">init</span> does not yet complete</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Active -- boots to <span class="f_CodeExample">P00&gt;&gt;&gt;</span> (67CLIPPER console); OpenVMS V8.3 boots from SCSI to the <span class="f_CodeExample">Username:</span> prompt; installing from the CD image does not complete yet</p>
 </td>
 </tr>
 <tr>
@@ -182,7 +182,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV67 / 21274 (Titan)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Manifest present; not yet driven to the prompt</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console reaches <span class="f_CodeExample">P00&gt;&gt;&gt;</span>, running on the DS20's Tsunami model (no Titan model yet); OpenVMS does not boot yet -- the console does not find the IDE system disk</p>
 </td>
 </tr>
 <tr>
@@ -192,20 +192,19 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EV67 / 21274 (Titan)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Firmware decompresses; platform not yet driven</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console stops while starting its USB driver; not yet driven to the prompt</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The selection order is: the <span class="f_CodeExample">EMULATR_PLATFORM_CONFIG</span> environment variable if set, otherwise the name derived from the firmware image stem as described above.</p>
+<p class="p_Normal">The selection order is: the <span class="f_CodeExample">EMulatR_PLATFORM_CONFIG</span> environment variable if set, otherwise the name derived from the firmware image stem as described above.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">A missing or invalid manifest does NOT stop the run.</span> It falls back to the compiled-in default DS10 device tree, and the reason is printed, for example: <span class="f_CodeExample">PlatformConfig: using built-in default DS10 manifest -- &quot;unsupported manifest_version 999 (expected 1)&quot;</span>. This is worth knowing because a typo in the manifest name or a schema-version mismatch will not announce itself as a failure - the machine simply comes up as a DS10. If a platform behaves like the wrong model, check that line first.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--supported-systems.html" class="topiclink">Supported Systems</a></p>
-<p class="p_Normal"><a href="--feature-matrix.html" class="topiclink">Feature Matrix</a></p>
 <p class="p_Normal"><a href="--configuring----------(moved-.html" class="topiclink">Configuring</a></p>
 
 <!--ZOOMSTOP-->

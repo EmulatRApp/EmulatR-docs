@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="Release Stages,T-Stage_Version,Version Numbering,V-Stage-Version,X-Stage-Version" />
-   <meta name="description" content="EmulatR uses a single version identity across the console badge, the documentation, and the distribution kit. The format follows the Digital (DEC) convention familiar from SRM..." />
+   <meta name="description" content="EMulatR uses a single version identity across the console badge, the documentation, and the distribution kit. The format follows the Digital (DEC) convention familiar from SRM..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR Version Numbering and Release Stages</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR Version Numbering and Release Stages</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -107,12 +107,12 @@
       
       <a href="1_-introduction.html">1. Introduction</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EmulatR Version Numbering and Release Stages</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">EMulatR Version Numbering and Release Stages</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="known-gaps.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="--current-platform-support.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="2_-installation.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal"> EmulatR uses a single version identity across the console badge, the documentation, and the distribution kit. The format follows the Digital (DEC) convention familiar from SRM firmware version strings:</p>
+<p class="p_Normal"> EMulatR uses a single version identity across the console badge, the documentation, and the distribution kit. The format follows the Digital (DEC) convention familiar from SRM firmware version strings:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&lt;stage&gt;&lt;major&gt;.&lt;variant&gt;-&lt;build&gt;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
@@ -158,12 +158,12 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;Released&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└────────┴──────────────────────────────────────────────┘</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span> This is the same grammar a real Alpha console user knows from firmware strings such as V7.3-1, so a version shown by EmulatR reads exactly like one shown by genuine SRM firmware.</p>
+<p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span> This is the same grammar a real Alpha console user knows from firmware strings such as V7.3-1, so a version shown by EMulatR reads exactly like one shown by genuine SRM firmware.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Where the version appears</span></h2>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;The version identity is emitted on the console banner when a terminal client attaches, above the emulated DEC firmware banner. That banner is EmulatR's own voice, not emulated firmware output:</p>
+<p class="p_Normal"> &nbsp; &nbsp; &nbsp;The version identity is emitted on the console banner when a terminal client attaches, above the emulated DEC firmware banner. That banner is EMulatR's own voice, not emulated firmware output:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASA&nbsp;EmulatR&nbsp;--&nbsp;Alpha&nbsp;AXP&nbsp;(EV6&nbsp;/&nbsp;21264)&nbsp;Emulator</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASA&nbsp;EMulatR&nbsp;--&nbsp;Alpha&nbsp;AXP&nbsp;(EV6&nbsp;/&nbsp;21264)&nbsp;Emulator</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alpha&nbsp;Emulator&nbsp;Console&nbsp;X1.6-15</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c)&nbsp;2026&nbsp;Timothy&nbsp;Peer&nbsp;/&nbsp;eNVy&nbsp;Systems,&nbsp;Inc.</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -173,8 +173,8 @@
 <p class="p_Normal"> &nbsp; &nbsp; &nbsp;There is exactly one source of truth. Both the numbers and the stage letter are declared in the project build file, and every other place the version appears is generated from it - the version is never typed in twice:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CMakeLists.txt</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;project(Emulatr&nbsp;VERSION&nbsp;1.${EMULATR_TREE_VARIANT}.15&nbsp;...)&nbsp;&nbsp;&lt;-&nbsp;major&nbsp;.&nbsp;variant&nbsp;.&nbsp;build</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set(EMULATR_VERSION_STAGE&nbsp;&quot;X&quot;)&nbsp;&nbsp;&nbsp;&nbsp;&lt;-&nbsp;stage&nbsp;letter&nbsp;X&nbsp;|&nbsp;T&nbsp;|&nbsp;V</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;project(EMulatR&nbsp;VERSION&nbsp;1.${EMulatR_TREE_VARIANT}.15&nbsp;...)&nbsp;&nbsp;&lt;-&nbsp;major&nbsp;.&nbsp;variant&nbsp;.&nbsp;build</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set(EMulatR_VERSION_STAGE&nbsp;&quot;X&quot;)&nbsp;&nbsp;&nbsp;&nbsp;&lt;-&nbsp;stage&nbsp;letter&nbsp;X&nbsp;|&nbsp;T&nbsp;|&nbsp;V</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"> &nbsp; &nbsp; &nbsp;At build time those values are rendered into a generated header, which the console banner consumes; a build-time check confirms the badge and the header agree, so the two cannot drift apart. The build also mirrors the three numbers into this help project, so the manual and the emulator always report the same build.</p>
 <p class="p_Normal">&nbsp;</p>

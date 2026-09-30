@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.7 SCSI</title>
+   <title>6. Architecture &amp; Internals &gt; 6.7 SCSI</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">5.7 SCSI</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.7 SCSI</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?5_7-scsi.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">5.7 SCSI</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.7 SCSI</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -129,20 +129,18 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">SCSI is the bootable storage path. The IDE / ATAPI channel exists so the firmware can enumerate a disk and a CD-ROM; the guest operating system lives on a SCSI disk, and it is <span class="f_CodeExample">dka0</span> that an OS boot actually reads from.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What EmulatR models</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What EMulatR models</span></h2>
 <p class="p_Normal">The adapter is an NCR 53C810 PCI SCSI host-bus adapter -- the DEC KZPAA option -- which the console enumerates under the device prefix <span class="f_CodeExample">pka</span>. Behind it sit SCSI-2 targets: a virtual disk (<span class="f_CodeExample">dka</span>) and a virtual CD-ROM, each backed by a host file through a common block-media layer.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The 53C810 is not a register-poking adapter. It is SCRIPTS-driven: the console driver downloads a SCRIPTS program, writes its entry point to <span class="f_CodeExample">DSP</span>, and the on-chip processor executes that program itself, fetching its own instructions and moving data blocks as a PCI bus master. Those fetches and block moves reach guest memory through the Pchip DMA window, exactly as the real card's would.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why the transfer looks synchronous</span></h2>
-<p class="p_Normal">The SRM console's driver is synchronous by design: it writes <span class="f_CodeExample">DSP</span>, the chip runs until it raises an interrupt, and the interrupt service routine re-kicks it through <span class="f_CodeExample">DCNTL&lt;STD&gt;</span>. EmulatR matches that contract by running the SCRIPTS program to completion inside the <span class="f_CodeExample">DSP</span> / <span class="f_CodeExample">STD</span> write rather than stepping it across cycles. The guest cannot tell the difference, because the guest never observes the chip mid-program -- it observes an interrupt and a result.</p>
+<p class="p_Normal">The SRM console's driver is synchronous by design: it writes <span class="f_CodeExample">DSP</span>, the chip runs until it raises an interrupt, and the interrupt service routine re-kicks it through <span class="f_CodeExample">DCNTL&lt;STD&gt;</span>. EMulatR matches that contract by running the SCRIPTS program to completion inside the <span class="f_CodeExample">DSP</span> / <span class="f_CodeExample">STD</span> write rather than stepping it across cycles. The guest cannot tell the difference, because the guest never observes the chip mid-program -- it observes an interrupt and a result.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Where the SCSI path stands</span></h2>
 <p class="p_Normal">The adapter, the drive identity and capacity, and the sense / attention path are modeled and audited against the DEC sources. OpenVMS Alpha V8.3 boots from the SCSI disk to its banner reliably on the DS20, and its drivers initialize.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The system disk goes VALID, the volume mounts, and the boot reaches the DCL login prompt on the DS20. The virtual CD-ROM also lags its disk sibling on shared protocol behavior -- it raises no UNIT ATTENTION at all, so a media change is invisible to a running guest, and pending sense is not cleared by an intervening successful command.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Those rows are carried in <a href="known-gaps.html" class="topiclink">Known Gaps</a>, which is the current record for what is missing rather than this page.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
 <p class="p_Normal">The DEC sources are the authority for every behavior above:</p>
@@ -184,7 +182,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">deviceLib/Tsunami/Ncr53C810.h</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR's adapter model, with its deliberate deviations traced</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR's adapter model, with its deliberate deviations traced</p>
 </td>
 </tr>
 <tr>
@@ -197,13 +195,12 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Standards and vendor documentation: ANSI X3.131-1994 (SCSI-2), the 53C895 data manual, and the KZPBA user guide. AXPBox's <span class="f_CodeExample">src/Sym53C810.cpp</span> is a secondary corroboration model only -- it never outranks the DEC sources or EmulatR itself.</p>
+<p class="p_Normal">Standards and vendor documentation: ANSI X3.131-1994 (SCSI-2), the 53C895 data manual, and the KZPBA user guide. AXPBox's <span class="f_CodeExample">src/Sym53C810.cpp</span> is a secondary corroboration model only -- it never outranks the DEC sources or EMulatR itself.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="scsi-bus-control-lines.html" class="topiclink">SCSI Bus Control Lines</a></p>
 <p class="p_Normal"><a href="4_4-storage.html" class="topiclink">Storage</a></p>
 <p class="p_Normal"><a href="--ide-devices.html" class="topiclink">IDE Devices</a></p>
-<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

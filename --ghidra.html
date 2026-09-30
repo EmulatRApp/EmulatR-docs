@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; Ghidra</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; Ghidra</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="analyzeHeadless,decompile_ds10.sh,decompiler,DecompileToDir.java,Ghidra,headless,JDK 21,reverse engineering,SRE,SRM firmware" />
-   <meta name="description" content="Ghidra is the NSA's open-source software reverse-engineering (SRE) suite. In EmulatR it is the tool used to read the SRM firmware: once the compressed image is decompressed to..." />
+   <meta name="description" content="Ghidra is the NSA's open-source software reverse-engineering (SRE) suite. In EMulatR it is the tool used to read the SRM firmware: once the compressed image is decompressed to..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--ghidra.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Ghidra</span></h1>
 
@@ -127,13 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Ghidra is the NSA's open-source software reverse-engineering (SRE) suite. In EmulatR it is the tool used to read the SRM firmware: once the compressed image is decompressed to a flat binary, Ghidra disassembles and decompiles it to C so that firmware addresses, functions, and behaviors can be identified by name rather than by raw PC.</p>
+<p class="p_Normal">Ghidra is the NSA's open-source software reverse-engineering (SRE) suite. In EMulatR it is the tool used to read the SRM firmware: once the compressed image is decompressed to a flat binary, Ghidra disassembles and decompiles it to C so that firmware addresses, functions, and behaviors can be identified by name rather than by raw PC.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Workflow</span></h2>
 <p class="p_Normal">The input is the decompressed firmware produced by the host decompressor (for the DS10, <span class="f_CodeExample">decompressed_ds10_v7_3.bin</span>). Analysis itself is done interactively in the Ghidra GUI -- import the binary, let auto-analysis finish, then save. The repetitive part is automated: <span class="f_CodeExample">tools/decompile_ds10.sh</span> drives <span class="f_CodeExample">analyzeHeadless</span> against the already-analyzed program (with <span class="f_CodeExample">-noanalysis</span>) and runs the <span class="f_CodeExample">DecompileToDir.java</span> post-script to dump C source plus an index file. Because headless needs the project lock, the GUI project must be closed and saved first.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Configuration notes</span></h2>
-<p class="p_Normal">The project layout comes from the script: the Ghidra project defaults to <span class="f_CodeExample">D:/EmulatR/EmulatRAppUniV4/ghidra</span> - a pre-hive path that predates the current tree layout - and is overridable with <span class="f_CodeExample">EMULATR_GHIDRA_DIR</span>. The program is <span class="f_CodeExample">decompressed_ds10_v7_3.bin</span>, and decompiled output is written to <span class="f_CodeExample">tools/host_decompressor/out/decompiled_src</span>. One pitfall is pinned in the script: Ghidra 11.3.x must run on JDK 21. An early headless run on JDK 26 failed with <span class="f_CodeExample">osgi.ee=UNKNOWN</span> because Ghidra's script compiler could not resolve the Java execution environment and never compiled the post-script, so <span class="f_CodeExample">JAVA_HOME</span> is set to a JDK 21 in the script.</p>
+<p class="p_Normal">The project layout comes from the script: the Ghidra project defaults to <span class="f_CodeExample">D:/EMulatR/EMulatRAppUniV4/ghidra</span> - a pre-hive path that predates the current tree layout - and is overridable with <span class="f_CodeExample">EMulatR_GHIDRA_DIR</span>. The program is <span class="f_CodeExample">decompressed_ds10_v7_3.bin</span>, and decompiled output is written to <span class="f_CodeExample">tools/host_decompressor/out/decompiled_src</span>. One pitfall is pinned in the script: Ghidra 11.3.x must run on JDK 21. An early headless run on JDK 26 failed with <span class="f_CodeExample">osgi.ee=UNKNOWN</span> because Ghidra's script compiler could not resolve the Java execution environment and never compiled the post-script, so <span class="f_CodeExample">JAVA_HOME</span> is set to a JDK 21 in the script.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is how firmware addresses cited elsewhere in the documentation -- the decompression spin, the <span class="f_CodeExample">decompress()</span> entry, the <span class="f_CodeExample">hw_ret R2</span> at <span class="f_CodeExample">PC 0xd954 </span>-- were located and confirmed against real decompiled C.</p>
 <p class="p_Normal">&nbsp;</p>

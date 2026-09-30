@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; script &gt; launch_vms_boot</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; script &gt; launch_vms_boot</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="boot,cold boot,dqa1,DS10,ISO,launch_vms_boot,OpenVMS" />
-   <meta name="description" content="Cold-boots EmulatR (DS10/EV6) and boots OpenVMS Alpha V8.2 from dqa1. Deployed to &lt;run-dir&gt;/tools/ by CMake POST_BUILD; lives in tools/ but operates on the run-dir root." />
+   <meta name="description" content="Cold-boots EMulatR (DS10/EV6) and boots OpenVMS Alpha V8.2 from dqa1. Deployed to &lt;run-dir&gt;/tools/ by CMake POST_BUILD; lives in tools/ but operates on the run-dir root." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?launch_vms_boot.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">launch_vms_boot</span></h1>
 
@@ -127,13 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Cold-boots EmulatR (DS10/EV6) and boots OpenVMS Alpha V8.2 from <span class="f_CodeExample">dqa1</span>. Deployed to <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by CMake POST_BUILD; lives in <span class="f_CodeExample">tools/</span> but operates on the run-dir root.</p>
+<p class="p_Normal">Cold-boots EMulatR (DS10/EV6) and boots OpenVMS Alpha V8.2 from <span class="f_CodeExample">dqa1</span>. Deployed to <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by CMake POST_BUILD; lives in <span class="f_CodeExample">tools/</span> but operates on the run-dir root.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Usage</span></h2>
 <p class="p_Normal"><span class="f_CodeExample">./launch_vms_boot.sh</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Preflight</span></h2>
-<p class="p_Normal">Verifies <span class="f_CodeExample">Emulatr.exe</span> and the firmware are present and that the platform manifest (<span class="f_CodeExample">ds10_platform.win</span>) references the OpenVMS ISO (<span class="f_CodeExample">alpha082.iso</span>) -- otherwise <span class="f_CodeExample">dqa1</span> is not wired to OpenVMS and the script aborts.</p>
+<p class="p_Normal">Verifies <span class="f_CodeExample">EMulatR.exe</span> and the firmware are present and that the platform manifest (<span class="f_CodeExample">ds10_platform.win</span>) references the OpenVMS ISO (<span class="f_CodeExample">alpha082.iso</span>) -- otherwise <span class="f_CodeExample">dqa1</span> is not wired to OpenVMS and the script aborts.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Notes</span></h2>
 <p class="p_Normal">Launches with <span class="f_CodeExample">--no-autoload</span> (cold boot) and tees the console to <span class="f_CodeExample">boot_vms_&lt;timestamp&gt;.log</span>. The SRM console listens on TCP <span class="f_CodeExample">127.0.0.1:10023</span>. At the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt: <span class="f_CodeExample">e pmem:80130000040</span> (smir = 0), then <span class="f_CodeExample">b dqa1</span>. The triage pass greps memory, halt, and frontier lines.</p>

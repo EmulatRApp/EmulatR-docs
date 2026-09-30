@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Operating EmulatR &gt; 5.9 Networking (EWA0) &gt; Configuring Guest Networking (OpenVMS)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="100 Mb,DECnet address,DEFINE DEVICE,EMULATR_NET_ADAPTER,EWA0,ewa0_mode,FastFD,full duplex,IP address,LANCP,MAC address,ping,TCPIP,TCPIP$CONFIG,WE0,Wireshark display filter" />
+   <meta name="description" content="Once EWA0 is bridged to a host adapter (see Networking (EWA0) and Naming the Host Adapter), the guest still has to be configured like any AlphaServer on a LAN: the console link..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "configuring-guest-networking.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Configuring Guest Networking (OpenVMS)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?configuring-guest-networking.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">5.9 Networking (EWA0)</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Configuring Guest Networking (OpenVMS)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="naming-the-host-adapter.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="networking-ewa0.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="4_10-platform-guides.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Once EWA0 is bridged to a host adapter (see Networking (EWA0) and Naming the Host Adapter), the guest still has to be configured like any AlphaServer on a LAN: the console link mode, the LAN device, a TCP/IP address and, if DECnet runs, a DECnet address. This page gives the commands in the order you use them.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">1. Launch with the host adapter bound</span></h2>
+<p class="p_Normal">Normally there is nothing to do: with <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> unset, EMulatR picks the host's dedicated adapter by itself and logs <span class="f_CodeExample">EWA0 network backend: auto-selected</span>. Name the adapter only when the host has more than one dedicated adapter. The value is a substring of the adapter's device name or description: <span class="f_CodeExample">EMulatR_NET_ADAPTER=&quot;I219-LM&quot;</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Confirm it in the run log. A bound adapter prints <span class="f_CodeExample">EWA0 network backend ATTACHED to '\Device\NPF_{...}' via Npcap</span>. The line <span class="f_CodeExample">EWA0 network backend: no adapter attached</span> means the guest has a working NIC with no wire: everything below can be configured, but no frame leaves the host.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. Plan unique addresses</span></h2>
+<p class="p_Normal">Every EMulatR instance on the same LAN needs its own IP address and, if it runs DECnet, its own DECnet address. Choose IP addresses outside the router's DHCP range, or reserve them in the router. An example plan for a 192.168.1.0/24 network whose gateway is 192.168.1.254:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Instance</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">IP address</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">DECnet address</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Console port</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">192.168.1.41</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">1.2</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">10010</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">192.168.1.42</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">1.4</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">10020</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">192.168.1.48</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">1.3</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">10040</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal"> <span style="font-style: italic;">the DS10 (1.2) and DS20 (1.4) DECnet addresses in this example are illustrative only</span>. <span style="font-style: italic;">Replace them with your real node addresses or keep them as an example</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">MAC addresses:</span> every EMulatR EWA0 presents the same default hardware address, <span class="f_CodeExample">08-00-2B-E5-40-00</span>. When DECnet Phase IV starts it replaces the current address with one derived from the node's DECnet address (<span class="f_CodeExample">AA-00-04-00-xx-yy</span>), so instances with different DECnet addresses also have different MAC addresses. Instances that do NOT run DECnet share the default address, and only one of them may be on the LAN at a time.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. Set the link mode at the console</span></h2>
+<p class="p_Normal">At the SRM prompt, before booting, select 100 Mb/s full duplex:</p>
+<p class="p_Normal"><span class="f_CodeExample">P00&gt;&gt;&gt; set ewa0_mode FastFD</span></p>
+<p class="p_Normal"><span class="f_CodeExample">P00&gt;&gt;&gt; show ewa0_mode</span></p>
+<p class="p_Normal"><span class="f_CodeExample">P00&gt;&gt;&gt; b dka200 -fl 0,1</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The setting is stored in the console NVRAM and survives restarts. The DS10 and DS20 prompt is <span class="f_CodeExample">&gt;&gt;&gt;</span>; the ES40 prompt is <span class="f_CodeExample">P00&gt;&gt;&gt;</span>. Use your own boot device in the boot command.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">4. Set the LAN device in LANCP</span></h2>
+<p class="p_Normal">To change the running device, and to make the same setting permanent for the next boot:</p>
+<p class="p_Normal"><span class="f_CodeExample">$ MC LANCP</span></p>
+<p class="p_Normal"><span class="f_CodeExample">LANCP&gt; SET DEVICE EWA0 /SPEED=100 /FULL_DUPLEX /NOAUTONEGOTIATE</span></p>
+<p class="p_Normal"><span class="f_CodeExample">LANCP&gt; DEFINE DEVICE EWA0 /SPEED=100 /FULL_DUPLEX /NOAUTONEGOTIATE</span></p>
+<p class="p_Normal"><span class="f_CodeExample">LANCP&gt; SHOW DEVICE EWA0 /CHARACTERISTICS</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">SET changes the running device; DEFINE writes the permanent database used at the next boot. The result should include:</p>
+<p class="p_Normal"><span class="f_CodeExample"> 08-00-2B-E5-40-00 Default MAC address (Hardware LAN address)</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> Yes Full duplex operational</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> AA-00-04-00-03-04 MAC address (Current LAN address)</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> 100 Line speed (mbps)</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> Disabled Auto-negotiation</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> Link Up Link state</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Use a fixed speed, not auto-negotiation. The emulated DE500 does not yet present a link partner, so auto-negotiation has nothing to negotiate with and settles on 10 Mb/s half duplex. The <span class="f_CodeExample">FF-FF-FF-FF-FF-FF</span> line in the output belongs to the multicast list (broadcast); it is not a second MAC address.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">5. Set the TCP/IP address</span></h2>
+<p class="p_Normal">The TCP/IP interface for EWA0 is <span class="f_CodeExample">WE0</span>. Either run the menu-driven <span class="f_CodeExample">@SYS$MANAGER:TCPIP$CONFIG</span>, or set the address directly:</p>
+<p class="p_Normal"><span class="f_CodeExample">$ TCPIP SET CONFIGURATION INTERFACE WE0 /HOST=192.168.1.48 /NETWORK_MASK=255.255.255.0</span></p>
+<p class="p_Normal"><span class="f_CodeExample">$ TCPIP SET CONFIGURATION ROUTE /DEFAULT /GATEWAY=192.168.1.254</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The configuration database is read when TCP/IP starts, so restart TCP/IP Services (or reboot) for the new address to take effect.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">6. Check the DECnet address</span></h2>
+<p class="p_Normal">If DECnet Phase IV runs, read the current MAC address from the LANCP output in step 4. <span class="f_CodeExample">AA-00-04-00-xx-yy</span> encodes the DECnet address as the 16-bit number <span class="f_CodeExample">yyxx</span> (low byte first): area = number / 1024, node = number mod 1024. For example <span class="f_CodeExample">AA-00-04-00-03-04</span> is 0x0403 = 1027 = node 1.3. Two nodes with the same DECnet address on one LAN have the same MAC address, and neither works reliably.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">7. Verify</span></h2>
+<p class="p_Normal">From the guest, ping another machine on the LAN:</p>
+<p class="p_Normal"><span class="f_CodeExample">$ TCPIP PING 192.168.1.254</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">In Wireshark on the host, this display filter shows only DEC traffic -- DEC hardware addresses, DECnet Phase IV addresses, DEC multicast and the DEC protocol types (MOP, DECnet, LAT, cluster) -- plus the IP addresses you name:</p>
+<p class="p_Normal"><span class="f_CodeExample">eth.addr[0:3] == 08:00:2b || eth.addr[0:3] == aa:00:04 || eth.addr[0:3] == ab:00:00 || eth.addr[0:3] == 09:00:2b || eth.addr[0:3] == 00:00:f8 || (eth.type &gt;= 0x6000 &amp;&amp; eth.type &lt;= 0x6009) || ip.addr in {192.168.1.48, 192.168.1.99}</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A guest's periodic traffic arrives far less often than on a real system. EMulatR's guest clock runs slower than real time by design, so a DECnet end-node hello that a real AlphaServer sends every 15 seconds appears only every several minutes from an EMulatR guest.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a></p>
+<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
+<p class="p_Normal"><a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMulatR_NET_ADAPTER)</a></p>
+<p class="p_Normal"><a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a></p>
+<p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

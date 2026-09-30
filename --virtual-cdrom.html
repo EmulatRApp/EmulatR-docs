@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; Virtual CDROM (dqa1)</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; Virtual CDROM (dqa1)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="ATAPI,atapi_cdrom,dqa1,ISO,media,option firmware,RUN/STOP,virtual CDROM" />
-   <meta name="description" content="dqa1 (&quot;EMULATR VIRTUAL CDROM&quot;) is the virtual optical device the firmware probes for option firmware during power-up. It is the ATAPI unit on the CY82C693 IDE channel --..." />
+   <meta name="description" content="dqa1 (&quot;EMulatR VIRTUAL CDROM&quot;) is the virtual optical device the firmware probes for option firmware during power-up. It is the ATAPI unit on the CY82C693 IDE channel --..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--virtual-cdrom.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Virtual CDROM (dqa1)</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal"><span class="f_CodeExample">dqa1</span> (&quot;EMULATR VIRTUAL CDROM&quot;) is the virtual optical device the firmware probes for option firmware during power-up. It is the ATAPI unit on the CY82C693 IDE channel -- channel 0, unit 1; <span class="f_CodeExample">dqa0</span> (channel 0, unit 0) is the ATA hard disk. When no media is present it reports &quot;no media present or is disabled via the RUN/STOP switch&quot;.</p>
+<p class="p_Normal"><span class="f_CodeExample">dqa1</span> (&quot;EMulatR VIRTUAL CDROM&quot;) is the virtual optical device the firmware probes for option firmware during power-up. It is the ATAPI unit on the CY82C693 IDE channel -- channel 0, unit 1; <span class="f_CodeExample">dqa0</span> (channel 0, unit 0) is the ATA hard disk. When no media is present it reports &quot;no media present or is disabled via the RUN/STOP switch&quot;.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">An ISO image is supplied (not created) through a manifest storage entry: an <span class="f_CodeExample">atapi_cdrom</span> <span class="f_CodeExample">type</span> with the <span class="f_CodeExample">media</span> set to the ISO file. The optical device is read-only, so <span class="f_CodeExample">create_if_missing</span> never applies to it. ISO contents are read through the ISO-9660 path (see ISO-9660 PVD).</p>
 <p class="p_Normal">&nbsp;</p>
@@ -135,12 +135,12 @@
 <p class="p_Normal">The CDROM is a storage entry in the platform manifest (<span class="f_CodeExample">&lt;model&gt;_v7_3_platform.json</span>, for example <span class="f_CodeExample">ds20_v7_3_platform.json</span>). It ships with an empty <span class="f_CodeExample">media</span> (no disc). Point <span class="f_CodeExample">media</span> at an ISO file to insert a disc; leave it empty for an empty drive:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">{&nbsp;&quot;channel&quot;:&nbsp;0,&nbsp;&quot;unit&quot;:&nbsp;1,&nbsp;&quot;lun&quot;:&nbsp;0,&nbsp;&quot;type&quot;:&nbsp;&quot;atapi_cdrom&quot;,</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;model&quot;:&nbsp;&quot;EMULATR&nbsp;VIRTUAL&nbsp;CDROM&quot;,&nbsp;&quot;media&quot;:&nbsp;&quot;install.iso&quot;&nbsp;}</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;model&quot;:&nbsp;&quot;EMulatR&nbsp;VIRTUAL&nbsp;CDROM&quot;,&nbsp;&quot;media&quot;:&nbsp;&quot;install.iso&quot;&nbsp;}</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">&lt;model&gt;_v7_3_platform.json</span><span class="f_NotesBox"> -- storage manifest; the </span><span class="f_CodeExample">atapi_cdrom</span><span class="f_NotesBox"> entry (channel 0, unit 1) whose </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names the ISO.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- the ATAPI unit answering dqa1 (&quot;EMULATR VIRTUAL CDROM&quot;).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/VirtualIsoDevice.h</span><span class="f_NotesBox"> -- the ISO media endpoint, read via the ISO-9660 path.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">&lt;model&gt;_v7_3_platform.json</span><span class="f_NotesBox"> -- storage manifest; the </span><span class="f_CodeExample">atapi_cdrom</span><span class="f_NotesBox"> entry (channel 0, unit 1) whose </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names the ISO.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- the ATAPI unit answering dqa1 (&quot;EMulatR VIRTUAL CDROM&quot;).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/scsi/VirtualIsoDevice.h</span><span class="f_NotesBox"> -- the ISO media endpoint, read via the ISO-9660 path.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--atapi-devices.html" class="topiclink">ATAPI Devices</a></p>

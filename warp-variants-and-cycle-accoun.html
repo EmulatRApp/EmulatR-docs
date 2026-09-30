@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; WARP Variants and Cycle-Accounting</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock &gt; WARP Variants and Cycle-Accounting</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?warp-variants-and-cycle-accoun.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">6.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">WARP Variants and Cycle-Accounting for Reported CPU Speed</span></h1>
 
@@ -129,8 +129,8 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">WARP collapses idle and delay spins by fast-forwarding the simulation clock to a known target instead of executing every cycle. This topic catalogs the WARP variants, the counters each one touches, the single safety rule that separates the clean variant from the quarantined ones, and a cycle-accounting scheme that turns the warp deltas into an honest &quot;real vs effective&quot; performance number. It closes by relating that number to the SRM CPU-speed field so the badge and the perf gauge stay cleanly separated.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-weight: bold;">STATUS — the WARP levers were REMOVED from EmulatR on 2026-08-01.</span> Every variant catalogued below (<span class="f_CodeExample">EMULATR_IDLEWARP</span>, <span class="f_CodeExample">EMULATR_RSCCWARP</span>, <span class="f_CodeExample">EMULATR_TICKWARP</span>, <span class="f_CodeExample">EMULATR_DELAYWARP</span>, <span class="f_CodeExample">EMULATR_UDELAYWARP_LEGACY_UNSAFE</span>) is gone from the execution path, and those names are now stripped from a child environment if they are still exported in a shell. They fabricated guest-observable state: all of them advanced the guest clock, and one wrote a guest register directly to force a countdown loop to exit. EmulatR is the primary Oracle, and performance is not a reason to break fidelity; a deliberate performance pass will come later, measured against the Oracle.</p>
-<p class="p_Normal">Two things survive and are NOT covered by that removal. <span class="f_CodeExample">EMULATR_UDELAYWARP</span> remains as a single documented exception — it advances only to the next timer edge, so no interval-timer boundary is ever skipped. And <span class="f_CodeExample">EMULATR_SPINSKIP</span> is the proven successor: it refuses to collapse a loop unless it can prove the body is free of memory, CSR and IPR access with a closed-form trip count, and it replays every timer edge crossed. That is a provably equivalent transformation rather than a fabrication.</p>
+<p class="p_Normal"><span style="font-weight: bold;">STATUS — the WARP levers were REMOVED from EMulatR on 2026-08-01.</span> Every variant catalogued below (<span class="f_CodeExample">EMulatR_IDLEWARP</span>, <span class="f_CodeExample">EMulatR_RSCCWARP</span>, <span class="f_CodeExample">EMulatR_TICKWARP</span>, <span class="f_CodeExample">EMulatR_DELAYWARP</span>, <span class="f_CodeExample">EMulatR_UDELAYWARP_LEGACY_UNSAFE</span>) is gone from the execution path, and those names are now stripped from a child environment if they are still exported in a shell. They fabricated guest-observable state: all of them advanced the guest clock, and one wrote a guest register directly to force a countdown loop to exit. EMulatR is the primary Oracle, and performance is not a reason to break fidelity; a deliberate performance pass will come later, measured against the Oracle.</p>
+<p class="p_Normal">Two things survive and are NOT covered by that removal. <span class="f_CodeExample">EMulatR_UDELAYWARP</span> remains as a single documented exception — it advances only to the next timer edge, so no interval-timer boundary is ever skipped. And <span class="f_CodeExample">EMulatR_SPINSKIP</span> is the proven successor: it refuses to collapse a loop unless it can prove the body is free of memory, CSR and IPR access with a closed-form trip count, and it replays every timer edge crossed. That is a provably equivalent transformation rather than a fabrication.</p>
 <p class="p_Normal">The <span style="font-weight: bold;">cycle-accounting</span> material further down remains current and is now more useful, not less: on a clean run the accounting reports <span class="f_CodeExample">warp_cyc=0</span> with <span class="f_CodeExample">K=1</span> and <span class="f_CodeExample">MHz_real == MHz_eff</span>. That is the signature of a run in which every cycle was executed and none fabricated, and it is the quickest way to confirm a build is honest. The variant table below is retained as a historical record of what was removed and why.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The three counters (do not conflate)</span></h2>
@@ -154,7 +154,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IDLEWARP (<span class="f_CodeExample">EMULATR_IDLEWARP</span>)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IDLEWARP (<span class="f_CodeExample">EMulatR_IDLEWARP</span>)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">krn$_idle loop, pc <span class="f_CodeExample">0x7bad0..0x7bb10</span></p>
 </td>
@@ -164,7 +164,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Tick-delay warp (<span class="f_CodeExample">EMULATR_RSCCWARP</span>)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Tick-delay warp (<span class="f_CodeExample">EMulatR_RSCCWARP</span>)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">pc <span class="f_CodeExample">0x7c314</span></p>
 </td>
@@ -174,7 +174,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RSCC-deadline warp (<span class="f_CodeExample">EMULATR_RSCCWARP</span>)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">RSCC-deadline warp (<span class="f_CodeExample">EMulatR_RSCCWARP</span>)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">pc <span class="f_CodeExample">0x7c304</span></p>
 </td>
@@ -260,7 +260,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">MHz_real</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">honest EmulatR throughput</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">honest EMulatR throughput</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">execCycles / W / 1e6</span></p>
 </td>
@@ -294,19 +294,19 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why the guest cannot see the warp (and where the gauge must live)</span></h2>
-<p class="p_Normal">Inside the guest, RPCC (<span class="f_CodeExample">cycleCount</span>) and the tick counter (<span class="f_CodeExample">0x3c970</span>) advance <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">coherently</span> through every warp. Any guest-side measurement -- cycles divided by ticks, times 1024 -- therefore recovers exactly <span class="f_CodeExample">kProfileAlphaClockHz</span>, warp-invariant. The over-performance <span class="f_CodeExample">K</span> exists only relative to the HOST clock, so it is observable only by correlating guest cycles against host wall-time <span class="f_CodeExample">W</span>. That is precisely what <span class="f_CodeExample">warpCycles</span> plus a host timestamp provide. The gauge is an EmulatR-side readout (PROFILE line), NOT a guest-visible register.</p>
+<p class="p_Normal">Inside the guest, RPCC (<span class="f_CodeExample">cycleCount</span>) and the tick counter (<span class="f_CodeExample">0x3c970</span>) advance <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">coherently</span> through every warp. Any guest-side measurement -- cycles divided by ticks, times 1024 -- therefore recovers exactly <span class="f_CodeExample">kProfileAlphaClockHz</span>, warp-invariant. The over-performance <span class="f_CodeExample">K</span> exists only relative to the HOST clock, so it is observable only by correlating guest cycles against host wall-time <span class="f_CodeExample">W</span>. That is precisely what <span class="f_CodeExample">warpCycles</span> plus a host timestamp provide. The gauge is an EMulatR-side readout (PROFILE line), NOT a guest-visible register.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Relation to the CPU-speed badge</span></h2>
-<p class="p_Normal">The SRM banner &quot;%3d MHz&quot; comes from <span class="f_CodeExample">krn$_timer_get_cycle_time()/1e6</span>, which on the ISP path reads the HWRPB cycle-counter-frequency field at PA <span class="f_CodeExample">0x2070</span> (the same self-built HWRPB whose SYSVAR is at 0x2058). That field is <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">functional</span> -- the firmware's delay/timeout loops key off it, and the WARP thresholds are tuned against the current value -- so it must NOT be repurposed as a raw performance gauge. Keep it frozen (or set it to a true model clock only as part of the warp refactor, since a realistic clock enlarges the delay loops and only the re-homed delay-loop warp collapses them for free). The build-relative performance number (<span class="f_CodeExample">MHz_real</span>, <span class="f_CodeExample">MHz_eff</span>, <span class="f_CodeExample">K</span>) lives EmulatR-side, computed from <span class="f_CodeExample">warpCycles</span> + wall-time, independent of the guest.</p>
+<p class="p_Normal">The SRM banner &quot;%3d MHz&quot; comes from <span class="f_CodeExample">krn$_timer_get_cycle_time()/1e6</span>, which on the ISP path reads the HWRPB cycle-counter-frequency field at PA <span class="f_CodeExample">0x2070</span> (the same self-built HWRPB whose SYSVAR is at 0x2058). That field is <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">functional</span> -- the firmware's delay/timeout loops key off it, and the WARP thresholds are tuned against the current value -- so it must NOT be repurposed as a raw performance gauge. Keep it frozen (or set it to a true model clock only as part of the warp refactor, since a realistic clock enlarges the delay loops and only the re-homed delay-loop warp collapses them for free). The build-relative performance number (<span class="f_CodeExample">MHz_real</span>, <span class="f_CodeExample">MHz_eff</span>, <span class="f_CodeExample">K</span>) lives EMulatR-side, computed from <span class="f_CodeExample">warpCycles</span> + wall-time, independent of the guest.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Implementation order</span></h2>
 <p class="p_Normal">1. Add <span class="f_CodeExample">s_warpCycles</span> and increment it at every warp site (IDLEWARP now; the delay-loop warps when re-homed). Emit <span class="f_CodeExample">MHz_real / MHz_eff / K</span> on the PROFILE line. Zero guest impact; immediate build-relative perf gauge. 2. Re-home the delay-loop warps onto the clean sim-counter model (advance cycleCount, let the ISR post 0x3c970) to un-quarantine them. 3. Only then, if a realistic banner is wanted, set the model clock at PA 0x2070 -- now free, because the re-homed warp collapses the enlarged delay loops.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/MemDrainer.h</span><span class="f_NotesBox"> -- IDLEWARP/RSCCWARP warp sites; advances cpu.cycleCount.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">eBoxLib/grains/IntArith.cpp</span><span class="f_NotesBox"> -- RPCC / HW_MFPR HW_CC return cpu.cycleCount + ccBias.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/CchipIntervalTimer.h</span><span class="f_NotesBox"> -- kCchipTimerMask FIRE path posting the real tick.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/BadgeMhzGauge.h</span><span class="f_NotesBox"> -- SRM MHz badge gauge (kept separate from the perf gauge).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/MemDrainer.h</span><span class="f_NotesBox"> -- IDLEWARP/RSCCWARP warp sites; advances cpu.cycleCount.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">eBoxLib/grains/IntArith.cpp</span><span class="f_NotesBox"> -- RPCC / HW_MFPR HW_CC return cpu.cycleCount + ccBias.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/CchipIntervalTimer.h</span><span class="f_NotesBox"> -- kCchipTimerMask FIRE path posting the real tick.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/BadgeMhzGauge.h</span><span class="f_NotesBox"> -- SRM MHz badge gauge (kept separate from the perf gauge).</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span> Model Badging: SRM Platform Identity from an IIC Discriminator Device; Diagnostics: GuestMemory Store-Watch and Retire-Trace Arm; <a href="hwrpb---ds20.html" class="topiclink">HWRPB - DS20</a>.</p>
 

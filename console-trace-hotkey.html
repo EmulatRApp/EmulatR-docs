@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>5. Operating EmulatR &gt; 5.8 Logging &amp; Diagnostics &gt; Console Trace Hotkey</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="break.trc,BRKSINK,Ctrl/\,Ctrl/],EMULATR_DIAG_ATAPIWIRE,EMULATR_DIAG_TRACE_HOTKEY,EMULATR_RETIRE_TRACE_DIR,EMULATR_STOP,full trace,hotkey,retire trace,TRACE-HOTKEY" />
+   <meta name="description" content="The console trace hotkey lets the operator start and stop a full instruction trace from the console, at the moment something interesting starts. It suits problems that only..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "console-trace-hotkey.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Console Trace Hotkey</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?console-trace-hotkey.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">5.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Console Trace Hotkey</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="--diagnostics--debugging---(ne.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="4_8-logging--diagnostics.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="bring-up-probes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The console trace hotkey lets the operator start and stop a full instruction trace from the console, at the moment something interesting starts. It suits problems that only show up late in a run, such as a boot that goes quiet after a particular console message, where tracing from power-up would take far too long and produce far too much data.</p>
+<p class="p_Normal">Each traced instruction is written with its program counter, encoding, mnemonic, PAL mode and the full integer register file, so the trace shows exactly what the processor did while the window was open.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Requirements</span></h2>
+<p class="p_Normal">The hotkey is a diagnostic facility. It exists only in diagnostic builds (RelWithDebInfo). The Release build that the kit installs does not contain it.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">It is off unless the run is started with <span class="f_CodeExample">EMulatR_DIAG_TRACE_HOTKEY=1</span>. Without that setting the two keys pass to the guest unchanged, as in any other run.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The keys</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Key</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Character</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Action</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Ctrl/\</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x1C</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Opens the trace. Tracing starts at the next instruction the processor completes.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Ctrl/]</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x1D</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Closes the trace at the next instruction. Pressing Ctrl/\ again later opens a new window in the same file.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR takes both keys before they reach the emulated serial port, so the SRM console and the operating system never see them. They can be pressed at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, during a boot, or while the guest is silent. Neither key is used by the SRM console, and neither starts an escape sequence, so arrow keys and command recall keep working. (Ctrl/[ is not used because it is the ESC character that begins every arrow and function key sequence.)</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">In PuTTY, type the keys as Ctrl and backslash, and Ctrl and right square bracket. A raw connection passes them through unchanged.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Running with the hotkey</span></h2>
+<p class="p_Normal">Set the variable in the shell that starts EMulatR. Set <span class="f_CodeExample">EMulatR_RETIRE_TRACE_DIR</span> as well, so the trace lands in the run directory's <span class="f_CodeExample">traces</span> folder beside the run log:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_DIAG_TRACE_HOTKEY=1&nbsp;EMulatR_RETIRE_TRACE_DIR=./traces&nbsp;tools/EMulatR_env.sh&nbsp;ds10&nbsp;hotkey</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
+<p class="p_Normal">A typical session:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>Boot as usual, for example <span class="f_CodeExample">b dqb0</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Wait until the run reaches the stage to be studied, for example the console going quiet after a message.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span>Press Ctrl/\ and let the run continue for as long as the trace is wanted.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">4.</span>Press Ctrl/], or stop the run cleanly by creating the <span class="f_CodeExample">EMulatR_STOP</span> file in the run directory. A clean stop closes an open trace properly and writes the end-of-run record.</p>
+<p class="p_Normal">Stop the run cleanly rather than ending the process; a killed process loses the end of the trace and the flash contents.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What the run log shows</span></h2>
+<p class="p_Normal">Each key press is confirmed in the run log, and the trace sink reports the exact cycle and program counter where the window opened and closed:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">TRACE-HOTKEY:&nbsp;Ctrl/\&nbsp;-&gt;&nbsp;full&nbsp;retire&nbsp;trace&nbsp;OPENS&nbsp;at&nbsp;the&nbsp;next&nbsp;retire</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">BRKSINK:&nbsp;FORCE-OPEN&nbsp;at&nbsp;cyc=1526406171&nbsp;pc=000000000007fe70&nbsp;--&nbsp;full&nbsp;trace&nbsp;until&nbsp;shutdown</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">TRACE-HOTKEY:&nbsp;Ctrl/]&nbsp;-&gt;&nbsp;full&nbsp;retire&nbsp;trace&nbsp;CLOSES&nbsp;at&nbsp;the&nbsp;next&nbsp;retire</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">BRKSINK:&nbsp;FORCE-CLOSE&nbsp;at&nbsp;cyc=1527486428&nbsp;pc=00000000000847cc&nbsp;--&nbsp;full&nbsp;trace&nbsp;stopped</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">When the IDE wire log is also on (<span class="f_CodeExample">EMulatR_DIAG_ATAPIWIRE</span>), each key press is recorded there as a <span class="f_CodeExample">HOT</span> event and the wire log is written to disk at that moment, so the device events leading up to the trace are on disk even if the guest has gone quiet.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The trace file</span></h2>
+<p class="p_Normal">The trace is written to <span class="f_CodeExample">&lt;date&gt;-&lt;time&gt;_break.trc</span> in the folder named by <span class="f_CodeExample">EMulatR_RETIRE_TRACE_DIR</span>. If that variable is not set, it goes to <span class="f_CodeExample">D:\EMulatR\traces</span>. Every window in one run goes into the same file:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">BP_OPEN</span> marks where a window opened. It is followed by <span class="f_CodeExample">IPR_SNAP</span>, <span class="f_CodeExample">PT_SNAP</span> and <span class="f_CodeExample">CBX_SNAP</span> records holding the processor's internal registers, PAL temporaries and cache-box state at that point.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>One <span class="f_CodeExample">BRK</span> line per completed instruction: cycle, program counter, encoding, mnemonic, PAL mode, exception address, and registers <span class="f_CodeExample">R00</span> to <span class="f_CodeExample">R30</span>, plus the memory address and value for loads and stores.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">BP_CLOSE</span> marks where a window closed, with the same register snapshots.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">RUN_END</span> is the last line of a cleanly stopped run. A file without it was cut short.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The file grows by roughly 0.75 GB for every million instructions traced, and the run slows down sharply while the trace is open. Keep windows short and aim them at the stage under study; check the free space on the trace drive before a long window.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="--diagnostics--debugging---(ne.html" class="topiclink">Diagnostics &amp; Debugging</a></p>
+<p class="p_Normal"><a href="4_8-logging--diagnostics.html" class="topiclink">Logging &amp; Diagnostics</a></p>
+<p class="p_Normal"><a href="troubleshoot-openvms-crash.html" class="topiclink">OpenVMS Crash or Hang: Capturing Diagnostics</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

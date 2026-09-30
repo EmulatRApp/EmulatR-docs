@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.6 Firmware Update Utility (LFU)</title>
+   <title>5. Operating EmulatR &gt; 5.6 Firmware Update Utility (LFU)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?4_6-firmware-update-utility-(l.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Firmware Update Utility (LFU)</span></h1>
 
@@ -127,31 +127,30 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The Loadable Firmware Update (LFU) utility runs during power-up -- after the option-firmware scan finds nothing on CD or floppy, the firmware drops to the <span class="f_CodeExample">UPD&gt;</span> prompt. From there you can list and update the firmware images in flash. <span class="f_CodeExample">exit</span> leaves LFU (a reset) and continues to the console. On the ES40 in silicon mode this exit reset drives the (experimental) TIG module reset -- see the ES40 TIG Module Reset topic.</p>
+<p class="p_Normal">The Loadable Firmware Update (LFU) utility runs during power-up -- after the option-firmware scan finds nothing on CD or floppy, the firmware drops to the <span class="f_CodeExample">UPD&gt;</span> prompt. From there you can list and update the firmware images in flash. <span class="f_CodeExample">exit</span> leaves LFU (a reset) and continues to the console. On the ES40 in REAL_HW mode this exit reset drives the (experimental) TIG module reset -- see the ES40 TIG Module Reset topic.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In this section</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-LFU Commands -- the menu, List, Display, and Update.</span></p>
-<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-LFU Commands -- the menu, List, Display, and Update.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The console answers the update prompts for you</span></h2>
-<p class="p_Normal">From X1.6-15 EmulatR watches its own console output and answers the two update-image prompts the way an operator would -- a carriage return at the &quot;proceed with a standard console update&quot; question, then <span class="f_CodeExample">exit</span> at the <span class="f_CodeExample">UPD&gt;</span> prompt. A cold boot therefore reaches the SRM console unattended.</p>
+<p class="p_Normal">From X1.6-15 EMulatR watches its own console output and answers the two update-image prompts the way an operator would -- a carriage return at the &quot;proceed with a standard console update&quot; question, then <span class="f_CodeExample">exit</span> at the <span class="f_CodeExample">UPD&gt;</span> prompt. A cold boot therefore reaches the SRM console unattended.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is deliberately not silent. Each injection prints one line, so what looks like the machine typing by itself is always accounted for in the log:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">LFU-AUTORESPOND:&nbsp;prompt&nbsp;matched&nbsp;on&nbsp;COM1&nbsp;-&gt;&nbsp;sent&nbsp;&lt;CR&gt;&nbsp;(proceed&nbsp;with&nbsp;standard&nbsp;console&nbsp;update)&nbsp;(1/6;&nbsp;EMULATR_LFU_INTERACTIVE=1&nbsp;to&nbsp;drive&nbsp;LFU&nbsp;yourself)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">LFU-AUTORESPOND:&nbsp;prompt&nbsp;matched&nbsp;on&nbsp;COM1&nbsp;-&gt;&nbsp;sent&nbsp;'exit'&nbsp;(2/6;&nbsp;EMULATR_LFU_INTERACTIVE=1&nbsp;to&nbsp;drive&nbsp;LFU&nbsp;yourself)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">LFU-AUTORESPOND:&nbsp;prompt&nbsp;matched&nbsp;on&nbsp;COM1&nbsp;-&gt;&nbsp;sent&nbsp;&lt;CR&gt;&nbsp;(proceed&nbsp;with&nbsp;standard&nbsp;console&nbsp;update)&nbsp;(1/6;&nbsp;EMulatR_LFU_INTERACTIVE=1&nbsp;to&nbsp;drive&nbsp;LFU&nbsp;yourself)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">LFU-AUTORESPOND:&nbsp;prompt&nbsp;matched&nbsp;on&nbsp;COM1&nbsp;-&gt;&nbsp;sent&nbsp;'exit'&nbsp;(2/6;&nbsp;EMulatR_LFU_INTERACTIVE=1&nbsp;to&nbsp;drive&nbsp;LFU&nbsp;yourself)</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Set <span class="f_CodeExample">EMULATR_LFU_INTERACTIVE=1</span> to switch injection off entirely and drive the prompts from the keyboard -- which is what you want when performing a real firmware update.</p>
+<p class="p_Normal">Set <span class="f_CodeExample">EMulatR_LFU_INTERACTIVE=1</span> to switch injection off entirely and drive the prompts from the keyboard -- which is what you want when performing a real firmware update.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Injection is capped at six. If LFU ever re-prompts in a loop the cap stops the console answering it forever, says so, and hands the terminal back to you:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">LFU-AUTORESPOND:&nbsp;injection&nbsp;cap&nbsp;reached&nbsp;--&nbsp;console&nbsp;is&nbsp;yours</span></p>
 <p class="p_Normal">Reaching that cap on a normal boot is a fault worth reporting, not something to answer past.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">Considerations. </span></p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU utility is a mandatory fork during SRM initial boot; &nbsp;</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU utility, the SRM should be updated at least one time (LFU&gt; update srm);</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Every cold boot re-runs the update image, so the fork recurs by design rather than by fault -- the firmware EmulatR boots is the update distribution image, and booting the updated flash contents directly is future work. See <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Leaving LFU with <span class="f_CodeExample">exit</span> at each boot is expected and harmless; from X1.6-15 the console does it for you (below).</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU ROM is updated during <a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a> only.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU utility is a mandatory fork during SRM initial boot; &nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU utility, the SRM should be updated at least one time (LFU&gt; update srm);</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Every cold boot re-runs the update image, so the fork recurs by design rather than by fault -- the firmware EMulatR boots is the update distribution image, and booting the updated flash contents directly is future work. See <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Leaving LFU with <span class="f_CodeExample">exit</span> at each boot is expected and harmless; from X1.6-15 the console does it for you (below).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The LFU ROM is updated during <a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a> only.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--es40-tig-module-reset.html" class="topiclink">ES40 TIG Module Reset</a></p>

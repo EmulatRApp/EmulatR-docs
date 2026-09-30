@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.9 Networking (EWA0) &gt; Naming the Host Adapter (EMULATR_NET_ADAPTER)</title>
+   <title>5. Operating EmulatR &gt; 5.9 Networking (EWA0) &gt; Naming the Host Adapter (EMULATR_NET_ADAPTER)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="adapter,auto-detect,description substring,device name,EMULATR_NET_ADAPTER,Get-NetAdapter,InterfaceDescription,Launcher,network adapter,NPF,Runtime environment variables,UNAVAILABLE" />
-   <meta name="description" content="By default EmulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using EMULATR_NET_ADAPTER -- from finding the..." />
+   <meta name="description" content="By default EMulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using EMulatR_NET_ADAPTER -- from finding the..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMULATR_NET_ADAPTER)</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMulatR_NET_ADAPTER)</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,16 +105,16 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?naming-the-host-adapter.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">4.9 Networking (EWA0)</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">5.9 Networking (EWA0)</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMULATR_NET_ADAPTER)</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Naming the Host Adapter (EMulatR_NET_ADAPTER)</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
       <a href="choosing-the-host-adapter.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="networking-ewa0.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="5_-architecture--internals----.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="configuring-guest-networking.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">By default EmulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> -- from finding the adapter, through setting it in the Launcher, to confirming it took effect.</p>
+<p class="p_Normal">By default EMulatR chooses the host adapter for EWA0 by itself. This page covers everything needed to name one explicitly instead, using <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> -- from finding the adapter, through setting it in the Launcher, to confirming it took effect.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">When you need to name an adapter</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -143,7 +143,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run log says several adapters have no bound address</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">more than one adapter qualifies, and EmulatR will not guess between them</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">more than one adapter qualifies, and EMulatR will not guess between them</p>
 </td>
 </tr>
 <tr>
@@ -170,6 +170,7 @@
 <p class="p_CodeExample"><span class="f_CodeExample">Get-NetAdapter&nbsp;|&nbsp;Format-Table&nbsp;Name,&nbsp;InterfaceDescription,&nbsp;Status,&nbsp;MediaType</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Choose the WIRED adapter -- <span class="f_CodeExample">MediaType</span> <span class="f_CodeExample">802.3</span>. A Wi-Fi adapter (<span class="f_CodeExample">Native 802.11</span>) cannot carry the guest, whatever you name.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Take a distinctive part of its <span class="f_CodeExample">InterfaceDescription</span>. For <span class="f_CodeExample">Intel(R) Ethernet Connection (3) I219-LM</span>, the value <span class="f_CodeExample">I219</span> is enough. Case does not matter, but the text must match ONE adapter only -- check it against the whole list.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. Choose the value</span></h2>
@@ -222,11 +223,11 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3. Set it in the Launcher</span></h2>
-<p class="p_Normal">The Launcher is where this setting takes effect for an installed EmulatR. Set it there, for each named system that needs it.</p>
+<p class="p_Normal">The Launcher is where this setting takes effect for an installed EMulatR. Set it there, for each named system that needs it.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">1. Start the Launcher and select the named system.</p>
 <p class="p_Normal">2. On that system's details, find the group <span class="f_T_Emphasis">Run-time environment variables</span>. Its columns are a tick box, <span class="f_T_Emphasis">Name</span>, <span class="f_T_Emphasis">Value</span> and <span class="f_T_Emphasis">Description</span>.</p>
-<p class="p_Normal">3. Find the row <span class="f_CodeExample">EMULATR_NET_ADAPTER</span>. It is shown without ticking <span class="f_T_Emphasis">Show developer variables</span>.</p>
+<p class="p_Normal">3. Find the row <span class="f_CodeExample">EMulatR_NET_ADAPTER</span>. It is shown without ticking <span class="f_T_Emphasis">Show developer variables</span>.</p>
 <p class="p_Normal">4. Double-click its <span class="f_T_Emphasis">Value</span> cell (or select it and press F2), type the value, and press Enter.</p>
 <p class="p_Normal">5. <span class="f_T_Emphasis">TICK THE BOX ON THAT ROW.</span> This is the step that is easy to miss, and nothing warns you if you do.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -236,16 +237,16 @@
 <p class="p_Normal">The value and its tick box are saved with the named system. A second named system has its own row and needs setting separately -- which also means two systems can be bridged onto different adapters.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Not as a Windows environment variable</span></h3>
-<p class="p_Normal">Setting <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> in Windows System Properties does not work with the Launcher. Whenever that row is unticked, the Launcher REMOVES the variable before starting the emulator, so that a value left behind from some earlier session cannot silently change a run. The Launcher's row is the only place to set it.</p>
+<p class="p_Normal">Setting <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> in Windows System Properties does not work with the Launcher. Whenever that row is unticked, the Launcher REMOVES the variable before starting the emulator, so that a value left behind from some earlier session cannot silently change a run. The Launcher's row is the only place to set it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">4. Confirm it took effect</span></h2>
 <p class="p_Normal">Start the named system and check two things in its run log, in the system's <span class="f_CodeExample">logs</span> folder.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">First, that the Launcher applied your value. The run log's header lists every variable it set:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMULATR_*&nbsp;environment&nbsp;enabled&nbsp;for&nbsp;this&nbsp;run:</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMULATR_NET_ADAPTER=I219</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMulatR_*&nbsp;environment&nbsp;enabled&nbsp;for&nbsp;this&nbsp;run:</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMulatR_NET_ADAPTER=I219</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">If instead it says <span class="f_CodeExample">EMULATR_* environment: none enabled for this run.</span>, the row was not ticked -- go back to step 3.</p>
+<p class="p_Normal">If instead it says <span class="f_CodeExample">EMulatR_* environment: none enabled for this run.</span>, the row was not ticked -- go back to step 3.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Second, that the emulator attached to the adapter you named:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">EWA0&nbsp;network&nbsp;backend&nbsp;ATTACHED&nbsp;to&nbsp;'\Device\NPF_{...}'&nbsp;...</span></p>
@@ -266,11 +267,11 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_* environment: none enabled for this run.</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_* environment: none enabled for this run.</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the row was not ticked, so your value was discarded</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">tick the box on the <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> row</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">tick the box on the <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> row</p>
 </td>
 </tr>
 <tr>
@@ -278,7 +279,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">nothing matched the text you typed</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR lists every adapter it can see directly beneath this line -- pick a distinctive part of one of those</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR lists every adapter it can see directly beneath this line -- pick a distinctive part of one of those</p>
 </td>
 </tr>
 <tr>
@@ -286,7 +287,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the adapter was found but could not be opened; usually Npcap was installed with &quot;Restrict Npcap driver's access to Administrators only&quot; ticked</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reinstall Npcap with that option UNCHECKED, or run EmulatR as administrator</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reinstall Npcap with that option UNCHECKED, or run EMulatR as administrator</p>
 </td>
 </tr>
 <tr>
@@ -309,12 +310,12 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">A networking problem never stops EmulatR from starting: in every case above the guest keeps a working network adapter with no wire, and the run continues.</p>
+<p class="p_Normal">A networking problem never stops EMulatR from starting: in every case above the guest keeps a working network adapter with no wire, and the run continues.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_T_Emphasis">Networking makes a run NON-DETERMINISTIC</span> -- frames arrive on other machines' schedules. Set the value to <span class="f_CodeExample">off</span> for any run you intend to time or compare.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 <p class="p_Normal"><a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a></p>
 
 <!--ZOOMSTOP-->

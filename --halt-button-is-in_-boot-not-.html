@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>7. Troubleshooting &gt; Halt Button is IN, BOOT NOT POSSIBLE</title>
+   <title>8. Troubleshooting &gt; Halt Button is IN, BOOT NOT POSSIBLE</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--halt-button-is-in_-boot-not-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="7_-troubleshooting------------.html">7. Troubleshooting</a>&nbsp;&gt;</p>
+      <a href="7_-troubleshooting------------.html">8. Troubleshooting</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Halt Button is IN, BOOT NOT POSSIBLE</span></h1>
 
@@ -114,7 +114,7 @@
       
       <a href="--console-connection-issues---.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="7_-troubleshooting------------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="--example-(console)-execution.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="troubleshoot-openvms-crash.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -133,15 +133,15 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it means</span></h2>
 <p class="p_Normal">The firmware reads the front-panel RUN/STOP (halt) switch and finds it asserted (IN). A halted machine refuses to boot and ignores <span class="f_CodeExample">auto_action</span> -- on real hardware you would release the halt switch to allow a boot.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In EmulatR - RESOLVED</span></h2>
-<p class="p_Normal">This was a real defect in EmulatR and it is FIXED. A normal machine now powers up with the halt switch released, honours <span class="f_CodeExample">auto_action</span>, and accepts a boot at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. If you are reading this because you saw the message, see &quot;If you still see this&quot; below.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In EMulatR - RESOLVED</span></h2>
+<p class="p_Normal">This was a real defect in EMulatR and it is FIXED. A normal machine now powers up with the halt switch released, honours <span class="f_CodeExample">auto_action</span>, and accepts a boot at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. If you are reading this because you saw the message, see &quot;If you still see this&quot; below.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Root cause</span></h2>
-<p class="p_Normal">The firmware reads the halt-switch state from a system-interface status register (<span class="f_CodeExample">smir</span>, in the TIG register block). EmulatR did not model that register block at all, so reads of it fell through to the unmapped-space default of all-ones - every bit set, including the bit that means &quot;halt switch asserted&quot;. The firmware was reading the machine correctly; the machine was lying to it. The fix was to model the TIG faithfully so the register returns real state.</p>
+<p class="p_Normal">The firmware reads the halt-switch state from a system-interface status register (<span class="f_CodeExample">smir</span>, in the TIG register block). EMulatR did not model that register block at all, so reads of it fell through to the unmapped-space default of all-ones - every bit set, including the bit that means &quot;halt switch asserted&quot;. The firmware was reading the machine correctly; the machine was lying to it. The fix was to model the TIG faithfully so the register returns real state.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Two plausible explanations were investigated and ruled out with evidence before the real one was found: a PALcode halt-switch flag, and an interrupt line being misread as a halt request. Neither was involved.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">This is the textbook form of the most common class of emulator defect: an unmodeled region returns a value that looks plausible (all-ones or all-zeros), the firmware branches on it, and the symptom appears far away from the actual defect. It is why EmulatR's standing rule is that every register the console reads must be decoded and faithful.</p>
+<p class="p_Normal">This is the textbook form of the most common class of emulator defect: an unmodeled region returns a value that looks plausible (all-ones or all-zeros), the firmware branches on it, and the symptom appears far away from the actual defect. It is why EMulatR's standing rule is that every register the console reads must be decoded and faithful.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it used to look like</span></h2>
 <p class="p_Normal">Kept for reference, since the message itself is genuine DEC console output you may meet on real hardware:</p>
@@ -156,7 +156,6 @@
 <p class="p_Normal">On a current build the message means the halt state is genuinely asserted, not that the register is floating. Check that the platform manifest for your machine actually loaded - an invalid or misnamed manifest silently falls back to the built-in default device tree, which can leave your machine without the device that supplies this register (see Current Platform Support). Report it if the machine is otherwise correctly configured.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
 <p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
 <p class="p_Normal"><a href="boot.html" class="topiclink">boot</a></p>
 

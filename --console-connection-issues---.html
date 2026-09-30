@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>7. Troubleshooting &gt; Console Connection Issues</title>
+   <title>8. Troubleshooting &gt; Console Connection Issues</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--console-connection-issues---.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="7_-troubleshooting------------.html">7. Troubleshooting</a>&nbsp;&gt;</p>
+      <a href="7_-troubleshooting------------.html">8. Troubleshooting</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Console Connection Issues</span></h1>
 
@@ -129,14 +129,14 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">For refused, timed-out, or silent console connections, the full client coverage is in the Terminal Clients page. In brief, check three things:</p>
 <p class="p_NotesBox"><span class="f_NotesBox">The listener is up -- the log shows &quot;Listening on TCP port ...&quot;.</span></p>
-<p class="p_NotesBox"><span class="f_NotesBox">The port matches your client (the default is 10023; an instance may have been started on another with EMULATR_CONSOLE_PORT).</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">The port matches your client (the default is 10023; an instance may have been started on another with EMulatR_CONSOLE_PORT).</span></p>
 <p class="p_NotesBox"><span class="f_NotesBox">The client is in RAW mode -- the socket is raw, with no Telnet option negotiation.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The connection works, but typing looks wrong</span></h2>
-<p class="p_NotesBox"><span class="f_NotesBox">The last character or two do not appear until you press Enter. This is a known defect in EmulatR's console path, not a fault in your terminal, your keyboard, or your connection. The characters ARE arriving and ARE being acted on - the SRM accepts the command, OpenVMS accepts the input - only the echo of the final character or two is late, and it catches up the moment you press Enter. It shows at both the </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> prompt and the OpenVMS </span><span class="f_CodeExample">OPA0:</span><span class="f_NotesBox"> console, and it is most noticeable when typing a date. There is nothing to configure; type ahead normally.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">The last character or two do not appear until you press Enter. This is a known defect in EMulatR's console path, not a fault in your terminal, your keyboard, or your connection. The characters ARE arriving and ARE being acted on - the SRM accepts the command, OpenVMS accepts the input - only the echo of the final character or two is late, and it catches up the moment you press Enter. It shows at both the </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> prompt and the OpenVMS </span><span class="f_CodeExample">OPA0:</span><span class="f_NotesBox"> console, and it is most noticeable when typing a date. There is nothing to configure; type ahead normally.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">PuTTY opens by itself and fails</span></h2>
-<p class="p_NotesBox"><span class="f_NotesBox">&quot;Network error: cannot assign requested address&quot; from the auto-launched PuTTY. You set </span><span class="f_CodeExample">EMULATR_CONSOLE_PORT=0</span><span class="f_NotesBox">, which asks the operating system to pick a free port. EmulatR gets a real port and listens on it, but the PuTTY it launches for you is still told to dial 0, which is not a port anything can connect to. Either set a fixed port (</span><span class="f_CodeExample">EMULATR_CONSOLE_PORT=10023</span><span class="f_NotesBox">, or any free number) and let PuTTY launch, or keep port 0 and connect by hand to the port the log reports on the &quot;Listening on TCP port&quot; line.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">&quot;Network error: cannot assign requested address&quot; from the auto-launched PuTTY. You set </span><span class="f_CodeExample">EMulatR_CONSOLE_PORT=0</span><span class="f_NotesBox">, which asks the operating system to pick a free port. EMulatR gets a real port and listens on it, but the PuTTY it launches for you is still told to dial 0, which is not a port anything can connect to. Either set a fixed port (</span><span class="f_CodeExample">EMulatR_CONSOLE_PORT=10023</span><span class="f_NotesBox">, or any free number) and let PuTTY launch, or keep port 0 and connect by hand to the port the log reports on the &quot;Listening on TCP port&quot; line.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--putty-_-plink-_-teraterm-_-m.html" class="topiclink">Terminal Clients</a></p>

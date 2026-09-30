@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; Tools Script Reference</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; Tools Script Reference</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="inventory,run scripts,runbook,script,tools,tools directory" />
-   <meta name="description" content="A consolidated inventory of every shell (*.sh) and Python (*.py) script in the EmulatR source tools/ directory. This is the reader-facing companion to the on-record manifest..." />
+   <meta name="description" content="A consolidated inventory of every shell (*.sh) and Python (*.py) script in the EMulatR source tools/ directory. This is the reader-facing companion to the on-record manifest..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?tools-script-reference.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Tools Script Reference</span></h1>
 
@@ -127,13 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">A consolidated inventory of every shell (<span class="f_CodeExample">*.sh</span>) and Python (<span class="f_CodeExample">*.py</span>) script in the EmulatR source <span class="f_CodeExample">tools/</span> directory. This is the reader-facing companion to the on-record manifest <span class="f_CodeExample">HMDocs/Maps/file_index.md</span>; both are regenerated from the same source tree.</p>
+<p class="p_Normal">A consolidated inventory of every shell (<span class="f_CodeExample">*.sh</span>) and Python (<span class="f_CodeExample">*.py</span>) script in the EMulatR source <span class="f_CodeExample">tools/</span> directory. This is the reader-facing companion to the on-record manifest <span class="f_CodeExample">HMDocs/Maps/file_index.md</span>; both are regenerated from the same source tree.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the scripts are deployed</span></h2>
 <p class="p_Normal">On every build, the CMake POST_BUILD step (root <span class="f_CodeExample">CMakeLists.txt</span>) stages the tool scripts into the run directory (<span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>) using a <span class="f_CodeExample">file(GLOB ... CONFIGURE_DEPENDS)</span> over <span class="f_CodeExample">tools/*.sh</span> and <span class="f_CodeExample">tools/*.py</span>, so a newly added top-level script deploys automatically. Two rules apply:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">run_fw.sh</span><span class="f_NotesBox"> is special: it is staged to the run-dir ROOT (beside </span><span class="f_CodeExample">Emulatr.exe</span><span class="f_NotesBox">) because it anchors to its own directory and launches the binary directly. It is superseded by </span><span class="f_CodeExample">emulatr_launch.sh</span><span class="f_NotesBox">, which stays in </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> and changes into </span><span class="f_CodeExample">$RUN_DIR</span><span class="f_NotesBox"> itself.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Every other top-level script is staged to </span><span class="f_CodeExample">&lt;run-dir&gt;/tools/</span><span class="f_NotesBox"> and locates </span><span class="f_CodeExample">config/</span><span class="f_NotesBox">, </span><span class="f_CodeExample">firmware/</span><span class="f_NotesBox">, and the manifests as siblings of the run-dir root. The </span><span class="f_CodeExample">tools/host_decompressor/</span><span class="f_NotesBox"> and </span><span class="f_CodeExample">tools/ghidra_scripts/</span><span class="f_NotesBox"> subtrees are NOT runtime tools and are deliberately excluded.</span></p>
-<p class="p_Normal">All shell scripts target Git Bash / MSYS2 on Windows (the supported PC host). Each carries a uniform platform guard that detects the host via <span class="f_CodeExample">uname -s</span> and prefers <span class="f_CodeExample">Emulatr.exe</span>, falling back to a bare <span class="f_CodeExample">Emulatr</span> for a macOS/Linux build; sibling scripts are invoked through <span class="f_CodeExample">bash</span> so they do not depend on the executable bit (which an NTFS checkout drops). The two host-aware SRM launchers (<span class="f_CodeExample">run_srm_trace_full.sh</span>, <span class="f_CodeExample">run_es40_srm_trace_full.sh</span>) and <span class="f_CodeExample">vsenv.sh</span> already branch for macOS. Python utilities require a Python 3 interpreter on the host.</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">run_fw.sh</span><span class="f_NotesBox"> is special: it is staged to the run-dir ROOT (beside </span><span class="f_CodeExample">EMulatR.exe</span><span class="f_NotesBox">) because it anchors to its own directory and launches the binary directly. It is superseded by </span><span class="f_CodeExample">EMulatR_launch.sh</span><span class="f_NotesBox">, which stays in </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> and changes into </span><span class="f_CodeExample">$RUN_DIR</span><span class="f_NotesBox"> itself.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Every other top-level script is staged to </span><span class="f_CodeExample">&lt;run-dir&gt;/tools/</span><span class="f_NotesBox"> and locates </span><span class="f_CodeExample">config/</span><span class="f_NotesBox">, </span><span class="f_CodeExample">firmware/</span><span class="f_NotesBox">, and the manifests as siblings of the run-dir root. The </span><span class="f_CodeExample">tools/host_decompressor/</span><span class="f_NotesBox"> and </span><span class="f_CodeExample">tools/ghidra_scripts/</span><span class="f_NotesBox"> subtrees are NOT runtime tools and are deliberately excluded.</span></p>
+<p class="p_Normal">All shell scripts target Git Bash / MSYS2 on Windows (the supported PC host). Each carries a uniform platform guard that detects the host via <span class="f_CodeExample">uname -s</span> and prefers <span class="f_CodeExample">EMulatR.exe</span>, falling back to a bare <span class="f_CodeExample">EMulatR</span> for a macOS/Linux build; sibling scripts are invoked through <span class="f_CodeExample">bash</span> so they do not depend on the executable bit (which an NTFS checkout drops). The two host-aware SRM launchers (<span class="f_CodeExample">run_srm_trace_full.sh</span>, <span class="f_CodeExample">run_es40_srm_trace_full.sh</span>) and <span class="f_CodeExample">vsenv.sh</span> already branch for macOS. Python utilities require a Python 3 interpreter on the host.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Firmware launch &amp; SRM boot</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -147,15 +147,15 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">emulatr_launch.sh</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_launch.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">THE platform-safe launcher, and the single source of truth for the per-platform arguments. <span class="f_CodeExample">emulatr_launch.sh &lt;plat&gt; [purpose] [-- extra args]</span> takes the platform as its only real input and fixes firmware stem, silicon-max memory and the ini model together, so a mis-badged or over-allocated launch cannot be typed by hand. Always raises the PuTTY console; logs stem-keyed to <span class="f_CodeExample">logs/&lt;stem&gt;_&lt;purpose&gt;_&lt;ts&gt;.log</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">THE platform-safe launcher, and the single source of truth for the per-platform arguments. <span class="f_CodeExample">EMulatR_launch.sh &lt;plat&gt; [purpose] [-- extra args]</span> takes the platform as its only real input and fixes firmware stem, REAL_HW-max memory and the ini model together, so a mis-badged or over-allocated launch cannot be typed by hand. Always raises the PuTTY console; logs stem-keyed to <span class="f_CodeExample">logs/&lt;stem&gt;_&lt;purpose&gt;_&lt;ts&gt;.log</span>.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">run_ds10.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Platform wrapper: DS10, 2 GiB ceiling. Thin exec into <span class="f_CodeExample">emulatr_launch.sh</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Platform wrapper: DS10, 2 GiB ceiling. Thin exec into <span class="f_CodeExample">EMulatR_launch.sh</span>.</p>
 </td>
 </tr>
 <tr>
@@ -191,7 +191,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">run_fw.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LEGACY, superseded by <span class="f_CodeExample">emulatr_launch.sh</span>. Launch one v7_3 firmware image for a chosen model (ds10/ds20/ds25/es40/es45); cold or warm boot. Staged to the run-dir root. Requests a flat 4 GiB with no per-model ceiling, does not know DS15, and logs to the run-dir root rather than the stem-keyed name under <span class="f_CodeExample">logs/</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LEGACY, superseded by <span class="f_CodeExample">EMulatR_launch.sh</span>. Launch one v7_3 firmware image for a chosen model (ds10/ds20/ds25/es40/es45); cold or warm boot. Staged to the run-dir root. Requests a flat 4 GiB with no per-model ceiling, does not know DS15, and logs to the run-dir root rather than the stem-keyed name under <span class="f_CodeExample">logs/</span>.</p>
 </td>
 </tr>
 <tr>
@@ -306,27 +306,27 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_emulatr.sh</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_EMulatR.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host-aware build of Emulatr in any config (relwithdebinfo/debug/release), trace-ready.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host-aware build of EMulatR in any config (relwithdebinfo/debug/release), trace-ready.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_diag.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">One-command command-line build of Emulatr.exe with the EMULATR_BRINGUP_PROBES scaffolding on (Hook B, VPTB-DIAG), outside the VS IDE.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">One-command command-line build of EMulatR.exe with the EMulatR_BRINGUP_PROBES scaffolding on (Hook B, VPTB-DIAG), outside the VS IDE.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_es40_relwithdebinfo.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Turnkey RelWithDebInfo build of Emulatr.exe for the ES40 target.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Turnkey RelWithDebInfo build of EMulatR.exe for the ES40 target.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">build_kbd_vga.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Build EmulatR V6 with the keyboard (8042) + VGA interfaces enabled.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Build EMulatR V6 with the keyboard (8042) + VGA interfaces enabled.</p>
 </td>
 </tr>
 <tr>
@@ -452,7 +452,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">diff_traces.py</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Normalize and compare two EmulatR trace logs.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Normalize and compare two EMulatR trace logs.</p>
 </td>
 </tr>
 <tr>
@@ -476,7 +476,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">trace_reg_backtrace.py</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Data-flow backtrace of a register through an EmulatR trace.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Data-flow backtrace of a register through an EMulatR trace.</p>
 </td>
 </tr>
 <tr>
@@ -528,9 +528,15 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">make_redist.sh</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">make_dist.sh</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Package a built run directory (<span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run</span>) into a versioned zip under <span class="f_CodeExample">redist/</span>, named after the H&amp;M documentation version. Excludes logs, traces, the licensed <span class="f_CodeExample">firmware/*.exe</span> images, and itself. Usage: <span class="f_CodeExample">./tools/make_redist.sh [config]</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Stage the installer kit for this tree in <span class="f_CodeExample">D:\EMulatR\Distribution\&lt;tree&gt;</span> (for example <span class="f_CodeExample">Distribution\v2.1</span>) from the release build, check it with <span class="f_CodeExample">verify_dist.py</span>, and regenerate the Setup Factory file list in <span class="f_CodeExample">EMulatR-&lt;tree&gt;.suf</span>. Usage: <span class="f_CodeExample">./tools/make_dist.sh</span>; <span class="f_CodeExample">MAKE_DIST_NO_SUF=1 ./tools/make_dist.sh</span> stages and checks without touching the <span class="f_CodeExample">.suf</span>.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">verify_dist.py</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Check a staged kit before the installer is built: every file the installer needs is present, and every executable and DLL can find the libraries it imports. Run by <span class="f_CodeExample">make_dist.sh</span>; a failure stops it.</p>
 </td>
 </tr>
 </tbody>

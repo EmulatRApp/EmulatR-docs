@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="development tools,Ghidra,Help &amp; Manual,IDE,profiler,Qt Creator,reverse engineering,Software Verify" />
-   <meta name="description" content="The external tools used to build, profile, reverse-engineer, and document EmulatR. None of these are required to run the emulator; they are the developer-side toolchain behind..." />
+   <meta name="keywords" content="development tools,Ghidra,Help &amp; Manual,IDE,profiler,Qt Creator,reverse engineering,Software Verify,Wireshark" />
+   <meta name="description" content="The external tools used to build, profile, reverse-engineer, and document EMulatR. None of these are required to run the emulator; they are the developer-side toolchain behind..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?8_4-tools.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Tools</span></h1>
 
@@ -127,16 +127,17 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The external tools used to build, profile, reverse-engineer, and document EmulatR. None of these are required to run the emulator; they are the developer-side toolchain behind the project.</p>
+<p class="p_Normal">The external tools used to build, profile, reverse-engineer, and document EMulatR. None of these are required to run the emulator; they are the developer-side toolchain behind the project.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In this section</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Ghidra -- reverse-engineering the decompressed SRM firmware.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Help &amp; Manual -- the authoring tool that produces this documentation.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Software Verify -- the Performance Validator profiler used to find hot spots.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Qt Creator -- the IDE and CMake build environment.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">DOCTest -- the unit-test framework (doctest 2.5.0, single vendored header); CHECK-only, exceptions disabled.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Tools Script Reference -- consolidated inventory of the </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> shell and Python scripts and where they deploy.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Platform Editor -- the Qt desktop application (</span><span class="f_CodeExample">editors/platedit_qt</span><span class="f_NotesBox">) for editing the </span><span class="f_CodeExample">&lt;firmware&gt;_platform.json</span><span class="f_NotesBox"> device manifest.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Ghidra -- reverse-engineering the decompressed SRM firmware.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Help &amp; Manual -- the authoring tool that produces this documentation.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Software Verify -- the Performance Validator profiler used to find hot spots.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Qt Creator -- the IDE and CMake build environment.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Wireshark -- reading EWA0 network captures: the supplied EMulatR-EWA0 profile, filter examples, and how to find the guest's MAC address. See Wireshark and Packet Captures. Wireshark itself is optional, but its installer is the usual way to obtain Npcap, which EWA0 networking needs (5.9 Networking).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">DOCTest -- the unit-test framework (doctest 2.5.0, single vendored header); CHECK-only, exceptions disabled.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Tools Script Reference -- consolidated inventory of the </span><span class="f_CodeExample">tools/</span><span class="f_NotesBox"> shell and Python scripts and where they deploy.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Platform Editor -- the wxWidgets desktop application (</span><span class="f_CodeExample">editors/platedit_wx</span><span class="f_NotesBox">; chapter 3) for editing the </span><span class="f_CodeExample">&lt;firmware&gt;_platform.json</span><span class="f_NotesBox"> device manifest.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--required-tools--frameworks.html" class="topiclink">Required Tools &amp; Frameworks</a></p>
@@ -144,7 +145,8 @@
 <p class="p_Normal"><a href="script.html" class="topiclink">scripts</a></p>
 <p class="p_Normal"><a href="tools-script-reference.html" class="topiclink">Tools Script Reference</a></p>
 <p class="p_Normal"><a href="run-directory-contents.html" class="topiclink">Run-Directory Contents</a></p>
-<p class="p_Normal"><a href="platformeditor-web-ui.html" class="topiclink">Platform Editor</a></p>
+<p class="p_Normal"><a href="3_-platform-editor.html" class="topiclink">3. Platform Editor</a></p>
+<p class="p_Normal"><a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

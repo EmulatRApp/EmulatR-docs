@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.4 Firmware Decode &amp; Decompression &gt; Decompressor Internals</title>
+   <title>6. Architecture &amp; Internals &gt; 6.4 Firmware Decode &amp; Decompression &gt; Decompressor Internals</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?decompressor-internals.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="--firmware-decode--decompressi.html">5.4 Firmware Decode &amp; Decompression</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="--firmware-decode--decompressi.html">6.4 Firmware Decode &amp; Decompression</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Decompressor Internals</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">This appendix is the source-level companion to the Firmware Decode &amp; Decompression page. It identifies the DEC sources behind the cold-boot self-decompression, the CPU/PAL side-effects the guest startup performs, and the native oracle EmulatR uses to prove its emulated CPU produces the correct image. Treat the DEC SRM sources as authoritative; AXPBox is not.</p>
+<p class="p_Normal">This appendix is the source-level companion to the Firmware Decode &amp; Decompression page. It identifies the DEC sources behind the cold-boot self-decompression, the CPU/PAL side-effects the guest startup performs, and the native oracle EMulatR uses to prove its emulated CPU produces the correct image. Treat the DEC SRM sources as authoritative; AXPBox is not.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What runs at cold boot</span></h2>
 <p class="p_Normal">The guest firmware ships compressed and decompresses itself on the emulated CPU every cold boot -- roughly 4 million cycles, visible as the spin at PC <span class="f_CodeExample">0x60111c</span>. The image carries a <span class="f_CodeExample">WimC</span> header (magic 0x436D6957) located by a linear scan; its longwords give the compressed size, the decompress target, and the start of the compressed data. For <span class="f_CodeExample">es45_v7_3.exe</span> the header sits at file offset 0x2400, the target is 0x8000, and the decompressed output is 0x30cc00 bytes (3,197,952).</p>
@@ -135,16 +135,16 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The DEC sources</span></h2>
 <p class="p_Normal">The read-only originals live in <span class="f_CodeExample">Processor Support\Palcode\palcode\apisrm\apisrm\ref\</span>:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-inflate.c -- the engine: Mark Adler inflate, version c10p1.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-decom.c -- the DEC wrapper providing main() and decompress().</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-decomp.h -- types and the ROM / non-ROM switches.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-ev6_huf_decom.m64 -- the guest assembly startup that calls decompress().</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-inflate.c -- the engine: Mark Adler inflate, version c10p1.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-decom.c -- the DEC wrapper providing main() and decompress().</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-decomp.h -- types and the ROM / non-ROM switches.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">-ev6_huf_decom.m64 -- the guest assembly startup that calls decompress().</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The startup is more than a memcpy</span></h2>
 <p class="p_Normal">The <span class="f_CodeExample">ev6_huf_decom.m64</span> startup is not a pure decompression: before and around the call it performs real CPU/PAL state setup -- it loads PAL_BASE, sets the I_CTL SDE bits, flushes the ITB / DTB and the I-cache, manages shadow registers, and saves and restores the SROM parameters in R16-R21. Any alternate &quot;host decompress&quot; path must preserve that end state, which is why a full bypass is risky and the recommended future design is an intercept-hybrid rather than a wholesale skip.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The native oracle</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">tools/host_decompressor/</span> builds the SAME algorithm DEC used, from the SAME sources the firmware was compiled from, as a native host program with no emulation involved. Its harness <span class="f_CodeExample">oracle.c</span> replaces <span class="f_CodeExample">decom.c</span>'s <span class="f_CodeExample">main()</span>: it finds the WimC header, sets the input/output pointers and compressed size, calls <span class="f_CodeExample">inflate()</span>, and dumps the image to <span class="f_CodeExample">ref_decompressed.bin</span>. The output matches EmulatR's emulated-CPU decompression byte for byte, which makes it a trusted regression guard. This is strictly stronger than AXPBox's <span class="f_CodeExample">decompressed.rom</span>, which is produced by running the guest decompressor on AXPBox's own emulated CPU (and so still depends on a correct CPU and a contrived entry sequence).</p>
+<p class="p_Normal"><span class="f_CodeExample">tools/host_decompressor/</span> builds the SAME algorithm DEC used, from the SAME sources the firmware was compiled from, as a native host program with no emulation involved. Its harness <span class="f_CodeExample">oracle.c</span> replaces <span class="f_CodeExample">decom.c</span>'s <span class="f_CodeExample">main()</span>: it finds the WimC header, sets the input/output pointers and compressed size, calls <span class="f_CodeExample">inflate()</span>, and dumps the image to <span class="f_CodeExample">ref_decompressed.bin</span>. The output matches EMulatR's emulated-CPU decompression byte for byte, which makes it a trusted regression guard. This is strictly stronger than AXPBox's <span class="f_CodeExample">decompressed.rom</span>, which is produced by running the guest decompressor on AXPBox's own emulated CPU (and so still depends on a correct CPU and a contrived entry sequence).</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The oracle settled the &quot;single-bit PAL corruption&quot; question: the instruction at PC <span class="f_CodeExample">0xd954</span> (encoding <span class="f_CodeExample">0x7be2a000 = hw_ret R2</span>) is genuine firmware, not a decompression artifact. The known-good signature is the quad at PA <span class="f_CodeExample">0xd950</span> -- a value using <span class="f_CodeExample">R2 (0xe2)</span>, never <span class="f_CodeExample">R6 (0xe6)</span>. If a future change makes the guest CPU produce <span class="f_CodeExample">R6</span> there, that is a CPU regression, not a fix.</p>
 <p class="p_Normal">&nbsp;</p>

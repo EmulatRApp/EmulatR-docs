@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>2. Installation &gt; Firmware Requirements &gt; Pre-decompressing the Firmware</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="decompression,pre-decompressed,host_firmware_decompressor,.rom,cl67srmrom.exe,EMULATR_FLASH_ROM,warp profile,firmware" />
+   <meta name="description" content="An SRM firmware file such as es40_v7_3.exe is compressed. Every cold boot, EMulatR loads it and the firmware's own start-up code decompresses the console on the emulated..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "firmware-predecompress.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Pre-decompressing the Firmware</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?firmware-predecompress.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="2_-installation.html">2. Installation</a> &gt; <a href="--firmware-requirements.html">Firmware Requirements</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Pre-decompressing the Firmware</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="firmware-images-exe-and-rom.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="--firmware-requirements.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="--building-from-source.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">An SRM firmware file such as <span class="f_CodeExample">es40_v7_3.exe</span> is compressed. Every cold boot, EMulatR loads it and the firmware's own start-up code decompresses the console on the emulated processor before anything else runs. That step is mandatory for a <span class="f_CodeExample">.exe</span>: the console does not exist in memory until it has been unpacked.</p>
+<p class="p_Normal">The decompression can instead be done once, ahead of time, on the host. The result is a <span class="f_CodeExample">.rom</span> that EMulatR boots with no decompression stage.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why do it</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The console is proven before it runs.</span> The tool is DEC's own decompression algorithm built as a native program; the image it writes does not depend on the emulated processor at all. From HP's <span class="f_CodeExample">cl67srmrom.exe</span> it reproduces, byte for byte, the reference image EMulatR's loader was validated with.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">It takes the decompression out of the boot.</span> With a <span class="f_CodeExample">.rom</span>, the first instruction EMulatR executes is the console's own. If a <span class="f_CodeExample">.rom</span> boots and the <span class="f_CodeExample">.exe</span> does not, the fault is in the decompression path; if both fail the same way, it is not.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">It gives you the console to study.</span> The <span class="f_CodeExample">.rom</span> (or the raw image without <span class="f_CodeExample">--rom</span>) is the console exactly as it sits in memory, ready for a disassembler.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it does not gain today</span></h2>
+<p class="p_Normal">Measured on 29 September 2026 (ES40, Release build, 4 GB, same settings): the <span class="f_CodeExample">.exe</span> reached <span class="f_CodeExample">P00&gt;&gt;&gt;</span> in 695 seconds; the <span class="f_CodeExample">.rom</span>, with the platform's badge profile copied beside it, in 684 -- the same, within run-to-run variation. Without any profiles beside it, the <span class="f_CodeExample">.rom</span> took 920 seconds. The reasons it is not faster:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The speed-up profile does not carry over.</span> EMulatR keeps a speed-up profile beside each firmware file (<span class="f_CodeExample">es40_v7_3_warp.json</span>) and checks it against that file. A <span class="f_CodeExample">.rom</span> is a different file, so the <span class="f_CodeExample">.exe</span>'s profile is set aside as stale (<span class="f_CodeExample">WarpProfile: *** STALE ***</span>) and the <span class="f_CodeExample">.rom</span> starts without one. It builds its own over later runs.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The decompression itself is short.</span> It is a small part of the boot; most of the time to the prompt is the console's own initialisation and memory test, which both files run.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>On the ES40 the <span class="f_CodeExample">.exe</span> does not enter the console update (LFU) on a cold boot, so there is nothing to skip there either.</p>
+<p class="p_Normal">Until the profile is keyed to the console rather than the file, use the <span class="f_CodeExample">.rom</span> for verification and diagnosis, and the <span class="f_CodeExample">.exe</span> for everyday running.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Making the .rom</span></h2>
+<p class="p_Normal">Use the tool in the <span class="f_CodeExample">tools</span> folder of the installation:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools\host_firmware_decompressor.exe&nbsp;cl67srmrom.exe&nbsp;--rom&nbsp;console\es40_v7_3.rom</span></p>
+<p class="p_Normal">It accepts HP's file as downloaded or the prepared <span class="f_CodeExample">es40_v7_3.exe</span>; both give the same result. See <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a> for the format.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Booting it</span></h2>
+<p class="p_Normal">Two rules decide how the file must be named and placed:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The file name selects the platform: <span class="f_CodeExample">es40_v7_3.rom</span> selects the ES40 manifest, as <span class="f_CodeExample">es40_v7_3.exe</span> does. Any other name selects none, and the run stops with a platform mismatch.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The flash (console settings) is looked for beside the firmware file under the same name, <span class="f_CodeExample">es40_v7_3.rom</span>. In the <span class="f_CodeExample">firmware</span> folder that is the flash file itself, so the console image must not go there.</p>
+<p class="p_Normal">So put the image in its own folder and point EMulatR at the real flash with <span class="f_CodeExample">EMulatR_FLASH_ROM</span>:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_FLASH_ROM=firmware/es40_v7_3.rom&nbsp;&nbsp;EMulatR.exe&nbsp;--firmware&nbsp;console/es40_v7_3.rom</span></p>
+<p class="p_Normal">Put a copy of the platform's badge profile (<span class="f_CodeExample">es40_v7_3_badge.json</span>) in the same folder as the image; the speed-up profile builds itself there. Never overwrite <span class="f_CodeExample">firmware/es40_v7_3.rom</span>: it holds the console settings.</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a></p>
+<p class="p_Normal"><a href="platform-es40.html" class="topiclink">AlphaServer ES40</a></p>
+<p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

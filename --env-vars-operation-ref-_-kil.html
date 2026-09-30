@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.1 Platform Appendices &gt; Appendix - DS10 &gt; Env Vars, Shutdown &amp; Known Limitations</title>
+   <title>9. Appendices - Developer Reference &gt; 9.1 Platform Appendices &gt; Appendix - DS10 &gt; Env Vars, Shutdown &amp; Known Limitations</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--env-vars-operation-ref-_-kil.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">8.1 Platform Appendices</a> &gt; <a href="--appendix---ds10.html">Appendix - DS10</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_1-platform-appendices.html">9.1 Platform Appendices</a> &gt; <a href="--appendix---ds10.html">Appendix - DS10</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Env Vars, Shutdown &amp; Known Limitations</span></h1>
 
@@ -130,10 +130,10 @@
 <p class="p_Normal">The DS10 operational quick reference: where the environment-variable controls live, how to stop a running instance cleanly, and the limitations a DS10 operator should expect today. The full catalogues are on the dedicated reference pages; this page is the platform-scoped summary and the pointers.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Environment variables</span></h2>
-<p class="p_Normal">EmulatR reads a set of <span class="f_CodeExample">EMULATR_*</span> environment variables that override ini defaults -- the console TCP port (<span class="f_CodeExample">EMULATR_CONSOLE_PORT</span>), the flash ROM path (<span class="f_CodeExample">EMULATR_FLASH_ROM</span>), the micro-delay warp (<span class="f_CodeExample">EMULATR_UDELAYWARP</span>), trace directory, and others. The complete list with semantics is the Environment Variables reference page; the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> variable catalogue (the firmware's own environment, set with <span class="f_CodeExample">set</span>) is covered under Operating EmulatR.</p>
+<p class="p_Normal">EMulatR reads a set of <span class="f_CodeExample">EMulatR_*</span> environment variables that override ini defaults -- the console TCP port (<span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>), the flash ROM path (<span class="f_CodeExample">EMulatR_FLASH_ROM</span>), the micro-delay warp (<span class="f_CodeExample">EMulatR_UDELAYWARP</span>), trace directory, and others. The complete list with semantics is the Environment Variables reference page; the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> variable catalogue (the firmware's own environment, set with <span class="f_CodeExample">set</span>) is covered under Operating EMulatR.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Stopping an instance cleanly</span></h2>
-<p class="p_Normal">Closing the console session does NOT stop EmulatR. The emulator drops the client and keeps running headless, and nothing is flushed by the disconnect. Stop it the way <a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a> describes: touch the <span class="f_CodeExample">EMULATR_STOP</span> sentinel in the run directory, or halt at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. Both exit through the normal teardown, which is what writes persisted state. Avoid killing the process mid-write. The DS10 keeps its non-volatile state in <span class="f_CodeExample">ds10_v7_3.rom</span> and the RCM NVRAM, so an interrupted write during a flash update can corrupt persisted firmware settings. When running two instances from one directory, isolate the flash with <span class="f_CodeExample">EMULATR_FLASH_ROM</span> so concurrent NVRAM writes cannot collide.</p>
+<p class="p_Normal">Closing the console session does NOT stop EMulatR. The emulator drops the client and keeps running headless, and nothing is flushed by the disconnect. Stop it the way <a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a> describes: touch the <span class="f_CodeExample">EMulatR_STOP</span> sentinel in the run directory, or halt at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. Both exit through the normal teardown, which is what writes persisted state. Avoid killing the process mid-write. The DS10 keeps its non-volatile state in <span class="f_CodeExample">ds10_v7_3.rom</span> and the RCM NVRAM, so an interrupted write during a flash update can corrupt persisted firmware settings. When running two instances from one directory, isolate the flash with <span class="f_CodeExample">EMulatR_FLASH_ROM</span> so concurrent NVRAM writes cannot collide.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Known limitations (DS10)</span></h2>
 <p class="p_NotesBox"><span class="f_NotesBox"> The SRM firmware boots to the interactive </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> prompt, the on-board PCI devices are walked and enumerated, and disks enumerate. The DS10's real limitation is its storage channel: the emulated IDE / ATAPI path is a polled, read-only surface with no write command and no interrupt (gap G-30), so a DS10 cannot carry an IDE system disk. Guest-OS work runs on the DS20 over SCSI (see Current Development Status).</span></p>
@@ -142,9 +142,8 @@
 <p class="p_NotesBox"><span class="f_NotesBox"> PCI vendor/device IDs and BAR sizes in the manifest are provisional pending a hardware dump.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 <p class="p_Normal"><a href="--executing-two-instances.html" class="topiclink">Executing Two Instances</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; System Disk Configuration</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; System Disk Configuration</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="b dka0,b dqa1,diskDir,disk_types.json,dka0,dqa1,EmulatrLaunch,install,ISO,Make Disk,media_kind,OpenVMS,platform manifest,Platform Editor,run directory,RZ29L,SYSBOOT,system disk" />
-   <meta name="description" content="This topic takes you end to end: create an EmulatR virtual disk, point the platform manifest at an OpenVMS distribution ISO and at the new disk, boot the ISO, install OpenVMS..." />
+   <meta name="description" content="This topic takes you end to end: create an EMulatR virtual disk, point the platform manifest at an OpenVMS distribution ISO and at the new disk, boot the ISO, install OpenVMS..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--system-disk-configuration.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">System Disk Configuration</span></h1>
 
@@ -127,10 +127,10 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">This topic takes you end to end: create an EmulatR virtual disk, point the platform manifest at an OpenVMS distribution ISO and at the new disk, boot the ISO, install OpenVMS onto the virtual disk, and boot the installed system disk. The worked example is a DS20 (Tsunami/EV6) with firmware stem <span class="f_CodeExample">ds20_v7_3</span>. DS25, ES40 and ES45 follow the same shape; DS10 differs in one respect, noted under Step 3.</p>
+<p class="p_Normal">This topic takes you end to end: create an EMulatR virtual disk, point the platform manifest at an OpenVMS distribution ISO and at the new disk, boot the ISO, install OpenVMS onto the virtual disk, and boot the installed system disk. The worked example is a DS20 (Tsunami/EV6) with firmware stem <span class="f_CodeExample">ds20_v7_3</span>. DS25, ES40 and ES45 follow the same shape; DS10 differs in one respect, noted under Step 3.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The storage model in one paragraph</span></h2>
-<p class="p_Normal">EmulatR enumerates EXACTLY the storage devices declared in the platform manifest (<span class="f_CodeExample">&lt;stem&gt;_platform.json</span>, for example <span class="f_CodeExample">ds20_v7_3_platform.json</span>). A storage row MEANS the device exists on the bus: an undeclared SCSI id selection-times-out, and a row whose <span class="f_CodeExample">media</span> is empty enumerates as an empty drive. Each row names its media as a bare FILENAME, which resolves against the <span class="f_CodeExample">[Storage] diskDir</span> setting in <span class="f_CodeExample">Emulatr.ini</span> -- in a launcher-managed system that is the run directory's <span class="f_CodeExample">disks</span> folder. Drive identity and geometry come from the row's <span class="f_CodeExample">model</span> field, resolved against the storage catalog. So a manifest names a drive TYPE and a filename, never a byte count and never a host path.</p>
+<p class="p_Normal">EMulatR enumerates EXACTLY the storage devices declared in the platform manifest (<span class="f_CodeExample">&lt;stem&gt;_platform.json</span>, for example <span class="f_CodeExample">ds20_v7_3_platform.json</span>). A storage row MEANS the device exists on the bus: an undeclared SCSI id selection-times-out, and a row whose <span class="f_CodeExample">media</span> is empty enumerates as an empty drive. Each row names its media as a bare FILENAME, which resolves against the <span class="f_CodeExample">[Storage] diskDir</span> setting in <span class="f_CodeExample">EMulatR.ini</span> -- in a launcher-managed system that is the run directory's <span class="f_CodeExample">disks</span> folder. Drive identity and geometry come from the row's <span class="f_CodeExample">model</span> field, resolved against the storage catalog. So a manifest names a drive TYPE and a filename, never a byte count and never a host path.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What a fresh installation ships with</span></h2>
 <p class="p_Normal">The manifests in a newly installed copy are deliberately unwired. Every storage row is present, but only <span class="f_CodeExample">dka0.vdisk</span> -- the system-disk convention -- names any media; every other row ships with its media field empty. Since an empty-media row does not enumerate a device, a fresh installation boots with just the one system disk, and no manifest points at a path that existed only on the machine that built the kit.</p>
@@ -138,7 +138,7 @@
 <p class="p_Normal">The empty rows are left in place on purpose: they are the documentation of which slots the platform offers. To use one, fill in its media field with a filename (and set the row's model to a drive profile no smaller than the image). To add the system disk, either create it as <span class="f_CodeExample">dka0.vdisk</span> and it is picked up as shipped, or edit the id-0 row to name whatever you called it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 1 -- Create the virtual system disk</span></h2>
-<p class="p_Normal">Use <span style="font-weight: bold;">Make Disk</span> in the EmulatR Launcher. It opens the Create Virtual Disk dialog, which writes the container into the SELECTED system's <span class="f_CodeExample">disks</span> folder -- placement is fixed, there is no free path selection, and that is deliberate: the manifest can then name the file by bare filename and the whole run directory stays portable.</p>
+<p class="p_Normal">Use <span style="font-weight: bold;">Make Disk</span> in the EMulatR Launcher. It opens the Create Virtual Disk dialog, which writes the container into the SELECTED system's <span class="f_CodeExample">disks</span> folder -- placement is fixed, there is no free path selection, and that is deliberate: the manifest can then name the file by bare filename and the whole run directory stays portable.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -206,7 +206,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMULATR-4G</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR-4G</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8,380,080 -- 4.0 GB</p>
 </td>
@@ -230,7 +230,7 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMULATR-512M</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR-512M</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1,048,576 -- 512 MB</p>
 </td>
@@ -249,7 +249,7 @@
 <p class="p_Normal">Copy the distribution ISO into the same <span class="f_CodeExample">disks</span> folder. An ISO is SUPPLIED, never created: the optical device is read-only, so no creation path applies to it and Make Disk has no part in this step.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 3 -- Declare both in the platform manifest</span></h2>
-<p class="p_Normal">Open the <span style="font-weight: bold;">Platform Editor</span> from the launcher (the Configure button in the bottom bar, or Open in PlatEd on the system's detail tab). It is a schema-validated manifest authoring tool with the drive catalog built in, and its JSON round-trip preserves field order and <span class="f_CodeExample">comment</span> fields, so your annotations survive an edit.</p>
+<p class="p_Normal">Open the <span style="font-weight: bold;">Platform Editor</span> from the launcher (the Configure button in the bottom bar, or Open in PlatEd on the system's detail tab). Its Tools &gt; Configure... wizard adds disks and creates their images; see <a href="platform-editor-configure-wizard.html" class="topiclink">The Configure Wizard</a>. It is a schema-validated manifest authoring tool with the drive catalog built in, and its JSON round-trip preserves field order and <span class="f_CodeExample">comment</span> fields, so your annotations survive an edit.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>Select the SCSI HBA (<span class="f_CodeExample">pka_53c810</span>). On the id-0 row, set <span class="f_CodeExample">model</span> to <span class="f_CodeExample">RZ29L</span> and <span class="f_CodeExample">media</span> to the file from Step 1.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Select the IDE controller (<span class="f_CodeExample">cypress_ide</span>). On the ATAPI row, set <span class="f_CodeExample">media</span> to the ISO from Step 2.</p>
@@ -322,14 +322,14 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;comment&quot;:&nbsp;&quot;SCSI&nbsp;id&nbsp;0&nbsp;-&gt;&nbsp;dka0:&nbsp;the&nbsp;OpenVMS&nbsp;system&nbsp;disk.&quot;&nbsp;}</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">{&nbsp;&quot;channel&quot;:&nbsp;0,&nbsp;&quot;unit&quot;:&nbsp;1,&nbsp;&quot;lun&quot;:&nbsp;0,&nbsp;&quot;type&quot;:&nbsp;&quot;atapi_cdrom&quot;,</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;model&quot;:&nbsp;&quot;EMULATR&nbsp;VIRTUAL&nbsp;CDROM&quot;,&nbsp;&quot;media&quot;:&nbsp;&quot;OpenVMS_v82.iso&quot;,</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;model&quot;:&nbsp;&quot;EMulatR&nbsp;VIRTUAL&nbsp;CDROM&quot;,&nbsp;&quot;media&quot;:&nbsp;&quot;OpenVMS_v82.iso&quot;,</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;media_kind&quot;:&nbsp;&quot;iso&quot;,</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;comment&quot;:&nbsp;&quot;primary&nbsp;slave&nbsp;=&nbsp;dqa1,&nbsp;ATAPI&nbsp;CD.&nbsp;media&nbsp;empty&nbsp;=&nbsp;no&nbsp;disc.&quot;&nbsp;}</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">SRM unit naming for SCSI is <span class="f_CodeExample">dka&lt;id*100+lun&gt;</span>: id 0 is <span class="f_CodeExample">dka0</span>, id 1 is <span class="f_CodeExample">dka100</span>, id 6 is <span class="f_CodeExample">dka600</span>. IDE names follow the real-hardware 100*func+slot convention -- slot 5 func 1 gives <span class="f_CodeExample">105</span>, so the CD is <span class="f_CodeExample">dqa1.1.0.105.0</span>. Only IDE channel 0 is declared today; <span class="f_CodeExample">dqb</span> is a known gap. DS10 is IDE-only and has no SCSI rows -- there the system disk is an IDE row and boots as <span class="f_CodeExample">dqa0</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">What not to touch</span></h3>
-<p class="p_Normal">Leave <span class="f_CodeExample">iic_devices</span> (platform badge and FRU identity), <span class="f_CodeExample">pci_irq_table_hose0</span> (board interrupt routing, transcribed verbatim from console sources) and the <span class="f_CodeExample">vendor</span> / <span class="f_CodeExample">device</span> / <span class="f_CodeExample">class_code</span> / <span class="f_CodeExample">bars</span> fields of existing devices alone. These are board data, not user configuration. Interrupt pins are silicon constants owned by the device models -- never add an <span class="f_CodeExample">interrupt_pin</span> field.</p>
+<p class="p_Normal">Leave <span class="f_CodeExample">iic_devices</span> (platform badge and FRU identity), <span class="f_CodeExample">pci_irq_table_hose0</span> (board interrupt routing, transcribed verbatim from console sources) and the <span class="f_CodeExample">vendor</span> / <span class="f_CodeExample">device</span> / <span class="f_CodeExample">class_code</span> / <span class="f_CodeExample">bars</span> fields of existing devices alone. These are board data, not user configuration. Interrupt pins are REAL_HW constants owned by the device models -- never add an <span class="f_CodeExample">interrupt_pin</span> field.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 4 -- Boot the distribution CD and install</span></h2>
 <p class="p_Normal">Start the system from the launcher and open its console. At the SRM prompt, confirm the CD and the blank target both enumerated, then boot the CD:</p>
@@ -337,7 +337,7 @@
 <p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;dev</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;b&nbsp;dqa1</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_CodeExample">show dev</span> lists exactly the enumerated devices and prints the first token of each drive model. From there the standard OpenVMS installation dialog runs: choose the install option, select <span class="f_CodeExample">DKA0:</span> as the target device, give the volume a label, and let the installer initialize the disk and restore the distribution save sets. Nothing in the procedure is EmulatR-specific -- follow the OpenVMS installation guide for the version you are installing.</p>
+<p class="p_Normal"><span class="f_CodeExample">show dev</span> lists exactly the enumerated devices and prints the first token of each drive model. From there the standard OpenVMS installation dialog runs: choose the install option, select <span class="f_CodeExample">DKA0:</span> as the target device, give the volume a label, and let the installer initialize the disk and restore the distribution save sets. Nothing in the procedure is EMulatR-specific -- follow the OpenVMS installation guide for the version you are installing.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">Beta status.</span> Booting an ALREADY-INSTALLED system disk is the exercised path and is on the Ready-for-Testing list. A full install from distribution media onto a blank target is not yet on that list. If the installation dialog stalls, keep the console log and report it, and use the migration route below in the meantime.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -376,24 +376,24 @@
 <p class="p_Normal">Make Disk is the supported path and needs nothing installed. For scripted or repeatable provisioning on a development machine, <span class="f_CodeExample">tools/mkdisk.py</span> is the scriptable equivalent. It resolves its size from the runtime catalog rather than the launcher's table, so its <span class="f_CodeExample">--type</span> takes the same key you put in the manifest:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&gt;&nbsp;python&nbsp;tools/mkdisk.py&nbsp;--type&nbsp;RZ29L&nbsp;disks/system_disk.img</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&gt;&nbsp;python&nbsp;tools/mkdisk.py&nbsp;--type&nbsp;EMULATR-512M&nbsp;disks/mydata.img</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&gt;&nbsp;python&nbsp;tools/mkdisk.py&nbsp;--type&nbsp;EMulatR-512M&nbsp;disks/mydata.img</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_CodeExample">--type</span> is required and the size is DERIVED from it -- you never pass a size. It requires a Python interpreter, which is why it is not the tester path.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Caveats</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Warm reboot after a halt (</span><span class="f_CodeExample">Ctrl/P</span><span class="f_NotesBox"> to </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> then </span><span class="f_CodeExample">b</span><span class="f_NotesBox">) faults the second boot deterministically today (kernel-stack-not-valid; tracked as JRN-KSNV-001). Exit EmulatR and relaunch for a fresh boot instead.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Periodic auto-snapshot makes iteration cheap: </span><span class="f_CodeExample">--autosnapshot 1000000000</span><span class="f_NotesBox"> mints a save every 1B cycles, and a later launch without </span><span class="f_CodeExample">--no-autoload</span><span class="f_NotesBox"> restores a mid-session guest to the prompt in seconds.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The IDE secondary channel (</span><span class="f_CodeExample">dqb</span><span class="f_NotesBox">) is not yet declared.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Tagged queuing and reselection on the SCSI bus are later-phase work; the target set is command-queue-free by design.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Catalog geometry is checked against a +/-2 percent band, never an equality assert -- these are banded (ZBR) drives whose published sectors-per-track is a flattened average.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Silicon memory ceilings are enforced per platform (DS10 2 GB, DS20 4 GB, ES40 32 GB); an oversized memory request is clamped.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Warm reboot after a halt (</span><span class="f_CodeExample">Ctrl/P</span><span class="f_NotesBox"> to </span><span class="f_CodeExample">&gt;&gt;&gt;</span><span class="f_NotesBox"> then </span><span class="f_CodeExample">b</span><span class="f_NotesBox">) faults the second boot deterministically today (kernel-stack-not-valid; tracked as JRN-KSNV-001). Exit EMulatR and relaunch for a fresh boot instead.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Periodic auto-snapshot makes iteration cheap: </span><span class="f_CodeExample">--autosnapshot 1000000000</span><span class="f_NotesBox"> mints a save every 1B cycles, and a later launch without </span><span class="f_CodeExample">--no-autoload</span><span class="f_NotesBox"> restores a mid-session guest to the prompt in seconds.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The IDE secondary channel (</span><span class="f_CodeExample">dqb</span><span class="f_NotesBox">) is not yet declared.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Tagged queuing and reselection on the SCSI bus are later-phase work; the target set is command-queue-free by design.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Catalog geometry is checked against a +/-2 percent band, never an equality assert -- these are banded (ZBR) drives whose published sectors-per-track is a flattened average.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">REAL_HW memory ceilings are enforced per platform (DS10 2 GB, DS20 4 GB, ES40 32 GB); an oversized memory request is clamped.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--create-guest-disk-storage---.html" class="topiclink">Create Guest Disk Storage</a></p>
 <p class="p_Normal"><a href="--virtual-cdrom.html" class="topiclink">Virtual CDROM (dqa1)</a></p>
 <p class="p_Normal"><a href="--virtual-disk-images.html" class="topiclink">Virtual Disk Images</a></p>
 <p class="p_Normal"><a href="--scsi-devices.html" class="topiclink">SCSI Devices</a></p>
-<p class="p_Normal"><a href="platformeditor-web-ui.html" class="topiclink">Platform Editor</a></p>
+<p class="p_Normal"><a href="3_-platform-editor.html" class="topiclink">3. Platform Editor</a></p>
 <p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
 <p class="p_Normal"><a href="mkdisk.html" class="topiclink">mkdisk</a></p>
 

@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.2 Console Connectivity &gt; TCP Console Overview</title>
+   <title>5. Operating EmulatR &gt; 5.2 Console Connectivity &gt; TCP Console Overview</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="console port,console server,EMULATR_CONSOLE_PORT,EMULATR_NO_PUTTY,multiple instances,netstat,port 10023,PuTTY auto-launch,RAW TCP socket,remote host" />
-   <meta name="description" content="EmulatR serves the console over a RAW TCP socket -- no Telnet option negotiation. Defaults:" />
+   <meta name="description" content="EMulatR serves the console over a RAW TCP socket -- no Telnet option negotiation. Defaults:" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--tcp-console-overview.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_2-console-connectivity.html">4.2 Console Connectivity</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_2-console-connectivity.html">5.2 Console Connectivity</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">TCP Console Overview</span></h1>
 
@@ -127,13 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR serves the console over a RAW TCP socket -- no Telnet option negotiation. Defaults:</p>
+<p class="p_Normal">EMulatR serves the console over a RAW TCP socket -- no Telnet option negotiation. Defaults:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">Host:&nbsp;localhost</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Port:&nbsp;10023</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Protocol:&nbsp;RAW&nbsp;TCP</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Override the port with <span class="f_CodeExample">EMULATR_CONSOLE_PORT</span> (the auto-launched PuTTY follows the port). Suppress the PuTTY auto-launch with <span class="f_CodeExample">EMULATR_NO_PUTTY</span>; the listen socket still comes up for your own client. For a remote host, replace <span class="f_CodeExample">localhost</span> with its hostname or IP.</p>
+<p class="p_Normal">Override the port with <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span> (the auto-launched PuTTY follows the port). Suppress the PuTTY auto-launch with <span class="f_CodeExample">EMulatR_NO_PUTTY</span>; the listen socket still comes up for your own client. For a remote host, replace <span class="f_CodeExample">localhost</span> with its hostname or IP.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Port <span class="f_CodeExample">10023</span> is only the default -- the listener can bind any available TCP port. This is what makes running several instances at once practical: give each its own port (10023, 10024, 10025, and so on) so their consoles do not collide. Pick a free port above the privileged range (1024 and up); confirm it is free before binding:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">netstat&nbsp;-ano&nbsp;|&nbsp;findstr&nbsp;&lt;port&gt;</span></p>

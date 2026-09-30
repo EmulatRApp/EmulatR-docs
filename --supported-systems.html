@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21272-CA,21272-DA,21272-EA,Alpha EV6,AlphaServer DS10,Arbiter,Bcache,Cchip,COM1,COM2,Cypress 82C693,Dchip,ES40,ES45,FLOPPY,IDE,ISA,KBD,LPT1,MOUSE,Pchip,PCI Hose,platform manifest,Supported Systems,TIG,Tsunami,Typhoon" />
-   <meta name="description" content="EmulatR targets the Tsunami / Typhoon AlphaServer line. The emulated hardware reported by the SRM console (show config) reflects a DS10-class machine:" />
+   <meta name="description" content="EMulatR targets the Tsunami / Typhoon AlphaServer line. The emulated hardware reported by the SRM console (show config) reflects a DS10-class machine:" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,16 +127,16 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR targets the Tsunami / Typhoon AlphaServer line. The emulated hardware reported by the SRM console (<span class="f_CodeExample">show config</span>) reflects a DS10-class machine:</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Processor: Alpha EV6 pass 1, 268 MHz (a calibrated figure -- see <a href="clock-frequency-mhz.html" class="topiclink">Clock Frequency and the MHz Reading</a>), Bcache disabled.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Core logic: DECchip 21272-CA (Cchip) Rev 2, 21272-DA (Dchip) Rev 1, 21272-EA (Pchip 0) Rev 1; TIG / Arbiter Rev 7.31.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Memory: 1024 MB default array (configurable via [System] memorySize in the ini or --mem), base 0x000000000.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">I/O: PCI Hose 00 carries four devices on bus 0 - the Cypress 82C693 ISA bridge and its IDE function at slot 5, the DE500 (21143 tulip) Ethernet at slot 7, and the NCR 53C810 SCSI host adapter at slot 8, which is the adapter OpenVMS boots from. ISA devices: MOUSE, KBD, COM1, COM2, LPT1, FLOPPY.</span></p>
+<p class="p_Normal">EMulatR targets the Tsunami / Typhoon AlphaServer line. The emulated hardware reported by the SRM console (<span class="f_CodeExample">show config</span>) reflects a DS10-class machine:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Processor: Alpha EV6 pass 1, 268 MHz (a calibrated figure -- see <a href="clock-frequency-mhz.html" class="topiclink">Clock Frequency and the MHz Reading</a>), Bcache disabled.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Core logic: DECchip 21272-CA (Cchip) Rev 2, 21272-DA (Dchip) Rev 1, 21272-EA (Pchip 0) Rev 1; TIG / Arbiter Rev 7.31.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Memory: 1024 MB default array (configurable via [System] memorySize in the ini or --mem), base 0x000000000.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">I/O: PCI Hose 00 carries four devices on bus 0 - the Cypress 82C693 ISA bridge and its IDE function at slot 5, the DE500 (21143 tulip) Ethernet at slot 7, and the NCR 53C810 SCSI host adapter at slot 8, which is the adapter OpenVMS boots from. ISA devices: MOUSE, KBD, COM1, COM2, LPT1, FLOPPY.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Platform selection is driven by a per-model bus-configuration manifest (see Configuring). DS10, DS20 and ES40 are all driven to the interactive prompt and form a standing three-platform gate that must stay green before any shared change lands; DS25 and ES45 have manifests but are not yet driven to the prompt. Per-platform status is in Current Platform Support.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 <p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
 <p class="p_Normal"><a href="--configuring----------(moved-.html" class="topiclink">Configuring</a></p>
 

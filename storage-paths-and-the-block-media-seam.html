@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.9 Storage Engine &gt; Storage Paths and the Block-Media Seam</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="ATA taskfile,block media,exclusive open,FileBlockMedia,IBackingStore,IBlockMedia,media_kind,NO_BUFFERING,PooledBlockMedia,seam,storage_engine,VirtualDiskDevice,VirtualIsoDevice,Win32FileStore,WRITE_THROUGH" />
+   <meta name="description" content="Every guest disk and CD in EMulatR is reached through one narrow interface, the block-media seam. Replacing what sits behind that seam changes how storage behaves on the host..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "storage-paths-and-the-block-media-seam.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Storage Paths and the Block-Media Seam</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?storage-paths-and-the-block-media-seam.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="5_9-storage-engine.html">6.9 Storage Engine</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Storage Paths and the Block-Media Seam</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="5_9-storage-engine.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_9-storage-engine.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="the-storage-buffer-pool.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Every guest disk and CD in EMulatR is reached through one narrow interface, the block-media seam. Replacing what sits behind that seam changes how storage behaves on the host without touching the emulated controllers or anything the guest can observe.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The seam</span></h2>
+<p class="p_Normal">The interface is <span class="f_CodeExample">scsi::IBlockMedia</span> (<span class="f_CodeExample">deviceLib/scsi/IBlockMedia.h</span>). It exposes a medium as a block device: open and close, whether media is present, whether it is read-only, the block size (512 bytes for disks, 2048 for CDs), the block count, and <span class="f_CodeExample">read</span> / <span class="f_CodeExample">write</span> of a run of blocks. Every call returns a status; there are no exceptions.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Three device models consume it and nothing else:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">VirtualDiskDevice</span><span class="f_NotesBox"> -- the SCSI disk behind the NCR 53C810 (dka).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">VirtualIsoDevice</span><span class="f_NotesBox"> -- the CD-ROM, on SCSI or on the ATAPI channel.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The ATA taskfile engine -- the IDE fixed disk and ATAPI device on the Cypress or ALi south bridge.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">One build site</span></h2>
+<p class="p_Normal">The emulator builds every medium in one place, while the machine is constructed, from the storage rows of the platform manifest. For each enabled row it resolves the image path against the configured disk directory, then chooses the implementation:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Row</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Engine </span><span class="f_CodeExample">direct</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Engine </span><span class="f_CodeExample">pool</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Writable disk (SCSI or ATA)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">PooledBlockMedia</span> over the storage pool</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CD / ISO image</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span> (read-only)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span> (read-only)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Image still to be created (<span class="f_CodeExample">create_if_missing</span>)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span> for that run</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host passthrough (<span class="f_CodeExample">media_kind</span> <span class="f_CodeExample">host</span>)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">host path</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">host path</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">If the pool refuses a disk -- an image whose size is not a whole number of 4 KB pages, a volume whose sector size does not divide 4 KB, the dump file on the same volume, the pool failing to allocate -- the run log records an ERROR naming the disk and the reason, and that disk falls back to the direct engine. A comparison run is therefore never mislabelled: the log states which engine served every disk.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The direct engine: FileBlockMedia</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">FileBlockMedia</span> (<span class="f_CodeExample">deviceLib/scsi/FileBlockMedia.h</span>) opens the image as an ordinary buffered file stream and seeks, reads and writes in place on the thread that issued the request. Reads and writes pass through the Windows file cache, so recently used images are served from host memory. After each write the stream is flushed -- to the Windows cache, not to the device. A write the guest sees as complete can therefore be lost if the host itself loses power before Windows writes it back.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The pool engine: PooledBlockMedia and the backing store</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">PooledBlockMedia</span> (<span class="f_CodeExample">deviceLib/scsi/PooledBlockMedia.h</span>) is a thin adapter: each block request becomes a byte-range request on one pool disk, and pool status codes map to block-media status codes. The pool itself is described in The Buffer Pool.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Beneath the pool is a second seam, <span class="f_CodeExample">storage::IBackingStore</span> (<span class="f_CodeExample">storageLib/BackingStore.h</span>): the host side of one medium -- its size, its volume's sector sizes, its identity (volume serial number, file ID, size and last-write time), and whole-page reads and writes. The product implementation is <span class="f_CodeExample">Win32FileStore</span>:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Two handles per image. The write handle is opened first, with host buffering disabled and write-through on, sharing only read access -- so from the moment the pool attaches, no other process can open the image for writing. The read handle, also unbuffered, is opened second.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Reads and writes are whole 4 KB pages from 4 KB-aligned buffers, and a run of contiguous pages is written as one host write.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Neither handle uses the Windows cache, so the two can never disagree about the file's contents.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Tests use an in-memory backing store instead, which can fail, delay or hang any chosen host call on demand (see Storage Verification).</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What the guest sees</span></h2>
+<p class="p_Normal">Nothing different. Both engines finish a request before the instruction that issued it completes, so guest time does not advance while a request is in progress and the guest never observes one outstanding. The SCSI disk model currently reports its write cache as disabled on both engines.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="5_9-storage-engine.html" class="topiclink">6.9 Storage Engine</a></p>
+<p class="p_Normal"><a href="the-storage-buffer-pool.html" class="topiclink">The Buffer Pool</a></p>
+<p class="p_Normal"><a href="storage-configuration-reference.html" class="topiclink">Storage Configuration Reference</a></p>
+<p class="p_Normal"><a href="5_7-scsi.html" class="topiclink">6.7 SCSI</a></p>
+<p class="p_Normal"><a href="--virtual-disk-images.html" class="topiclink">Virtual Disk Images</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

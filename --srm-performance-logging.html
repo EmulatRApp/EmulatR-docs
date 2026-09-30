@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.8 Logging &amp; Diagnostics &gt; SRM Performance Logging</title>
+   <title>5. Operating EmulatR &gt; 5.8 Logging &amp; Diagnostics &gt; SRM Performance Logging</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--srm-performance-logging.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">4.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">5.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Performance Logging</span></h1>
 
@@ -129,11 +129,11 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">Performance-run output depends on which &quot;performance run&quot; you mean.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EmulatR's own profiler</span></h2>
-<p class="p_Normal">The <span class="f_CodeExample">RetireProfiler</span> is an always-on retire-PC histogram in the <span class="f_CodeExample">PipelineDriver</span>. It writes <span class="f_CodeExample">profile_YYYYMMDD-HHMMSS_&lt;tag&gt;.txt</span> to the same resolved trace directory as the other sinks -- <span class="f_CodeExample">EMULATR_RETIRE_TRACE_DIR</span> (the build-tree default otherwise). It moves automatically when that directory is overridden.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EMulatR's own profiler</span></h2>
+<p class="p_Normal">The <span class="f_CodeExample">RetireProfiler</span> is an always-on retire-PC histogram in the <span class="f_CodeExample">PipelineDriver</span>. It writes <span class="f_CodeExample">profile_YYYYMMDD-HHMMSS_&lt;tag&gt;.txt</span> to the same resolved trace directory as the other sinks -- <span class="f_CodeExample">EMulatR_RETIRE_TRACE_DIR</span> (the build-tree default otherwise). It moves automatically when that directory is overridden.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">External profiling tools</span></h2>
-<p class="p_Normal">A Software Verify Performance Validator (PV) run is not written by EmulatR -- that is an external tool profiling <span class="f_CodeExample">Emulatr.exe</span>. Its session and results go wherever PV saves them (its <span class="f_CodeExample">-saveSession</span> path, or PV's default session folder under your Documents). Nothing in the codebase controls that; it is a PV-side setting.</p>
+<p class="p_Normal">A Software Verify Performance Validator (PV) run is not written by EMulatR -- that is an external tool profiling <span class="f_CodeExample">EMulatR.exe</span>. Its session and results go wherever PV saves them (its <span class="f_CodeExample">-saveSession</span> path, or PV's default session folder under your Documents). Nothing in the codebase controls that; it is a PV-side setting.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--diagnostics--debugging---(ne.html" class="topiclink">Diagnostics &amp; Debugging</a></p>

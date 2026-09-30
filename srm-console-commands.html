@@ -1,0 +1,1081 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>7. Reference &gt; SRM Console Commands</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="boot,console commands,deposit,environment variables,examine,help,P00&gt;&gt;&gt;,set,show,SRM console" />
+   <meta name="description" content="EMulatR runs the real HP SRM console firmware, so the console prompt accepts the firmware's own commands, exactly as on an AlphaServer. This page lists every command the ES40..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "srm-console-commands.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Console Commands</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?srm-console-commands.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="6_-reference------------------.html">7. Reference</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM Console Commands</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="per-cpu-halt-codes.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="6_-reference------------------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="windows-defender-firewall.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EMulatR runs the real HP SRM console firmware, so the console prompt accepts the firmware's own commands, exactly as on an AlphaServer. This page lists every command the ES40 console (67CLIPPER V7.3-1) offers, as reported by its own <span class="f_CodeExample">help</span> command under EMulatR, with examples captured from EMulatR on 29 September 2026. </p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The DS10 and DS20 consoles (V7.3-2) offer nearly the same set; type <span class="f_CodeExample">help</span> at their prompt for their list.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The prompt</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Multiprocessor consoles (DS20, ES40) prompt <span class="f_CodeExample">P00&gt;&gt;&gt;</span> (the number is the CPU); the DS10 prompts <span class="f_CodeExample">&gt;&gt;&gt;</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The prompt appears when the console has finished power-up, and again when the operating system halts or you press Ctrl/P.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Commands may be shortened where unambiguous; <span class="f_CodeExample">e</span> (examine) and <span class="f_CodeExample">b</span> (boot) are used throughout this guide.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Environment variables you set are kept in the console's flash, which EMulatR saves in <span class="f_CodeExample">firmware/&lt;stem&gt;.rom</span> on a clean shutdown.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Reading the synopses</span></h2>
+<p class="p_Normal">Each synopsis below is printed by the firmware. Its conventions (from <span class="f_CodeExample">help help</span>):</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Notation</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;item&gt;</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A value you supply.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;item&gt;...</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">One item or a list of them.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">[ ]</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Optional.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">{a,b,c}</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exactly one of a, b, c.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">{a|b|c}</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Any combination of a, b, c.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Examining and depositing</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">examine</span> (<span class="f_CodeExample">e</span>) reads memory or a register; <span class="f_CodeExample">deposit</span> writes one. The address takes a device prefix: <span class="f_CodeExample">pmem:</span> physical memory, <span class="f_CodeExample">vmem:</span> virtual memory, <span class="f_CodeExample">gpr</span> integer registers, <span class="f_CodeExample">fpr</span> floating-point registers, <span class="f_CodeExample">ipr</span> processor registers, or a register name such as <span class="f_CodeExample">r0</span>, <span class="f_CodeExample">pc</span> or <span class="f_CodeExample">ps</span>. </p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Options: <span class="f_CodeExample">-b -w -l -q</span> data width, <span class="f_CodeExample">-n &lt;count&gt;</span> repeat, <span class="f_CodeExample">-d</span> disassemble.</p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;examine&nbsp;-n&nbsp;3&nbsp;pmem:8000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pmem:&nbsp;8000&nbsp;C3402E1E47FF0410</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pmem:&nbsp;8008&nbsp;0004000100010162</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pmem:&nbsp;8010&nbsp;0000000000000000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pmem:&nbsp;8018&nbsp;0000000000000000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;examine&nbsp;-d&nbsp;pmem:8000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pmem:&nbsp;8000&nbsp;47FF0410CLR&nbsp;R16</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;e&nbsp;r0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">gpr:&nbsp;0&nbsp;(&nbsp;R0)&nbsp;0000000000018000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;e&nbsp;ps</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">ipr:&nbsp;17&nbsp;(&nbsp;PS)&nbsp;0000000000001F00</span></p>
+<p class="p_Normal"><span class="f_CodeExample">deposit</span> writes to the halted machine; for example <span class="f_CodeExample">deposit sirr e</span> requests an IPL 14 software interrupt, which is how XDELTA is entered on a running system. Anything deposited takes effect when you <span class="f_CodeExample">continue</span>.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Environment variables</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">show *</span> lists them all; <span class="f_CodeExample">show &lt;name&gt;</span> shows one; <span class="f_CodeExample">set &lt;name&gt; &lt;value&gt;</span> changes one; <span class="f_CodeExample">clear &lt;name&gt;</span> removes it.</p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;auto_action</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">auto_action&nbsp;HALT</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;os_type</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">os_type&nbsp;OpenVMS</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;version</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">version&nbsp;V7.3-1&nbsp;Feb&nbsp;27&nbsp;2007&nbsp;12:57:47</span></p>
+<p class="p_Normal">Common settings: <span class="f_CodeExample">set auto_action boot</span> (boot <span class="f_CodeExample">bootdef_dev</span> at power-up), <span class="f_CodeExample">set bootdef_dev dka200</span>, <span class="f_CodeExample">set boot_osflags 0,0</span>, and on the network adapter <span class="f_CodeExample">set ewa0_mode FastFD</span>.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">System information</span></h2>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;device</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">dka200.2.0.3.0&nbsp;DKA200&nbsp;RZ29L-AA&nbsp;LYJ0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">dqa1.1.0.15.0&nbsp;DQA1&nbsp;EMulatR&nbsp;VIRTUAL&nbsp;CDROM&nbsp;V2.0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">dva0.0.0.1000.0&nbsp;DVA0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">ewa0.0.0.4.0&nbsp;EWA0&nbsp;08-00-2B-E5-40-00</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">pka0.7.0.3.0&nbsp;PKA0&nbsp;SCSI&nbsp;Bus&nbsp;ID&nbsp;7</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;memory</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;Array&nbsp;Size&nbsp;Base&nbsp;Address&nbsp;Intlv&nbsp;Mode</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">---------&nbsp;----------&nbsp;----------------&nbsp;----------</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;0&nbsp;1024Mb&nbsp;0000000000000000&nbsp;4-Way</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;1&nbsp;1024Mb&nbsp;0000000040000000&nbsp;4-Way</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;2&nbsp;1024Mb&nbsp;0000000080000000&nbsp;4-Way</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;3&nbsp;1024Mb&nbsp;00000000c0000000&nbsp;4-Way</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;4096&nbsp;MB&nbsp;of&nbsp;System&nbsp;Memory</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;show&nbsp;cpu</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Primary&nbsp;CPU:&nbsp;00</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Active&nbsp;CPUs:&nbsp;00</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Configured&nbsp;CPUs:&nbsp;00</span></p>
+<p class="p_Normal"><span class="f_CodeExample">show config</span> prints firmware versions, processors, core logic, memory and PCI devices in one listing; <span class="f_CodeExample">show fru</span>, <span class="f_CodeExample">show hwrpb</span>, <span class="f_CodeExample">show map</span> and <span class="f_CodeExample">show power</span> give more detail.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Booting and control</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Command</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Example</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">What it does</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">b dka200 -flags 0,0</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Boot a device. <span class="f_CodeExample">-flags</span> passes root and boot flags to the operating system (see Guest Boot and Debugging OpenVMS with XDELTA).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">continue</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">continue</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Resume the halted operating system.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">halt</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Halt a processor.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">start</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Start a processor at an address.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">crash</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><br />
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Force the operating system to crash and write a dump.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">initialize</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">init</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Re-initialise the console. <span class="f_T_Emphasis">Known issue:</span> under EMulatR this does not reset the machine; after an OpenVMS halt, stop and restart EMulatR for a clean boot.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Console processes and utilities</span></h2>
+<p class="p_Normal">The SRM console is a small multitasking system of its own, with a shell, pipes and a file system over devices.</p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;ps</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;ID&nbsp;PCB&nbsp;Pri&nbsp;CPU&nbsp;Time&nbsp;Affinity&nbsp;CPU&nbsp;Program&nbsp;State</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">--------&nbsp;--------&nbsp;---&nbsp;--------&nbsp;--------&nbsp;---&nbsp;----------&nbsp;------------------------</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">000002ab&nbsp;001e3300&nbsp;3&nbsp;0&nbsp;00000001&nbsp;0&nbsp;ps&nbsp;running</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">0000023b&nbsp;001e69e0&nbsp;3&nbsp;21&nbsp;00000001&nbsp;0&nbsp;shell&nbsp;ready</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">0000000c&nbsp;001d9a20&nbsp;6&nbsp;1&nbsp;00000001&nbsp;0&nbsp;rx_ewa0&nbsp;waiting&nbsp;on&nbsp;rx_isr_ewa0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000009&nbsp;001c3620&nbsp;3&nbsp;0&nbsp;00000001&nbsp;0&nbsp;shell_0&nbsp;waiting&nbsp;on&nbsp;rxq_ready</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000008&nbsp;001c22a0&nbsp;5&nbsp;0&nbsp;00000001&nbsp;0&nbsp;dup_poll&nbsp;waiting&nbsp;on&nbsp;tqe&nbsp;bd90c</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000007&nbsp;001c1080&nbsp;5&nbsp;0&nbsp;00000001&nbsp;0&nbsp;mscp_poll&nbsp;waiting&nbsp;on&nbsp;tqe&nbsp;bbc2c</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;uptime</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">0&nbsp;00:01:38</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;echo&nbsp;hello</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">hello</span></p>
+<p class="p_Normal"><span class="f_CodeExample">ls</span> lists the console's commands and devices; <span class="f_CodeExample">cat</span>, <span class="f_CodeExample">grep</span>, <span class="f_CodeExample">more</span>, <span class="f_CodeExample">wc</span> and <span class="f_CodeExample">hd</span> work as on UNIX. <span class="f_CodeExample">eval</span> evaluates a <span class="f_T_Emphasis">postfix</span> expression (<span class="f_CodeExample">eval 10 + 10</span> fails with <span class="f_CodeExample">expression evaluator underflow</span>).</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">All commands</span></h2>
+<p class="p_Normal">Every help topic the ES40 console lists, with its function and synopsis exactly as the firmware prints them. Commands marked <span class="f_T_Emphasis">Caution</span> change the machine's state, write to flash or storage, or run diagnostics: use them only on a machine you can restart.</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Command</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Function</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Synopsis</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">alloc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Allocate a block of memory from the heap. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">alloc &lt;size&gt; [&lt;modulus&gt;] [&lt;remainder&gt;] [-flood] [-z &lt;heap_address&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">assign_hw</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">assign a resource to a sw_root node child. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">assign_hw -s &lt;GCT Handle&gt; -d &lt;GCT Handle&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bootstrap the system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">boot [-file &lt;filename&gt;] [-flags &lt;longword&gt;[,&lt;longword&gt;]] [-protocols &lt;enet_protocol&gt;] [-halt] [&lt;boot_device&gt;][,&lt;boot_device&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">break</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Break out of a for, while, or until loop.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">break &lt;break_level&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">buildfru</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Build a FRU EEPROM data structure from command arguments. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">buildfru &lt;fru_name&gt; &lt;part_num&gt; &lt;serial_num&gt; [&lt;model&gt; [&lt;alias&gt;]] or -s &lt;fru_name&gt; &lt;offset&gt; &lt;byte&gt; [&lt;byte&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cat</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Catenate files to standard output.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cat [-length &lt;num&gt;] [-block &lt;size&gt;] [-start &lt;offset&gt;] [-quiet] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">check</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Evaluate a string or the attributes of a inode. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">check [-{f,r,w,x,b,e}] [!] [&lt;string&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">chmod</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Change the mode of a file. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">chmod [{-|+|=}{r,w,x,b,z}] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">chown</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Change the process ownership of a block of memory. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">chown &lt;pid&gt; &lt;address&gt;...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Clear an option or an environment variable.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear [option] or envar</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear password</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Clear the password for the secure function. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear password Please enter the password: &lt;password&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear_error</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Clear error information in the serial control bus EEROM.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">clear_error {all,cpu0,cpu1,io,mem0,mem1,mem2,mem3}</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cmp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Compare two files.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cmp [-n &lt;bytes&gt;] [-b &lt;size&gt;] [-s] &lt;file1&gt; &lt;file2&gt; [&lt;skip1&gt;] [&lt;skip2&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">continue</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Resume program execution on the specified processor.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">continue</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">crash</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">crash the system. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">crash</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">debug1</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Debug shell command. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">debug1</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">deposit</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Write data to a specified address. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">deposit [-{b,w,l,q,o,h}] [-{physical,virtual,gpr,fpr,ipr}] [-n &lt;count&gt;] [-s &lt;step&gt;] [&lt;device&gt;:]&lt;address&gt; &lt;data&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dynamic</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show the state of dynamic memory. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dynamic [-h] [-c] [-r] [-p] [-extend &lt;byte_count&gt;] [-z &lt;heap_address&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">echo</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Echo the command line.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">echo [-n] &lt;args&gt;...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">edit</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Invoke the console BASIC-like line editor on a file. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">edit &lt;file&gt; [Subcommands: HELP, LIST, RENUMBER, EXIT or CTL/Z, QUIT] [&lt;nn&gt; : Delete line number &lt;nn&gt;.] [&lt;nn&gt; &lt;text&gt; : Add or overwrite line &lt;nn&gt; with &lt;text&gt;.]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">eval</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Evaluate a postfix expression.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">eval [-{ib,io,id,ix}] [-{b|d|o|x}] &lt;postfix_expression&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">examine</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display data at a specified address.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">examine [-{b,w,l,q,o,h,d}] [-{physical,virtual,gpr,fpr,ipr}] [-n &lt;count&gt;] [-s &lt;step&gt;] [&lt;device&gt;:]&lt;address&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">exer</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exercise one or more devices. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">exer [-sb &lt;start_block&gt;] [-eb &lt;end_block&gt;] [-p &lt;pass_count&gt;] [-l &lt;blocks&gt;] [-bs &lt;block_size&gt;] [-bc &lt;block_per_io&gt;] [-d1 &lt;buf1_string&gt;] [-d2 &lt;buf2_string&gt;] [-a &lt;action_string&gt;] [-sec &lt;seconds&gt;] [-m] [-v] [-delay &lt;milliseconds&gt;] &lt;device_name&gt;...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">exit</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exit the current shell.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">exit &lt;exit_value&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">fakedisk</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Do fake disk DMA operation. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">fakedisk</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">false</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Return failure status, always.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">false</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">find_field</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Extract a field from each input line and write it.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">find_field &lt;field_number&gt; [-d &lt;delimiter&gt;])</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">free</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Return an allocated block of memory to the heap. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">free &lt;address&gt;...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">gct</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Build a Galaxy configuration tree.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">gct</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">gctverify</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Verify the integrity of the Config tree. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">gctverify</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">grep</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Globally search for regular expressions and print matches.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">grep [-{c|i|n|v}] [-f &lt;file&gt;] [&lt;expression&gt;] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">halt</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">halt the specified processor or device. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">halt [-drivers [&lt;device_prefix&gt;]] [&lt;processor_num&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">hd</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Dump the contents of a file in hexadecimal and ASCII.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">hd [-{byte|word|long|quad}] [-{sb|eb} &lt;n&gt;] &lt;file&gt;[:&lt;offset&gt;]...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">info</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display info about various console state.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">info [n]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">initialize</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Initialize the specified drivers or driver phase. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">init [-driver &lt;device_or_phase&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">isp1020_edit</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Edit ISP1020 NVRAM parameters. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">isp1020_edit [-sd] [-offset] [-id] [-allids] [-value] [-bit] [-set] -[clear] [&lt;isp1020_controller_name&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">kill</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Stop and delete a process. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">kill [&lt;pid&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">kill_diags</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Kill all currently executing diagnostic processes. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">kill_diags</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">line</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Read a line from standard input and write it to standard output.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">line</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">login</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Login to a secure console.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">login Please enter the password: &lt;password&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">lpinit</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">start up secondary partitions. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">lpinit</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ls</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">List files or inodes in file system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ls [-l] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">man</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display information about console commands.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">man [&lt;command&gt;...] Command synopsis conventions: item Implies a placeholder for user specified item. item... Implies an item or list of items. [] Implies optional keyword or item. {a,b,c} Implies any one of a, b, c. {a|b|c} Implies any combination of a, b, c.</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mc_cable</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Memory Channel cable check diagnostic.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mc_cable</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mc_diag</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Memory Channel Read/Write &amp; Loopback diagnostic. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mc_diag [-d]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memexer</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Invoke Gray code memory exerciser. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memexer [&lt;number&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memexer_mp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Invoke Gray code memory exerciser on multiprocessor system. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memexer_mp [&lt;number&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memtest</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Exercise/test a section of memory. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">memtest [-sa &lt;start_address&gt;] [-ea &lt;end_address&gt;] [-l &lt;length&gt;] [-bs &lt;block_size&gt;] [-i &lt;address_inc&gt;] [-p &lt;pass_count&gt;] [-d &lt;data_pattern&gt;] [-rs &lt;random_seed&gt;] [-ba &lt;block_address&gt;] [-t &lt;test_mask&gt;] [-se &lt;soft_error_threshold&gt;] [-g &lt;group_name&gt;] [-rb] [-f] [-m] [-z] [-h] [-mb]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">migrate</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">send all or one cpu to run in designated partition. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">migrate -{cpu &lt;cpu_id&gt;,all} -partition &lt;partition_number&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">more</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display output one screen at a time.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">more [-&lt;pagesize&gt; ] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">net</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Access a network port and execute MOP maintenance functions.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">net [-s] [-sa] [-rsa] [-env] [-ri] [-ic] [-id] [-l0] [-l1] [-rb] [-csr] [-els] [-kls] [-start] [-stop] [-cm &lt;mode_string&gt;] [-da &lt;node_address&gt;] [-l &lt;file_name&gt;] [-lw &lt;wait_in_secs&gt;] [-sv &lt;mop_version&gt;] &lt;port_name&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">nettest</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Test the network ports using MOP loopback. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">nettest [-f &lt;file&gt;] [-mode &lt;port_mode&gt;] [-p &lt;pass_count&gt;] [-sv &lt;mop_version&gt;] [-to &lt;loop_time&gt;] [-w &lt;wait_time&gt;] [&lt;port&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">prcache</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Manipulate an optional NVRAM disk cache. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">prcache [-z] [-f] [-u] [nvram_bus])</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ps</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Print process status and statistics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ps</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">rm</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Remove files from the file system. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">rm &lt;file&gt;...</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">rmc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Connect to the Remote Management Console from the graphics terminal.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">rmc</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">run</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">run something.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">run bios [controller]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sa</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set process affinity. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sa &lt;process_id&gt; &lt;affinity_mask&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">semaphore</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show system semaphores. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">semaphore</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set or modify the value of an environment variable.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set &lt;envar&gt; &lt;value&gt; [-integer] [-string] where &lt;envar&gt;={auto_action,bootdef_dev,boot_file,boot_osflags,...}</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set host</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Connect the console to another console or server.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set host [-dup] [-task &lt;task_name&gt;] &lt;target&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set password</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set the password for the secure function. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set password Please enter the password: &lt;15-30 characters&gt; Please enter the password again: &lt;verify password&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set secure</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Place the console in secure mode. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">set secure</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">shell</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Create a new shell process.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">shell [-{v|x}] [&lt;arg&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display an environment variable value or other information.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show [{bios,config,device,hwrpb,memory,pal,version,...}] [&lt;envar&gt;] where: &lt;envar&gt;={auto_action,bootdef_dev,boot_file,boot_osflags,...}</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show bios</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display location of BIOS extension ROM's.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show bios ()</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show cluster</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display open virtual circuits.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show cluster</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show config</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display the system configuration.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show config</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show cpu</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display the status of each CPU.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show cpu</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show fru</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show the FRUs in a system.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show fru [-e]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show hwrpb</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display the address of the HWRPB.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show hwrpb ()</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show iobq</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show the I/O counter blocks.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show_iobq</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show map</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display the system virtual memory map.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show map ()</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show memory</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show memory configuration, convert addresses to a sim.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show memory [addr1..addrx] COMMAND ARGUMENT(S):</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show power</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display power supply and fan status.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show power</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show_status</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Show the status of any currently executing diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">show_status</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sleep</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Suspend execution for a time.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sleep [-v] &lt;time_in_secs&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Set process priority.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sp &lt;process_id&gt; &lt;new_priority&gt;</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">start</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Start a processor at the specified address or drivers. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">start [-drivers [&lt;device_prefix&gt;]] [&lt;address&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">stop</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Stop the specified processor or device.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">stop [-drivers [&lt;device_prefix&gt;]] [&lt;processor_num&gt;]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sys_exer</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">exercise all the devices in the system concurrently. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">sys_exer [-lb] [-t &lt;run time&gt;])</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">test</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Test an AlphaServer system. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">test [-lb]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">true</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Return success status, always.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">true</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">uptime</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Display the elapsed time since system initialization.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">uptime()</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">wc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Count bytes, words and lines and report totals.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">wc [-{l|w|c}] [&lt;file&gt;...]</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">wwidmgr</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Manage the wwid registration. <span class="f_T_Emphasis">Caution:</span> changes machine state or runs diagnostics.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">wwidmgr [-quickset {-item &lt;#&gt;], -udid &lt;#&gt; } ] [-set {wwid] | port} -item &lt;#&gt; [-unit &lt;#&gt;] [-col &lt;#&gt;] [-filter &lt;'string&gt;] ] [-show {wwid] | port} [-full] [-filter &lt;'string'&gt;] ] [-show {ev | reachability} ] [-clear {all | wwid&lt;#&gt; | N&lt;#&gt;} ] Diagnostic mode command</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="4_3-srm-console.html" class="topiclink">SRM Console</a></p>
+<p class="p_Normal"><a href="xdelta-debugging.html" class="topiclink">Debugging OpenVMS with XDELTA</a></p>
+<p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; script &gt; diag_halt_irq4</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; script &gt; diag_halt_irq4</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?diag_halt_irq4.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">diag_halt_irq4</span></h1>
 
@@ -130,7 +130,7 @@
 <p class="p_Normal">2026-06-14 runbook that disambiguates the IRQ4 / halt gate: World A (a <span class="f_CodeExample">clr_irq*</span> write clears a real interrupt source) versus World C (the code is modelling a source read). Diagnosis only -- no rebuild. Deployed to <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by CMake POST_BUILD; anchors to the run-dir root.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Environment</span></h2>
-<p class="p_Normal">Sets <span class="f_CodeExample">EMULATR_TRACE_WINDOW=1</span> (required -- builds the window-only retire sink; arming is a no-op without it) and <span class="f_CodeExample">EMULATR_TIG_TRACE=1</span> (a canary that logs any access to an unmodeled TIG-window register).</p>
+<p class="p_Normal">Sets <span class="f_CodeExample">EMulatR_TRACE_WINDOW=1</span> (required -- builds the window-only retire sink; arming is a no-op without it) and <span class="f_CodeExample">EMulatR_TIG_TRACE=1</span> (a canary that logs any access to an unmodeled TIG-window register).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Operator steps at the &gt;&gt;&gt; prompt</span></h2>
 <p class="p_Normal">1) Snapshot the interrupt state:</p>
@@ -139,7 +139,7 @@
 <p class="p_Normal"><span class="f_CodeExample">e pmem:80130000040</span> -- smir (expect 0)</p>
 <p class="p_Normal">2) Arm the retire trace with a READ to <span class="f_CodeExample">pmem:80130000FF8</span> -- it must return <span class="f_CodeExample">7FFFFFFFFFFFFFFF</span>; a deposit to that PA disarms.</p>
 <p class="p_Normal">3) Boot: <span class="f_CodeExample">b dqa1</span></p>
-<p class="p_Normal">4) Stop cleanly from a second Git Bash to flush the <span class="f_CodeExample">_srm.trc</span>: <span class="f_CodeExample">touch &lt;run-dir&gt;/EMULATR_STOP</span></p>
+<p class="p_Normal">4) Stop cleanly from a second Git Bash to flush the <span class="f_CodeExample">_srm.trc</span>: <span class="f_CodeExample">touch &lt;run-dir&gt;/EMulatR_STOP</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Triage</span></h2>
 <p class="p_Normal">After the graceful stop the script greps the log for the TIG canary, HALTPROBE, and halt lines, then surfaces the TIG (<span class="f_CodeExample">0x80130xxxx</span>) and Cchip (<span class="f_CodeExample">0x801a0xxxx</span>) accesses and the last retire lines from the newest <span class="f_CodeExample">_srm.trc</span>.</p>

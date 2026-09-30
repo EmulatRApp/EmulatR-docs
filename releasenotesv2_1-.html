@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Release Notes &gt; 2.1 (In Development)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="2.1,block execution,buffer pool,changelog,cl67srmrom.exe,console paste,console trace hotkey,EMULATR_DIAG_TRACE_HOTKEY,ES40,ewa0_mode,guest networking,known limitations,packet capture,release notes,storage engine,storage_engine,v2.1,VA_CTL,what's new,Wireshark,write-through" />
+   <meta name="description" content="The full User and Developer Reference is published online at https://EMulatRapp.github.io/EMulatR-docs/. It is the same guide the kit installs as..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "releasenotesv2_1-.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">2.1 (In Development)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?releasenotesv2_1-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="release-notes.html">Release Notes</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">2.1 (In Development)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="release-notes.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="release-notes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="releasenotesv1_6-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The full User and Developer Reference is published online at https://EMulatRapp.github.io/EMulatR-docs/. It is the same guide the kit installs as <span class="f_CodeExample">documentation/EMulatRGuide.pdf</span>, and it is updated with each release.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR 2.1 is in development. This page records what has changed since the T2.0-16 field-test kit, and becomes the release notes when a 2.1 kit ships. Entries are added as the changes land, so the page always describes the current development build.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Status at close of session, 27 September 2026</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer DS20:</span> OpenVMS V8.3 boots to the <span class="f_CodeExample">Username:</span> prompt with the JIT off and on, and installs from its CD image (<span class="f_CodeExample">dqa1</span>).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer ES40:</span> requires HP's 67CLIPPER SRM console, V7.3-1, obtained as <span class="f_CodeExample">cl67srmrom.exe</span>, prepared, and named <span class="f_CodeExample">es40_v7_3.exe</span> (see AlphaServer ES40, Console firmware); no other ES40 firmware works yet. The console starts cleanly on an EV68CB, and OpenVMS V8.3 boots from its SCSI system disk to the <span class="f_CodeExample">Username:</span> prompt with the JIT off and on. Installing from the CD image does not complete yet; install on the DS20 and copy the disk.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer DS10:</span> OpenVMS V8.3 boots from its SCSI system disk to the <span class="f_CodeExample">Username:</span> prompt. With the CD image on the secondary IDE channel (<span class="f_CodeExample">dqb0</span>) the installation kit boots and runs its startup, then stops before the installation menu. The cause is found: EMulatR presents the DS10 with the DS20's Cypress south bridge, but a real DS10 has the ALi M1543C. On the Cypress both IDE channels end up on interrupt 15, so the primary channel's driver takes the secondary channel's interrupts. The DS10 will present the ALi M1543C. Until then, boot the DS10 from its SCSI system disk and avoid its IDE devices; to install OpenVMS, install on the DS20 and copy the disk.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer ES45 and DS25:</span> not supported in this build (the ES45 console stops starting its USB driver; the DS25 console runs but does not find its IDE disk).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Next:</span> the interrupt and timer delivery rework (interrupt work moved off the per-instruction path). The groundwork is in place: diagnostic builds can now report every interrupt source the current delivery path finds without being notified, and the new delivery core is designed and tested on its own. Phase 1 is now built behind a setting that is off by default (see Added): every notification is in place, and guest behaviour is unchanged with it on.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Added</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">A selectable storage engine.</span> The platform manifest key <span class="f_CodeExample">storage_engine</span> chooses how writable disks are served. <span class="f_CodeExample">direct</span> (the default) is the engine every previous release used. <span class="f_CodeExample">pool</span> puts EMulatR's own resident page cache in front of each disk image, opens the images write-through so that a write the guest sees as complete is on the host device, and keeps the guest's writes in strict order across every disk. Settings: <span class="f_CodeExample">pool_mb</span>, <span class="f_CodeExample">max_pending_mb</span>, <span class="f_CodeExample">pool_dump_path</span>, and per disk <span class="f_CodeExample">write_cache</span>, <span class="f_CodeExample">cache_min_mb</span>, <span class="f_CodeExample">cache_max_mb</span>. If the pool cannot serve a disk, that disk falls back to the direct engine and the run log says why.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Storage Engine chapter.</span> A new chapter, 6.9 Storage Engine, explains how guest disk requests reach the host, the pool's threading and isolation, what each engine promises on a crash, a power loss or a host fault, and every storage setting.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">JIT memory fast path.</span> With the JIT enabled (<span class="f_CodeExample">EMulatR_JIT=fused</span>), ordinary loads and stores to RAM now run inline instead of through the full instruction path. Estimated about 12% less time to the login prompt on a DS20 boot. The JIT is off by default, so a default run is unchanged.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">EMulatR_JIT_NO_MEMFAST.</span> A new setting that turns off only the JIT memory fast path, for comparisons; the rest of the JIT stays on. The run log's <span class="f_CodeExample">JIT memfast:</span> line shows whether the fast path is active and, if not, why.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer ES40 reaches the SRM console.</span> The ES40 now starts HP's 67CLIPPER SRM console (V7.3-1) directly. The image it used before was the firmware-update build, which ran the update utility on every cold boot and never reached the prompt. The console completes its power-up tests and stops at <span class="f_CodeExample">P00&gt;&gt;&gt;</span> with every device present: <span class="f_CodeExample">pka0</span> (SCSI), <span class="f_CodeExample">ewa0</span>, <span class="f_CodeExample">dqa</span>/<span class="f_CodeExample">dqb</span> (IDE) with the CD on <span class="f_CodeExample">dqa1</span>, and <span class="f_CodeExample">dva0</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">AlphaServer ES40 runs OpenVMS.</span> The ES40 now boots OpenVMS V8.3 from its SCSI system disk through startup to the <span class="f_CodeExample">Username:</span> prompt, joining the DS10 and DS20. Its south-bridge devices now sit where a real ES40 has them: the PCI-to-ISA bridge at PCI device 7, the IDE controller at device 15 (console names <span class="f_CodeExample">dqa.0.0.15.0</span> and <span class="f_CodeExample">dqb.0.1.15.0</span>), the USB controller at 19, and the power-management controller at 17. The network adapter moves to option slot 4 as <span class="f_CodeExample">ewa0.0.0.4.0</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Guest networking configuration page.</span> A new page under 5.9 Networking, Configuring Guest Networking (OpenVMS), gives the steps in order: binding the host adapter, planning unique IP and DECnet addresses, <span class="f_CodeExample">set ewa0_mode FastFD</span> at the console, the LANCP commands for 100 Mb/s full duplex, the TCP/IP address, and checking the result with ping and a Wireshark filter for DEC traffic.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Platform Guides chapter.</span> A new section, 5.10 Platform Guides, has one guide each for the DS10, DS20 and ES40: the hardware EMulatR presents, devices, console firmware, how to run it, its current status, and what multiprocessor (SMP) support will mean for that model.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Crash and JIT documentation.</span> A new troubleshooting page, OpenVMS Crash or Hang: Capturing Diagnostics, gives the sequence for a bugcheck or hang: arranging a dump, analysing it with SDA on a copy of the disks, and the EMulatR diagnostic settings to pair with it. The JIT chapter, 5.8, now describes the JIT that ships: how to turn it on, what it compiles, when it stays off, and the run-log lines that report it.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Console trace hotkey (diagnostic builds).</span> With <span class="f_CodeExample">EMulatR_DIAG_TRACE_HOTKEY=1</span>, pressing Ctrl/\ at the console starts a full instruction trace and Ctrl/] stops it, so a trace can be aimed at the moment a problem appears instead of starting at power-up. EMulatR takes both keys before the guest sees them. The run log reports the cycle and program counter where each window opens and closes. See the new page Console Trace Hotkey under 5.8 Logging &amp; Diagnostics. Diagnostic (RelWithDebInfo) builds only; the Release build does not include it.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 firmware preparation.</span> The AlphaServer ES40 page now explains, for users of the kit, which ES40 firmware file to obtain (HP's 67CLIPPER <span class="f_CodeExample">cl67srmrom.exe</span>, V7.3-1), where the tested copy came from, how to check it by its SHA-256 hash, how to prepare it with a few PowerShell commands (no other tools needed), and why it must be named <span class="f_CodeExample">es40_v7_3.exe</span>. The source tree adds <span class="f_CodeExample">tools/extract_es40_cl67.py</span>, which does the same and refuses any other file.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis"><a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a> page.</span> A new page under 9.2 Tools brings the Wireshark material together: the two ways to capture EWA0 traffic, how to find the guest's MAC address (at the console, in LANCP, from a DECnet address, and in a capture), the supplied EMulatR-EWA0 profile, and display and capture filter examples for watching one guest or one protocol (DECnet, LAT, OpenVMS Cluster, MOP, TCP/IP).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Snapshot on request.</span> Creating a file named <span class="f_CodeExample">EMulatR_SNAPSHOT</span> in the run folder while EMulatR runs saves a full snapshot of the running machine, at the console prompt or with the operating system up, into the <span class="f_CodeExample">snapshots</span> folder, without typing anything into the guest. EMulatR removes the file after each save, so it can be created again for another snapshot. <span class="f_CodeExample">EMulatR_SNAPSHOT_FILE</span> names a different file to watch.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Fixed-mode clock start date.</span> <span class="f_CodeExample">EMulatR_TOY_FIXED_EPOCH</span> sets the date and time the clock starts from when <span class="f_CodeExample">EMulatR_TOY_MODE=fixed</span>, written <span class="f_CodeExample">YYYY-MM-DD</span>, optionally followed by <span class="f_CodeExample">HH:MM</span> or <span class="f_CodeExample">HH:MM:SS</span>. The run log reports the date in use.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Interrupt harness (experimental, off by default).</span> With <span class="f_CodeExample">EMulatR_IRQ_HARNESS=1</span>, EMulatR evaluates interrupts only when something has changed that could make one deliverable, instead of at every step. Guest behaviour is identical: the certified DS20 boot retires exactly the same instructions with the setting on and off, with the JIT on and off. On that boot (Release build, JIT on) it takes 26% less time to the end of OpenVMS startup. It stays off by default until it has been certified on every platform; the run log's <span class="f_CodeExample">IRQ harness:</span> line shows its state.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Platform Editor chapter.</span> A new chapter, 3. Platform Editor, documents the Platform Editor (<span class="f_CodeExample">platedit_wx.exe</span>): starting it, its window, editing a manifest, the Configure wizard, every validation message and troubleshooting. The chapters after Installation are renumbered: Quick Start is now 4, Operating EMulatR 5, Architecture &amp; Internals 6, Reference 7, Troubleshooting 8, the Developer Reference appendices 9 and Performance 10.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Platform Editor: Configure wizard.</span> Tools &gt; Configure... adds disks and a CD-ROM to an open manifest. It shows each controller's free units, offers the drive models in <span class="f_CodeExample">disk_types.json</span>, creates new disk images when you press Finish (sized to whole 4 KB pages, as the storage pool requires), and can give the network controller its own MAC address. Edit &gt; Undo Configure takes the change back; it never deletes image files.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">EWA0: a MAC address per system.</span> The network controller's row in the platform manifest takes an optional <span class="f_CodeExample">mac</span>, for example <span class="f_CodeExample">02-5A-3C-11-90-4E</span>. Without it the adapter keeps its default, <span class="f_CodeExample">08-00-2B-E5-40-00</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Changed</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">JIT on by default.</span> The fused JIT now runs unless you turn it off: leaving <span class="f_CodeExample">EMulatR_JIT</span> unset selects it, and the run log says <span class="f_CodeExample">JIT: fused (default)</span>. Set <span class="f_CodeExample">EMulatR_JIT=off</span> (or <span class="f_CodeExample">0</span>) for the interpreter alone. Scripts that turned the JIT off by leaving the variable unset now get the JIT; set it to <span class="f_CodeExample">off</span> explicitly.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Faster interpreter path.</span> Per-instruction bookkeeping that ran on every retired instruction now runs only while a trace or breakpoint is active, and block execution checks for pending interrupts by reading a single word. Measure the gain on your own hardware.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 IDE controller presents its interrupt.</span> The ES40's IDE controller (ALi M5229) now presents what the real part does: an interrupt pin, its base address registers at their reset values, and a bus-master register block. Its interrupts reach the processor on ISA IRQ14 and IRQ15, as on the DS10 and DS20. Earlier builds presented it with no interrupt at all, which the SRM console tolerates but the OpenVMS driver does not. The console output (<span class="f_CodeExample">show config</span>, <span class="f_CodeExample">show device</span>) is unchanged. The ES45 and DS25 share the model.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Time-of-year clock modes.</span> With <span class="f_CodeExample">EMulatR_TOY_MODE=fixed</span> the saved CMOS store is no longer read or written, so every fixed run starts from the same clean clock and CMOS; earlier, a fixed run could pick up the store a previous fixed run left. In <span class="f_CodeExample">host</span> mode (the default) the time now comes from the host clock at every start. Earlier builds reused the time saved at the last shutdown, and because guest time runs slower than host time, each boot began further behind the real date. The CMOS contents are still kept.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">DS10 and DS20: second IDE controller (dqb).</span> The Cypress south bridge now presents its secondary IDE channel as PCI function 2, as the real part does, so drives and CD images on the secondary channel appear as <span class="f_CodeExample">dqb</span>. <span class="f_CodeExample">show config</span> lists <span class="f_CodeExample">Slot 05/2: Cypress 82C693 IDE dqb.0.1.205.0</span>. Nothing on the primary channel (<span class="f_CodeExample">dqa</span>) changes.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Wireshark profile labels.</span> In the supplied EMulatR-EWA0 profile the Unicast bookmark, button and coloring rule no longer say that unicast traffic is unexpected. EWA0 has carried real LAN traffic since the network backend arrived, so unicast is normal once the guest has peers. Re-import <span class="f_CodeExample">tools\wireshark\EMulatR-EWA0.zip</span> to pick up the new labels.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Fixed-mode clock default date.</span> With <span class="f_CodeExample">EMulatR_TOY_MODE=fixed</span> the clock now starts at 1 January 2027 instead of 1 January 2026. OpenVMS asks for the date during startup when the clock reads earlier than the time last saved on its system disk, so the fixed start date has to be later than the disk's last use. Set <span class="f_CodeExample">EMulatR_TOY_FIXED_EPOCH</span> to choose another date.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">DS20 interrupt routing is built in.</span> EMulatR now carries the DS20's PCI interrupt wiring itself, as it already did for the DS10 and ES40. The manifest's <span class="f_CodeExample">pci_irq_table_hose0</span> is only compared with it: a disagreement is logged at start-up and the built-in value is used.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Platform Editor refuses devices EMulatR cannot run.</span> Virtual tape (not yet supported), a second 53C810 SCSI controller and a second DE500 network controller are refused, and existing ones are reported as errors. A SCSI disk added with + Device now gets the drive model <span class="f_CodeExample">EMulatR-4G</span>; before, it got <span class="f_CodeExample">EMulatR VIRTUAL DISK</span>, which EMulatR does not attach.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The launcher opens the new Platform Editor.</span> Open in PlatEd and Configure now start <span class="f_CodeExample">platedit_wx.exe</span> (the Qt edition only if it is missing) and pass the system's own <span class="f_CodeExample">EMulatR.ini</span>, so the board view and the Configure wizard use that system's CPUs, memory and disk folder. The launcher also finds the emulator and the editor beside itself wherever the kit is installed.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Fixed</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Large console pastes arrive complete.</span> Pasting more than about 4 KB into the console used to lose the beginning of the paste without any warning. The console now applies flow control to the terminal, so a paste of any size is delivered complete and in order, at the guest's serial speed.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Block execution after a VA_CTL change.</span> Changing the virtual-address control register (VA_CTL) now also discards decoded instruction blocks, so no block decoded under the old setting can run under the new one.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 hands off to OpenVMS.</span> After <span class="f_CodeExample">jumping to bootstrap code</span> the ES40 console used to restart instead of starting the operating system. The console-to-bootstrap handoff now finds the correct PALcode routine on the ES40 console, so <span class="f_CodeExample">b dka200 -fl 0,1</span> reaches <span class="f_CodeExample">SYSBOOT&gt;</span> and OpenVMS V8.3 loads and begins startup. DS10 and DS20 are unchanged.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Network adapter auto-detection.</span> With <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> unset, EMulatR could refuse to attach EWA0 on a host that has one dedicated adapter, reporting <span class="f_CodeExample">several adapters have no bound address</span>. The Windows WAN Miniport pseudo-adapters were being counted as candidates. They are now ignored, so the dedicated adapter is chosen automatically.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 console no longer reports a PALcode/CPU mismatch.</span> The ES40 now presents an Alpha 21264B (EV68CB) processor, a part real ES40 systems shipped with, instead of an EV6. The 67CLIPPER console is built for EV67/EV68 processors and previously printed <span class="f_CodeExample">*** Warning - PALcode/CPU Mismatch - Reload SRM Firmware ***</span> at every power-up; it now starts cleanly. The DS10 and DS20 are unchanged.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 OpenVMS startup no longer bugchecks.</span> Startup used to stop with an <span class="f_CodeExample">INVEXCEPTN</span> bugcheck in <span class="f_CodeExample">SYSMAN.EXE</span> while it configured the IDE controller. EMulatR presented the controller as function 1 of a combined device; OpenVMS on the ES40 expects it as function 0 of its own PCI device, as on the real system board, and could not reach its configuration registers otherwise. The controller now sits at PCI device 15, function 0.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">DEC traffic filter on the guest networking page.</span> The Wireshark display filter on Configuring Guest Networking (OpenVMS) listed its IP addresses without commas, which Wireshark 4.6 rejects. The addresses are now separated by commas.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">ES40 firmware name in the firmware folder readme.</span> The readme placed in each system's <span class="f_CodeExample">firmware</span> folder named <span class="f_CodeExample">es40_cl67.exe</span> as the ES40 image. Under that name EMulatR finds no ES40 platform manifest and falls back to its DS10 platform, so the system could not start. The readme now names <span class="f_CodeExample">es40_v7_3.exe</span> and explains how to prepare it.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Firmware integrity check documentation.</span> The guide described <span class="f_CodeExample">[ROM]/firmwareSha256</span> as checking the firmware at load. The key is read but not yet enforced; the guide now says so.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Known limitations</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">write_cache</span> = <span class="f_CodeExample">ordered</span> (write-back) is experimental. The default, <span class="f_CodeExample">off</span>, is the recommended setting.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>On the pool engine, a host storage fault is reported in the run log, but the machine does not yet pause and offer resume or abort. A disk with <span class="f_CodeExample">write_cache</span> = <span class="f_CodeExample">off</span> holds the guest until the host recovers.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A saved pool dump is not yet replayed automatically at the next start.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>CD and ISO media always use the direct engine.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The Platform Editor validates the storage keys but has no control for <span class="f_CodeExample">storage_engine</span> yet; set it in the manifest.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The emulated SCSI disk does not yet support SYNCHRONIZE CACHE or FUA, and reports its write cache as disabled.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>ES40: <span class="f_CodeExample">show config</span> shows an unreadable AlphaBIOS (ARC) version, and placeholder versions for the RMC and TIG.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>ES40: the second PCI bus (hose 1) is not yet available, so the SCSI and network adapters sit in option slots on hose 0. A real ES40 usually carries them on hose 1.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>EWA0: auto-negotiation settles on 10 Mb/s half duplex because the emulated adapter does not yet present a link partner. Select a fixed speed instead (<span class="f_CodeExample">set ewa0_mode FastFD</span>, or LANCP <span class="f_CodeExample">/SPEED=100 /FULL_DUPLEX /NOAUTONEGOTIATE</span>).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>EWA0: an instance whose manifest sets no <span class="f_CodeExample">mac</span> presents the default hardware address, shared by every such instance. Give each system its own (the Platform Editor's Configure wizard can generate one), or do not put two such instances on one LAN unless they run DECnet Phase IV.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>ES40: installing OpenVMS from the CD (<span class="f_CodeExample">b dqa1</span>) does not complete yet. The console boots the CD and OpenVMS starts to load, then waits indefinitely when it begins to use the IDE controller. Boot the ES40 from an installed SCSI disk instead.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>An IDE channel with no drives attached delays OpenVMS device configuration by several minutes: the driver waits out a timeout for each empty unit before continuing. The cause is traced to how EMulatR presents a channel with no drives: values written to its registers read back as if a drive were there, so the console and OpenVMS take each empty unit for a drive and wait for it. A correction is being prepared.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>ES40: only HP's 67CLIPPER SRM console, V7.3-1, works. HP ships it as <span class="f_CodeExample">cl67srmrom.exe</span>, which must be prepared before use (its update packaging removed) and named <span class="f_CodeExample">es40_v7_3.exe</span>. HP's ES40 firmware-update files (<span class="f_CodeExample">es40_vN_N.exe</span>, including one named <span class="f_CodeExample">es40_v7_3.exe</span>) are a different program and never reach the console prompt; the V7.2-1 and older 67CLIPPER consoles and the CLIPPER (EV6) console are not supported. The steps, the source of the tested file and its checksums are on AlphaServer ES40 (5.10 Platform Guides).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="5_9-storage-engine.html" class="topiclink">6.9 Storage Engine</a></p>
+<p class="p_Normal"><a href="4_10-platform-guides.html" class="topiclink">5.10 Platform Guides</a></p>
+<p class="p_Normal"><a href="platform-es40.html" class="topiclink">AlphaServer ES40</a></p>
+<p class="p_Normal"><a href="configuring-guest-networking.html" class="topiclink">Configuring Guest Networking (OpenVMS)</a></p>
+<p class="p_Normal"><a href="storage-configuration-reference.html" class="topiclink">Storage Configuration Reference</a></p>
+<p class="p_Normal"><a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a></p>
+<p class="p_Normal"><a href="console-trace-hotkey.html" class="topiclink">Console Trace Hotkey</a></p>
+<p class="p_Normal"><a href="releasenotesv2_0-.html" class="topiclink">T2.0-16 (Beta)</a></p>
+<p class="p_Normal"><a href="release-notes.html" class="topiclink">Release Notes</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

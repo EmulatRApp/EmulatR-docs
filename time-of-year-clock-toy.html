@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Time-of-Year Clock (TOY)</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock &gt; Time-of-Year Clock (TOY)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?time-of-year-clock-toy.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">6.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Time-of-Year Clock (TOY)</span></h1>
 
@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">The Time-of-Year clock is the machine's battery-backed real-time clock: an MC146818-compatible part in the Cypress CY82C693 southbridge, reached through I/O ports <span class="f_CodeExample">0x70</span> (index) and <span class="f_CodeExample">0x71</span> (data). It holds the date and time the console and the operating system read, plus 256 bytes of CMOS scratch the SRM uses for its own settings.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">On real hardware this clock runs from a battery, so it keeps time while the machine is powered off. EmulatR has no battery, so where the time comes from is a choice - and that choice trades everyday usability against exact reproducibility. <span class="f_CodeExample">EMULATR_TOY_MODE</span> makes it.</p>
+<p class="p_Normal">On real hardware this clock runs from a battery, so it keeps time while the machine is powered off. EMulatR has no battery, so where the time comes from is a choice - and that choice trades everyday usability against exact reproducibility. <span class="f_CodeExample">EMulatR_TOY_MODE</span> makes it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Time-source modes</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -148,7 +148,7 @@
 <td style="vertical-align:top; width:140px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">host</span></p>
 <p class="p_Normal">(default)</p>
 </td>
-<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">Seeded from the host wall clock when the machine starts, then advanced by the emulated cycle counter. The clock always reports itself valid.</p>
+<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">Seeded from the host wall clock every time the machine starts, then advanced by the emulated cycle counter. A time saved in the store is not used: only the CMOS contents are kept from one run to the next. The clock always reports itself valid.</p>
 </td>
 <td style="vertical-align:top; width:620px; padding:0; border:solid thin #000000;"><p class="p_Normal">Normal interactive use. A fresh installation boots with a correct clock and the guest does not ask you for the date.</p>
 </td>
@@ -156,7 +156,7 @@
 <tr>
 <td style="vertical-align:top; width:140px; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">fixed</span></p>
 </td>
-<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">A pure function of emulated cycles: epoch 2026-01-01 00:00:00 plus elapsed emulated seconds. The host clock is never read.</p>
+<td style="vertical-align:top; width:420px; padding:0; border:solid thin #000000;"><p class="p_Normal">A pure function of emulated cycles: epoch 2026-01-01 00:00:00 plus elapsed emulated seconds. The host clock is never read, and the store is neither read nor written, so every fixed run starts from the same clean CMOS.</p>
 </td>
 <td style="vertical-align:top; width:620px; padding:0; border:solid thin #000000;"><p class="p_Normal">Any run whose output is compared byte-for-byte with another run - do-no-harm, differential and certification passes. Set it explicitly; never rely on a default for this.</p>
 </td>
@@ -173,13 +173,13 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TOY_MODE=fixed&nbsp;#&nbsp;deterministic&nbsp;clock,&nbsp;for&nbsp;a&nbsp;comparison&nbsp;run</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TOY_MODE=unset&nbsp;#&nbsp;dead-battery&nbsp;lifecycle</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_TOY_MODE=fixed&nbsp;#&nbsp;deterministic&nbsp;clock,&nbsp;for&nbsp;a&nbsp;comparison&nbsp;run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_TOY_MODE=unset&nbsp;#&nbsp;dead-battery&nbsp;lifecycle</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox">In </span><span class="f_CodeExample">unset</span><span class="f_NotesBox"> mode the date prompt does not go away. Answering it sets the time inside OpenVMS for that session, but nothing is written back to the emulated clock chip: the stored origin stays at the factory epoch and the validity bit stays clear, so the next boot honestly reports a dead battery and asks again. This has been confirmed across a clean shutdown - it is not a persistence failure, the store saves and reloads correctly. What is missing is the write itself. Whether OpenVMS is expected to write the chip from that prompt on real hardware is still being established; until it is, use </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> mode (the default) if you want the prompt to stop.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">An unrecognised value is not fatal - the emulator says so and falls back to <span class="f_CodeExample">host</span>:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">ToyRtc:&nbsp;unknown&nbsp;EMULATR_TOY_MODE&nbsp;'wallclock'&nbsp;--&nbsp;using&nbsp;host</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">ToyRtc:&nbsp;unknown&nbsp;EMulatR_TOY_MODE&nbsp;'wallclock'&nbsp;--&nbsp;using&nbsp;host</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox">The default was </span><span class="f_CodeExample">unset</span><span class="f_NotesBox"> in earlier builds and is </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> from 19 August 2026. Under the old default every fresh installation booted with an invalid clock, and because OpenVMS will not write a clock it does not trust, the boot-time date prompt returned on every cold boot. Host mode removes that. The reproducibility rule is unchanged: a run that must reproduce has to pin </span><span class="f_CodeExample">fixed</span><span class="f_NotesBox"> itself rather than inherit whatever the default happens to be.</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -189,7 +189,13 @@
 <p class="p_Normal">from a deterministic origin, so two identical boots read byte-identical clock registers. <span class="f_CodeExample">host</span> mode breaks that by construction - guest-visible time stops being a function of guest state - which is exactly why it is not valid for a run whose whole purpose is to reproduce.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Persistence</span></h2>
-<p class="p_Normal">The 256-byte CMOS array and the time origin persist to <span class="f_CodeExample">nvram/&lt;stem&gt;_toy.bin</span>, relative to the run directory, where <span class="f_CodeExample">&lt;stem&gt;</span> is the base name of the firmware image - the same stem the log artifacts use, overridable with <span class="f_CodeExample">EMULATR_LOG_STEM</span>. <span class="f_CodeExample">EMULATR_TOY_NVRAM</span> overrides the whole path. The file is written on every CMOS store rather than at exit, so an abrupt kill loses nothing. It is read back at startup, and a store that is absent, short, corrupt, or written under a different mode is refused with one loud line, leaving the clock unset.</p>
+<p class="p_Normal">The 256-byte CMOS array and the time origin persist to <span class="f_CodeExample">nvram/&lt;stem&gt;_toy.bin</span>, relative to the run directory, where <span class="f_CodeExample">&lt;stem&gt;</span> is the base name of the firmware image - the same stem the log artifacts use, overridable with <span class="f_CodeExample">EMulatR_LOG_STEM</span>. <span class="f_CodeExample">EMulatR_TOY_NVRAM</span> overrides the whole path. The file is written on every CMOS store rather than at exit, so an abrupt kill loses nothing. It is read back at startup, and a store that is absent, short, corrupt, or written under a different mode is refused with one loud line, leaving the clock unset.</p>
+<p class="p_Normal">What each mode takes from the store (from 26 September 2026):</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">host</span> keeps the CMOS contents but takes the time from the host clock at every start. Earlier builds reused the time saved at the last shutdown, and because guest time runs slower than host time, each boot started further behind the real date.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">fixed</span> ignores the store completely and writes nothing to it, and says so once at startup:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">ToyRtc:&nbsp;fixed&nbsp;mode&nbsp;--&nbsp;CMOS&nbsp;store&nbsp;'nvram/ds20_v7_3_toy.bin'&nbsp;not&nbsp;consumed&nbsp;(a&nbsp;fixed&nbsp;run&nbsp;always&nbsp;starts&nbsp;from&nbsp;a&nbsp;clean&nbsp;CMOS)</span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">unset</span> restores the stored time as it was at shutdown, so time stands still while the machine is off, as it would with a dead battery.</p>
+<p class="p_Normal">In earlier builds a fixed run read back a store left by a previous fixed run, so two fixed runs of the same boot could differ - only the first asked for the date.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is a different store from the SRM environment-variable flash image - see <a href="firmware-images-exe-and-rom.html" class="topiclink">Firmware Images: .exe and .rom</a>. The store is keyed by that same firmware stem, so every platform in a run directory keeps its own clock and CMOS: a DS20 run uses <span class="f_CodeExample">nvram/ds20_v7_3_toy.bin</span> and a DS10 run its own file. Before 19 August 2026 the two shared one store, and a DS10 boot could consume the clock a DS20 boot had written.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -202,7 +208,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">OpenVMS gates its clock writes on the validity bit. While the hardware clock reports VRT = 0, answering the date prompt at boot sets the <span class="f_T_Emphasis">system</span> time only - nothing reaches the chip, so the next boot asks again. Once the clock reports valid, VMS both reads it and maintains it; the first write after validity was observed setting the full date and time through the standard SET protocol.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The designed heal on real hardware is the console <span class="f_CodeExample">DATE</span> command, which writes the clock with that same protocol. The v7.3 console images shipped for these platforms do not carry it, so in practice a dead store is initialized either by running once in <span class="f_CodeExample">host</span> or <span class="f_CodeExample">fixed</span> mode - the clock then reports valid and the guest writes it - or by initializing the store file directly. Either way it is a one-time step; afterwards the clock persists and the prompt does not come back.</p>
+<p class="p_Normal">The designed heal on real hardware is the console <span class="f_CodeExample">DATE</span> command, which writes the clock with that same protocol. The v7.3 console images shipped for these platforms do not carry it, so in practice a dead store is initialized either by running once in <span class="f_CodeExample">host</span> mode - the clock then reports valid and the guest writes it - or by initializing the store file directly. A <span class="f_CodeExample">fixed</span> run does not help here: it writes nothing to the store. Either way it is a one-time step; afterwards the clock persists and the prompt does not come back.</p>
 <p class="p_NotesBox"><span class="f_NotesBox">If the date prompt PERSISTS across boots even in </span><span class="f_CodeExample">host</span><span class="f_NotesBox"> mode - a store carried across mixed mode histories can hold a wedged validity latch - reset it: shut the guest down cleanly, delete the run directory's </span><span class="f_CodeExample">nvram/&lt;stem&gt;_toy.bin</span><span class="f_NotesBox"> (for example </span><span class="f_CodeExample">nvram/ds20_v7_3_toy.bin</span><span class="f_NotesBox">), and boot twice. The first boot asks for the date once; answering it latches validity into the freshly created store. Shut down cleanly again, and the second and every later boot comes up with the correct time, unprompted. The clean shutdowns matter - they are what persist the store.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>

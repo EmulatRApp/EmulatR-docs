@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices &gt; South Bridge &gt; Cypress &gt; CY82C693</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices &gt; South Bridge &gt; Cypress &gt; CY82C693</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?cy82c693-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="chipset.html">5.3 Chipset &amp; Devices</a> &gt; <a href="southbridge.html">South Bridge</a> &gt; <a href="cypress.html">Cypress</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="chipset.html">6.3 Chipset &amp; Devices</a> &gt; <a href="southbridge.html">South Bridge</a> &gt; <a href="cypress.html">Cypress</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">CY82C693</span></h1>
 
@@ -178,19 +178,19 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Function 0 sets header type <span class="f_CodeExample">0x80</span> (multi-function), so the SRM probes functions 1 and 2 as well. Any function EmulatR does not model returns <span class="f_CodeExample">0xFFFFFFFF</span> (master abort), which the SRM treats as &quot;not present&quot; -- safe and expected.</p>
+<p class="p_Normal">Function 0 sets header type <span class="f_CodeExample">0x80</span> (multi-function), so the SRM probes functions 1 and 2 as well. Any function EMulatR does not model returns <span class="f_CodeExample">0xFFFFFFFF</span> (master abort), which the SRM treats as &quot;not present&quot; -- safe and expected.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EmulatR model</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span> -- function 0 (<span class="f_CodeExample">Cy82C693IsaBridge</span>): the PCI config-space header that prevents the SRM enumeration loop from stalling, plus the legacy ISA I/O fallback. Implements <span class="f_CodeExample">IPciDeviceHandler</span> + <span class="f_CodeExample">IIoPortHandler</span>.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span> -- function 1 (<span class="f_CodeExample">Cy82C693Ide</span>): the IDE controller config space plus the fixed legacy ATA task-file ports (primary command 0x1F0 / control 0x3F6, secondary 0x170 / 0x376), carrying the ATA fixed disk (dqa0) and the ATAPI CD (dqa1).</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EMulatR model</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span> -- function 0 (<span class="f_CodeExample">Cy82C693IsaBridge</span>): the PCI config-space header that prevents the SRM enumeration loop from stalling, plus the legacy ISA I/O fallback. Implements <span class="f_CodeExample">IPciDeviceHandler</span> + <span class="f_CodeExample">IIoPortHandler</span>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span> -- function 1 (<span class="f_CodeExample">Cy82C693Ide</span>): the IDE controller config space plus the fixed legacy ATA task-file ports (primary command 0x1F0 / control 0x3F6, secondary 0x170 / 0x376), carrying the ATA fixed disk (dqa0) and the ATAPI CD (dqa1).</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The bridge is wired at hose 0 / bus 0 / slot 5 in <span class="f_CodeExample">TsunamiChipset::wireDevices()</span>, which also registers the ISA devices (8259 pair, RTC, COM1/COM2, KBC, Super I/O) at their fixed ports. The ALi M1543C is its ES-class counterpart.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- fn0 PCI header 0x1080:0xC693, hdrtype 0x80.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- fn1 IDE config + legacy ATA ports (dqa0/dqa1).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- taskfile engine answering the ATA/ATAPI units.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- slot-5 wiring + ISA device registration.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- fn0 PCI header 0x1080:0xC693, hdrtype 0x80.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- fn1 IDE config + legacy ATA ports (dqa0/dqa1).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- taskfile engine answering the ATA/ATAPI units.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- slot-5 wiring + ISA device registration.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="cypress.html" class="topiclink">Cypress</a></p>

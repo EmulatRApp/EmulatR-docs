@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="cmake,configure,Emulatr.exe,EMULATR_MEMDIAG,MSVC,preset,release,RelWithDebInfo" />
-   <meta name="description" content="EmulatR is a CMake project built with MSVC (C++20). The build tree produces Emulatr.exe under out/build/&lt;tree&gt;-&lt;config&gt;/run/, with the two configurations in active use being..." />
+   <meta name="description" content="EMulatR is a CMake project built with MSVC (C++20). The build tree produces EMulatR.exe under out/build/&lt;tree&gt;-&lt;config&gt;/run/, with the two configurations in active use being..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -112,7 +112,7 @@
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="firmware-images-exe-and-rom.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="firmware-predecompress.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="2_-installation.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="__tools_build_emulatr_diag_bat.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -127,14 +127,14 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR is a CMake project built with MSVC (C++20). The build tree produces <span class="f_CodeExample">Emulatr.exe</span> under <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>, with the two configurations in active use being <span class="f_CodeExample">release</span> and <span class="f_CodeExample">relwithdebinfo</span> (the latter is the day-to-day debug / profiling build).</p>
+<p class="p_Normal">EMulatR is a CMake project built with MSVC (C++20). The build tree produces <span class="f_CodeExample">EMulatR.exe</span> under <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>, with the two configurations in active use being <span class="f_CodeExample">release</span> and <span class="f_CodeExample">relwithdebinfo</span> (the latter is the day-to-day debug / profiling build).</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Configure the MSVC environment in bash: </p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">base&nbsp;$&nbsp;cd&nbsp;/d/EmulatR/project/out/build/v6-release/run&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">bash&nbsp;$&nbsp;cd&nbsp;/d/EmulatR/project/v6</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">base&nbsp;$&nbsp;cd&nbsp;/d/EMulatR/project/out/build/v6-release/run&nbsp;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">bash&nbsp;$&nbsp;cd&nbsp;/d/EMulatR/project/v6</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/out/build/v6-release/run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/out/build/v6-release/run</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">../../../tools/run_fw.sh&nbsp;ds20&nbsp;cold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;./run_fw.sh&nbsp;ds20&nbsp;cold&nbsp;if&nbsp;deployed</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">#&nbsp;look&nbsp;for:&nbsp;&nbsp;platform&nbsp;latched:&nbsp;model=DS20&nbsp;manifest=DS20&nbsp;usedDefault=0&nbsp;ocp40=Y&nbsp;ocp42=Y&nbsp;iic_acks=[&nbsp;0x40&nbsp;0x42&nbsp;...&nbsp;]</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
@@ -148,70 +148,70 @@
 <p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;out/build/v6-release&nbsp;-j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;build&nbsp;everything&nbsp;(Ninja,&nbsp;parallel)</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cmake --build out/build/v6-release -j --target Emulatr</span></p>
-<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cmake --build out/build/v6-release -j --target Emulatr_tests</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cmake --build out/build/v6-release -j --target EMulatR</span></p>
+<p class="p_Normal"><span style="font-size: 12px; font-family: 'Lucida Console',Monaco,monospace;">cmake --build out/build/v6-release -j --target EMulatR_tests</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">To build just the main target or the tests:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">#&nbsp;resulting&nbsp;binary</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">./out/build/v6-relwithdebinfo/run/Emulatr.exe</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">./out/build/v6-relwithdebinfo/run/EMulatR.exe</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Generator: Ninja, supplied by the Visual Studio 2022 CMake and surfaced by <span class="f_CodeExample">tools/vsenv.sh</span>. Dependencies: Qt and spdlog -- provision them before configuring; the CMake configure step resolves them. The canonical build is: <span class="f_CodeExample">source tools/vsenv.sh</span>, then <span class="f_CodeExample">./tools/build_emulatr.sh relwithdebinfo</span> (or <span class="f_CodeExample">cmake --build out/build/v6-relwithdebinfo -j</span>), then run <span class="f_CodeExample">Emulatr_tests.exe</span>.</p>
+<p class="p_Normal">Generator: Ninja, supplied by the Visual Studio 2022 CMake and surfaced by <span class="f_CodeExample">tools/vsenv.sh</span>. Dependencies: Qt and spdlog -- provision them before configuring; the CMake configure step resolves them. The canonical build is: <span class="f_CodeExample">source tools/vsenv.sh</span>, then <span class="f_CodeExample">./tools/build_EMulatR.sh relwithdebinfo</span> (or <span class="f_CodeExample">cmake --build out/build/v6-relwithdebinfo -j</span>), then run <span class="f_CodeExample">EMulatR_tests.exe</span>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Note: the diagnostic build flag</span> <span class="f_CodeExample">EMULATR_MEMDIAG</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">is a CMake option, not a runtime variable, and must stay OFF for normal use -- its per-instruction logging imposes roughly a 900x slowdown.</span></p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Note: the diagnostic build flag</span> <span class="f_CodeExample">EMulatR_MEMDIAG</span> <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">is a CMake option, not a runtime variable, and must stay OFF for normal use -- its per-instruction logging imposes roughly a 900x slowdown.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Advanced / diagnostic build recipes</span></h2>
 <p class="p_Normal">The recipes below flip sticky CMake cache options (bring-up probes, IRQ diagnostics) or run ES40 hook / VPTB trace builds. They are for debugging only -- keep these OFF for a release build.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">source&nbsp;./tools/vsenv.sh</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_IRQDIAG=ON&nbsp;.</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;-i&nbsp;irqdiag&nbsp;CMakeCache.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;want:&nbsp;EMULATR_IRQDIAG:BOOL=ON</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">./tools/build_emulatr.sh&nbsp;relwithdebinfo</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_IRQDIAG=ON&nbsp;.</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;-i&nbsp;irqdiag&nbsp;CMakeCache.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;want:&nbsp;EMulatR_IRQDIAG:BOOL=ON</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">./tools/build_EMulatR.sh&nbsp;relwithdebinfo</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/v6&nbsp;&amp;&amp;&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;TARGET=Emulatr_tests&nbsp;./tools/build_emulatr.sh&nbsp;relwithdebinfo&nbsp;&amp;&amp;&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;./out/build/v6-relwithdebinfo/run/Emulatr_tests.exe</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/v6&nbsp;&amp;&amp;&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;TARGET=EMulatR_tests&nbsp;./tools/build_EMulatR.sh&nbsp;relwithdebinfo&nbsp;&amp;&amp;&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;./out/build/v6-relwithdebinfo/run/EMulatR_tests.exe</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/v6&nbsp;&amp;&amp;&nbsp;source&nbsp;tools/vsenv.sh&nbsp;&amp;&amp;&nbsp;cmake&nbsp;-DEMULATR_BRINGUP_PROBES=OFF&nbsp;.</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/v6&nbsp;&amp;&amp;&nbsp;source&nbsp;tools/vsenv.sh&nbsp;&amp;&amp;&nbsp;cmake&nbsp;-DEMulatR_BRINGUP_PROBES=OFF&nbsp;.</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/v6&nbsp;&amp;&amp;&nbsp;./tools/build_emulatr.sh&nbsp;relwithdebinfo</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/v6&nbsp;&amp;&amp;&nbsp;./tools/build_EMulatR.sh&nbsp;relwithdebinfo</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/out/build/v6-relwithdebinfo/run&nbsp;&amp;&amp;&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_HOOKA_VA=0x600&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_SPINSKIP=1&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">./Emulatr.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/out/build/v6-relwithdebinfo/run&nbsp;&amp;&amp;&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_HOOKA_VA=0x600&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_SPINSKIP=1&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">./EMulatR.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;--no-autoload&nbsp;--max-cycles&nbsp;0x50000000&nbsp;2&gt;&nbsp;es40_hooka.log</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"># the format for cmake on windows bash</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=ON&nbsp;-DEMULATR_IRQDIAG=OFF&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;flip&nbsp;the&nbsp;sticky&nbsp;cache</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;.&nbsp;-j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;your&nbsp;build_emulatr.sh</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/out/build/v6-relwithdebinfo/run</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_VPTB_DIAG=1&nbsp;&nbsp;EMULATR_HOOKA_CYC_FLOOR=280000000&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;./Emulatr.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=ON&nbsp;-DEMulatR_IRQDIAG=OFF&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;flip&nbsp;the&nbsp;sticky&nbsp;cache</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;.&nbsp;-j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;your&nbsp;build_EMulatR.sh</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/out/build/v6-relwithdebinfo/run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_VPTB_DIAG=1&nbsp;&nbsp;EMulatR_HOOKA_CYC_FLOOR=280000000&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;./EMulatR.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;--no-autoload&nbsp;--max-cycles&nbsp;0x50000000&nbsp;&nbsp;2&gt;&nbsp;es40_vptb2.log</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;-a&nbsp;&quot;VPTB-DIAG\|ACVPROBE&nbsp;HOOKA&quot;&nbsp;es40_vptb2.log&nbsp;|&nbsp;head&nbsp;-60</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/v6/</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=ON&nbsp;-DEMULATR_IRQDIAG=OFF&nbsp;.</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;EMULATR_BRINGUP_PROBES&nbsp;CMakeCache.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;expect&nbsp;:BOOL=ON</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;.&nbsp;-j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;your&nbsp;build_emulatr.sh</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">strings&nbsp;Emulatr.exe&nbsp;|&nbsp;grep&nbsp;-c&nbsp;&quot;ACVPROBE&nbsp;HOOKB&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;expect&nbsp;&gt;&nbsp;0&nbsp;(probe&nbsp;is&nbsp;in&nbsp;the&nbsp;binary)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/out/build/v6-relwithdebinfo/run</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">./Emulatr.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/v6/</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=ON&nbsp;-DEMulatR_IRQDIAG=OFF&nbsp;.</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;EMulatR_BRINGUP_PROBES&nbsp;CMakeCache.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;expect&nbsp;:BOOL=ON</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;.&nbsp;-j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;or&nbsp;your&nbsp;build_EMulatR.sh</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">strings&nbsp;EMulatR.exe&nbsp;|&nbsp;grep&nbsp;-c&nbsp;&quot;ACVPROBE&nbsp;HOOKB&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;expect&nbsp;&gt;&nbsp;0&nbsp;(probe&nbsp;is&nbsp;in&nbsp;the&nbsp;binary)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/out/build/v6-relwithdebinfo/run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">./EMulatR.exe&nbsp;--firmware&nbsp;firmware/es40_v7_3.exe&nbsp;--mem&nbsp;4294967296&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;--no-autoload&nbsp;--max-cycles&nbsp;0x50000000&nbsp;&nbsp;2&gt;&nbsp;es40_hookb.log</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;-a&nbsp;&quot;ACVPROBE&nbsp;HOOKB&quot;&nbsp;es40_hookb.log</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"># 1. probes OFF for release (they ballooned the log to 5.2 GB)</p>
-<p class="p_Normal">cd /d/EmulatR/project/v6 &amp;&amp; cmake -DEMULATR_BRINGUP_PROBES=OFF . &amp;&amp; \</p>
+<p class="p_Normal">cd /d/EMulatR/project/v6 &amp;&amp; cmake -DEMulatR_BRINGUP_PROBES=OFF . &amp;&amp; \</p>
 <p class="p_Normal"># 2. tests green</p>
-<p class="p_Normal">TARGET=Emulatr_tests ./tools/build_emulatr.sh relwithdebinfo &amp;&amp; ./out/build/v6-relwithdebinfo/run/Emulatr_tests.exe</p>
+<p class="p_Normal">TARGET=EMulatR_tests ./tools/build_EMulatR.sh relwithdebinfo &amp;&amp; ./out/build/v6-relwithdebinfo/run/EMulatR_tests.exe</p>
 <p class="p_Normal"># 3. boot gate: DS10/DS20 still reach &gt;&gt;&gt; (align ini model per firmware); ES40 = &quot;SCB halt cleared, no regression&quot;</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--required-tools--frameworks.html" class="topiclink">Required Tools &amp; Frameworks</a></p>
 <p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>
 <p class="p_Normal"><a href="--first-startup.html" class="topiclink">First Startup</a></p>
-<p class="p_Normal"><a href="__tools_build_emulatr_diag_bat.html" class="topiclink">./tools/build_emulatr_diag.bat</a></p>
+<p class="p_Normal"><a href="__tools_build_emulatr_diag_bat.html" class="topiclink">./tools/build_EMulatR_diag.bat</a></p>
 <p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->

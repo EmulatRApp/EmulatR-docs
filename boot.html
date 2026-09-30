@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.3 SRM Console &gt; boot</title>
+   <title>5. Operating EmulatR &gt; 5.3 SRM Console &gt; boot</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="auto_action,boot,boot_osflags,bootdef_dev,HALT,RESTART" />
-   <meta name="description" content="On real SRM, boot bootstraps the operating system using bootdef_dev and boot_osflags. On EmulatR the bootstrap runs: OpenVMS Alpha V8.3 boots from the SCSI system disk to its..." />
+   <meta name="description" content="On real SRM, boot bootstraps the operating system using bootdef_dev and boot_osflags. On EMulatR the bootstrap runs: OpenVMS Alpha V8.3 boots from the SCSI system disk to its..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?boot.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_3-srm-console.html">4.3 SRM Console</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_3-srm-console.html">5.3 SRM Console</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">SRM - boot</span></h1>
 
@@ -127,10 +127,9 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">On real SRM, <span class="f_CodeExample">boot</span> bootstraps the operating system using <span class="f_CodeExample">bootdef_dev</span> and <span class="f_CodeExample">boot_osflags</span>. On EmulatR the bootstrap runs: OpenVMS Alpha V8.3 boots from the SCSI system disk to its startup banner and its drivers initialise. The volume mounts and the boot reaches the DCL login prompt on the DS20. <span class="f_CodeExample">auto_action</span> accepts HALT, BOOT and RESTART; with <span class="f_CodeExample">bootdef_dev</span> set, BOOT carries a cold start into the guest with no keystrokes. Note <span class="f_CodeExample">&gt;&gt;&gt; init</span> is not verified to honour it yet (G-31).</p>
+<p class="p_Normal">On real SRM, <span class="f_CodeExample">boot</span> bootstraps the operating system using <span class="f_CodeExample">bootdef_dev</span> and <span class="f_CodeExample">boot_osflags</span>. On EMulatR the bootstrap runs: OpenVMS Alpha V8.3 boots from the SCSI system disk to its start-up banner and its drivers initialize. The volume mounts and the boot reaches the DCL login prompt on the DS20. <span class="f_CodeExample">auto_action</span> accepts HALT, BOOT and RESTART; with <span class="f_CodeExample">bootdef_dev</span> set, BOOT carries a cold start into the guest with no keystrokes. Note <span class="f_CodeExample">&gt;&gt;&gt; init</span> is not verified to honor it yet (G-31).</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
 <p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
 
 <!--ZOOMSTOP-->

@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.2 Memory, Addressing &amp; Deep Dives</title>
+   <title>6. Architecture &amp; Internals &gt; 6.2 Memory, Addressing &amp; Deep Dives</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="deep-dive,developer lens,IPR,memory map,pipeline,register level,TLB" />
-   <meta name="description" content="These appendices are the register-and-address-level companions to chapter 5 (Architecture &amp; Internals). Where chapter 5 explains a subsystem for an operator, the deep-dives..." />
+   <meta name="description" content="These appendices are the register-and-address-level companions to chapter 6 (Architecture &amp; Internals). Where chapter 6 explains a subsystem for an operator, the deep-dives..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?8_3-architecture-deep-dives---.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Architecture Deep-Dives</span></h1>
 
@@ -127,13 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">These appendices are the register-and-address-level companions to chapter 5 (Architecture &amp; Internals). Where chapter 5 explains a subsystem for an operator, the deep-dives name the V6 classes, the numeric IPR indices, the entry-vector offsets, and the source files -- the level a developer needs to read or extend the code.</p>
+<p class="p_Normal">These appendices are the register-and-address-level companions to chapter 6 (Architecture &amp; Internals). Where chapter 6 explains a subsystem for an operator, the deep-dives name the V6 classes, the numeric IPR indices, the entry-vector offsets, and the source files -- the level a developer needs to read or extend the code.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In this section</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Memory Map &amp; IPRs -- the physical address regions and the internal processor register space.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Addressing &amp; TLB -- the Ev6 translator, the SPAM shard manager, and TLB epoch invalidation.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Decompressor Internals -- the DEC inflate sources and the host_decompressor oracle.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Execution / Boot Internals -- the six-stage pipeline and fault entry vectors.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Memory Map &amp; IPRs -- the physical address regions and the internal processor register space.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Addressing &amp; TLB -- the Ev6 translator, the SPAM shard manager, and TLB epoch invalidation.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Decompressor Internals -- the DEC inflate sources and the host_decompressor oracle.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Execution / Boot Internals -- the six-stage pipeline and fault entry vectors.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Architecture Overview</a></p>

@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="bring-up probes,build,build_emulatr_diag.bat,Git Bash,MSVC,RetireProfiler,VS Developer prompt,x64" />
-   <meta name="description" content="@echo off REM ============================================================================ REM build_emulatr_diag.bat -- MSVC x64 build of EmulatR with bring-up probes ON REM" />
+   <meta name="description" content="@echo off REM ============================================================================ REM build_EMulatR_diag.bat -- MSVC x64 build of EMulatR with bring-up probes ON REM" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">./tools/build_emulatr_diag.bat</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">./tools/build_EMulatR_diag.bat</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -107,7 +107,7 @@
       
       <a href="2_-installation.html">2. Installation</a> &gt; <a href="--building-from-source.html">Building from Source</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">./tools/build_emulatr_diag.bat</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">./tools/build_EMulatR_diag.bat</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -130,17 +130,17 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">@echo&nbsp;off</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;============================================================================</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;build_emulatr_diag.bat&nbsp;--&nbsp;MSVC&nbsp;x64&nbsp;build&nbsp;of&nbsp;EmulatR&nbsp;with&nbsp;bring-up&nbsp;probes&nbsp;ON</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;build_EMulatR_diag.bat&nbsp;--&nbsp;MSVC&nbsp;x64&nbsp;build&nbsp;of&nbsp;EMulatR&nbsp;with&nbsp;bring-up&nbsp;probes&nbsp;ON</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;&nbsp;&nbsp;(so&nbsp;the&nbsp;RetireProfiler&nbsp;dumps&nbsp;its&nbsp;histogram&nbsp;at&nbsp;run&nbsp;end).</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;Run&nbsp;from&nbsp;a&nbsp;VS&nbsp;Developer&nbsp;prompt,&nbsp;or&nbsp;from&nbsp;Git&nbsp;Bash&nbsp;via:</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;&nbsp;&nbsp;cmd&nbsp;//c&nbsp;&quot;D:\EmulatR\project\v6\tools\build_emulatr_diag.bat&quot;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;&nbsp;&nbsp;cmd&nbsp;//c&nbsp;&quot;D:\EMulatR\project\v6\tools\build_EMulatR_diag.bat&quot;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;For&nbsp;a&nbsp;clean/perf&nbsp;build,&nbsp;set&nbsp;PROBES=OFF&nbsp;below&nbsp;(or&nbsp;use&nbsp;a&nbsp;normal&nbsp;build).</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">REM&nbsp;============================================================================</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">setlocal</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">set&nbsp;&quot;VCVARS=C:\Program&nbsp;Files\Microsoft&nbsp;Visual&nbsp;Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat&quot;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">set&nbsp;&quot;BUILD=D:\EmulatR\project\v6\out\build\release&quot;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">set&nbsp;&quot;BUILD=D:\EMulatR\project\v6\out\build\release&quot;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">set&nbsp;&quot;PROBES=OFF&quot;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">if&nbsp;not&nbsp;exist&nbsp;&quot;%VCVARS%&quot;&nbsp;(&nbsp;echo&nbsp;FATAL:&nbsp;vcvars64.bat&nbsp;not&nbsp;found&nbsp;at&nbsp;&quot;%VCVARS%&quot;&nbsp;&amp;&nbsp;exit&nbsp;/b&nbsp;1&nbsp;)</span></p>
@@ -149,13 +149,13 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d&nbsp;&quot;%BUILD%&quot;&nbsp;||&nbsp;(&nbsp;echo&nbsp;FATAL:&nbsp;build&nbsp;dir&nbsp;not&nbsp;found:&nbsp;%BUILD%&nbsp;&amp;&nbsp;exit&nbsp;/b&nbsp;1&nbsp;)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;===&nbsp;reconfigure&nbsp;(EMULATR_BRINGUP_PROBES=%PROBES%)&nbsp;===</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=%PROBES%&nbsp;.&nbsp;||&nbsp;exit&nbsp;/b&nbsp;1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;===&nbsp;reconfigure&nbsp;(EMulatR_BRINGUP_PROBES=%PROBES%)&nbsp;===</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=%PROBES%&nbsp;.&nbsp;||&nbsp;exit&nbsp;/b&nbsp;1</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;===&nbsp;build&nbsp;===</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;.&nbsp;--config&nbsp;Release&nbsp;||&nbsp;exit&nbsp;/b&nbsp;1</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;===&nbsp;done&nbsp;--&nbsp;Emulatr.exe&nbsp;rebuilt&nbsp;with&nbsp;profiler&nbsp;dump&nbsp;enabled&nbsp;===</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">echo&nbsp;===&nbsp;done&nbsp;--&nbsp;EMulatR.exe&nbsp;rebuilt&nbsp;with&nbsp;profiler&nbsp;dump&nbsp;enabled&nbsp;===</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">endlocal</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 

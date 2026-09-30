@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.8 Logging &amp; Diagnostics &gt; Bring-Up Probes (EMULATR_BRINGUP_PROBES)</title>
+   <title>5. Operating EmulatR &gt; 5.8 Logging &amp; Diagnostics &gt; Bring-Up Probes (EMULATR_BRINGUP_PROBES)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Bring-Up Probes (EMULATR_BRINGUP_PROBES)</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Bring-Up Probes (EMulatR_BRINGUP_PROBES)</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,14 +105,14 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?bring-up-probes.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">4.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_8-logging--diagnostics.html">5.8 Logging &amp; Diagnostics</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Bring-Up Probes (EMULATR_BRINGUP_PROBES)</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Bring-Up Probes (EMulatR_BRINGUP_PROBES)</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="--diagnostics--debugging---(ne.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="console-trace-hotkey.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="4_8-logging--diagnostics.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="emulatr-subsystems.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Over hardware bring-up, many one-off probe prints were left in the run path -- per-step CPU samplers, memory watchpoints, PAL-transition traces, and end-of-run profiler dumps -- emitted as raw <span class="f_CodeExample">fprintf(stderr)</span> on the hot loop. They are gathered behind a single COMPILE gate, <span class="f_CodeExample">EMULATR_BRINGUP_PROBES</span>, so that when it is off they cost nothing (the code is not compiled at all, not merely skipped at run time). The gate defaults OFF: a normal build emits only initialization messaging, snapshot notices, and genuine error messages.</p>
+<p class="p_Normal">Over hardware bring-up, many one-off probe prints were left in the run path -- per-step CPU samplers, memory watchpoints, PAL-transition traces, and end-of-run profiler dumps -- emitted as raw <span class="f_CodeExample">fprintf(stderr)</span> on the hot loop. They are gathered behind a single COMPILE gate, <span class="f_CodeExample">EMulatR_BRINGUP_PROBES</span>, so that when it is off they cost nothing (the code is not compiled at all, not merely skipped at run time). The gate defaults OFF: a normal build emits only initialization messaging, snapshot notices, and genuine error messages.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it looks like when ON</span></h2>
 <p class="p_Normal">If the probes are compiled in, the console / stderr carries lines such as:</p>
@@ -153,19 +153,19 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Enable (debug / relwithdebinfo)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=ON&nbsp;.&nbsp;&amp;&amp;&nbsp;tools/build_emulatr.sh</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=ON&nbsp;.&nbsp;&amp;&amp;&nbsp;tools/build_EMulatR.sh</span></p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Disable</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=OFF&nbsp;.&nbsp;&amp;&amp;&nbsp;tools/build_emulatr.sh</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=OFF&nbsp;.&nbsp;&amp;&amp;&nbsp;tools/build_EMulatR.sh</span></p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Check the current cache value</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;EMULATR_BRINGUP_PROBES&nbsp;CMakeCache.txt</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">grep&nbsp;EMulatR_BRINGUP_PROBES&nbsp;CMakeCache.txt</span></p>
 </td>
 </tr>
 </tbody>
@@ -173,17 +173,17 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The cache gotcha</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_BRINGUP_PROBES</span> is a CACHED CMake option. Its OFF default only applies the FIRST time a build tree is configured; once you have set it (for example <span class="f_CodeExample">-DEMULATR_BRINGUP_PROBES=ON</span> during debugging), that value is remembered in <span class="f_CodeExample">CMakeCache.txt</span> and persists across every subsequent build until you explicitly reconfigure with the opposite value. The build helper <span class="f_CodeExample">tools/build_emulatr.sh</span> does NOT reset it. So if a release build is noisy, the fix is to turn the cached option off and rebuild:</p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_BRINGUP_PROBES</span> is a CACHED CMake option. Its OFF default only applies the FIRST time a build tree is configured; once you have set it (for example <span class="f_CodeExample">-DEMulatR_BRINGUP_PROBES=ON</span> during debugging), that value is remembered in <span class="f_CodeExample">CMakeCache.txt</span> and persists across every subsequent build until you explicitly reconfigure with the opposite value. The build helper <span class="f_CodeExample">tools/build_EMulatR.sh</span> does NOT reset it. So if a release build is noisy, the fix is to turn the cached option off and rebuild:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMULATR_BRINGUP_PROBES=OFF&nbsp;.</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">tools/build_emulatr.sh&nbsp;release</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;-DEMulatR_BRINGUP_PROBES=OFF&nbsp;.</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools/build_EMulatR.sh&nbsp;release</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">As a rule, keep the gate OFF for any release or distribution build; enable it only in a <span class="f_CodeExample">debug</span> or <span class="f_CodeExample">relwithdebinfo</span> tree while actively chasing a bring-up issue, and turn it back off when done.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--diagnostics--debugging---(ne.html" class="topiclink">Diagnostics &amp; Debugging</a></p>
 <p class="p_Normal"><a href="--cmake-macro-guards----------.html" class="topiclink">CMake Macro Guards</a></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 <p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
 
 <!--ZOOMSTOP-->

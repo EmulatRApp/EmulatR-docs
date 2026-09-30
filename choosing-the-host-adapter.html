@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.9 Networking (EWA0) &gt; Choosing the Host Adapter (Wi-Fi and Wired)</title>
+   <title>5. Operating EmulatR &gt; 5.9 Networking (EWA0) &gt; Choosing the Host Adapter (Wi-Fi and Wired)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="802.11,adapter,auto-detect,dedicated adapter,Disable-NetAdapterBinding,EMULATR_NET_ADAPTER,Energy Efficient Ethernet,Ethernet,Get-NetAdapter,laptop,MediaType,Npcap,power management,provision_enic.ps1,Wi-Fi,wired,wireless" />
-   <meta name="description" content="EmulatR bridges the emulated DE500-BA (EWA0) onto one of the host's own network adapters. Which adapter you choose decides whether networking works at all. This page covers the..." />
+   <meta name="description" content="EMulatR bridges the emulated DE500-BA (EWA0) onto one of the host's own network adapters. Which adapter you choose decides whether networking works at all. This page covers the..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?choosing-the-host-adapter.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">4.9 Networking (EWA0)</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="networking-ewa0.html">5.9 Networking (EWA0)</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Choosing the Host Adapter (Wi-Fi and Wired)</span></h1>
 
@@ -127,12 +127,13 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR bridges the emulated DE500-BA (EWA0) onto one of the host's own network adapters. Which adapter you choose decides whether networking works at all. This page covers the common case of a machine with more than one adapter -- typically a laptop with both Wi-Fi and a wired port -- and how to set it up.</p>
+<p class="p_Normal">EMulatR bridges the emulated DE500-BA (EWA0) onto one of the host's own network adapters. Which adapter you choose decides whether networking works at all. This page covers the common case of a machine with more than one adapter -- typically a laptop with both Wi-Fi and a wired port -- and how to set it up.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_T_Emphasis">The one rule: use a WIRED adapter. Wi-Fi cannot carry the guest.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why Wi-Fi cannot carry the guest</span></h2>
-<p class="p_Normal">This is a property of Wi-Fi, not of EmulatR, and no setting changes it.</p>
+<p class="p_Normal">This is a property of Wi-Fi, not of EMulatR, and no setting changes it. </p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">A Wi-Fi access point accepts frames only from the MAC address that associated with it -- your computer's own wireless adapter. The guest transmits under its OWN MAC address, which never associated with the access point, so the access point discards its frames.</p>
 <p class="p_Normal">Rewriting the guest's MAC to match the host does not rescue it. Under DECnet Phase IV the MAC address IS the node address: DECnet sets it to <span class="f_CodeExample">AA-00-04-00-</span> followed by the area and node number, so a guest at DECnet address 1.3 transmits as <span class="f_CodeExample">aa:00:04:00:03:04</span>. Change the MAC and DECnet no longer works.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -175,7 +176,7 @@
 <p class="p_Normal">Note the <span class="f_CodeExample">Name</span> of the wired adapter -- often <span class="f_CodeExample">Ethernet</span> -- for the steps below.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Option 1 -- dedicate the wired adapter (recommended)</span></h2>
-<p class="p_Normal">The host's own networking moves to Wi-Fi, and the wired adapter carries the guest alone. This is the arrangement EmulatR is designed around, and it needs no EmulatR configuration at all: auto-detection finds the adapter by itself.</p>
+<p class="p_Normal">The host's own networking moves to Wi-Fi, and the wired adapter carries the guest alone. This is the arrangement EMulatR is designed around, and it needs no EMulatR configuration at all: auto-detection finds the adapter by itself.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">1. Remove the host's protocols from the wired adapter</span></h3>
 <p class="p_Normal">In an ELEVATED PowerShell (Run as administrator), substituting your adapter's name:</p>
@@ -185,26 +186,27 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">2. Remove Npcap from every other adapter</span></h3>
 <p class="p_Normal">Installing Wireshark binds Npcap to EVERY adapter, including the Wi-Fi. Open Network Connections (<span class="f_CodeExample">ncpa.cpl</span>), open Properties on every adapter EXCEPT the wired one you are dedicating, and uncheck <span class="f_T_Emphasis">Npcap Packet Driver (NPCAP)</span>.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Afterwards Npcap should be enabled on exactly one adapter. To check them all at once:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">Get-NetAdapterBinding&nbsp;|&nbsp;Where-Object&nbsp;ComponentID&nbsp;-like&nbsp;'*NPCAP*'&nbsp;|&nbsp;Format-Table&nbsp;Name,&nbsp;Enabled</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_CodeExample">Enabled</span> must be <span class="f_CodeExample">True</span> for the wired EmulatR adapter and <span class="f_CodeExample">False</span> for every other, the Wi-Fi included.</p>
+<p class="p_Normal"><span class="f_CodeExample">Enabled</span> must be <span class="f_CodeExample">True</span> for the wired EMulatR adapter and <span class="f_CodeExample">False</span> for every other, the Wi-Fi included.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">3. Provision the adapter</span></h3>
-<p class="p_Normal">From the EmulatR installation folder, in the same elevated PowerShell:</p>
+<p class="p_Normal">From the EMulatR installation folder, in the same elevated PowerShell:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">.\tools\provision_enic.ps1&nbsp;-Match&nbsp;&quot;Ethernet&quot;</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The script sets the adapter properties that matter for bridging, reports what was already correct, and saves the previous values so the change can be reversed. Its binding check should finish by reporting <span class="f_T_Emphasis">ONLY Npcap enabled</span>. If it lists anything else still bound, unbind that too.</p>
 <p class="p_Normal">The script deliberately REFUSES an adapter that still holds an IPv4 address -- which is why step 1 comes first. Re-run it after any network driver update: a driver update resets these settings.</p>
 <p class="p_Normal">&nbsp;</p>
-<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">4. Start EmulatR with EMULATR_NET_ADAPTER unset</span></h3>
-<p class="p_Normal">Leave <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> empty. With nothing configured, EmulatR attaches to the one adapter that is up, connected and has NO bound network address. The wired adapter now qualifies; the Wi-Fi adapter does not, because it carries an address.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">4. Start EMulatR with EMulatR_NET_ADAPTER unset</span></h3>
+<p class="p_Normal">Leave <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> empty. With nothing configured, EMulatR attaches to the one adapter that is up, connected and has NO bound network address. The wired adapter now qualifies; the Wi-Fi adapter does not, because it carries an address.</p>
 <p class="p_Normal">That rule is also why auto-detection is safe: it can never select the adapter your computer uses for its own networking, because that adapter always has an address.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Option 2 -- share the wired adapter with the host</span></h2>
 <p class="p_Normal">The wired adapter keeps its IP address for your computer AND carries the guest. It works, with two costs:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_T_Emphasis">You must name the adapter.</span> Auto-detection will not choose an adapter that holds an address -- by design, so it can never take over your computer's own connection. In the Launcher, open the environment variables panel and set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> to a distinctive part of the adapter's description, for example <span class="f_CodeExample">I219</span>. Tick the row, or the value is ignored -- see <a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a>. A description substring is better than a device name because it survives a GUID change.</p>
+<p class="p_Normal"><span class="f_T_Emphasis">You must name the adapter.</span> Auto-detection will not choose an adapter that holds an address -- by design, so it can never take over your computer's own connection. In the Launcher, open the environment variables panel and set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> to a distinctive part of the adapter's description, for example <span class="f_CodeExample">I219</span>. Tick the row, or the value is ignored -- see <a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMulatR_NET_ADAPTER)</a>. A description substring is better than a device name because it survives a GUID change.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_T_Emphasis">Your computer usually cannot reach its own guest.</span> A network adapter does not loop a frame back to its own host. The guest can talk to every other machine on the network, but you typically cannot ping or TELNET the guest from the computer it runs on.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -231,7 +233,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Energy Efficient Ethernet</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the adapter parks itself between bursts of traffic and the link briefly drops; bulk transfers then fail in a way that looks like an EmulatR defect</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the adapter parks itself between bursts of traffic and the link briefly drops; bulk transfers then fail in a way that looks like an EMulatR defect</p>
 </td>
 </tr>
 </tbody>
@@ -259,11 +261,11 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">several adapters have no bound address ... set EMULATR_NET_ADAPTER to choose</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">several adapters have no bound address ... set EMulatR_NET_ADAPTER to choose</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">more than one adapter qualified, and EmulatR will not guess between them</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">more than one adapter qualified, and EMulatR will not guess between them. Since 2.1 the Windows WAN Miniport pseudo-adapters are ignored, so this now means two real wired adapters are free</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> to the wired adapter</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> to the wired adapter</p>
 </td>
 </tr>
 <tr>
@@ -294,12 +296,12 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">In every case the guest keeps a working network adapter with no wire attached, and the run continues -- a networking problem never stops EmulatR from starting.</p>
+<p class="p_Normal">In every case the guest keeps a working network adapter with no wire attached, and the run continues -- a networking problem never stops EMulatR from starting.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Networking makes a run NON-DETERMINISTIC: frames arrive on other machines' schedules. Set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> to <span class="f_CodeExample">off</span> for any run you intend to time or compare.</p>
+<p class="p_Normal">Networking makes a run NON-DETERMINISTIC: frames arrive on other machines' schedules. Set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> to <span class="f_CodeExample">off</span> for any run you intend to time or compare.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">4.9 Networking (EWA0)</a></p>
+<p class="p_Normal"><a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

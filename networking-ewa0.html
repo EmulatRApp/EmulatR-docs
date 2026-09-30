@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.9 Networking (EWA0)</title>
+   <title>5. Operating EmulatR &gt; 5.9 Networking (EWA0)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="adapter,bridge,DE500,EMULATR_DIAG_TULIP_PCAP,EMULATR_NET_ADAPTER,Ethernet,EWA0,network,networking,Npcap,pcap,provision_enic,Wireshark" />
-   <meta name="description" content="4.9 Networking (EWA0) EmulatR can bridge the emulated DE500-BA Ethernet controller to a real host network adapter, so the guest becomes an ordinary node on your LAN: it answers..." />
+   <meta name="description" content="5.9 Networking (EWA0) EMulatR can bridge the emulated DE500-BA Ethernet controller to a real host network adapter, so the guest becomes an ordinary node on your LAN: it answers..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">4.9 Networking (EWA0)</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">5.9 Networking (EWA0)</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -105,9 +105,9 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?networking-ewa0.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a>&nbsp;&gt;</p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">4.9 Networking (EWA0)</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">5.9 Networking (EWA0)</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
@@ -127,19 +127,24 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">4.9 Networking (EWA0)</span></h1>
-<p class="p_Normal">EmulatR can bridge the emulated DE500-BA Ethernet controller to a real host network adapter, so the guest becomes an ordinary node on your LAN: it answers ARP, replies to ping, accepts TELNET and FTP sessions, and carries DECnet and OSI traffic exactly as a physical DS20 would.</p>
-<p class="p_Normal">This page covers the whole path -- what to install, how to prepare the host adapter, how to tell EmulatR to use it, and how to verify the result. For the silicon itself, see the DE500 Ethernet topic.</p>
+<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">5.9 Networking (EWA0)</span></h1>
+<p class="p_Normal">EMulatR can bridge the emulated DE500-BA Ethernet controller to a real host network adapter, so the guest becomes an ordinary node on your LAN: it answers ARP, replies to ping, accepts TELNET and FTP sessions, and carries DECnet and OSI traffic exactly as a physical DS20 would.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">This page covers the whole path -- what to install, how to prepare the host adapter, how to tell EMulatR to use it, and how to verify the result. For the REAL_HW itself, see the DE500 Ethernet topic.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Networking is optional, and enabled by default</span></h2>
-<p class="p_Normal">With nothing configured, EmulatR looks for a DEDICATED host adapter -- one that is up, connected, and carries NO bound network address -- and attaches to it automatically. That test is chosen precisely because it CANNOT select the host's own NIC: the host's adapter always carries an address, so auto-detection can never place the guest on the same wire as the Windows network stack.</p>
-<p class="p_Normal">If no such adapter exists, or if several do, EmulatR reports what it found and continues without a wire. Several matches are not guessed between -- name the one you want.</p>
-<p class="p_Normal">Without an attached adapter the guest still has a fully working NIC with no wire. It initialises, reports link up, transmits, and keeps clean counters -- frames simply go nowhere. Nothing needs to be installed or configured for EmulatR to run.</p>
-<p class="p_Normal">To choose an adapter explicitly, or to switch networking off altogether, set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> to a device name or description substring, or to <span class="f_CodeExample">off</span>.</p>
+<p class="p_Normal">With nothing configured, EMulatR looks for a DEDICATED host adapter -- one that is up, connected, and carries NO bound network address -- and attaches to it automatically. That test is chosen precisely because it CANNOT select the host's own NIC: the host's adapter always carries an address, so auto-detection can never place the guest on the same wire as the Windows network stack.</p>
+<p class="p_Normal">If no such adapter exists, or if several do, EMulatR reports what it found and continues without a wire. Several matches are not guessed between -- name the one you want.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Without an attached adapter the guest still has a fully working NIC with no wire. It initialises, reports link up, transmits, and keeps clean counters -- frames simply go nowhere. Nothing needs to be installed or configured for EMulatR to run.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">To choose an adapter explicitly, or to switch networking off altogether, set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> to a device name or description substring, or to <span class="f_CodeExample">off</span>.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This matters for two reasons. A machine without <span class="f_CodeExample">Npcap</span> behaves exactly as it always did rather than refusing to start, and a run without networking stays DETERMINISTIC -- see Limitations below.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Dependencies</span></h2>
-<p class="p_Normal">EmulatR itself has NO networking dependency. Without any of the below it starts normally and the guest has a working NIC with no wire attached. Everything here is needed only to put the guest on a real network.</p>
+<p class="p_Normal">EMulatR itself has NO networking dependency. Without any of the below it starts normally and the guest has a working NIC with no wire attached. Everything here is needed only to put the guest on a real network.</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -157,7 +162,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-weight: bold;">YES -- for networking</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The only hard dependency. EmulatR loads <span class="f_CodeExample">wpcap.dll</span> at run time; it is never linked, so no SDK is needed to build or run. If it is absent EmulatR says so and continues without networking.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The only hard dependency. EMulatR loads <span class="f_CodeExample">wpcap.dll</span> at run time; it is never linked, so no SDK is needed to build or run. If it is absent EMulatR says so and continues without networking.</p>
 </td>
 </tr>
 <tr>
@@ -165,7 +170,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-weight: bold;">RECOMMENDED</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not required by EmulatR, but its installer is the usual way to obtain Npcap, and you will want it: EmulatR writes captures in libpcap format and Wireshark is how you read them. Installing Wireshark and letting it install Npcap satisfies both in one step.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not required by EMulatR, but its installer is the usual way to obtain Npcap, and you will want it: EMulatR writes captures in libpcap format and Wireshark is how you read them. Installing Wireshark and letting it install Npcap satisfies both in one step.</p>
 </td>
 </tr>
 <tr>
@@ -199,7 +204,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Installing Wireshark and Npcap</span></h2>
 <p class="p_Normal">Install Wireshark from <span class="f_CodeExample">wireshark.org</span> and accept the bundled Npcap when the installer offers it. Npcap is also available on its own from <span class="f_CodeExample">npcap.com</span> if you truly do not want Wireshark -- but you will almost certainly want to inspect packets at some point, and there is no second copy of the driver to conflict with.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Two Npcap installer options affect EmulatR directly:</p>
+<p class="p_Normal">Two Npcap installer options affect EMulatR directly:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -207,7 +212,7 @@
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Recommended</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Effect on EmulatR</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Effect on EMulatR</span></p>
 </th>
 </tr>
 </thead>
@@ -217,7 +222,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-weight: bold;">UNCHECKED</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If checked, EmulatR must be run elevated to open the adapter at all. Leave it unchecked unless site policy forbids it.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">If checked, EMulatR must be run elevated to open the adapter at all. Leave it unchecked unless site policy forbids it.</p>
 </td>
 </tr>
 <tr>
@@ -225,7 +230,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">either</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR resolves entry points by name and works with or without the compatibility layer.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR resolves entry points by name and works with or without the compatibility layer.</p>
 </td>
 </tr>
 <tr>
@@ -243,85 +248,8 @@
 <p class="p_Normal">After installing, confirm the driver is present:</p>
 <p class="p_Normal"><span class="f_CodeExample">Get-NetAdapterBinding -Name '&lt;adapter&gt;' | Where-Object { $_.ComponentID -like '*NPCAP*' }</span></p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The supplied Wireshark profile</span></h2>
-<p class="p_Normal">EmulatR ships a Wireshark configuration profile that turns a raw capture into something readable. It is in the installed tree at <span class="f_CodeExample">tools\wireshark\</span> as both a folder and a zip.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">It provides three things:</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
-<thead>
-<tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">File</span></p>
-</th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">What it gives you</span></p>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dfilters</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A grouped bookmark list beside the display filter bar -- ANOMALIES, ADDRESSING, PROTOCOL FAMILIES and SANITY.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dfilter_buttons</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">One-click toolbar buttons: All, Bcast, Mcast, Group, Unicast!, DECnet, OSI, IP, Undec, &lt;60, &gt;1514.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">colorfilters</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Coloring rules, first match wins. Defects are loud; protocol families are light backgrounds meant for reading.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">To install it: <span class="f_CodeExample">Edit -&gt; Configuration Profiles -&gt; Import -&gt; from zip file</span>, then select EmulatR-EWA0 from the profile list (it also appears in the bottom-right of the status bar). If the import misbehaves, copy the EmulatR-EWA0 folder into <span class="f_CodeExample">%APPDATA%\Wireshark\profiles\</span> instead and restart Wireshark.</p>
-<p class="p_Normal">IMPORTANT: the bookmark list and toolbar buttons only appear once a capture file is OPEN. On Wireshark's welcome screen the only filter box is the CAPTURE filter, which takes BPF syntax and will reject display-filter expressions such as <span class="f_CodeExample">eth.dst</span>. Open the file first.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The anomaly probes are the point of the profile. On a healthy capture each of these should return ZERO:</p>
-<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
-<thead>
-<tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Probe</span></p>
-</th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">A hit means</span></p>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;60</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A frame below the 60-byte pad floor -- a TX padding defect in the model.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&gt;1514</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An oversize frame -- a descriptor gather defect.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Unicast!</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unicast traffic where none is expected. Legitimate once the guest has peers; suspicious before that.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Undec</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Nothing dissected the frame. This is where a genuine model gap would show.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">A note on capture files: EmulatR's own captures are written in libpcap format and open directly. A LIVE Wireshark capture on the host adapter shows the same traffic from the host's side, which is useful for confirming that frames really left the machine.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Wireshark profile, captures and filters</span></h2>
+<p class="p_Normal">The EMulatR Wireshark profile, the two ways to capture EWA0 traffic, how to find the guest's MAC address, and display and capture filter examples are on their own page: <a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Use a DEDICATED host adapter</span></h1>
 <p class="p_Normal">Bridge the guest to an adapter that does nothing else. Sharing the host's primary NIC works but is materially harder to reason about.</p>
@@ -360,15 +288,18 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">On the adapter's properties, UNBIND every protocol -- Internet Protocol Version 4 and 6, File and Printer Sharing, LLDP -- and leave ONLY <span class="f_CodeExample">Npcap Packet Driver (NPCAP)</span> enabled.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">This is safe because Npcap is an NDIS lightweight filter that sits BELOW the protocol edge. It needs no protocol driver bound, and it is ethertype-agnostic: DECnet, OSI, LAT, MOP, ARP and IP are all simply raw frames to it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Host adapter: required bindings</span></h2>
-<p class="p_Normal">ONLY the Npcap packet driver may be enabled on the EmulatR NIC. Every other protocol, service and filter must be UNBOUND. This is not a preference -- a bound protocol puts the Windows stack on the same wire as the guest, where it can answer ARP, claim an address, and appear in captures that are supposed to contain guest traffic only.</p>
+<p class="p_Normal">ONLY the Npcap packet driver may be enabled on the EMulatR NIC. Every other protocol, service and filter must be UNBOUND. This is not a preference -- a bound protocol puts the Windows stack on the same wire as the guest, where it can answer ARP, claim an address, and appear in captures that are supposed to contain guest traffic only.</p>
 <p class="p_Normal">Npcap is an NDIS lightweight filter and sits BELOW the protocol edge, so it works perfectly well with nothing else bound.</p>
-<p class="p_Normal"><span class="f_T_Emphasis">The converse matters as much: Npcap must be UNCHECKED on every OTHER adapter.</span> Installing Wireshark binds Npcap to every adapter on the computer. Afterwards, open Properties on each adapter except the EmulatR NIC and uncheck <span class="f_T_Emphasis">Npcap Packet Driver (NPCAP)</span>. When you are done, Npcap should be enabled on exactly one adapter -- the EmulatR NIC -- which keeps a packet-capture filter off the computer's own connections, and makes the EmulatR NIC the only adapter that carries Npcap.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">The converse matters as much: Npcap must be UNCHECKED on every OTHER adapter.</span> Installing Wireshark binds Npcap to every adapter on the computer. Afterwards, open Properties on each adapter except the EMulatR NIC and uncheck <span class="f_T_Emphasis">Npcap Packet Driver (NPCAP)</span>. When you are done, Npcap should be enabled on exactly one adapter -- the EMulatR NIC -- which keeps a packet-capture filter off the computer's own connections, and makes the EMulatR NIC the only adapter that carries Npcap.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">To check every adapter at once:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">Get-NetAdapterBinding&nbsp;|&nbsp;Where-Object&nbsp;ComponentID&nbsp;-like&nbsp;'*NPCAP*'&nbsp;|&nbsp;Format-Table&nbsp;Name,&nbsp;Enabled</span></p>
-<p class="p_Normal"><span class="f_CodeExample">Enabled</span> must be <span class="f_CodeExample">True</span> for the EmulatR NIC and <span class="f_CodeExample">False</span> for every other. The pattern matches either Npcap component ID -- <span class="f_CodeExample">NPCAP</span> or <span class="f_CodeExample">INSECURE_NPCAP</span> -- which differ depending on how Npcap was installed.</p>
+<p class="p_Normal"><span class="f_CodeExample">Enabled</span> must be <span class="f_CodeExample">True</span> for the EMulatR NIC and <span class="f_CodeExample">False</span> for every other. The pattern matches either Npcap component ID -- <span class="f_CodeExample">NPCAP</span> or <span class="f_CodeExample">INSECURE_NPCAP</span> -- which differ depending on how Npcap was installed.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -488,7 +419,7 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Host adapter: advanced property settings</span></h2>
 <p class="p_Normal">Every property below must be set as shown. Adapters differ -- a property this table names that your adapter does not expose can be ignored, but one it DOES expose must match.</p>
-<p class="p_Normal">The MUST SET group changes behaviour EmulatR depends on. The LEAVE group is listed so an agent knows it was considered and deliberately not changed, rather than overlooked.</p>
+<p class="p_Normal">The MUST SET group changes behaviour EMulatR depends on. The LEAVE group is listed so an agent knows it was considered and deliberately not changed, rather than overlooked.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -680,7 +611,9 @@
 </tbody>
 </table>
 </div>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Properties deliberately LEFT ALONE:</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -746,7 +679,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Disabled</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Timestamping is not used; EmulatR stamps captures from the host clock itself.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Timestamping is not used; EMulatR stamps captures from the host clock itself.</p>
 </td>
 </tr>
 <tr>
@@ -762,7 +695,9 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Host adapter: Power Management tab</span></h2>
-<p class="p_Normal">SEPARATE FROM THE ADVANCED PROPERTIES ABOVE, and easy to miss because it lives on a different tab of the adapter's properties dialog. In Device Manager, open the adapter, go to the Power Management tab, and UNCHECK:</p>
+<p class="p_Normal">SEPARATE FROM THE ADVANCED PROPERTIES ABOVE, and easy to miss because it lives on a different tab of the adapter's properties dialog. In Device Manager, open the adapter, go to the </p>
+<p class="p_Normal">Power Management tab, and UNCHECK:</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -802,26 +737,35 @@
 </tbody>
 </table>
 </div>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">From PowerShell, the equivalent is:</p>
 <p class="p_Normal"><span class="f_CodeExample">Disable-NetAdapterPowerManagement -Name '&lt;adapter&gt;'</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Verify with <span class="f_CodeExample">Get-NetAdapterPowerManagement -Name '&lt;adapter&gt;'</span>. Note that not every driver exposes these through PowerShell even when the Device Manager checkbox is present -- if the cmdlet returns nothing, set it in Device Manager and confirm visually.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Applying it</span></h2>
 <p class="p_Normal">The supplied script applies every MUST SET row above, reports what was already correct, and skips anything the adapter does not expose:</p>
 <p class="p_Normal"><span class="f_CodeExample">tools\provision_enic.ps1 -Match &lt;description-substring&gt;</span></p>
-<p class="p_Normal">Options: <span class="f_CodeExample">-DryRun</span> shows changes without making them; <span class="f_CodeExample">-Name</span> selects by adapter name instead of description; <span class="f_CodeExample">-Force</span> overrides the refusal to touch an adapter holding an IPv4 address.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-style: italic; font-weight: bold;">Options:</span> <span class="f_CodeExample">-DryRun</span> shows changes without making them; <span class="f_CodeExample">-Name</span> selects by adapter name instead of description; <span class="f_CodeExample">-Force</span> overrides the refusal to touch an adapter holding an IPv4 address.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The script writes the previous values to a JSON file beside itself before changing anything, and restarts the adapter once at the end.</p>
 <p class="p_Normal">RE-RUN IT AFTER ANY DRIVER UPDATE OR ROLLBACK. A driver install silently restores the shipping defaults, and the resulting failure is gradual and easy to misattribute.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Telling EmulatR which adapter to use</span></h2>
-<p class="p_Normal"><span class="f_T_Emphasis">Using the installed kit?</span> Set the adapter in the Launcher's Runtime environment variables panel -- and TICK its row, or the value is ignored. The complete procedure, with how to confirm it took effect, is in <a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMULATR_NET_ADAPTER)</a>. The forms below are the values that page describes.</p>
-<p class="p_Normal">Unset means AUTO-DETECT, which is the default: EmulatR attaches to the one adapter that is up, connected and has no bound network address. To choose an adapter yourself, set <span class="f_CodeExample">EMULATR_NET_ADAPTER</span> before launching; set it to <span class="f_CodeExample">off</span> to disable networking.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Telling EMulatR which adapter to use</span></h2>
+<p class="p_Normal"><span class="f_T_Emphasis">Using the installed kit?</span> Set the adapter in the Launcher's Runtime environment variables panel -- and TICK its row, or the value is ignored. The complete procedure, with how to confirm it took effect, is in <a href="naming-the-host-adapter.html" class="topiclink">Naming the Host Adapter (EMulatR_NET_ADAPTER)</a>. The forms below are the values that page describes.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Unset means <span class="f_CodeExample">AUTO-DETECT</span>, which is the default: EMulatR attaches to the one adapter that is up, connected and has no bound network address. To choose an adapter yourself, set <span class="f_CodeExample">EMulatR_NET_ADAPTER</span> before launching; set it to <span class="f_CodeExample">off</span> to disable networking.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">On a machine with more than one adapter -- a laptop with Wi-Fi and a wired port, for example -- see <a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a>. Wi-Fi cannot carry the guest; use a wired adapter.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The value is either a libpcap device name or any case-insensitive substring of the adapter's description:</p>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_NET_ADAPTER=&quot;I219&quot;</span></p>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_NET_ADAPTER=&quot;\Device\NPF_{DD1B82DC-0887-4F32-AD71-0D9CCE161C71}&quot;</span></p>
-<p class="p_Normal">Prefer the description substring. A device GUID changes when hardware moves; a description usually does not. If no adapter matches, EmulatR lists every adapter it can see so you can choose.</p>
-<p class="p_Normal">On startup EmulatR reports the adapter it attached to, the Npcap version, and a reminder that the run is no longer deterministic.</p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_NET_ADAPTER=&quot;I219&quot;</span></p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR_NET_ADAPTER=&quot;\Device\NPF_{DD1B82DC-0887-4F32-AD71-0D9CCE161C71}&quot;</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Prefer the description substring. A device GUID changes when hardware moves; a description usually does not. If no adapter matches, EMulatR lists every adapter it can see so you can choose.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On startup EMulatR reports the adapter it attached to, the Npcap version, and a reminder that the run is no longer deterministic.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Verifying it works</span></h2>
 <p class="p_Normal">Run these in order. Each is independent, so the first one that fails tells you where to look.</p>
@@ -840,7 +784,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1. Backend attached</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(EmulatR startup output)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">(EMulatR startup output)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EWA0 network backend ATTACHED to ...</span></p>
 </td>
@@ -888,13 +832,11 @@
 </tbody>
 </table>
 </div>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Step 3 is the most informative single test: it exercises inbound broadcast, the guest's protocol stack, and outbound unicast, and it is witnessed by a different machine.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Capturing traffic</span></h2>
-<p class="p_Normal">EmulatR can write every frame crossing the descriptor ring to a libpcap file, readable directly in Wireshark:</p>
-<p class="p_Normal"><span class="f_CodeExample">EMULATR_DIAG_TULIP_PCAP=1</span></p>
-<p class="p_Normal">The capture lands in the run directory as <span class="f_CodeExample">logs\&lt;stem&gt;_ewa0.pcap</span>. It records frames as they cross the emulated wire, so it is the guest's view rather than the host's -- which makes it the right instrument for questions about what the guest actually sent or received.</p>
-<p class="p_Normal">This knob exists only in diagnostic builds. A hex dump of the same frames is available with <span class="f_CodeExample">EMULATR_DIAG_TULIP_DUMP=1</span>.</p>
+<p class="p_Normal">EMulatR can write every frame the guest sends or receives to a capture file (<span class="f_CodeExample">EMulatR_DIAG_TULIP_PCAP=1</span>, diagnostic builds). How to use it, and how it differs from a live capture on the host adapter, is described on <a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Limitations</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -922,7 +864,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Oversize frames are discarded silently</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A frame larger than the emulated NIC's maximum is dropped by EmulatR rather than delivered part-formed. The guest's Frame too long counter does not move. Setting Jumbo Packet to 1514 prevents the situation arising.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A frame larger than the emulated NIC's maximum is dropped by EMulatR rather than delivered part-formed. The guest's Frame too long counter does not move. Setting Jumbo Packet to 1514 prevents the situation arising.</p>
 </td>
 </tr>
 <tr>
@@ -949,13 +891,13 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Backend reports UNAVAILABLE at startup</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Npcap not installed, or installed Administrators-only while EmulatR runs unelevated. The message states which.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Npcap not installed, or installed Administrators-only while EMulatR runs unelevated. The message states which.</p>
 </td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No adapter matches the configured name</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EmulatR lists every adapter it can see -- choose a substring from that list.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR lists every adapter it can see -- choose a substring from that list.</p>
 </td>
 </tr>
 <tr>
@@ -979,7 +921,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Transfers slow with rising retransmissions</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Capture on the host adapter as well as in EmulatR. If frames appear on the wire but not in EmulatR's capture, the loss is on the host side.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Capture on the host adapter as well as in EMulatR. If frames appear on the wire but not in EMulatR's capture, the loss is on the host side.</p>
 </td>
 </tr>
 </tbody>
@@ -987,10 +929,11 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="wireshark-and-packet-captures.html" class="topiclink">Wireshark and Packet Captures</a></p>
 <p class="p_Normal"><a href="choosing-the-host-adapter.html" class="topiclink">Choosing the Host Adapter (Wi-Fi and Wired)</a></p>
 <p class="p_Normal"><a href="de500-ethernet-21143.html" class="topiclink">DE500 Ethernet (21143 Tulip)</a></p>
 <p class="p_Normal"><a href="windows-defender-firewall.html" class="topiclink">Windows Defender Firewall</a></p>
-<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

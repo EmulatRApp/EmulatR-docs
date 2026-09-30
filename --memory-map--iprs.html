@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.2 Memory, Addressing &amp; Deep Dives &gt; Memory Map &amp; IPRs</title>
+   <title>6. Architecture &amp; Internals &gt; 6.2 Memory, Addressing &amp; Deep Dives &gt; Memory Map &amp; IPRs</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="CALL_PAL,EXC_ADDR,HW_IPR,HW_MFPR,HW_MTPR,I_CTL,internal processor register,IPR,PAL_BASE,PAL_TEMP,PALcode-visible IPR,physical address map,PT0,scbd field,VA_CTL" />
-   <meta name="description" content="This appendix is the register-level companion to the Memory and Addressing pages. It names the two internal-processor-register (IPR) namespaces EmulatR implements, the numeric..." />
+   <meta name="description" content="This appendix is the register-level companion to the Memory and Addressing pages. It names the two internal-processor-register (IPR) namespaces EMulatR implements, the numeric..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--memory-map--iprs.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_3-architecture-deep-dives---.html">5.2 Memory, Addressing &amp; Deep Dives</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="8_3-architecture-deep-dives---.html">6.2 Memory, Addressing &amp; Deep Dives</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Memory Map &amp; IPRs</span></h1>
 
@@ -127,12 +127,12 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">This appendix is the register-level companion to the Memory and Addressing pages. It names the two internal-processor-register (IPR) namespaces EmulatR implements, the numeric indices a developer reads in a trace, and the physical-address regions the chipset arbiter routes. The authoritative reference is the Alpha 21264 Hardware Reference Manual (EC-RE2CA-TE, Table 5-4) together with V6's <span class="f_CodeExample">coreLib/HW_IPR.h</span>.</p>
+<p class="p_Normal">This appendix is the register-level companion to the Memory and Addressing pages. It names the two internal-processor-register (IPR) namespaces EMulatR implements, the numeric indices a developer reads in a trace, and the physical-address regions the chipset arbiter routes. The authoritative reference is the Alpha 21264 Hardware Reference Manual (EC-RE2CA-TE, Table 5-4) together with V6's <span class="f_CodeExample">coreLib/HW_IPR.h</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Two IPR namespaces</span></h2>
-<p class="p_Normal">EmulatR follows the architecture's split between registers the operating system reaches through CALL_PAL and registers only PALcode can touch with HW_MFPR / HW_MTPR.</p>
+<p class="p_Normal">EMulatR follows the architecture's split between registers the operating system reaches through CALL_PAL and registers only PALcode can touch with HW_MFPR / HW_MTPR.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">1. PALcode-visible IPRs (0x0000 .. 0x00FF).</span> These are CALL_PAL function codes, not hardware registers. The OS executes a CALL_PAL (for example MFPR_PTBR = 0x0015, MTPR_TBIA = 0x001B, MFPR_WHAMI = 0x003F); the PAL handler at the matching entry vector performs the actual access. Numbering follows the OSF/1 PALcode specification rather than the silicon. In V6 these are the <span class="f_CodeExample">PAL_MFPR</span> / <span class="f_CodeExample">PAL_MTPR</span> enums.</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">1. PALcode-visible IPRs (0x0000 .. 0x00FF).</span> These are CALL_PAL function codes, not hardware registers. The OS executes a CALL_PAL (for example MFPR_PTBR = 0x0015, MTPR_TBIA = 0x001B, MFPR_WHAMI = 0x003F); the PAL handler at the matching entry vector performs the actual access. Numbering follows the OSF/1 PALcode specification rather than the REAL_HW. In V6 these are the <span class="f_CodeExample">PAL_MFPR</span> / <span class="f_CodeExample">PAL_MTPR</span> enums.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">2. EV6 hardware IPRs (0x0100 .. 0x02FF).</span> These are the real register indices encoded in the <span class="f_CodeExample">scbd</span> field of an HW_MFPR / HW_MTPR instruction; only PALcode running in PAL mode may execute them. Numbering follows the 21264 HRM. The 0x0100 offset is an emulator convention so the hardware range cannot collide numerically with the PALcode-visible range: the decoder adds 0x0100 to the raw <span class="f_CodeExample">scbd</span> value, except the PAL_TEMP block (raw 0x40..0x5F) which adds 0x01C0 so PT0 lands at 0x0200.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -260,10 +260,10 @@
 <p class="p_Normal">Guest physical addresses are routed by the Tsunami chipset arbiter. Reads and writes resolve to one of three destinations: main memory (the GuestMemory sparse backing, bounded by the Cchip AAR registers -- anything outside is a non-existent-memory / NXM fault), the chipset CSR space (Cchip / Dchip / Pchip control registers and the TIG region), or PCI / device MMIO windows. The halt-gate diagnostics read and write CSRs in this space; for example the console arming read targets <span class="f_CodeExample">pmem:80130000FF8</span> in the TIG region. The exhaustive per-register CSR table is in the Tsunami / 21272 Hardware Reference Manual; the operator-facing view of how to read these locations is on the Evaluate Address page.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/HW_IPR.h</span><span class="f_NotesBox"> -- the hardware IPR indices and the 0x0100 / PAL_TEMP offset convention.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/CpuState.h</span><span class="f_NotesBox"> -- the flat IPR fields (ptbr, i_ctl, pal_base, ps, excAddr, fpcr, PAL temporaries).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span><span class="f_NotesBox"> -- the CALL_PAL and HW_MFPR / HW_MTPR dispatch leaves.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- arbiter routing of guest PAs to memory / CSR / device MMIO; AAR / NXM bound.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/HW_IPR.h</span><span class="f_NotesBox"> -- the hardware IPR indices and the 0x0100 / PAL_TEMP offset convention.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">coreLib/CpuState.h</span><span class="f_NotesBox"> -- the flat IPR fields (ptbr, i_ctl, pal_base, ps, excAddr, fpcr, PAL temporaries).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">palBoxLib/grains/PalEntries.cpp</span><span class="f_NotesBox"> -- the CALL_PAL and HW_MFPR / HW_MTPR dispatch leaves.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- arbiter routing of guest PAs to memory / CSR / device MMIO; AAR / NXM bound.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--memory----------------------.html" class="topiclink">Memory</a></p>

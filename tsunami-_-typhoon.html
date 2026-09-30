@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices &gt; Tsunami \ Typhoon</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices &gt; Tsunami \ Typhoon</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?tsunami-_-typhoon.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="chipset.html">5.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="chipset.html">6.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Tsunami \ Typhoon</span></h1>
 
@@ -127,15 +127,15 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Tsunami is the DEC/Compaq/HP <span class="f_CodeExample">21272</span> core-logic chipset for 21264 (EV6) systems -- the memory controller and PCI host bridge for the DS10, DS20, and ES40. Typhoon is the higher-bandwidth variant of the same 21272 (a doubled Dchip population for twice the memory bandwidth), used on the ES40-class boxes. They share one programming model; EmulatR treats them as variants of a single chipset.</p>
+<p class="p_Normal">Tsunami is the DEC/Compaq/HP <span class="f_CodeExample">21272</span> core-logic chipset for 21264 (EV6) systems -- the memory controller and PCI host bridge for the DS10, DS20, and ES40. Typhoon is the higher-bandwidth variant of the same 21272 (a doubled Dchip population for twice the memory bandwidth), used on the ES40-class boxes. They share one programming model; EMulatR treats them as variants of a single chipset.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox">Typhoon is NOT the 21274. The 21274 is the separate Titan chipset (DS15/DS25/ES45). Some earlier material mislabeled the 21274 as &quot;Typhoon&quot; -- corrected 2026-06-16.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Components</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Cchip</span> -- command/address, the memory array address registers (AAR0-3), per-CPU device interrupt mask/request (DIM/DIR), the MISC register (NXM capture, inter-processor interrupt request, arbitration), and the interval timer.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Dchip</span> -- the data slice; carries the chip revision (DREV).</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Pchip</span> -- the PCI host bridge (sparse/dense memory, I/O, Type-0/1 config, DMA windows). Pchip0 is always present; Pchip1 is populated on the larger boxes.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">TIG</span> -- the byte-wide Timer / Interrupt / GPIO bus that carries the front-panel halt / SMI status register (SMIR) and the per-CPU halt registers.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Cchip</span> -- command/address, the memory array address registers (AAR0-3), per-CPU device interrupt mask/request (DIM/DIR), the MISC register (NXM capture, inter-processor interrupt request, arbitration), and the interval timer.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Dchip</span> -- the data slice; carries the chip revision (DREV).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Pchip</span> -- the PCI host bridge (sparse/dense memory, I/O, Type-0/1 config, DMA windows). Pchip0 is always present; Pchip1 is populated on the larger boxes.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">TIG</span> -- the byte-wide Timer / Interrupt / GPIO bus that carries the front-panel halt / SMI status register (SMIR) and the per-CPU halt registers.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Physical address map (the form firmware uses)</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -184,15 +184,15 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Memory above the Cchip AAR limit is non-existent memory (NXM) and raises a machine check. On the 21272 -- Tsunami and Typhoon alike -- the DS / ES40-class firmware encodes the array size in a 3-bit ASIZ (0x7 = 1 GB x 4 arrays), capping DRAM at 4 GB; the effective limit is the min of the Cchip PA width and the firmware ASIZ width. The 32 GB reach is a Titan (21274) property (its wider 4-bit ASIZ), NOT Typhoon -- see the Titan topic.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EmulatR model</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EMulatR model</span></h2>
 <p class="p_Normal">Modeled by <span class="f_CodeExample">TsunamiChipset</span> (<span class="f_CodeExample">chipsetLib/TsunamiChipset.{h,cpp}</span>) with <span class="f_CodeExample">TsunamiCchip</span>, <span class="f_CodeExample">TsunamiDchip</span>, <span class="f_CodeExample">TsunamiPchip</span>, and <span class="f_CodeExample">TsunamiTig</span>. The variant (Tsunami vs Typhoon) is selected by model and latched at construction; the CSR layout, MMIO routing, and reset values live in <span class="f_CodeExample">Tsunami21272_CsrSpec.h</span> / <span class="f_CodeExample">Tsunami21272_RegisterMap.h</span>. The DS10 boots to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt on this model.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox"><span class="f_NotesBox">The Titan (21274) reuses these exact Cchip/Dchip/TIG register offsets and the same top-level PA map; the Titan-specific silicon is concentrated in the dual-port Pchip plus AGP. See the Titan topic.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">The Titan (21274) reuses these exact Cchip/Dchip/TIG register offsets and the same top-level PA map; the Titan-specific REAL_HW is concentrated in the dual-port Pchip plus AGP. See the Titan topic.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.{h,cpp}</span><span class="f_NotesBox"> -- the top-level chipset; variant latch, MMIO routing, reset().</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiDchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiPchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiTig.h</span><span class="f_NotesBox"> -- the four sub-blocks.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Tsunami21272_RegisterMap.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">Tsunami21272_CsrSpec.h</span><span class="f_NotesBox"> -- the CSR offsets / reset values (SSOT for the register map); </span><span class="f_CodeExample">TsunamiVariant.h</span><span class="f_NotesBox"> -- Tsunami vs Typhoon.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.{h,cpp}</span><span class="f_NotesBox"> -- the top-level chipset; variant latch, MMIO routing, reset().</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiDchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiPchip.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">TsunamiTig.h</span><span class="f_NotesBox"> -- the four sub-blocks.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Tsunami21272_RegisterMap.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">Tsunami21272_CsrSpec.h</span><span class="f_NotesBox"> -- the CSR offsets / reset values (SSOT for the register map); </span><span class="f_CodeExample">TsunamiVariant.h</span><span class="f_NotesBox"> -- Tsunami vs Typhoon.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="chipset.html" class="topiclink">Chipset</a></p>

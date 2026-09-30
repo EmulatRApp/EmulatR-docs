@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; IDE Devices</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; IDE Devices</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="CY82C693,dqa,IDE controller,PCI config,primary channel" />
-   <meta name="description" content="On the DS10 / DS20 (Tsunami) the CY82C693 provides the IDE controller, exposed on PCI bus 0, slot 5, function 1 (&quot;Cypress 82C693 IDE&quot; in show config). The primary channel is..." />
+   <meta name="keywords" content="ALi M5229,bus master,CY82C693,dqa,IDE controller,IRQ14,PCI config,primary channel" />
+   <meta name="description" content="On the DS10 / DS20 (Tsunami) the CY82C693 provides the IDE controller, exposed as two PCI functions on bus 0, slot 5, as on a real DS20E: function 1 is the primary channel..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--ide-devices.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">IDE Devices</span></h1>
 
@@ -127,21 +127,72 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">On the DS10 / DS20 (Tsunami) the CY82C693 provides the IDE controller, exposed on PCI bus 0, slot 5, function 1 (&quot;Cypress 82C693 IDE&quot; in <span class="f_CodeExample">show config</span>). The primary channel is the <span class="f_CodeExample">dqa</span> device path, the secondary is <span class="f_CodeExample">dqb</span>. IDE register / port behavior (the <span class="f_CodeExample">0x1F0</span>-<span class="f_CodeExample">0x1F7</span> primary and <span class="f_CodeExample">0x170</span> secondary blocks, plus PCI config) and absent-slave probing are shared across the controllers.</p>
+<p class="p_Normal">On the DS10 / DS20 (Tsunami) the CY82C693 provides the IDE controller, exposed as two PCI functions on bus 0, slot 5, as on a real DS20E: function 1 is the primary channel (<span class="f_CodeExample">dqa</span>, <span class="f_CodeExample">dqa.0.0.105.0</span> in <span class="f_CodeExample">show config</span>) and function 2 the secondary (<span class="f_CodeExample">dqb</span>, <span class="f_CodeExample">dqb.0.1.205.0</span>). The console announces both at power-up: <span class="f_CodeExample">bus 0, slot 5, function 1 -- dqa -- Cypress 82C693 IDE</span> and <span class="f_CodeExample">bus 0, slot 5, function 2 -- dqb -- Cypress 82C693 IDE</span>. The primary channel interrupts on ISA IRQ14 and the secondary on IRQ15. Before 26 September 2026 only function 1 existed, so devices on the secondary channel were never found. IDE register / port behavior (the <span class="f_CodeExample">0x1F0</span>-<span class="f_CodeExample">0x1F7</span> primary and <span class="f_CodeExample">0x170</span> secondary blocks, plus PCI config) and absent-slave probing are shared across the controllers.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES40 -- ALi M1543C / M5229</span></h2>
-<p class="p_Normal">The ES40 (Typhoon) uses the ALi M1543C south bridge, whose IDE function is the M5229 (device id <span class="f_CodeExample">0x5229</span>). EmulatR wires the faithful ALi M5229 for ES40 / ES45 / DS25 via the SAME south-bridge lever (<span class="f_CodeExample">m_southBridge</span>) that selects the ISA bridge, so bridge and IDE stay consistent by construction; DS10 / DS20 wire the Cypress instead. Both controllers wrap the shared ATA taskfile engine, which answers IDENTIFY on the <span class="f_CodeExample">dqa0</span> and <span class="f_CodeExample">dqb0</span> channels. Full <span class="f_CodeExample">show dev</span> enumeration of dqa0 / dqb0 in silicon mode is active device-enumeration work (see Current Development Status).</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES40, ES45 and DS25 -- ALi M5229</span></h2>
+<p class="p_Normal">The ES40, ES45 and DS25 use the ALi M1543C south bridge, whose IDE controller is the M5229. On the ES40 it is PCI device 15, function 0 (<span class="f_CodeExample">dqa.0.0.15.0</span> in <span class="f_CodeExample">show config</span>); on the ES45 and DS25 it is function 1 of the south bridge's device. The same setting that selects the south bridge selects the IDE controller, so the two always match; the DS10 and DS20 get the Cypress instead. Both controllers share the ATA taskfile engine, so disks and the CD behave identically on either.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">What the M5229 presents (as of 26 September 2026):</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Feature</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Behaviour</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Identity</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">vendor <span class="f_CodeExample">0x10B9</span>, device <span class="f_CodeExample">0x5229</span>, revision <span class="f_CodeExample">0xC1</span>, class <span class="f_CodeExample">0x0101FA</span> (IDE, compatibility mode on both channels)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Interrupt pin</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x3D</span> = <span class="f_CodeExample">0x01</span> (INTA). In compatibility mode the primary channel interrupts on ISA IRQ14 and the secondary on IRQ15, through the south bridge's 8259 pair.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Base address registers</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BAR I-IV reset to the datasheet's legacy values (<span class="f_CodeExample">0x1F1</span>, <span class="f_CodeExample">0x3F5</span>, <span class="f_CodeExample">0x171</span>, <span class="f_CodeExample">0x375</span>) and size as 8, 4, 8 and 4 bytes of I/O. The taskfile still answers only at the fixed legacy ports; the BARs are what the guest reads back.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bus-master registers</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BAR V (reset <span class="f_CodeExample">0xF001</span>) places a 16-byte bus-master block, decoded while the Command register's I/O-enable bit is set. The status register's interrupt bit sets on every IDE interrupt and clears when written with 1.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ALi control registers</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">0x53</span> bit 3 hides BAR I-IV (they read 0) while it is set; <span class="f_CodeExample">0x50</span> bit 1 selects whether the programming-interface bits 6:4 read as set. The timing, FIFO and Ultra DMA registers <span class="f_CodeExample">0x40</span>-<span class="f_CodeExample">0x7F</span> hold what the guest writes, from the datasheet's reset values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">Earlier builds presented the M5229 with no interrupt pin, no base address registers and no bus-master block. That was enough for the SRM console, which polls the controller, but not for the OpenVMS driver, which waits for the interrupt. Installing OpenVMS on the ES40 from its CD still does not complete; see the ES40 platform guide.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Shared bus-master block</span></h2>
+<p class="p_Normal">Both controllers carry the same bus-master IDE register block (SFF-8038i): at its base, the primary channel's command, status and descriptor-table pointer; at base + 8, the secondary's. EMulatR stores the command and descriptor pointer but performs no DMA: the active bit stays 0 and data moves only by programmed I/O. What the block does provide is the status register's interrupt bit, which the OpenVMS driver reads to recognise the interrupt as its own.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- the DS10 / DS20 Cypress IDE controller.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AliM5229Ide.h</span><span class="f_NotesBox"> -- the ES40 ALi M5229 IDE (identity 0x522910B9).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- the shared ATA taskfile / IDENTIFY engine.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/ITsunamiIde.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">PciConfigSpace.h</span><span class="f_NotesBox"> -- the IDE interface and PCI config plumbing.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Cy82C693Ide.h</span><span class="f_NotesBox"> -- the DS10 / DS20 Cypress IDE controller.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AliM5229Ide.h</span><span class="f_NotesBox"> -- the ES40 / ES45 / DS25 ALi M5229 IDE (identity 0x522910B9).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/BusMasterIdeBlock.h</span><span class="f_NotesBox"> -- the bus-master register block both controllers share.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/SPEC-M5229-001_ali_m5229_ide.md</span><span class="f_NotesBox"> -- the M5229 specification, with its datasheet references.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- the shared ATA taskfile / IDENTIFY engine.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/ITsunamiIde.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">PciConfigSpace.h</span><span class="f_NotesBox"> -- the IDE interface and PCI config plumbing.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--atapi-devices.html" class="topiclink">ATAPI Devices</a></p>
 <p class="p_Normal"><a href="--virtual-disk-images.html" class="topiclink">Virtual Disk Images</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

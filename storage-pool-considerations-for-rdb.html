@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.9 Storage Engine &gt; Storage Pool Considerations for Rdb</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="$QIO,after-image journal,AIJ,AIJ log server,alignment,ALS,asynchronous batch-write,asynchronous prefetch,buffer size,cache_max_mb,checkpoint,Cluster,cluster,cluster factor,Cluster-SCA,CODASYL DBMS,database,database page,DBS_READS,DBS_WRITES,detected asynchronous prefetch,Distributed Lock Manager,DUDRIVER,exclusive open,failover,fast commit,fill,global buffers,hashed placement,IRP,KODA,LAVC,local buffers,MSCP,MSCP server,MSCP_BUFFER,NUMBER OF BUFFERS,off,OpenVMS,Oracle CODASYL DBMS,Oracle Rdb,ordered,page geometry,page length,page size,PEDRIVER,queue depth,Rdb,RDM$BIND_BUFFERS,read-modify-write,recovery-unit journal,RMW,row cache,RUJ,SCA,sequential placement,snapshot file,storage area,storage-pool,straddle,VAXCluster,VIOC,write_cache,write-ahead,write-through,XFC,XQP" />
+   <meta name="description" content="An Rdb/CODASYL DBMS database brings its own caching, its own page geometry and its own write-ordering rules, and all three change how the storage pool behaves. This topic..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "storage-pool-considerations-for-rdb.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Storage Pool Considerations for Rdb</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?storage-pool-considerations-for-rdb.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="5_9-storage-engine.html">6.9 Storage Engine</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Storage Pool Considerations for Rdb</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="storage-verification.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_9-storage-engine.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="storage-example---emular-i_o-c.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">An Rdb/CODASYL DBMS database brings its own caching, its own page geometry and its own write-ordering rules, and all three change how the storage pool behaves. This topic explains the interaction for Oracle Rdb on OpenVMS and gives the current configuration guidance. It is guidance for consideration: the measurements that will confirm or revise it are described at the end.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Statements taken from the Oracle Rdb manuals carry a section reference (see Sources). </p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><img src="embim8.png" width="662" height="552" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How Rdb reaches the pool</span></h2>
+<p class="p_Normal">Rdb's storage layer reaches disk only through OpenVMS system services. It assigns a channel to each database file and issues <span class="f_CodeExample">$QIO</span> requests on it. Every Rdb I/O statistic is defined as a count of read-QIOs or write-QIOs: DBS_READS and DBS_WRITES for the storage area and snapshot files, and separate counters for the .aij, .ruj and root files (Performance and Tuning, Table 2-9).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The request then passes through the standard OpenVMS I/O path:</p>
+<p class="p_Normal"><span class="f_CodeExample">KODA &nbsp; &nbsp; &nbsp;$QIO IO$_READVBLK / IO$_WRITEVBLK on a file channel</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;P1 = buffer, P2 = byte count, P3 = virtual block number (VBN)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">FDT &nbsp; &nbsp; &nbsp; checks and locks the buffer, builds the IRP</span></p>
+<p class="p_Normal"><span class="f_CodeExample">XFC/VIOC &nbsp;file cache: a read hit completes here</span></p>
+<p class="p_Normal"><span class="f_CodeExample">XQP &nbsp; &nbsp; &nbsp; maps VBN to logical block number (LBN) through the file's extents</span></p>
+<p class="p_Normal"><span class="f_CodeExample">DK class &nbsp;-&gt; SCSI port driver -&gt; emulated controller (CDB: LBN, block count)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR &nbsp; block-media seam -&gt; storage pool -&gt; host</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR therefore never sees Rdb. It sees device commands, each a starting LBN and a block count. Rdb influences the pool only through the arguments of its <span class="f_CodeExample">$QIO</span> calls:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Size</span><span class="f_NotesBox">, through the byte count. Storage area transfers are one Rdb buffer long (see Page geometry).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Position</span><span class="f_NotesBox">, through the VBN, which the XQP maps to an LBN.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Concurrency</span><span class="f_NotesBox">, through asynchronous </span><span class="f_CodeExample">$QIO</span><span class="f_NotesBox"> calls that complete by AST. Prefetch and batch-writes keep several requests in flight at once.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Order</span><span class="f_NotesBox">, by waiting for one write to complete before issuing the next. This is how Rdb enforces its write-ahead rule (see Write ordering and durability).</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The traffic that reaches the pool is not exactly Rdb's traffic. It is Rdb's <span class="f_CodeExample">$QIO</span> requests, less the XFC read hits, plus I/O that Rdb did not issue: XFC read-ahead, XQP meta-data I/O (extent-map reads, and INDEXF.SYS and BITMAP.SYS updates when a database file extends), and page-file I/O if Rdb's buffers or global section are paged.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Rdb can lock its local buffers into physical memory as an OpenVMS buffer object (<span class="f_CodeExample">RDM$BIND_BUFOBJ_ENABLED</span>). This removes per-I/O page locking in the FDT path and lowers the CPU cost of each request, but it does not change the size, position or number of the requests the pool receives (Performance and Tuning, 4.1.2.4).</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The caching stack</span></h2>
+<p class="p_Normal">A database read or write passes through several caches before it reaches the host device:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Layer</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Owner</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">What it holds</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Local buffers (NUMBER OF BUFFERS, <span class="f_CodeExample">RDM$BIND_BUFFERS</span>)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Rdb, per attach</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Pages used by one attach. Each attach reads shared pages for itself; ten attaches from one process count as ten users (4.1.2).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Global buffers (GLOBAL BUFFERS NUMBER IS, <span class="f_CodeExample">RMU/OPEN/GLOBAL_BUFFERS</span>)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Rdb, one pool per node in a global section</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Pages shared by every attach on the node; only one process reads a page from disk (4.1.2). Pages with the highest access temperature tend to stay here.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Row cache (optional)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Rdb, row cache server (RCS)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Rows, not pages. Modified rows are written to .rdc backing files at checkpoints and to storage areas when a sweep threshold is reached (4.1.4.4).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">$QIO, XQP, drivers</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OpenVMS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Nothing. This is the request path, not a cache.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">XFC / VIOC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">OpenVMS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Caches file data for reads; writes are propagated according to the OpenVMS I/O/cache policy.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Storage pool</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR (pool engine)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4 KB pages of the disk image</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Windows and the device</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not used for pooled images (write-through, unbuffered)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-style: italic;">The pool sees only what every layer above it missed. With generous global buffers, the pool receives mostly write-backs and cold reads, not repeated reads of hot pages.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The choice between local and global buffers also changes what XFC does:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Local buffers.</span><span class="f_NotesBox"> Every attach re-reads the pages it shares with others. XFC becomes the shared cache that absorbs those repeated reads, and less of them reach the pool.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Global buffers.</span><span class="f_NotesBox"> Rdb already reads each page once per node, so XFC mostly holds a second copy of pages Rdb is holding, and the pool can hold a third.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">XFC stops caching a file that is open for write on more than one cluster node. A single-node database is not affected.</span></p>
+<p class="p_Normal">In a cluster, XFC is out of the picture for a multi-node database; see Cluster considerations.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Page geometry</span></h2>
+<p class="p_Normal">Three Rdb parameters describe the geometry. They are often confused:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Parameter</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Unit</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Scope</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Page size</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">512-byte blocks</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Per storage area</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Size of one database page, chosen from the sizes of the rows stored in the area (for example 3, 6, 7 or 12 blocks).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Page length</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bytes</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Per storage area</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The same page size expressed in bytes, as reported by RMU Analyze (RMU$PAGE_LENGTH). It is not the buffer size.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Buffer size</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Blocks</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Whole database</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Blocks per buffer. Must be at least the largest page size; the default is three times the page size (6 blocks for the default 2-block page) (4.1.2.1).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The limits differ by release. The 7.0 tuning guide restricts pages and buffers to less than 64 blocks (4.1.2.1). The 7.2 RMU manual accepts buffer sizes from 2 to 64 blocks and shows a 64-block page in an example (RMU Copy_Database, Local_Buffers). RMU$PAGE_LENGTH is a signed word, whose maximum is 32,767 bytes: a 63-block page (32,256 bytes) fits and a 64-block page (32,768 bytes) does not, so 64-block pages should be confirmed on the release in use before they are relied on.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">The transfer unit is the buffer</span></h3>
+<p class="p_Normal">On a miss, Rdb reads enough pages to fill a buffer: a buffer's worth of contiguous pages from one storage area, in one request (4.1.2, 4.1.2.1). Storage area reads that reach OpenVMS, and then the pool, are therefore buffer-sized, not page-sized. The buffer size should divide evenly by every page size in the database, or part of each buffer is wasted: with pages of 16, 24 and 32 blocks, a 96-block buffer fits all three, while a 64-block buffer holds only two 24-block pages and wastes 16 blocks (4.1.2.1).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Whether a write-back writes the whole buffer, only the modified pages, or only the modified blocks is not documented. It is the first measurement listed at the end.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Alignment with pool pages</span></h3>
+<p class="p_Normal">The pool works in 4 KB pages of eight blocks. Unless a transfer is a multiple of eight blocks and starts on an eight-block boundary, it straddles pool pages. For a 6-block database page, successive pages start at offsets 0, 6, 4 and 2 within a pool page:</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Database page starts at (mod 8)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Blocks</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Straddles two pool pages</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0-5</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">no</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6-11</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">yes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">12-17</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">yes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">18-23</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">no</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Half of all 6-block pages straddle two pool pages, and every 6-block write is a partial write relative to a pool page.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The same arithmetic applies to buffer-sized reads. With 6-block pages and the default 18-block buffer, buffers start at offsets 0, 2, 4 and 6 (mod 8), and every read covers parts of three pool pages, with partial pool pages at one or both ends. A 24-block buffer (four 6-block pages) in an aligned storage area covers exactly three whole pool pages. This assumes that buffers are laid out on buffer-size boundaries from the start of the area's pages.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What each database file sends</span></h2>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">File</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Transfer</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Pattern</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Why it matters to the pool</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.rda (storage area)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Buffer size (reads); write size to be measured</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Random for hashed access; sequential runs with prefetch</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Most of the read traffic; the page write-backs</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.snp (snapshot)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Page size of the area</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Writes only while a read-only transaction is active (4.1.11)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Extra random writes during reporting workloads</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.ruj (recovery-unit journal)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Small</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Sequential per attach</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Must be durable before the matching .rda write</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.aij (after-image journal)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Small to medium</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Append only; one writer when the AIJ log server (ALS) is running (3.5.1)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">On the commit path; latency here is commit latency</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.rdb (root)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Small</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Commit records and control blocks (Table 2-9, ROOT_WRITES)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">On the commit path unless journal optimization is enabled</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">.rdc (row cache backing)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Large</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Checkpoint writes by the RCS (4.1.4.4.1)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Periodic write bursts</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Transfer sizes shown as small, medium and large are characterizations, not documented values.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Concurrency</span></h2>
+<p class="p_Normal">Rdb issues storage area I/O asynchronously. The defaults shown in the tuning guide's Buffer Information example are a prefetch depth of 5 buffers, a detected-prefetch depth of 4 buffers, and batch-writes of up to 4 buffers with a clean buffer count of 5 (Example 4-2). Asynchronous prefetch reads ahead when Rdb detects a sequential scan and does not wait for the result (3.2.4); batch-writes let several buffers of an attach's allocate set be written without stalling it, and help most with allocate sets of 20 or more buffers (3.2.5).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A single attach can therefore have several requests outstanding at once. That concurrency is useful only if the emulated controller, the block-media seam and the pool accept and service more than one request at a time. If requests are completed one at a time, prefetch and batch-writes add work without reducing stalls.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Write ordering and durability</span></h2>
+<p class="p_Normal">Rdb's recovery depends on the order in which its writes become durable:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Write-ahead.</span><span class="f_NotesBox"> Before-images must be written to the .ruj file before the corresponding database page can be written back (Table 2-9, RUJ_WRITES).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Default commit.</span><span class="f_NotesBox"> At COMMIT, Rdb writes the .ruj buffers, then the modified pages, then the .aij buffers (if journaling is enabled), then the commit record in the root file (4.1.5).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Fast commit.</span><span class="f_NotesBox"> At COMMIT, Rdb writes only the .aij buffers and the root commit record (the root write is removed by journal optimization). Modified pages stay in the buffers and are written at a checkpoint, when the attach detaches, or on a metadata change. Transactions since the last checkpoint are redone from the .aij file after a failure (4.1.5.1). Fast commit requires after-image journaling.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Memory page transfer.</span><span class="f_NotesBox"> Lets an attach use a modified page that has not been written to disk. It requires global buffers, after-image journaling and fast commit, and a database limited to one node (4.1.5.5).</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Each rule assumes that a write the device reports complete is durable. For disks on the pool engine, the storage pool's <span class="f_CodeExample">write_cache</span> mode decides whether that holds: with <span class="f_CodeExample">off</span>, a write completes only after it is on the host device. The direct engine makes no such guarantee, and the host device itself must honor write-through.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The commit mode also changes the write pattern the pool sees. With default commit, every commit writes back pages that are usually cold in the pool, so each commit pays the partial-write fills described below. With fast commit, commits reach the pool as .aij appends, and page write-backs arrive in bursts at checkpoints.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What that costs</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A read miss fills whole pool pages. A straddling transfer touches two pool pages, so a miss fills both from the host file; afterwards both pool pages are hits until they are evicted.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A write that covers only part of a pool page that is not resident must first read that pool page from the host (read-modify-write), because a modified pool page is always fully valid. The write waits for that read in both write modes.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Hot database pages live in global buffers, so their reads never reach the pool and the pool's copies go cold and are evicted. When the database writes such a page back, the write arrives cold: a partial write needs one fill, a straddling one two, before the write itself.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A write that covers whole pool pages needs no fill, whether the page is resident or not.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Current guidance</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Use </span><span class="f_CodeExample">write_cache</span><span style="font-weight: bold;"> off for database disks.</span><span class="f_NotesBox"> With off, a completed write is on the host device, which is what Rdb's write-ahead rule and commit sequence assume. The advantage of write caching for other disks -- acknowledging a write before it is durable -- is largely lost on cold partial writes, where the fill dominates, and ordered remains experimental. The expectation that off performs as well or better for Rdb is to be confirmed by measurement.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Consider buffer size selected as a common-multiple across all storage area page sizes.</span><span class="f_NotesBox"> The buffer is the read transfer unit. For page sizes of 3, 4, 6, 8 and 12 blocks, 24 and 48 blocks satisfy both; 64 is possible on 7.2. The default of three times the page size is rarely a multiple of eight.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Aim for a least common multiple.</span><span class="f_NotesBox"> Page size is a database design decision, set by the rows and structures each storage area must hold; the pool does not change it. What can be aimed for is a chain in which each size divides the next: the buffer size is a common multiple of every storage area page size and, where the result fits within the 64-block limit, of the pool's eight-block page; and the disk cluster size (INITIALIZE /CLUSTER_SIZE) is a multiple of the buffer size. Then no transfer straddles a pool page and no buffer spans two file extents. The full chain is not always possible: very large volumes impose a large minimum cluster size. The fallback is a cluster size that is at least a multiple of eight blocks, which keeps file extents on EMulatR storage-pool page boundaries. Whether an area's data pages also start on those boundaries depends on what precedes them in the .rda file.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">The pool may see more hits. </span><span class="f_NotesBox">Memory page transfer works only when the database is limited to one node (4.1.5.5). In a cluster, a page modified on one node goes to disk before another node uses it, so the second node's read can be served from the storage pool's copy. This is a side effect of the pool's position, not a reason to size it up: the pool remains a fallback.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Coordination belongs to the guest. </span><span class="f_NotesBox">Rdb coordinates access to a page with page locks through the lock manager. On a single node the locks are local; in a cluster they are distributed lock manager requests carried over SCA, and client nodes also reach the disk through MSCP over SCA, so both paths depend on the SCA configuration between nodes. The storage pool takes no part in either case. Its per-page locking only serializes EMulatR's own threads, so that the pool behaves as one correct disk.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Keep the .aij file on a durable path.</span><span class="f_NotesBox"> With fast commit, the .aij write is the commit; its latency is the commit latency, and its durability is the transaction's durability.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The direct engine is unaffected by page geometry in this way: it reads and writes exactly the blocks requested, through the Windows cache, without the pool's durability guarantee. That also means Rdb's write-ahead and commit ordering are not guaranteed to survive a host failure on the direct engine.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Cluster considerations</span></h2>
+<p class="p_Normal">The supported cluster topology serves database disks with MSCP over Cluster-SCA. One node, the serving node, has the disk attached through its EMulatR instance; every other node reaches the disk through the MSCP server on that node.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">With disks MSCP-served over Cluster-SCA, only the serving node's EMulatR instance ever opens the image, so there's one pool in front of one image. The pool is coherent for the whole cluster automatically, and no IPI guard or cross-instance invalidation is needed.</p>
+<p class="p_Normal">The pool can't tell a remote node's I/O from a local one. Every command comes from the serving node's controller. The guest handles coherence: Rdb page locks and the Distributed Lock Manager (DLM) decide who may read or write a page. The pool's only job is to behave as one disk, which it does as long as one instance owns the image.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">client node: &nbsp;Rdb -&gt; $QIO -&gt; XQP -&gt; DUDRIVER (MSCP class) -&gt; PEDRIVER -&gt; 21143 (Tulip)</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | host network</span></p>
+<p class="p_Normal"><span class="f_CodeExample">server node: &nbsp;21143 -&gt; PEDRIVER -&gt; MSCP server -&gt; DK driver -&gt; controller -&gt; pool -&gt; image</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Requirements on the storage pool</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">One instance owns each pooled image.</span><span class="f_NotesBox"> The storage engine opens a pooled image without write sharing, or takes a lock file, so that a second EMulatR instance attaching the same image fails at attach time. Two instances with their own pools on one image are two caches the guest cannot see: the DLM grants a lock correctly, and the other node's pool still returns the old page. The result is silent database corruption.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Read-after-write for every initiator.</span><span class="f_NotesBox"> Once a write has completed, every later read of those blocks, from any node, returns it. A single pool in front of the image meets this by construction.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Per-page serialization inside the instance.</span><span class="f_NotesBox"> The controller thread, the MPW writer and, later, SMP vCPUs can touch the same pool page at once. A host-side lock or seqlock per pool page, held for the copy, serializes them, and no 512-byte block is ever torn. This is ordinary thread safety inside one process; it does not need, and should not use, the guest's interrupt fabric or IPIs.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Durable completion.</span><span class="f_NotesBox"> write_cache off applies with more force in a cluster. If the serving node's host fails with write_cache on, writes are lost that every node's Rdb has already treated as durable, and recovery becomes a cluster-wide problem.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Effects on Rdb I/O</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">XFC is effectively bypassed for the shared Rdb database files.</span> Each node opens the .RDA, .SNP, and .AIJ files for write access, so OpenVMS cannot treat them as ordinary read-only/shared file data in XFC. Rdb maintains its own buffers and the Rdb buffer pool provides the principal caching of database contents on each node.</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">The pool becomes more valuable.</span><span class="f_NotesBox"> Memory page transfer works only when the database is limited to one node (4.1.5.5). In a cluster, a page modified on one node goes to disk before another node uses it, and the second node's read is then a pool hit. The advice to keep cache_max_mb small on database disks applies to a single node; in a cluster it is probably the reverse. </span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">Transfer sizes may change. </span>The MSCP server uses its own buffer resources (<span class="f_CodeExample">MSCP_BUFFER</span>) and may fragment a large I/O request when the available buffering cannot accommodate the request. Therefore, a mixed-area prefetch read may reach the storage/pool layer as several smaller MSCP transfers.</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">For clustered configurations.</span> For clustered configurations, consider attaching and provisioning multiple network interfaces on both the host and guest for SCA communications. Dedicated interfaces may provide additional network paths and reduce contention between SCA cluster traffic and other network activity.</p>
+<p class="p_NotesBox" style="margin: 10px 0 0 13px;">The number of interfaces required will depend on the cluster configuration and workload. Multiple SCA interfaces should therefore be regarded as a configuration and isolation option, rather than an assumption of proportional performance improvement.</p>
+<p class="p_NotesBox" style="margin: 10px 0 0 13px;">Where practical, these dedicated SCA network interfaces can be placed on a separate, off-LAN network through an unmanaged Ethernet switch. This provides physical network isolation for cluster communications and avoids competing with ordinary LAN traffic.</p>
+<p class="p_NotesBox" style="margin: 10px 0 0 13px;">This consideration is independent of the EMulatR storage-pool architecture, but may be relevant when evaluating overall clustered I/O behavior and SCA communications.</p>
+<p class="p_Normal">&nbsp;</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Limitations</span></h3>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">No disk failover.</span><span class="f_NotesBox"> Serving a disk from two nodes requires both to have direct access to it, which in EMulatR means two instances on one image. That is the unsafe case above, so a disk MSCP-served from one node has no failover. Dual-served disks would need read caching turned off for that image, or a cross-instance coherence mechanism; neither is implemented.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-weight: bold;">No shared bus between instances.</span><span class="f_NotesBox"> A SCSI bus shared by two EMulatR instances has the same problem and is not supported for pooled images.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Placement strategies</span></h2>
+<p class="p_Normal">Rdb stores rows by hashed placement (the target page is computed) or sequentially (rows appended to the area, like a flat table). Hashed access touches single pages at random, so each miss pays the straddle cost. Sequential scans read runs of contiguous blocks, which amortize it. Rdb's own<span class="f_CodeExample"> asynchronous prefetch</span>, and XFC read-ahead, already issue sequential reads ahead of the scan, so the benefit of read-ahead in the pool, which is not implemented, is expected to be smaller than it would be for a plain file workload.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Measurement (planned)</span></h2>
+<p class="p_Normal">EMulatR sees every guest request as a starting block and a block count, so the open questions can be answered directly rather than assumed:</p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Whether a write-back writes the whole buffer, only the modified pages, or only the modified blocks, with OpenVMS file caching on and off: update a row on the first or second block of a known page, force the write-back (</span><span class="f_CodeExample">RMU/CHECKPOINT</span><span class="f_NotesBox"> under fast commit), and record the writes that reach that page's blocks.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Where storage area transfers start: a histogram of starting LBN mod 8 and of transfer length for the .rda and .snp LBN ranges. This confirms whether buffers fall on buffer-size boundaries and whether the area is aligned.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">How many requests are outstanding at once, with asynchronous prefetch and batch-writes enabled and disabled.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Rdb's own count against the pool's: DBS_READS plus DBS_WRITES from the Performance Monitor I/O summary against the pool commands for the .rda and .snp ranges. The difference should be explained by XFC hits (</span><span class="f_CodeExample">SHOW MEMORY/CACHE</span><span class="f_NotesBox">), XFC read-ahead, XQP metadata I/O and paging.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">In a cluster: transfer lengths at the pool for I/O issued on client nodes, to see whether the MSCP server splits large transfers; and the pool hit ratio on pages modified on one node and then read on another.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Exclusive ownership: attach the same pooled image to a second EMulatR instance and confirm that the attach fails.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Host reads per guest read, fills caused by partial writes, and the pool hit ratio, across database page sizes (3, 6, 7, 8, 12, 16 blocks) and buffer sizes (default, 24, 48), hashed and sequential placement, default and fast commit, the direct engine and the pool with </span><span class="f_CodeExample">write_cache</span><span class="f_NotesBox"> off and ordered, with and without global buffers.</span></p>
+<p class="p_NotesBox"><span class="f_NotesBox">&nbsp;</span></p>
+<p class="p_Normal"><span style="font-style: italic;">The EMulatR release notes will publish the resulting performance test metrics. </span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Sources</span></h2>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Oracle Rdb7 Guide to Database Performance and Tuning, Release 7.0 (A41747-1): Table 2-9 (Oracle Rdb data items); 3.2.4 Asynchronous Prefetch; 3.2.5 Asynchronous Batch-Write Operations; 3.5.1 AIJ Log Server; 4.1.2 Managing Buffers, 4.1.2.1 Specifying Buffer Size, 4.1.2.4 Locking Local Buffers, 4.1.2.5 Global Buffer Pools, Example 4-2; 4.1.4.4 Row Cache Server; 4.1.5 Fast Commit, 4.1.5.1, 4.1.5.5 Memory Page Transfers; 4.1.11 Accessing the Snapshot File.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Oracle RMU Reference Manual, Release 7.2: RMU Analyze (RMU$PAGE_LENGTH); RMU Copy_Database and RMU Restore (Local_Buffers); RMU Open (Global_Buffers); RMU Checkpoint; RMU Server Record_Cache Checkpoint.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="5_9-storage-engine.html" class="topiclink">6.9 Storage Engine</a></p>
+<p class="p_Normal"><a href="the-storage-buffer-pool.html" class="topiclink">The Buffer Pool</a></p>
+<p class="p_Normal"><a href="storage-configuration-reference.html" class="topiclink">Storage Configuration Reference</a></p>
+<p class="p_Normal"><a href="storage-durability-faults-and-recovery.html" class="topiclink">Durability, Faults and Recovery</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

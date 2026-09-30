@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.1 Execution, Decode &amp; Internals &gt; grainFactoryLib</title>
+   <title>6. Architecture &amp; Internals &gt; 6.1 Execution, Decode &amp; Internals &gt; grainFactoryLib</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--grainfactorylib.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">5.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">6.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">grainFactoryLib</span></h1>
 
@@ -139,11 +139,11 @@
 <p class="p_Normal">A single CALL_PAL opcode can mean different things under different operating systems, so rows carry personality flags -- <span class="f_CodeExample">S_PalTru64</span>, <span class="f_CodeExample">S_PalVms</span>, and <span class="f_CodeExample">S_PalLinux</span>. For instance opcode 0x83 is CHMK (change mode to kernel) under VMS but callsys under Tru64 and Linux; the row marks all three. The codegen iterates the personalities to emit the right dispatch, which keeps the OS-specific PAL behavior in the table rather than in code.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/codegen/genGrains.py</span><span class="f_NotesBox"> -- generator that joins the two TSVs and emits generated/*.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/GrainMasterV4.tsv</span><span class="f_NotesBox"> -- per-instruction master table (mnemonic/opcode/box/flags/leafBase).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/SemanticFlags.tsv</span><span class="f_NotesBox"> -- S_* semantic-flag vocabulary incl. PAL personalities.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/DispatchTables.cpp</span><span class="f_NotesBox"> -- generated primary/secondary dispatch tables (do not hand-edit).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/GrainStubs.cpp</span><span class="f_NotesBox"> -- stub leaves for unimplemented rows; handwritten.tsv supersedes.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/codegen/genGrains.py</span><span class="f_NotesBox"> -- generator that joins the two TSVs and emits generated/*.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/GrainMasterV4.tsv</span><span class="f_NotesBox"> -- per-instruction master table (mnemonic/opcode/box/flags/leafBase).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/SemanticFlags.tsv</span><span class="f_NotesBox"> -- S_* semantic-flag vocabulary incl. PAL personalities.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/DispatchTables.cpp</span><span class="f_NotesBox"> -- generated primary/secondary dispatch tables (do not hand-edit).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">grainFactoryLib/generated/GrainStubs.cpp</span><span class="f_NotesBox"> -- stub leaves for unimplemented rows; handwritten.tsv supersedes.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--dispatchtables.html" class="topiclink">DispatchTables</a></p>

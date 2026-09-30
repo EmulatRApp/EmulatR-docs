@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.1 Execution, Decode &amp; Internals &gt; CMake Macro Guards</title>
+   <title>6. Architecture &amp; Internals &gt; 6.1 Execution, Decode &amp; Internals &gt; CMake Macro Guards</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="CMake option,compile guard,diagnostic build,EMULATR_BOOTSTRAP_ITB_BYPASS,EMULATR_CHIPSET_DIAG,EMULATR_DEBUG_STEP,EMULATR_DIAGNOSTIC_LOGGING,EMULATR_FP_SOFTFLOAT,EMULATR_MEMDIAG,EMULATR_PA_DUMP,EMULATR_TRACE_HOOKS,EMULATR_USE_OS_PAGES" />
-   <meta name="description" content="A number of EmulatR behaviors are selected at build time through CMake options that define compile-guard macros, rather than at run time. This keeps diagnostic and debug..." />
+   <meta name="description" content="A number of EMulatR behaviors are selected at build time through CMake options that define compile-guard macros, rather than at run time. This keeps diagnostic and debug..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--cmake-macro-guards----------.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">5.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="8_2-subsystem-internals-------.html">6.1 Execution, Decode &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">CMake Macro Guards</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">A number of EmulatR behaviors are selected at build time through CMake options that define compile-guard macros, rather than at run time. This keeps diagnostic and debug scaffolding out of the shipping hot path: a guard that is off compiles to nothing. The options are set in the CMake configuration (for example through Qt Creator) and define the matching <span class="f_CodeExample">EMULATR_*</span> macro for the build.</p>
+<p class="p_Normal">A number of EMulatR behaviors are selected at build time through CMake options that define compile-guard macros, rather than at run time. This keeps diagnostic and debug scaffolding out of the shipping hot path: a guard that is off compiles to nothing. The options are set in the CMake configuration (for example through Qt Creator) and define the matching <span class="f_CodeExample">EMulatR_*</span> macro for the build.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Build / behavior options</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -141,19 +141,19 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_DEBUG_STEP</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_DEBUG_STEP</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Restores an -O0 build of the per-instruction pipeline step for single-step debugging. Off by default so the hot loop ships optimized.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_FP_SOFTFLOAT</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_FP_SOFTFLOAT</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Selects the SoftFloat compute backend for floating point instead of the native host path, for bit-exact host-independent results.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_USE_OS_PAGES</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_USE_OS_PAGES</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Selects the OS-page (VirtualAlloc / mmap) backing mode for guest memory.</p>
 </td>
@@ -174,43 +174,43 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TRACE_HOOKS</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_TRACE_HOOKS</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Compiles in the per-step trace hooks used to capture an execution trace.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_MEMDIAG</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_MEMDIAG</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Compiles in the memory-diagnostic instrumentation (the cycle-windowed fetch / load / store dumps).</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_CHIPSET_DIAG</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_CHIPSET_DIAG</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Enables chipset-level diagnostic output.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_DIAGNOSTIC_LOGGING</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_DIAGNOSTIC_LOGGING</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Enables the broader diagnostic logging path.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_PA_DUMP</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_PA_DUMP</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Compiles in physical-address dump instrumentation.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_BOOTSTRAP_ITB_BYPASS</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_BOOTSTRAP_ITB_BYPASS</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Debug only: bypasses the ITB for the known reset / PAL entry page during bring-up. Must be removed before relying on permission bits or ASN isolation.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMULATR_TRACE_CONSOLE&nbsp;/&nbsp;EMULATR_ISADIAG</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">EMulatR_TRACE_CONSOLE&nbsp;/&nbsp;EMulatR_ISADIAG</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Console-trace and ISA-diagnostic channels.</p>
 </td>
@@ -219,12 +219,12 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The default build leaves the diagnostic guards off; they are turned on only when chasing a specific problem, because the instrumentation they add (especially the memory and trace hooks) is heavy enough to change runtime substantially. Runtime behavior that does not need a recompile is controlled instead by the <span class="f_CodeExample">EMULATR_*</span> environment variables.</p>
+<p class="p_Normal">The default build leaves the diagnostic guards off; they are turned on only when chasing a specific problem, because the instrumentation they add (especially the memory and trace hooks) is heavy enough to change runtime substantially. Runtime behavior that does not need a recompile is controlled instead by the <span class="f_CodeExample">EMulatR_*</span> environment variables.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
 <p class="p_Normal"><a href="qt-creator.html" class="topiclink">Qt Creator</a></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

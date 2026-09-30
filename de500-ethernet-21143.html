@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices &gt; DE500 Ethernet (21143 Tulip)</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices &gt; DE500 Ethernet (21143 Tulip)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21143,CSR0,CSR5,CSR9,DE500,de500_tulip,DEC 21143,Ethernet,ewa0,MAC address,NIC,PCI,SIA,SROM,station address,SWR,Tulip" />
-   <meta name="description" content="EmulatR models a DEC DE500-class Fast Ethernet adapter built on the DECchip 21143 (&quot;Tulip&quot;) PCI Ethernet MAC." />
+   <meta name="description" content="EMulatR models a DEC DE500-class Fast Ethernet adapter built on the DECchip 21143 (&quot;Tulip&quot;) PCI Ethernet MAC." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?de500-ethernet-21143.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="chipset.html">5.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="chipset.html">6.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">DE500 Ethernet (21143 Tulip)</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR models a DEC DE500-class Fast Ethernet adapter built on the DECchip 21143 (&quot;Tulip&quot;) PCI Ethernet MAC.</p>
+<p class="p_Normal">EMulatR models a DEC DE500-class Fast Ethernet adapter built on the DECchip 21143 (&quot;Tulip&quot;) PCI Ethernet MAC.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox" style="font-weight: bold;">STATUS.</span><span class="f_NotesBox"> The descriptor engine is implemented: TX and RX rings, perfect-filter setup frames, the CSR6 process state machine including internal loopback, the SIA/NWay autonegotiation model (CSR12-CSR15), and interrupt generation. What is deliberately absent is a host L2 BACKEND - the seam is </span><span class="f_CodeExample">setTxSink()</span><span class="f_NotesBox"> / </span><span class="f_CodeExample">receiveFrame()</span><span class="f_NotesBox">, so a TAP or a test harness attaches there. Until one is attached, frames go nowhere outside internal loopback: a guest can configure an interface and an address and still have no reachability.</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -519,15 +519,14 @@
 <p class="p_Normal"><span style="font-weight: bold;">Modeled</span> since the phase this section describes: the full descriptor engine (TX and RX rings), perfect-filter setup frames, the CSR6 process state machine including internal loopback, the SIA/NWay autonegotiation model (CSR12-CSR15), and interrupt generation. <span style="font-weight: bold;">Still absent</span> -- a host network BACKEND, and that one is by design: the seam is <span class="f_CodeExample">setTxSink()</span> / <span class="f_CodeExample">receiveFrame()</span>, so a TAP or a test harness attaches there. Internal loopback (CSR6&lt;OM&gt;=INL) needs no backend at all.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/PlatformConfig.cpp</span><span class="f_NotesBox"> -- </span><span class="f_CodeExample">de500_tulip</span><span class="f_NotesBox"> PCI catalog entry: identity (0x1011/0x0019), class, slot 7 / func 0, BAR0/BAR1, INTA.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Dec21143Tulip.h</span><span class="f_NotesBox"> -- Phase 1 CSR file, software reset, SROM readout, CSR5 status. Header-only device model per the </span><span class="f_CodeExample">deviceLib/Tsunami/</span><span class="f_NotesBox"> convention (alongside </span><span class="f_CodeExample">Floppy82077.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">Cy82C693Ide.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">IicPcf8584.h</span><span class="f_NotesBox">).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">EMULATR_TULIP_TRACE</span><span class="f_NotesBox"> -- environment variable that traces this device (one-shot DMA-window dump plus per-translate trace). See Environment Variables.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">No dedicated unit test yet; a Phase 1 register / reset / SROM test will follow the </span><span class="f_CodeExample">tests/deviceLib/test_&lt;device&gt;.cpp</span><span class="f_NotesBox"> convention.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">systemLib/PlatformConfig.cpp</span><span class="f_NotesBox"> -- </span><span class="f_CodeExample">de500_tulip</span><span class="f_NotesBox"> PCI catalog entry: identity (0x1011/0x0019), class, slot 7 / func 0, BAR0/BAR1, INTA.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/Dec21143Tulip.h</span><span class="f_NotesBox"> -- Phase 1 CSR file, software reset, SROM readout, CSR5 status. Header-only device model per the </span><span class="f_CodeExample">deviceLib/Tsunami/</span><span class="f_NotesBox"> convention (alongside </span><span class="f_CodeExample">Floppy82077.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">Cy82C693Ide.h</span><span class="f_NotesBox">, </span><span class="f_CodeExample">IicPcf8584.h</span><span class="f_NotesBox">).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">EMulatR_TULIP_TRACE</span><span class="f_NotesBox"> -- environment variable that traces this device (one-shot DMA-window dump plus per-translate trace). See Environment Variables.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">No dedicated unit test yet; a Phase 1 register / reset / SROM test will follow the </span><span class="f_CodeExample">tests/deviceLib/test_&lt;device&gt;.cpp</span><span class="f_NotesBox"> convention.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="chipset.html" class="topiclink">Chipset &amp; Devices</a></p>
-<p class="p_Normal"><a href="--feature-matrix.html" class="topiclink">Feature Matrix</a></p>
-<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

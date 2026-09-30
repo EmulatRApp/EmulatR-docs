@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.2 Memory, Addressing &amp; Deep Dives &gt; Memory</title>
+   <title>6. Architecture &amp; Internals &gt; 6.2 Memory, Addressing &amp; Deep Dives &gt; Memory</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--memory----------------------.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="8_3-architecture-deep-dives---.html">5.2 Memory, Addressing &amp; Deep Dives</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="8_3-architecture-deep-dives---.html">6.2 Memory, Addressing &amp; Deep Dives</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Memory</span></h1>
 
@@ -133,17 +133,17 @@
 <p class="p_Normal"><span class="f_CodeExample">GuestMemory</span> does no MMIO routing and raises no faults. The <span class="f_CodeExample">TsunamiChipset</span> system-bus arbiter decodes every physical address first: it routes device traffic to the right model, services the chipset CSRs, and raises range faults for non-existent memory before raw RAM is ever touched. That separation is what keeps device / MMIO traffic from ever aliasing real RAM.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Array configuration</span></h2>
-<p class="p_Normal">The amount of RAM the guest sees is set by <span class="f_CodeExample">[System] memorySize</span> in Emulatr.ini and configured into the Cchip's Array Address Registers (AAR). The Tsunami Cchip supports up to four arrays of up to 1 GB each (4 GB maximum); accesses above the configured limit are Non-eXistent Memory (NXM). The configured size is what the firmware reports under <span class="f_CodeExample">show memory</span> and in the configuration table. The shipped default is 4 GiB (<span class="f_CodeExample">[System] memorySize = 4294967296</span>), laid as four 1 GB arrays (AAR0..3) -- matching the <span class="f_CodeExample">show config</span> memory table.</p>
+<p class="p_Normal">The amount of RAM the guest sees is set by <span class="f_CodeExample">[System] memorySize</span> in EMulatR.ini and configured into the Cchip's Array Address Registers (AAR). The Tsunami Cchip supports up to four arrays of up to 1 GB each (4 GB maximum); accesses above the configured limit are Non-eXistent Memory (NXM). The configured size is what the firmware reports under <span class="f_CodeExample">show memory</span> and in the configuration table. The shipped default is 4 GiB (<span class="f_CodeExample">[System] memorySize = 4294967296</span>), laid as four 1 GB arrays (AAR0..3) -- matching the <span class="f_CodeExample">show config</span> memory table.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Reservations</span></h2>
 <p class="p_Normal">A <span class="f_CodeExample">LockMonitor</span> tracks load-locked / store-conditional reservations per CPU at cache-line (64-byte) granularity, for up to four CPUs -- the substrate for the EV6 LDx_L / STx_C primitives.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/GuestMemory.cpp</span><span class="f_NotesBox"> -- sparse-paging byte store for guest RAM.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/GuestMemory.h</span><span class="f_NotesBox"> -- LockMonitor per-CPU cache-line LL/SC reservations.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- system-bus arbiter: address decode/route/NXM before RAM.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox"> -- Array Address Registers (AAR) DRAM config / max-RAM limit.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/ISystemBus.h</span><span class="f_NotesBox"> -- the bus seam interface.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/GuestMemory.cpp</span><span class="f_NotesBox"> -- sparse-paging byte store for guest RAM.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/GuestMemory.h</span><span class="f_NotesBox"> -- LockMonitor per-CPU cache-line LL/SC reservations.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- system-bus arbiter: address decode/route/NXM before RAM.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox"> -- Array Address Registers (AAR) DRAM config / max-RAM limit.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">memoryLib/ISystemBus.h</span><span class="f_NotesBox"> -- the bus seam interface.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Overview</a></p>

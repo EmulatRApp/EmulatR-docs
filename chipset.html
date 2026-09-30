@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="21272,21274,Cchip,chipset,core logic,Dchip,Pchip,south bridge,Titan,Tsunami" />
-   <meta name="description" content="In EmulatR the chipset is the adapter between the CPU(s) and the devices whose accesses it routes. Every CPU load, store, and fetch enters the chipset through its system-bus..." />
+   <meta name="description" content="In EMulatR the chipset is the adapter between the CPU(s) and the devices whose accesses it routes. Every CPU load, store, and fetch enters the chipset through its system-bus..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?chipset.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Chipset</span></h1>
 
@@ -127,9 +127,9 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">In EmulatR the chipset is the adapter between the CPU(s) and the devices whose accesses it routes. Every CPU load, store, and fetch enters the chipset through its system-bus seam; the chipset decodes the physical address and steers it to DRAM, to a chipset control/status register (CSR), to a PCI device, or to the non-existent-memory path that raises a machine check.</p>
+<p class="p_Normal">In EMulatR the chipset is the adapter between the CPU(s) and the devices whose accesses it routes. Every CPU load, store, and fetch enters the chipset through its system-bus seam; the chipset decodes the physical address and steers it to DRAM, to a chipset control/status register (CSR), to a PCI device, or to the non-existent-memory path that raises a machine check.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Two distinct pieces of silicon are involved on the Alpha 21264 (EV6/EV68) machines EmulatR targets, and it is important not to confuse them.</p>
+<p class="p_Normal">Two distinct pieces of REAL_HW are involved on the Alpha 21264 (EV6/EV68) machines EMulatR targets, and it is important not to confuse them.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Core-logic chipset (north side)</span></h2>
 <p class="p_Normal">The core-logic chipset is the memory controller plus PCI/AGP host bridge -- the <span class="f_CodeExample">Cchip</span> (command/address, interrupts, arbitration), <span class="f_CodeExample">Dchip</span> (data slice), and <span class="f_CodeExample">Pchip</span> (PCI host bridge). Two generations appear across the supported platforms:</p>
@@ -143,7 +143,7 @@
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platforms</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EmulatR</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EMulatR</span></p>
 </th>
 </tr>
 </thead>
@@ -177,17 +177,17 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">South bridge (legacy I/O side)</span></h2>
 <p class="p_Normal">Hanging off PCI hose 0 is the south bridge, which provides the legacy ISA plane: the 8259 interrupt controllers, 8254 timers, MC146818 real-time clock, 16550 UARTs, keyboard controller, and an IDE controller. The south bridge is platform-specific and independent of the core-logic generation:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Cypress CY82C693</span> -- DS10 / DS20 (PC264 lineage).</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">ALi M1543C</span> -- ES40 / ES45.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Cypress CY82C693</span> -- DS10 / DS20 (PC264 lineage).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">ALi M1543C</span> -- ES40 / ES45.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">EmulatR selects the south bridge by machine model in <span class="f_CodeExample">TsunamiChipset::wireDevices()</span>; the ISA devices behind it sit at fixed ports and are reused unchanged regardless of which bridge is wired.</p>
+<p class="p_Normal">EMulatR selects the south bridge by machine model in <span class="f_CodeExample">TsunamiChipset::wireDevices()</span>; the ISA devices behind it sit at fixed ports and are reused unchanged regardless of which bridge is wired.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- wireDevices() selects south bridge by model; arbiter seam.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox"> -- north-side Cchip (with TsunamiDchip.h / TsunamiPchip.h).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- Cypress south bridge (DS10/DS20).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- ALi M1543C south bridge (ES40/ES45).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TitanChipset.h</span><span class="f_NotesBox"> -- 21274 (Titan) scaffold counterpart.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.cpp</span><span class="f_NotesBox"> -- wireDevices() selects south bridge by model; arbiter seam.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiCchip.h</span><span class="f_NotesBox"> -- north-side Cchip (with TsunamiDchip.h / TsunamiPchip.h).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- Cypress south bridge (DS10/DS20).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- ALi M1543C south bridge (ES40/ES45).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TitanChipset.h</span><span class="f_NotesBox"> -- 21274 (Titan) scaffold counterpart.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="southbridge.html" class="topiclink">South Bridge</a></p>

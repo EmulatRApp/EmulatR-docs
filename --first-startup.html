@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="date prompt,Emulatr root,EMULATR_NO_PUTTY,first run,first startup,Launching EmulatR,LFU auto-response,port 10023,PuTTY auto-launch,SRM prompt" />
-   <meta name="description" content="The simplest first run is EmulatrLaunch.exe from the installation: it creates a system, gives it a profile directory to run in, and starts the emulator with the right working..." />
+   <meta name="description" content="The simplest first run is EMulatRLaunch.exe from the installation: it creates a system, gives it a profile directory to run in, and starts the emulator with the right working..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -114,7 +114,7 @@
       
       <a href="--dependencies----------------.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="2_-installation.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="3_-quick-start----------------.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="3_-platform-editor.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -127,30 +127,30 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The simplest first run is <span class="f_CodeExample">EmulatrLaunch.exe</span> from the installation: it creates a system, gives it a profile directory to run in, and starts the emulator with the right working directory. See <a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a>.</p>
+<p class="p_Normal">The simplest first run is <span class="f_CodeExample">EMulatRLaunch.exe</span> from the installation: it creates a system, gives it a profile directory to run in, and starts the emulator with the right working directory. See <a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">To do the same from a command line, run FROM your system's profile directory rather than from the installation - the install directory is read-only and a kit upgrade replaces it wholesale, so logs, snapshots and NVRAM must not be written there:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;'&lt;your&nbsp;profile&nbsp;directory&gt;'</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EmulatR\Emulatr.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The leading <span class="f_CodeExample">&amp;</span> is required, not decoration. A quoted path is a STRING in PowerShell; without the call operator the shell simply prints the path back and nothing starts.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The firmware image is yours to supply - EmulatR ships no SRM image, so the installation has no <span class="f_CodeExample">firmware</span> folder and the profile's own one is where the image goes. See <a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a>. Working from a build tree instead? The developer chapter uses <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span> - see <a href="running-from-a-run-directory.html" class="topiclink">Running from a Run Directory</a>.</p>
+<p class="p_Normal">The firmware image is yours to supply - EMulatR ships no SRM image, so the installation has no <span class="f_CodeExample">firmware</span> folder and the profile's own one is where the image goes. See <a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a>. Working from a build tree instead? The developer chapter uses <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span> - see <a href="running-from-a-run-directory.html" class="topiclink">Running from a Run Directory</a>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">On launch the TCP console server comes up (default port <span class="f_CodeExample">10023</span>) and, unless <span class="f_CodeExample">EMULATR_NO_PUTTY</span> is set, a PuTTY session is auto-launched against it. The firmware then runs through its power-up sequence to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. For the step-by-step walkthrough, see Quick Start; to stop cleanly, see Clean Shutdown.</p>
+<p class="p_Normal">On launch the TCP console server comes up (default port <span class="f_CodeExample">10023</span>) and, unless <span class="f_CodeExample">EMulatR_NO_PUTTY</span> is set, a PuTTY session is auto-launched against it. The firmware then runs through its power-up sequence to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. For the step-by-step walkthrough, see Quick Start; to stop cleanly, see Clean Shutdown.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Two things about that first boot are worth expecting.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The console may appear to type by itself. When the firmware image is an update-distribution image - the DS20 v7.3 image is one - power-up walks a console-update question and the LFU menu before it reaches the real SRM, and EmulatR answers both the way an operator would. Each answer prints one line saying what was sent, so nothing the machine appears to type is unaccounted for. See <a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a>.</p>
+<p class="p_Normal">The console may appear to type by itself. When the firmware image is an update-distribution image - the DS20 v7.3 image is one - power-up walks a console-update question and the LFU menu before it reaches the real SRM, and EMulatR answers both the way an operator would. Each answer prints one line saying what was sent, so nothing the machine appears to type is unaccounted for. See <a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The guest does not ask you for the date. The emulated time-of-year clock is seeded from the host clock by default, so a fresh installation boots with a correct time. Setting <span class="f_CodeExample">EMULATR_TOY_MODE=unset</span> selects the faithful dead-battery lifecycle instead, and with it the boot-time date prompt returns. See <a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a>.</p>
+<p class="p_Normal">The guest does not ask you for the date. The emulated time-of-year clock is seeded from the host clock by default, so a fresh installation boots with a correct time. Setting <span class="f_CodeExample">EMulatR_TOY_MODE=unset</span> selects the faithful dead-battery lifecycle instead, and with it the boot-time date prompt returns. See <a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="3_-quick-start----------------.html" class="topiclink">Quick Start</a></p>
-<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EmulatR</a></p>
+<p class="p_Normal"><a href="--launching-emulatr.html" class="topiclink">Launching EMulatR</a></p>
 <p class="p_Normal"><a href="--clean-shutdown.html" class="topiclink">Clean Shutdown</a></p>
-<p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP (Engineering-Virtual) vs Silicon (REAL_HW)</a></p>
+<p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP (Engineering-Virtual) vs REAL_HW (REAL_HW)</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.4 Storage &gt; Create Guest Disk Storage</title>
+   <title>5. Operating EmulatR &gt; 5.4 Storage &gt; Create Guest Disk Storage</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="ATA disk,bare image,blank-4G,create_if_missing,dec_disk_media_types,disk geometry,disk_types.json,dqa0,EmulatRLauncher,mkdisk,RZ28,sparse image,virtual disk" />
-   <meta name="description" content="EmulatR provisions disk images two ways: automatically at boot, driven by the platform manifest (create_if_missing), and manually with the tools/mkdisk.py generator. Both share..." />
+   <meta name="description" content="EMulatR provisions disk images two ways: automatically at boot, driven by the platform manifest (create_if_missing), and manually with the tools/mkdisk.py generator. Both share..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--create-guest-disk-storage---.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_4-storage.html">4.4 Storage</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_4-storage.html">5.4 Storage</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Create Guest Disk Storage</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR provisions disk images two ways: automatically at boot, driven by the platform manifest (<span class="f_CodeExample">create_if_missing</span>), and manually with the <span class="f_CodeExample">tools/mkdisk.py</span> generator. Both share one image-creation codepath and one geometry catalog, so a disk type's size is defined in exactly one place. A manifest references a disk <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">type</span>, not a raw byte count -- the size is resolved from the catalog at load.</p>
+<p class="p_Normal">EMulatR provisions disk images two ways: automatically at boot, driven by the platform manifest (<span class="f_CodeExample">create_if_missing</span>), and manually with the <span class="f_CodeExample">tools/mkdisk.py</span> generator. Both share one image-creation codepath and one geometry catalog, so a disk type's size is defined in exactly one place. A manifest references a disk <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">type</span>, not a raw byte count -- the size is resolved from the catalog at load.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Geometry catalog (single source of truth)</span></h2>
 <p class="p_Normal">The authoritative geometry source is <span class="f_CodeExample">config/disk_types.json</span>, generated at build time from <span class="f_CodeExample">dec_disk_media_types.tsv</span>. Never hand-maintain both: edit the TSV, regenerate the JSON. Each type names <span class="f_CodeExample">total_lbn</span> and <span class="f_CodeExample">block_bytes</span>; capacity is derived (<span class="f_CodeExample">total_lbn * block_bytes</span>). A type is either a real DEC model (for example RZ28) or a sized blank target (for example blank-4G).</p>
@@ -200,9 +200,9 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EmulatRLaucher Make Disk. &nbsp;( </span><span class="f_SeeAlso"><a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a></span><span class="f_SeeAlso" style="font-weight: bold;"> )</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EMulatRLaucher Make Disk. &nbsp;( </span><span class="f_SeeAlso"><a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a></span><span class="f_SeeAlso" style="font-weight: bold;"> )</span></h2>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">EmulatRLauncher - System's tab.</p>
+<p class="p_Normal">EMulatRLauncher - System's tab.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><img src="embim6.png" width="529" height="33" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
@@ -218,10 +218,10 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What a fresh installation ships with</span></h2>
 <p class="p_Normal">The platform manifests in a distribution are tailored when the kit is built. Every storage row the development machine had is kept, so the file still documents the slots a platform has, but the <span class="f_CodeExample">media</span> field is emptied on every row except <span class="f_CodeExample">dka0.vdisk</span> - the system-disk convention. A row with an empty media field does not enumerate, so a fresh installation comes up with dka0 only and nothing else attached.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">That makes the first step concrete: put your system disk at <span class="f_CodeExample">dka0.vdisk</span>, or edit that row to name the image you already have. To bring another slot into service, fill in that row's <span class="f_CodeExample">media</span> field; its <span class="f_CodeExample">disk_type</span> must be one of the type names in <span class="f_CodeExample">config/disk_types.json</span> (the catalog above). A relative image name resolves against the directory you launch from, because the shipped <span class="f_CodeExample">config/Emulatr.ini</span> leaves <span class="f_CodeExample">diskDir</span> empty.</p>
+<p class="p_Normal">That makes the first step concrete: put your system disk at <span class="f_CodeExample">dka0.vdisk</span>, or edit that row to name the image you already have. To bring another slot into service, fill in that row's <span class="f_CodeExample">media</span> field; its <span class="f_CodeExample">disk_type</span> must be one of the type names in <span class="f_CodeExample">config/disk_types.json</span> (the catalog above). A relative image name resolves against the directory you launch from, because the shipped <span class="f_CodeExample">config/EMulatR.ini</span> leaves <span class="f_CodeExample">diskDir</span> empty.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Automatic provisioning (create_if_missing)</span></h2>
-<p class="p_Normal">When a manifest storage entry names a missing image and sets <span class="f_CodeExample">create_if_missing</span>, EmulatR provisions a blank sparse image of the catalogued size on first boot. It never overwrites an existing image, and never provisions read-only media (an ISO is supplied, not created). Example manifest entry for the dqa0 ATA disk:</p>
+<p class="p_Normal">When a manifest storage entry names a missing image and sets <span class="f_CodeExample">create_if_missing</span>, EMulatR provisions a blank sparse image of the catalogued size on first boot. It never overwrites an existing image, and never provisions read-only media (an ISO is supplied, not created). Example manifest entry for the dqa0 ATA disk:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">{&nbsp;&quot;channel&quot;:&nbsp;0,&nbsp;&quot;unit&quot;:&nbsp;0,&nbsp;&quot;type&quot;:&nbsp;&quot;ata_disk&quot;,</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&quot;media&quot;:&nbsp;&quot;dqa0.img&quot;,&nbsp;&quot;disk_type&quot;:&nbsp;&quot;blank-4G&quot;,</span></p>

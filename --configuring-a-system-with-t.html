@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>4. Operating EmulatR &gt; 4.1 Configuring &amp; Running &gt; Configuring a System with the Launcher</title>
+   <title>5. Operating EmulatR &gt; 5.1 Configuring &amp; Running &gt; Configuring a System with the Launcher</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--configuring-a-system-with-t.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="4_-operating-emulatr----------.html">4. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">4.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
+      <a href="4_-operating-emulatr----------.html">5. Operating EmulatR</a> &gt; <a href="4_1-configuring--running.html">5.1 Configuring &amp; Running</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Configuring a System with the Launcher</span></h1>
 
@@ -130,16 +130,16 @@
 <p class="p_Normal">This topic walks through configuring an emulated machine from a fresh installation to a booted guest. Work through the steps in order; each one builds on the last.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Terms you need first</span></h2>
-<p class="p_Normal">The product is <span style="font-weight: bold;">EmulatR</span>. The <span style="font-weight: bold;">launcher</span> (<span class="f_CodeExample">EmulatrLaunch.exe</span>) and the <span style="font-weight: bold;">Platform Editor</span> (<span class="f_CodeExample">editors\platedit_qt.exe</span>) are subsystems of it.</p>
+<p class="p_Normal">The product is <span style="font-weight: bold;">EMulatR</span>. The <span style="font-weight: bold;">launcher</span> (<span class="f_CodeExample">EMulatRLaunch.exe</span>) and the <span style="font-weight: bold;">Platform Editor</span> (<span class="f_CodeExample">editors\platedit_wx.exe</span>) are subsystems of it. The Platform Editor has its own chapter, <a href="3_-platform-editor.html" class="topiclink">3. Platform Editor</a>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The <span style="font-weight: bold;">installation</span> lives at <span class="f_CodeExample">C:\Program Files\eNVy Systems, Inc\ASA-EmulatR</span> and is read-only. A kit upgrade replaces it wholesale, so nothing you customize is ever stored there.</p>
+<p class="p_Normal">The <span style="font-weight: bold;">installation</span> lives at <span class="f_CodeExample">C:\Program Files\eNVy Systems, Inc\ASA-EMulatR</span> and is read-only. A kit upgrade replaces it wholesale, so nothing you customize is ever stored there.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">A <span style="font-weight: bold;">named system</span> is the launcher's unit of configuration: one platform (bound at creation) plus one <span style="font-weight: bold;">profile directory</span>, also called the run directory. The profile directory holds everything that system owns -- <span class="f_CodeExample">Emulatr.ini</span>, the system's own copy of the platform manifest, <span class="f_CodeExample">firmware\</span>, <span class="f_CodeExample">disks\</span>, <span class="f_CodeExample">logs\</span> and <span class="f_CodeExample">traces\</span>.</p>
+<p class="p_Normal">A <span style="font-weight: bold;">named system</span> is the launcher's unit of configuration: one platform (bound at creation) plus one <span style="font-weight: bold;">profile directory</span>, also called the run directory. The profile directory holds everything that system owns -- <span class="f_CodeExample">EMulatR.ini</span>, the system's own copy of the platform manifest, <span class="f_CodeExample">firmware\</span>, <span class="f_CodeExample">disks\</span>, <span class="f_CodeExample">logs\</span> and <span class="f_CodeExample">traces\</span>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The launcher's catalog of systems lives in the per-user registry hive <span class="f_CodeExample">HKEY_CURRENT_USER\Software\eNVy Systems\EmulatR</span>, where every launcher key carries a <span class="f_CodeExample">launch_</span> prefix. The registry is the CATALOG, not the substance: it stores names, pointers and small per-system knobs, while everything load-bearing lives in the profile directory on disk. That split is why both survive a kit uninstall and reinstall, and why a lost hive costs you nothing but the re-registration.</p>
+<p class="p_Normal">The launcher's catalog of systems lives in the per-user registry hive <span class="f_CodeExample">HKEY_CURRENT_USER\Software\eNVy Systems\EMulatR</span>, where every launcher key carries a <span class="f_CodeExample">launch_</span> prefix. The registry is the CATALOG, not the substance: it stores names, pointers and small per-system knobs, while everything load-bearing lives in the profile directory on disk. That split is why both survive a kit uninstall and reinstall, and why a lost hive costs you nothing but the re-registration.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 1 -- Install and start the launcher</span></h2>
-<p class="p_Normal">Run the installer, uninstalling any existing kit first, then start <span class="f_CodeExample">EmulatrLaunch.exe</span> from the installation directory. No console window or shell is involved: the launcher starts the emulator directly as a child process with an explicit working directory and environment.</p>
+<p class="p_Normal">Run the installer, uninstalling any existing kit first, then start <span class="f_CodeExample">EMulatRLaunch.exe</span> from the installation directory. No console window or shell is involved: the launcher starts the emulator directly as a child process with an explicit working directory and environment.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 2 -- Create a named system</span></h2>
 <p class="p_Normal">On the Systems tab, choose <span style="font-weight: bold;">New System...</span> and supply:</p>
@@ -147,9 +147,9 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><img src="embim2.png" width="625" height="470" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Name</span><span class="f_NotesBox"> -- any display name, unique ignoring case.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Platform</span><span class="f_NotesBox"> -- DS10, DS20 or ES40. This is immutable after creation.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Profile (run) directory</span><span class="f_NotesBox"> -- anywhere you own, for example under Documents. Locations under Program Files are REFUSED: Windows silently redirects writes there and the emulator's flash state would be lost.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Name</span><span class="f_NotesBox"> -- any display name, unique ignoring case.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Platform</span><span class="f_NotesBox"> -- DS10, DS20 or ES40. This is immutable after creation.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox" style="font-weight: bold;">Profile (run) directory</span><span class="f_NotesBox"> -- anywhere you own, for example under Documents. Locations under Program Files are REFUSED: Windows silently redirects writes there and the emulator's flash state would be lost.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><img src="embim3.png" width="602" height="260" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
@@ -166,7 +166,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.ini</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR.ini</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">seeded from a template with the model and console port filled in</p>
 </td>
@@ -202,21 +202,21 @@
 <p class="p_Normal">The manifest copy at creation is the key design point: the profile is self-contained from birth. Editing the manifest affects only this system, and kit upgrades never touch it. Systems created by older launcher builds are seeded on their first <span style="font-weight: bold;">Open in PlatEd</span> instead.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 3 -- Supply the SRM firmware image</span></h2>
-<p class="p_Normal">EmulatR does not distribute firmware, for licensing reasons. Copy your firmware image -- for example <span class="f_CodeExample">ds20_v7_3.exe</span> -- into the profile's <span class="f_CodeExample">firmware\</span> folder. Back in the launcher, the Details tab's <span style="font-weight: bold;">Firmware -&gt; Image</span> control lists every file it finds there; pick one. A platform-mismatched image is flagged as a warning, never refused.</p>
+<p class="p_Normal">EMulatR does not distribute firmware, for licensing reasons. Copy your firmware image -- for example <span class="f_CodeExample">ds20_v7_3.exe</span> -- into the profile's <span class="f_CodeExample">firmware\</span> folder. Back in the launcher, the Details tab's <span style="font-weight: bold;">Firmware -&gt; Image</span> control lists every file it finds there; pick one. A platform-mismatched image is flagged as a warning, never refused.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The selection is written to <span class="f_CodeExample">Emulatr.ini</span>, and the image's basename -- the <span style="font-weight: bold;">stem</span> -- names the manifest the system uses: <span class="f_CodeExample">ds20_v7_3.exe</span> selects <span class="f_CodeExample">ds20_v7_3_platform.json</span>.</p>
+<p class="p_Normal">The selection is written to <span class="f_CodeExample">EMulatR.ini</span>, and the image's basename -- the <span style="font-weight: bold;">stem</span> -- names the manifest the system uses: <span class="f_CodeExample">ds20_v7_3.exe</span> selects <span class="f_CodeExample">ds20_v7_3_platform.json</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 4 -- Configure devices and storage</span></h2>
-<p class="p_Normal">Details tab -&gt; <span style="font-weight: bold;">Devices -&gt; Open in PlatEd</span> opens this system's manifest copy. The note under the button shows the exact path and confirms it is <span class="f_CodeExample">(system-local)</span>. The manifest declares the PCI devices and, under each storage controller, the disk and CD rows. On a DS20 the rows that matter to a first boot are:</p>
+<p class="p_Normal">Details tab -&gt; <span style="font-weight: bold;">Devices -&gt; Open in PlatEd</span> opens this system's manifest copy in the Platform Editor (<span class="f_CodeExample">platedit_wx.exe</span>; the earlier Qt edition is used only if the wx edition is not installed). The launcher also passes this system's own <span class="f_CodeExample">EMulatR.ini</span> (<span class="f_CodeExample">--ini</span>), so the editor's board view and Configure wizard use this system's CPUs, memory and disk folder. The note under the button shows the exact path and confirms it is <span class="f_CodeExample">(system-local)</span>. The manifest declares the PCI devices and, under each storage controller, the disk and CD rows. On a DS20 the rows that matter to a first boot are:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pka_53c810</span><span class="f_NotesBox"> (the NCR SCSI HBA): SCSI id 0 becomes console device </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox">, id 1 becomes </span><span class="f_CodeExample">dka100</span><span class="f_NotesBox">, and so on. Each row's </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names its backing image file.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cypress_ide</span><span class="f_NotesBox">: the ATAPI CD, </span><span class="f_CodeExample">dqa1</span><span class="f_NotesBox">. Its </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names an ISO; empty means no disc.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pka_53c810</span><span class="f_NotesBox"> (the NCR SCSI HBA): SCSI id 0 becomes console device </span><span class="f_CodeExample">dka0</span><span class="f_NotesBox">, id 1 becomes </span><span class="f_CodeExample">dka100</span><span class="f_NotesBox">, and so on. Each row's </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names its backing image file.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">cypress_ide</span><span class="f_NotesBox">: the ATAPI CD, </span><span class="f_CodeExample">dqa1</span><span class="f_NotesBox">. Its </span><span class="f_CodeExample">media</span><span class="f_NotesBox"> names an ISO; empty means no disc.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">How a media path is resolved</span></h3>
 <p class="p_Normal">One rule, two cases:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">An ABSOLUTE path (</span><span class="f_CodeExample">D:/Disks/dka0.vdisk</span><span class="f_NotesBox">) is used as-is. This is the simplest way to attach a disk you already have.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A RELATIVE path (</span><span class="f_CodeExample">Alpha/dka0.vdisk</span><span class="f_NotesBox">) resolves against </span><span class="f_CodeExample">[Storage] diskDir</span><span class="f_NotesBox"> in the profile's </span><span class="f_CodeExample">Emulatr.ini</span><span class="f_NotesBox">. New profiles are seeded with </span><span class="f_CodeExample">diskDir = disks</span><span class="f_NotesBox">, so that example means </span><span class="f_CodeExample">&lt;profile&gt;\disks\Alpha\dka0.vdisk</span><span class="f_NotesBox">.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">An ABSOLUTE path (</span><span class="f_CodeExample">D:/Disks/dka0.vdisk</span><span class="f_NotesBox">) is used as-is. This is the simplest way to attach a disk you already have.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A RELATIVE path (</span><span class="f_CodeExample">Alpha/dka0.vdisk</span><span class="f_NotesBox">) resolves against </span><span class="f_CodeExample">[Storage] diskDir</span><span class="f_NotesBox"> in the profile's </span><span class="f_CodeExample">EMulatR.ini</span><span class="f_NotesBox">. New profiles are seeded with </span><span class="f_CodeExample">diskDir = disks</span><span class="f_NotesBox">, so that example means </span><span class="f_CodeExample">&lt;profile&gt;\disks\Alpha\dka0.vdisk</span><span class="f_NotesBox">.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">If a row's file does not exist at launch, the emulator leaves that unit empty -- the SRM then reports <span class="f_CodeExample">device dka0 is invalid</span> when you try to boot it -- and writes a <span class="f_CodeExample">Storage: ... not attached</span> line to the mirror log naming the exact path it tried. That log line is the first place to look when a disk is missing.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -242,7 +242,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Discovered (recommended) / Release / RelWithDebInfo / Debug / Custom</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">which <span class="f_CodeExample">Emulatr.exe</span> this system launches. Discovered finds the installed one.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">which <span class="f_CodeExample">EMulatR.exe</span> this system launches. Discovered finds the installed one.</p>
 </td>
 </tr>
 <tr>
@@ -256,9 +256,9 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Execution mode</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP (default) / Silicon</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP (default) / REAL_HW</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is the firmware's pre-silicon simulator path and boots to the SRM prompt. Silicon is the faithful real-hardware path -- experimental, and does not yet reach the console.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ISP is the firmware's pre-REAL_HW simulator path and boots to the SRM prompt. REAL_HW is the faithful real-hardware path -- experimental, and does not yet reach the console.</p>
 </td>
 </tr>
 <tr>
@@ -287,7 +287,7 @@
 <p class="p_Normal">An unchecked variable is ABSENT from the child environment, not merely empty. Quarantined variables are stripped even when they are set in your own shell.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Step 7 -- Start, console, stop</span></h2>
-<p class="p_Normal"><span style="font-weight: bold;">Start</span> launches <span class="f_CodeExample">Emulatr.exe</span> directly, with no shell: the working directory is the profile, the firmware comes from the Image selection, and the environment is composed from the knob overlays plus the variables you checked. When the profile owns a manifest copy, the launch points the emulator at it explicitly, so the installed defaults are never consulted.</p>
+<p class="p_Normal"><span style="font-weight: bold;">Start</span> launches <span class="f_CodeExample">EMulatR.exe</span> directly, with no shell: the working directory is the profile, the firmware comes from the Image selection, and the environment is composed from the knob overlays plus the variables you checked. When the profile owns a manifest copy, the launch points the emulator at it explicitly, so the installed defaults are never consulted.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Every run writes a <span style="font-weight: bold;">mirror log</span> to <span class="f_CodeExample">&lt;profile&gt;\logs\run_launch_*.log</span>, headed by the effective diagnostic environment for that run.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -406,8 +406,8 @@
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--system-disk-configuration.html" class="topiclink">System Disk Configuration</a></p>
 <p class="p_Normal"><a href="--firmware-requirements.html" class="topiclink">Firmware Requirements</a></p>
-<p class="p_Normal"><a href="platformeditor-web-ui.html" class="topiclink">Platform Editor</a></p>
-<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMULATR_*)</a></p>
+<p class="p_Normal"><a href="3_-platform-editor.html" class="topiclink">3. Platform Editor</a></p>
+<p class="p_Normal"><a href="--environment-variables-(emula.html" class="topiclink">Environment Variables (EMulatR_*)</a></p>
 <p class="p_Normal"><a href="--connecting-to-the-console.html" class="topiclink">Connecting to the Console</a></p>
 <p class="p_Normal"><a href="4_7-guest-boot----------------.html" class="topiclink">Guest Boot</a></p>
 

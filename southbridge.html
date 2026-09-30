@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices &gt; South Bridge</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices &gt; South Bridge</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?southbridge.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="chipset.html">5.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="chipset.html">6.3 Chipset &amp; Devices</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">South Bridge</span></h1>
 
@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">The south bridge is the PCI-to-ISA bridge that carries the legacy I/O plane of an Alpha system: the 8259A interrupt-controller pair, the 8254 timers, the MC146818 real-time clock / CMOS, the 16550 UARTs (COM1/COM2), the 8042 keyboard controller, an IDE controller, and the Super I/O (floppy, parallel). It sits on PCI hose 0 and is one of the first devices the SRM console enumerates.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The south bridge is chosen by platform and is independent of the core-logic chipset generation. EmulatR models two:</p>
+<p class="p_Normal">The south bridge is chosen by platform and is independent of the core-logic chipset generation. EMulatR models two:</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -172,19 +172,19 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The device-attachment contract</span></h2>
 <p class="p_Normal">Both bridges implement the same two interfaces from <span class="f_CodeExample">chipsetLib/IDeviceHandlers.h</span>, so the chipset wires them identically:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">IPciDeviceHandler</span> -- <span class="f_CodeExample">pciConfigRead/Write(reg, value, width)</span> over a 256-byte PCI configuration space. This is how the SRM finds the bridge during slot enumeration.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">IIoPortHandler</span> -- <span class="f_CodeExample">ioRead/Write(port, value, width)</span> for the legacy ISA I/O window.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">IPciDeviceHandler</span> -- <span class="f_CodeExample">pciConfigRead/Write(reg, value, width)</span> over a 256-byte PCI configuration space. This is how the SRM finds the bridge during slot enumeration.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">IIoPortHandler</span> -- <span class="f_CodeExample">ioRead/Write(port, value, width)</span> for the legacy ISA I/O window.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Model-gated selection</span></h2>
-<p class="p_Normal">EmulatR picks the bridge in <span class="f_CodeExample">TsunamiChipset::wireDevices()</span> from a <span class="f_CodeExample">SouthBridge</span> enum (<span class="f_CodeExample">m_southBridge</span>; the former <span class="f_CodeExample">isAliPlatform(model)</span> string test was retired) -- ES40 / ES45 / DS25 wire the ALi, everything else wires the Cypress (the default). The SAME lever also selects the IDE controller (func 1) -- ALi M5229 or Cypress -- so bridge and IDE stay consistent by construction. The model string reaches the chipset because <span class="f_CodeExample">Machine</span> constructs it from the ini <span class="f_CodeExample">[System] model</span>. The ISA devices behind the bridge live at fixed ports (8259 at 0x20/0xA0, RTC at 0x70, COM1 at 0x3F8, ...) and are registered separately, so they are reused unchanged regardless of which bridge is selected.</p>
+<p class="p_Normal">EMulatR picks the bridge in <span class="f_CodeExample">TsunamiChipset::wireDevices()</span> from a <span class="f_CodeExample">SouthBridge</span> enum (<span class="f_CodeExample">m_southBridge</span>; the former <span class="f_CodeExample">isAliPlatform(model)</span> string test was retired) -- ES40 / ES45 / DS25 wire the ALi, everything else wires the Cypress (the default). The SAME lever also selects the IDE controller (func 1) -- ALi M5229 or Cypress -- so bridge and IDE stay consistent by construction. The model string reaches the chipset because <span class="f_CodeExample">Machine</span> constructs it from the ini <span class="f_CodeExample">[System] model</span>. The ISA devices behind the bridge live at fixed ports (8259 at 0x20/0xA0, RTC at 0x70, COM1 at 0x3F8, ...) and are registered separately, so they are reused unchanged regardless of which bridge is selected.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox">Only the bridge identity and config space differ between the two. The SRM probes the bridge's vendor/device ID and then programs bridge-specific control and interrupt-routing registers; getting those config-space responses right is what keeps enumeration from stalling.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- wireDevices(); the m_southBridge lever selecting bridge + IDE (func 0 / func 1).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- ALi M1543C ISA bridge (0x10B9/0x1533); M5229 IDE id 0x5229.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- the Cypress CY82C693 ISA bridge (0x1080/0xC693).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/IDeviceHandlers.h</span><span class="f_NotesBox"> -- IPciDeviceHandler / IIoPortHandler, the shared attachment contract.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- wireDevices(); the m_southBridge lever selecting bridge + IDE (func 0 / func 1).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- ALi M1543C ISA bridge (0x10B9/0x1533); M5229 IDE id 0x5229.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Cypress_CY82C693ISABridge.h</span><span class="f_NotesBox"> -- the Cypress CY82C693 ISA bridge (0x1080/0xC693).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/IDeviceHandlers.h</span><span class="f_NotesBox"> -- IPciDeviceHandler / IIoPortHandler, the shared attachment contract.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="chipset.html" class="topiclink">Chipset</a></p>

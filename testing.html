@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; Testing (draft)</title>
+   <title>9. Appendices - Developer Reference &gt; Testing (draft)</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="boot gate,CHECK,doctest,Emulatr_tests,golden trace,Oracle,unit tests" />
-   <meta name="description" content="EmulatR is validated two ways: a doctest unit-test suite, and a boot-gate that a build must still pass at the console level. The determinism of the V6 Oracle (faithful..." />
+   <meta name="description" content="EMulatR is validated two ways: a doctest unit-test suite, and a boot-gate that a build must still pass at the console level. The determinism of the V6 Oracle (faithful..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?testing.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Testing</span></h1>
 
@@ -127,32 +127,28 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR is validated two ways: a doctest unit-test suite, and a boot-gate that a build must still pass at the console level. The determinism of the V6 Oracle (faithful decompressor plus the ISP default) is what makes both repeatable.</p>
+<p class="p_Normal">EMulatR is validated two ways: a doctest unit-test suite, and a boot-gate that a build must still pass at the console level. The determinism of the V6 Oracle (faithful decompressor plus the ISP default) is what makes both repeatable.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Unit tests (doctest)</span></h2>
-<p class="p_Normal">The unit suite uses doctest 2.5.0 (a single vendored header, <span class="f_CodeExample">tests/doctest.h</span>). Because V6 builds with C++ exceptions disabled, tests assert with <span class="f_CodeExample">CHECK</span> only -- never <span class="f_CodeExample">REQUIRE</span>. They build as the <span class="f_CodeExample">Emulatr_tests</span> target and run as a standalone executable:</p>
+<p class="p_Normal">The unit suite uses doctest 2.5.0 (a single vendored header, <span class="f_CodeExample">tests/doctest.h</span>). Because V6 builds with C++ exceptions disabled, tests assert with <span class="f_CodeExample">CHECK</span> only -- never <span class="f_CodeExample">REQUIRE</span>. They build as the <span class="f_CodeExample">EMulatR_tests</span> target and run as a standalone executable:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;out/build/v6-relwithdebinfo&nbsp;-j&nbsp;--target&nbsp;Emulatr_tests</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">./out/build/v6-relwithdebinfo/run/Emulatr_tests.exe</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cmake&nbsp;--build&nbsp;out/build/v6-relwithdebinfo&nbsp;-j&nbsp;--target&nbsp;EMulatR_tests</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">./out/build/v6-relwithdebinfo/run/EMulatR_tests.exe</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Coverage spans the device models (for example <span class="f_CodeExample">test_floppy82077</span>, <span class="f_CodeExample">test_cy82c693ide</span>, <span class="f_CodeExample">test_scsi_iso</span>), the decode / dispatch tables, and the floating-point backend -- the <span class="f_CodeExample">fp_softfloat_vs_host_bench</span> differential checks the native FP path against the Berkeley SoftFloat oracle bit-for-bit.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Boot gate</span></h2>
 <p class="p_Normal">Beyond the unit suite, a build must still clear the console boot-gate: DS10 and DS20 reach the SRM <span class="f_CodeExample">P00&gt;&gt;&gt;</span> prompt, and ES40 reaches its prompt with no regression against the prior build. Running with all levers unset (faithful decompressor, ISP default) makes the run the deterministic Oracle, so a behavioral drift shows up as a diff against the golden traces rather than as a flaky pass.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-size: 16px; font-weight: bold;">Useful DOCTEST flags</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">Emulatr_tests.exe&nbsp;--list-test-cases&nbsp;—&nbsp;see&nbsp;what's&nbsp;registered</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">Emulatr_tests.exe&nbsp;--test-case=&quot;*NDS*&quot;&nbsp;—&nbsp;run&nbsp;just&nbsp;the&nbsp;new&nbsp;PERROR&lt;NDS&gt;&nbsp;case</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">Emulatr_tests.exe&nbsp;--test-case=&quot;*pchip*,*dma*&quot;&nbsp;—&nbsp;the&nbsp;Pchip&nbsp;DMA&nbsp;set</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_tests.exe&nbsp;--list-test-cases&nbsp;—&nbsp;see&nbsp;what's&nbsp;registered</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_tests.exe&nbsp;--test-case=&quot;*NDS*&quot;&nbsp;—&nbsp;run&nbsp;just&nbsp;the&nbsp;new&nbsp;PERROR&lt;NDS&gt;&nbsp;case</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_tests.exe&nbsp;--test-case=&quot;*pchip*,*dma*&quot;&nbsp;—&nbsp;the&nbsp;Pchip&nbsp;DMA&nbsp;set</span></p>
 <p class="p_Normal"><span style="font-weight: bold;">add -s to show passing assertions too</span></p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--building-from-source.html" class="topiclink">Building from Source</a></p>
 <p class="p_Normal"><a href="execution-matrix.html" class="topiclink">Execution Matrix (Models x Modes)</a></p>
-<p class="p_Normal"><a href="known-gaps.html" class="topiclink">Known Gaps</a></p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><a href="testing-supported-cest-cases.html" class="topiclink">Supported Test Cases</a></p>
 
 <!--ZOOMSTOP-->

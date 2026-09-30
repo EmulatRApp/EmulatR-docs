@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>8. Appendices - Developer Reference &gt; 8.2 Tools &gt; script &gt; run_fw.sh</title>
+   <title>9. Appendices - Developer Reference &gt; 9.2 Tools &gt; script &gt; run_fw.sh</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="cold boot,firmware launch,run_fw" />
-   <meta name="description" content="Launches EmulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/Emulatr.ini for the run (backing up..." />
+   <meta name="description" content="Launches EMulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/EMulatR.ini for the run (backing up..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?run_fw_sh.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="8_-appendices---developer-refe.html">8. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">8.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
+      <a href="8_-appendices---developer-refe.html">9. Appendices - Developer Reference</a> &gt; <a href="8_4-tools.html">9.2 Tools</a> &gt; <a href="script.html">script</a>&nbsp;&gt;</p>
    
       <p><span class="f_Heading1">run_fw.sh</span></p>
 
@@ -127,28 +127,28 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p>Launches EmulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/Emulatr.ini for the run (backing up and restoring the ini on exit), copies the firmware into the build-dir firmware/ directory, and launches Emulatr.exe with console and stderr teed to fw_&lt;name&gt;_&lt;ts&gt;.out. Git Bash on Windows; anchors to the script's own directory as the build dir.</p>
+<p>Launches EMulatR V6 against one v7_3 firmware image with 4 GiB of RAM. Resolves the model variant, sets the [System] model line in config/EMulatR.ini for the run (backing up and restoring the ini on exit), copies the firmware into the build-dir firmware/ directory, and launches EMulatR.exe with console and stderr teed to fw_&lt;name&gt;_&lt;ts&gt;.out. Git Bash on Windows; anchors to the script's own directory as the build dir.</p>
 <p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
 <p><span class="f_Heading2">Usage</span></p>
-<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif;">./run_fw.sh &lt;ds10|ds20|ds25|es40|es45&gt; [cold] [extra Emulatr args...]</span></p>
+<p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif;">./run_fw.sh &lt;ds10|ds20|ds25|es40|es45&gt; [cold] [extra EMulatR args...]</span></p>
 <p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
 <p><span class="f_Heading2">Arguments</span></p>
 <p><span style="font-style: italic;">model</span> (required): one of ds10, ds20, ds25, es40, es45 -- maps to the [System] model written into the ini.</p>
 <p><span style="font-style: italic;">cold</span> (optional 2nd arg): forces a genuine cold boot -- passes --no-autoload and purges <span style="font-style: italic;">stale auto_*.axpsnap</span> (predig_* fast-forward anchors are preserved). Without it the run is <span style="font-style: italic;">warm</span>: autoloads the newest snapshot and keeps writing periodic autosnaps.</p>
 <p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
-<p>extra: any further arguments are passed through verbatim to Emulatr.exe (e.g. --max-cycles 0x10000000).</p>
+<p>extra: any further arguments are passed through verbatim to EMulatR.exe (e.g. --max-cycles 0x10000000).</p>
 <p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
 <p><span class="f_Heading2">Notes</span></p>
 <p>Memory is fixed at 4 GiB. The model is ini-driven; there is no --model flag. The SRM console listens on TCP 10023 -- connect with PuTTY/plink in raw mode to reach the &gt;&gt;&gt; prompt.</p>
 <p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">bash - Examples</span></h3>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMULATR_FLASH_ROM=ds20_v7_3.rom</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">unset&nbsp;EMULATR_IIC_WATCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;storm's&nbsp;gone;&nbsp;drop&nbsp;the&nbsp;probe&nbsp;noise</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EmulatR/project/out/build/v6-release/run</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">export&nbsp;EMulatR_FLASH_ROM=ds20_v7_3.rom</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">unset&nbsp;EMulatR_IIC_WATCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;storm's&nbsp;gone;&nbsp;drop&nbsp;the&nbsp;probe&nbsp;noise</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project/out/build/v6-release/run</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">./run_fw.sh&nbsp;ds20&nbsp;cold&nbsp;--max-cycles&nbsp;0x480000000&nbsp;2&gt;&amp;1&nbsp;|&nbsp;tee&nbsp;ds20_to_prompt_$(date&nbsp;+%H%M%S).out</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">#&nbsp;clean-stop&nbsp;sentinel&nbsp;from&nbsp;another&nbsp;shell&nbsp;once&nbsp;you&nbsp;see&nbsp;&gt;&gt;&gt;&nbsp;(flushes&nbsp;flash&nbsp;NVRAM):</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">#&nbsp;&nbsp;&nbsp;touch&nbsp;/d/EmulatR/project/out/build/v6-release/run/EMULATR_STOP</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">#&nbsp;&nbsp;&nbsp;touch&nbsp;/d/EMulatR/project/out/build/v6-release/run/EMulatR_STOP</span></p>
 
 <!--ZOOMSTOP-->
 </div></div>

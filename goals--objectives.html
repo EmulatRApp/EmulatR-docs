@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="architectural correctness,Box,commit point,determinism,differential validation,explicit serialization,fidelity standard,fidelity-faithful,goals,objectives,PALcode,separation of concerns,SMP,SRM console,Writeback" />
-   <meta name="description" content="EmulatR is a full-system, cycle-based, high-fidelity emulator of the DEC Alpha AXP architecture. Its purpose is not to approximate an Alpha but to behave like one -- faithfully..." />
+   <meta name="description" content="EMulatR is a full-system, cycle-based, high-fidelity emulator of the DEC Alpha AXP architecture. Its purpose is not to approximate an Alpha but to behave like one -- faithfully..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,15 +127,15 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR is a full-system, cycle-based, high-fidelity emulator of the DEC Alpha AXP architecture. Its purpose is not to approximate an Alpha but to behave like one -- faithfully enough that the most demanding original software cannot tell the difference. This page sets out the single standard the project is held to and the priority-ordered goals every design decision serves.</p>
+<p class="p_Normal">EMulatR is a full-system, cycle-based, high-fidelity emulator of the DEC Alpha AXP architecture. Its purpose is not to approximate an Alpha but to behave like one -- faithfully enough that the most demanding original software cannot tell the difference. This page sets out the single standard the project is held to and the priority-ordered goals every design decision serves.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The fidelity standard</span></h2>
-<p class="p_Normal">EmulatR is governed by one overriding standard: it must behave like real Alpha hardware in every architecturally visible way, even when doing so complicates the implementation. This is applied uniformly across all subsystems -- the instruction set, memory translation, cache and coherency behavior, the PAL boundary, interrupt and exception delivery, device and DMA semantics, and multiprocessor ordering. A subsystem is correct only when no architecturally visible difference from hardware can be observed through it.</p>
+<p class="p_Normal">EMulatR is governed by one overriding standard: it must behave like real Alpha hardware in every architecturally visible way, even when doing so complicates the implementation. This is applied uniformly across all subsystems -- the instruction set, memory translation, cache and coherency behavior, the PAL boundary, interrupt and exception delivery, device and DMA semantics, and multiprocessor ordering. A subsystem is correct only when no architecturally visible difference from hardware can be observed through it.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The test of fidelity is black-box and adversarial. The judges are not internal assertions but the most demanding guests available: the SRM console and PALcode exercise the privileged architecture directly, a booting operating system exercises the memory model, trap machinery, and device fabric under real workloads, and differential validation against a reference emulator checks behavior at the instruction and subsystem level. Fidelity here means architectural-semantic accuracy, not the reproduction of a particular chip's timing: EmulatR reproduces exactly what the architecture makes visible -- the cycle-based run loop, the precise point at which results and exceptions commit, the ordering guarantees and barriers, and the privileged state transitions.</p>
+<p class="p_Normal">The test of fidelity is black-box and adversarial. The judges are not internal assertions but the most demanding guests available: the SRM console and PALcode exercise the privileged architecture directly, a booting operating system exercises the memory model, trap machinery, and device fabric under real workloads, and differential validation against a reference emulator checks behavior at the instruction and subsystem level. Fidelity here means architectural-semantic accuracy, not the reproduction of a particular chip's timing: EMulatR reproduces exactly what the architecture makes visible -- the cycle-based run loop, the precise point at which results and exceptions commit, the ordering guarantees and barriers, and the privileged state transitions.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Primary goals (in strict priority order)</span></h2>
-<p class="p_Normal">EmulatR is designed around five primary goals. Every design decision is evaluated against them in this order; when two goals conflict, the higher-priority goal wins.</p>
+<p class="p_Normal">EMulatR is designed around five primary goals. Every design decision is evaluated against them in this order; when two goals conflict, the higher-priority goal wins.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Architectural correctness first.</span> The emulator models Alpha's architectural semantics, not its performance characteristics. Correctness is always prioritized over speed.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Deterministic and debuggable execution.</span> Execution must be understandable, reproducible, and inspectable. One iteration of the run loop corresponds to one hardware clock cycle, enabling deterministic replay and debugging.</p>
@@ -147,9 +147,9 @@
 <p class="p_Normal">These objectives have been invariant across the entire history of the project. Six distinct implementations have been written; each changed the mechanism, never the goals. The current design (V6) is the first to satisfy all five at once -- it keeps a flat, shallow dispatch path for determinism and debuggability while resolving each instruction to a faithful, fully-architected execution leaf. The strategy throughout has been to let the implementation evolve toward the fixed standard, never to relax the standard to fit an implementation.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
-<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 <p class="p_Normal"><a href="--overview--------------------.html" class="topiclink">Architecture Overview</a></p>
-<p class="p_Normal"><a href="--current-development-status--.html" class="topiclink">Current Development Status</a></p>
+<p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->
 </div></div>

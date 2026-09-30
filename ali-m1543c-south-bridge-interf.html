@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.3 Chipset &amp; Devices &gt; South Bridge &gt; ALi M1543C South-Bridge Interface</title>
+   <title>6. Architecture &amp; Internals &gt; 6.3 Chipset &amp; Devices &gt; South Bridge &gt; ALi M1543C South-Bridge Interface</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="ALi M1543C,south bridge,ES40,ES45,AliM1543C,0x10B9,0x1533,PIRQ,M5229" />
-   <meta name="description" content="The Acer Labs (ALi) M1543C is the PCI-to-ISA south bridge of the AlphaServer ES40 and ES45 -- the counterpart to the Cypress CY82C693 used by the DS10/DS20. EmulatR models it..." />
+   <meta name="description" content="The Acer Labs (ALi) M1543C is the PCI-to-ISA south bridge of the AlphaServer ES40 and ES45 -- the counterpart to the Cypress CY82C693 used by the DS10/DS20. EMulatR models it..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?ali-m1543c-south-bridge-interf.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="chipset.html">5.3 Chipset &amp; Devices</a> &gt; <a href="southbridge.html">South Bridge</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="chipset.html">6.3 Chipset &amp; Devices</a> &gt; <a href="southbridge.html">South Bridge</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">ALi M1543C South-Bridge Interface</span></h1>
 
@@ -127,27 +127,31 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The Acer Labs (ALi) M1543C is the PCI-to-ISA south bridge of the AlphaServer ES40 and ES45 -- the counterpart to the Cypress CY82C693 used by the DS10/DS20. EmulatR models it so that ES40 firmware enumeration finds the bridge instead of master-aborting. ES40 is Tsunami (21272) silicon, so the south bridge is the only platform piece that differs from the DS10.</p>
+<p class="p_Normal">The Acer Labs (ALi) M1543C is the PCI-to-ISA south bridge of the AlphaServer ES40 and ES45 -- the counterpart to the Cypress CY82C693 used by the DS10/DS20. EMulatR models it so that ES40 firmware enumeration finds the bridge instead of master-aborting. ES40 is Tsunami (21272) REAL_HW, so the south bridge is the only platform piece that differs from the DS10.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">PCI identity and functions</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Function</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Part</span></p>
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Role</span></p>
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Vendor:Device</span></p>
 </th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">ES40 position</span></p>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Func 0</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">M1543C</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PCI-to-ISA bridge (class 0x060100)</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">0x10B9:0x1533</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">device 7</p>
 </td>
 </tr>
 <tr>
@@ -157,13 +161,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">0x10B9:0x5229</span></p>
 </td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">M5237</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">USB host</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">0x10B9:0x5237</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">device 15</p>
 </td>
 </tr>
 <tr>
@@ -173,28 +171,46 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">0x10B9:0x7101</span></p>
 </td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">device 17</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">M5237</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">USB host</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">0x10B9:0x5237</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">device 19</p>
+</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Function 0 advertises header type <span class="f_CodeExample">0x80</span> (multifunction). The bridge/interrupt-routing config registers the ES40 SRM programs live at config index <span class="f_CodeExample">0x40-0x4B</span>: ISA-bus / decode / IDE control (0x40-0x47) and PCI INTx (PIRQ) steering to ISA IRQs (0x48-0x4B).</p>
+<p class="p_Normal">On the M1543C each part is a single-function PCI device on its own IDSEL -- the datasheet fixes the bridge at AD18 (device 7) and gives the IDE, power-management and USB parts selectable IDSELs, which an ES40 straps to devices 15, 17 and 19. EMulatR places them there on the ES40, as a real ES40 does; OpenVMS needs the IDE controller at function 0 of its own device. The ES45 and DS25 manifests still group the parts as functions of one device. The multifunction bit of each part's header type is derived from the manifest: set only when another entry shares that part's slot. The bridge/interrupt-routing config registers the ES40 SRM programs live at config index <span class="f_CodeExample">0x40-0x4B</span>: ISA-bus / decode / IDE control (0x40-0x47) and PCI INTx (PIRQ) steering to ISA IRQs (0x48-0x4B).</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EmulatR model</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">chipsetLib/AliM1543C.h</span> mirrors the Cypress contract exactly: it implements <span class="f_CodeExample">IPciDeviceHandler</span> + <span class="f_CodeExample">IIoPortHandler</span> over a 256-byte config space, with read-only-protected vendor/device IDs and store-through config writes. A small <span class="f_CodeExample">AliPciFunctionStub</span> gives the SRM's multifunction probe valid headers for the IDE/USB/PMU companions instead of a master abort. The header was ported from <span class="f_CodeExample">Processor Support/ALi M1543_Datasheet</span> (Section 4) and verified standalone with g++ (identity reads back 0x1533_10B9; PIRQ store-through and RO protection both correct).</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">EMulatR model</span></h2>
+<p class="p_Normal"><span class="f_CodeExample">chipsetLib/AliM1543C.h</span> mirrors the Cypress contract exactly: it implements <span class="f_CodeExample">IPciDeviceHandler</span> + <span class="f_CodeExample">IIoPortHandler</span> over a 256-byte config space, with read-only-protected vendor/device IDs and store-through config writes. A small <span class="f_CodeExample">AliPciFunctionStub</span> gives the USB and power-management parts valid headers instead of a master abort; the IDE controller is a full model, <span class="f_CodeExample">AliM5229Ide</span> (see IDE Devices). The header was ported from <span class="f_CodeExample">Processor Support/ALi M1543_Datasheet</span> (Section 4) and verified standalone with g++ (identity reads back 0x1533_10B9; PIRQ store-through and RO protection both correct).</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Selection and wiring</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">TsunamiChipset::wireDevices()</span> selects the bridge from the <span class="f_CodeExample">m_southBridge</span> enum (the former <span class="f_CodeExample">isAliPlatform(model)</span> string test was retired) -- ES40/ES45/DS25 wire the ALi (<span class="f_CodeExample">m_ali</span>), everything else wires the Cypress (default). The SAME lever also selects the func1 IDE (ALi M5229 vs Cypress), so bridge and IDE stay consistent. DS10 still resolves to Tsunami / cpuCount 1, byte-identical to before, so the working path is untouched.</p>
+<p class="p_Normal"><span class="f_CodeExample">TsunamiChipset::wireDevices()</span> selects the bridge from the <span class="f_CodeExample">m_southBridge</span> enum (the former <span class="f_CodeExample">isAliPlatform(model)</span> string test was retired) -- ES40/ES45/DS25 wire the ALi (<span class="f_CodeExample">m_ali</span>), everything else wires the Cypress (default). The SAME lever also selects the IDE controller (ALi M5229 vs Cypress), so bridge and IDE stay consistent. DS10 still resolves to Tsunami / cpuCount 1, byte-identical to before, so the working path is untouched.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Faithful vs stubbed</span></h2>
-<p class="p_Normal">Faithful: func0 identity, class, multifunction header, companion identities, config store-through with RO IDs, the model-gated selection, and -- since Phase 2B -- the func1 M5229 IDE via <span class="f_CodeExample">AliM5229Ide</span> (selected by the same south-bridge lever; it answers the taskfile / IDENTIFY probe on dqa0 / dqb0). Stubbed (<span class="f_CodeExample">TODO ali-irq-route</span>): the PIRQ steering (idx 0x48-0x4B) and IDE INTAJ level/edge (0x44) currently store through with no field effect; the USB (M5237) and PMU/SMBus (M7101) companion internals are not modeled beyond their identities.</p>
+<p class="p_Normal">Faithful: the bridge identity and class, the per-part identities and placement, the header type derived from the manifest, config store-through with read-only IDs, the model-gated selection, the M5229 IDE controller in compatibility mode (interrupt, base address registers and bus-master registers, 26 September 2026), and the ELCR edge/level control. Stubbed (<span class="f_CodeExample">TODO ali-irq-route</span>): the PIRQ steering (idx 0x48-0x4B) and the IDE native-mode routing (0x44, 0x75) store through with no effect; the USB (M5237) and PMU/SMBus (M7101) companion internals are not modeled beyond their identities.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_NotesBox"><span class="f_NotesBox">Run the ES40 with [System] model=ES40, cpuCount=1 and [ROM] firmwareImage=firmware/es40_v7_3.exe. Build and smoke-test the DS10 first to confirm no regression. The most likely first divergence is ALi config/IRQ-routing init (only the identity is faithful so far), ahead of the halt-button check. Full detail: journal 20260617_es40_ali_m1543c_interface.md.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Interrupts</span></h2>
+<p class="p_Normal">The south bridge's 8259 interrupt-controller pair carries the ISA interrupts to the Typhoon Cchip, which presents them to the CPU. The IDE controller works in compatibility mode, so its primary channel interrupts on ISA IRQ14 and its secondary on IRQ15, as a PC-compatible IDE controller does; nothing is routed through the PCI INTx lines.</p>
+<p class="p_Normal">Whether each ISA line is edge- or level-triggered comes from the ELCR registers at I/O ports <span class="f_CodeExample">0x4D0</span> and <span class="f_CodeExample">0x4D1</span>, one bit per line. That is the M1543C's own control; on the DS10 and DS20 the Cypress bridge's configuration registers play the same part, and the ELCR is stored but ignored there. Neither the ES40 console nor OpenVMS has been seen to write the ELCR, so every line stays edge-triggered in practice.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_NotesBox"><span class="f_NotesBox">The ES40 runs the 67CLIPPER console to P00&gt;&gt;&gt; and boots OpenVMS from SCSI to the Username: prompt; see the ES40 platform guide for its status and known limitations. The ES45 console currently stops while starting its USB driver; the ALi USB part is an identity-only stub.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- the ISA-bridge model (config space, RO IDs, PIRQ store-through, companion stubs).</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AliM5229Ide.h</span><span class="f_NotesBox"> -- the func1 M5229 IDE (0x5229), wired for ES40 / ES45 / DS25.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- wireDevices(); the m_southBridge lever that gates bridge + IDE.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/AliM1543C.h</span><span class="f_NotesBox"> -- the ISA-bridge model (config space, RO IDs, PIRQ store-through, companion stubs).</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AliM5229Ide.h</span><span class="f_NotesBox"> -- the M5229 IDE controller (0x5229), wired for ES40 / ES45 / DS25.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/Pic8259Pair.h</span><span class="f_NotesBox"> -- the 8259 pair and the ELCR.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">common/es40_v7_3_platform.json</span><span class="f_NotesBox"> -- the ES40 placement, with the reasons in its comments.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">chipsetLib/TsunamiChipset.h</span><span class="f_NotesBox"> -- wireDevices(); the m_southBridge lever that gates bridge + IDE.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="southbridge.html" class="topiclink">South Bridge</a></p>

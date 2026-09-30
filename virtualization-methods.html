@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock &gt; Virtualization Methods</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock &gt; Virtualization Methods</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="0xBFFC,CAFEBEEF,EMULATR_PLATFORM,execution path,ISP_MODEL,platform(),REAL_HW,silicon,virtualization" />
-   <meta name="description" content="EmulatR can present the firmware with one of two execution-path identities. The choice is made by a single firmware routine -- the SRM console's platform() (apisrm pc264.c) --..." />
+   <meta name="description" content="EMulatR can present the firmware with one of two execution-path identities. The choice is made by a single firmware routine -- the SRM console's platform() (apisrm pc264.c) --..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?virtualization-methods.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">5.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a> &gt; <a href="execution-modes.html">6.6 Platform Execution Modes &amp; Clock</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Virtualization Methods</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EmulatR can present the firmware with one of two execution-path identities. The choice is made by a single firmware routine -- the SRM console's platform() (apisrm pc264.c) -- which reads the 32-bit longword at physical address <span class="f_CodeExample">0xBFFC</span> and branches: the constant <span class="f_CodeExample">0xCAFEBEEF</span> selects ISP_MODEL (the pre-silicon simulator path), any other value selects REAL_HW (the faithful hardware path). EmulatR controls which branch the firmware takes through the <span class="f_CodeExample">EMULATR_PLATFORM</span> environment variable; there is no second knob, because the firmware's own platform() is the single source of truth.</p>
+<p class="p_Normal">EMulatR can present the firmware with one of two execution-path identities. The choice is made by a single firmware routine -- the SRM console's platform() (apisrm pc264.c) -- which reads the 32-bit longword at physical address <span class="f_CodeExample">0xBFFC</span> and branches: the constant <span class="f_CodeExample">0xCAFEBEEF</span> selects ISP_MODEL (the pre-REAL_HW simulator path), any other value selects REAL_HW (the faithful hardware path). EMulatR controls which branch the firmware takes through the <span class="f_CodeExample">EMulatR_PLATFORM</span> environment variable; there is no second knob, because the firmware's own platform() is the single source of truth.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -146,10 +146,10 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Silicon</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">REAL_HW</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Hardware Initialization</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMULATR_PLATFORM=silicon</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_PLATFORM=REAL_HW</span></p>
 </td>
 </tr>
 </tbody>
@@ -157,23 +157,23 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the selection works</span></h2>
-<p class="p_Normal">platform() reads *(int *)0xBFFC. EmulatR answers that read with a READ-INTERCEPT, never a deposit: 0xBFFC sits at firmware image offset 0x3FFC and is overwritten by the SRM self-decompressor during cold boot, so a one-time store would not survive to the moment platform() runs. The lever therefore lives in the load path (<span class="f_CodeExample">pipelineLib/MemDrainer.h</span>): when the ISP method is active and the guest reads physical 0xBFFC, EmulatR substitutes <span class="f_CodeExample">0xCAFEBEEF</span> (sign-extended to match the firmware's constant). On the silicon method the read is not intercepted, so <span class="f_CodeExample">0xBFFC</span> returns its real memory contents and platform() resolves to REAL_HW.</p>
+<p class="p_Normal">platform() reads *(int *)0xBFFC. EMulatR answers that read with a READ-INTERCEPT, never a deposit: 0xBFFC sits at firmware image offset 0x3FFC and is overwritten by the SRM self-decompressor during cold boot, so a one-time store would not survive to the moment platform() runs. The lever therefore lives in the load path (<span class="f_CodeExample">pipelineLib/MemDrainer.h</span>): when the ISP method is active and the guest reads physical 0xBFFC, EMulatR substitutes <span class="f_CodeExample">0xCAFEBEEF</span> (sign-extended to match the firmware's constant). On the REAL_HW method the read is not intercepted, so <span class="f_CodeExample">0xBFFC</span> returns its real memory contents and platform() resolves to REAL_HW.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ISP (virtual) path -- default</span></h2>
-<p class="p_Normal">Active when <span class="f_CodeExample">EMULATR_PLATFORM</span> is unset or set to any value other than the exact string &quot;silicon&quot; (the legacy alias &quot;isp&quot; also selects it). platform() returns <span class="f_CodeExample">ISP_MODEL</span>, and the firmware takes its pre-silicon simulator branches -- skipping the real-hardware timing, probe, and IDE steps that EmulatR does not yet model. This is the path that reaches the SRM console prompt <span class="f_CodeExample">P00&gt;&gt;&gt;</span>. It is the out-of-box behavior and the path used for all current console-and-boot work.</p>
+<p class="p_Normal">Active when <span class="f_CodeExample">EMulatR_PLATFORM</span> is unset or set to any value other than the exact string &quot;REAL_HW&quot; (the legacy alias &quot;isp&quot; also selects it). platform() returns <span class="f_CodeExample">ISP_MODEL</span>, and the firmware takes its pre-REAL_HW simulator branches -- skipping the real-hardware timing, probe, and IDE steps that EMulatR does not yet model. This is the path that reaches the SRM console prompt <span class="f_CodeExample">P00&gt;&gt;&gt;</span>. It is the out-of-box behavior and the path used for all current console-and-boot work.</p>
 <p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Silicon path -- hardware initialization</span></h2>
-<p class="p_Normal">Active when EMULATR_PLATFORM is set to exactly &quot;silicon&quot;.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">REAL_HW path -- hardware initialization</span></h2>
+<p class="p_Normal">Active when EMulatR_PLATFORM is set to exactly &quot;REAL_HW&quot;.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <tr>
-<td style="vertical-align:top; width:267px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMULATR_PLATFORM=silicon</span></p>
+<td style="vertical-align:top; width:267px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_PLATFORM=REAL_HW</span></p>
 </td>
-<td style="vertical-align:top; width:1180px; padding:0; border:solid thin #000000;"><p class="p_Normal">platform() returns REAL_HW, and the firmware runs the faithful hardware-initialization sequence (the same code path real Alpha silicon would execute). </p>
+<td style="vertical-align:top; width:1180px; padding:0; border:solid thin #000000;"><p class="p_Normal">platform() returns REAL_HW, and the firmware runs the faithful hardware-initialization sequence (the same code path real Alpha REAL_HW would execute). </p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">This exercises the real timing/probe/device-init steps, so it takes substantially longer to initialize. IMPORTANT: REAL_HW is currently largely unmodeled in EmulatR, so this path may not reach <span class="f_CodeExample">P00&gt;&gt;&gt;</span> -- it can grind in the hardware-probe steps and run until the cycle limit (<span class="f_CodeExample">MaxCyclesExceeded</span>). </p>
+<p class="p_Normal">This exercises the real timing/probe/device-init steps, so it takes substantially longer to initialize. IMPORTANT: REAL_HW is currently largely unmodeled in EMulatR, so this path may not reach <span class="f_CodeExample">P00&gt;&gt;&gt;</span> -- it can grind in the hardware-probe steps and run until the cycle limit (<span class="f_CodeExample">MaxCyclesExceeded</span>). </p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Stop a run cleanly by creating the file <span class="f_CodeExample">EMULATR_STOP</span> in the run directory (this flushes flash <span class="f_CodeExample">NVRAM</span> on exit). </p>
+<p class="p_Normal">Stop a run cleanly by creating the file <span class="f_CodeExample">EMulatR_STOP</span> in the run directory (this flushes flash <span class="f_CodeExample">NVRAM</span> on exit). </p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The value of running it today is comparative: </p>
 <p class="p_Normal">&nbsp;</p>
@@ -189,19 +189,19 @@
 <p class="p_Normal"><span class="f_CodeExample"># ISP (virtual) path -- default; reaches the SRM prompt</span></p>
 <p class="p_Normal"><span class="f_CodeExample">./run_fw.sh ds20 cold</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_CodeExample"># Silicon path -- full hardware init (slow; may not reach the prompt)</span></p>
-<p class="p_Normal"><span class="f_CodeExample">export EMULATR_PLATFORM=silicon</span></p>
-<p class="p_Normal"><span class="f_CodeExample">export EMULATR_FLASH_ROM=ds10_v7_3.rom; rm -f ds20_v7_3.rom # factory-fresh cold</span></p>
-<p class="p_Normal"><span class="f_CodeExample">./run_fw.sh ds20 cold 2&gt;&amp;1 | tee fw_ds20_silicon.out</span></p>
-<p class="p_Normal"><span class="f_CodeExample">touch EMULATR_STOP # stop a long silicon run cleanly</span></p>
+<p class="p_Normal"><span class="f_CodeExample"># REAL_HW path -- full hardware init (slow; may not reach the prompt)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">export EMulatR_PLATFORM=REAL_HW</span></p>
+<p class="p_Normal"><span class="f_CodeExample">export EMulatR_FLASH_ROM=ds10_v7_3.rom; rm -f ds20_v7_3.rom # factory-fresh cold</span></p>
+<p class="p_Normal"><span class="f_CodeExample">./run_fw.sh ds20 cold 2&gt;&amp;1 | tee fw_ds20_REAL_HW.out</span></p>
+<p class="p_Normal"><span class="f_CodeExample">touch EMulatR_STOP # stop a long REAL_HW run cleanly</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Notes</span></h2>
-<p class="p_Normal">The <span class="f_CodeExample">EMULATR_PLATFORM</span> lever (2026-06-19) supersedes the temporary <span class="f_CodeExample">EMULATR_CPU1_ALIVE</span> flag. Do not add a second host-side sim/silicon flag -- the firmware's platform() is the single source of truth, and EmulatR's only role is to answer the 0xBFFC read consistently with the chosen method. Selection is evaluated once per run (a function-local static), so changing <span class="f_CodeExample">EMULATR_PLATFORM</span> requires a fresh run.</p>
+<p class="p_Normal">The <span class="f_CodeExample">EMulatR_PLATFORM</span> lever (2026-06-19) supersedes the temporary <span class="f_CodeExample">EMulatR_CPU1_ALIVE</span> flag. Do not add a second host-side sim/REAL_HW flag -- the firmware's platform() is the single source of truth, and EMulatR's only role is to answer the 0xBFFC read consistently with the chosen method. Selection is evaluated once per run (a function-local static), so changing <span class="f_CodeExample">EMulatR_PLATFORM</span> requires a fresh run.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
 <p class="p_Normal">Lever: pipelineLib/MemDrainer.h (the 0xBFFC read-intercept). Firmware decision: apisrm pc264.c platform() (reads <span class="f_CodeExample">0xBFFC; 0xCAFEBEEF </span>=&gt; <span class="f_CodeExample">ISP_MODEL</span>, else <span class="f_CodeExample">REAL_HW</span>). The ISP flag convention is documented per apisrm pc264.c.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_SeeAlso">See Also.</span> CMake Macro Guards; HWRPB Key/Value Offset Map. <a href="--what-is-emulatr.html" class="topiclink">What is EmulatR</a></p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span> CMake Macro Guards; HWRPB Key/Value Offset Map. <a href="--what-is-emulatr.html" class="topiclink">What is EMulatR</a></p>
 
 <!--ZOOMSTOP-->
 </div></div>

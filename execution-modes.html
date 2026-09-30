@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>5. Architecture &amp; Internals &gt; 5.6 Platform Execution Modes &amp; Clock</title>
+   <title>6. Architecture &amp; Internals &gt; 6.6 Platform Execution Modes &amp; Clock</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="0xBFFC,CAFEBEEF,device discovery,dq_init_ide,dq_initialize,EMULATR_IDLEWARP,EMULATR_PLATFORM,ES40,execution mode,IDENTIFY,ISP,ISP_MODEL,krn$_micro_delay,MemDrainer,pc264,platform(),read intercept,REAL_HW,RSCC,show config,show dev,silicon,taskfile,virtual,WARP" />
-   <meta name="description" content="The Alpha console firmware runs in one of two modes, and the choice changes its entire initialization strategy. Virtual mode (ISP) is DEC's pre-silicon software simulator path:..." />
+   <meta name="description" content="The Alpha console firmware runs in one of two modes, and the choice changes its entire initialization strategy. Virtual mode (ISP) is DEC's pre-REAL_HW software simulator path:..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?execution-modes.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="5_-architecture--internals----.html">5. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Execution Modes: Virtual (ISP) vs REAL_HW</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The Alpha console firmware runs in one of two modes, and the choice changes its entire initialization strategy. Virtual mode (ISP) is DEC's pre-silicon software simulator path: the firmware assumes it runs on the Instruction-Set-Processor engineering model rather than on chips, and deliberately skips the real-hardware probe, timing, and device-driver-attach steps. REAL_HW is the actual-silicon path: the firmware drives the full probe, reset, timing, and attach sequences. EmulatR answers &quot;virtual (ISP)&quot; by default, which is why the console reaches the operator prompt cleanly and quickly, and equally why real device discovery does not happen in that mode.</p>
+<p class="p_Normal">The Alpha console firmware runs in one of two modes, and the choice changes its entire initialization strategy. Virtual mode (ISP) is DEC's pre-REAL_HW software simulator path: the firmware assumes it runs on the Instruction-Set-Processor engineering model rather than on chips, and deliberately skips the real-hardware probe, timing, and device-driver-attach steps. REAL_HW is the actual-REAL_HW path: the firmware drives the full probe, reset, timing, and attach sequences. EMulatR answers &quot;virtual (ISP)&quot; by default, which is why the console reaches the operator prompt cleanly and quickly, and equally why real device discovery does not happen in that mode.</p>
 <p class="p_Normal">&nbsp;</p>
 <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">The mode flag: platform()</span></h1>
 <p class="p_Normal">The firmware carries its own detector: a single 32-bit read of physical address <span class="f_CodeExample">0x0000_BFFC</span>. On the ISP simulator, DEC's startup deposits the sentinel <span class="f_CodeExample">0xCAFEBEEF</span> there; on real hardware that location holds something else, so the detector returns REAL_HW.</p>
@@ -135,18 +135,18 @@
 <p class="p_CodeExample"><span class="f_CodeExample">int&nbsp;platform(&nbsp;)&nbsp;{</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;/*&nbsp;ISP&nbsp;flag&nbsp;at&nbsp;0xBFFC.&nbsp;ISP&nbsp;startup&nbsp;deposits&nbsp;0xCAFEBEEF&nbsp;there.&nbsp;*/</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;if&nbsp;(&nbsp;(*(int&nbsp;*)0xBFFC&nbsp;==&nbsp;0xCAFEBEEF)&nbsp;)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;return&nbsp;ISP_MODEL;&nbsp;/*&nbsp;pre-silicon&nbsp;software&nbsp;simulator&nbsp;*/</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;return&nbsp;ISP_MODEL;&nbsp;/*&nbsp;pre-REAL_HW&nbsp;software&nbsp;simulator&nbsp;*/</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;else</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;return&nbsp;REAL_HW;&nbsp;/*&nbsp;actual&nbsp;silicon&nbsp;*/</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;return&nbsp;REAL_HW;&nbsp;/*&nbsp;actual&nbsp;REAL_HW&nbsp;*/</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">}</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Reference: apisrm <span class="f_CodeExample">pc264.c:173</span>; <span class="f_CodeExample">ISP_MODEL</span> / <span class="f_CodeExample">REAL_HW</span> defined in <span class="f_CodeExample">pc264_io.h</span> and <span class="f_CodeExample">emulate.h</span> (<span class="f_CodeExample">ISP_MODEL = 1</span>).</p>
 <p class="p_Normal">&nbsp;</p>
-<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">How EmulatR selects the mode</span></h1>
-<p class="p_Normal">EmulatR does not deposit anything into memory; it presents the sentinel as a read intercept, so the value survives the SRM self-decompressor (which overwrites image offset 0x3FFC == PA 0xBFFC, so a one-time store would not last). The environment knob <span class="f_CodeExample">EMULATR_PLATFORM</span> selects the mode at runtime; no rebuild is needed.</p>
+<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">How EMulatR selects the mode</span></h1>
+<p class="p_Normal">EMulatR does not deposit anything into memory; it presents the sentinel as a read intercept, so the value survives the SRM self-decompressor (which overwrites image offset 0x3FFC == PA 0xBFFC, so a one-time store would not last). The environment knob <span class="f_CodeExample">EMulatR_PLATFORM</span> selects the mode at runtime; no rebuild is needed.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><span class="f_CodeExample">// EMULATR_PLATFORM unset|&quot;isp&quot; =&gt; ISP (default; reaches &gt;&gt;&gt;)</span></p>
-<p class="p_Normal"><span class="f_CodeExample">// &quot;silicon&quot; =&gt; REAL_HW (no intercept)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">// EMulatR_PLATFORM unset|&quot;isp&quot; =&gt; ISP (default; reaches &gt;&gt;&gt;)</span></p>
+<p class="p_Normal"><span class="f_CodeExample">// &quot;REAL_HW&quot; =&gt; REAL_HW (no intercept)</span></p>
 <p class="p_Normal"><span class="f_CodeExample">if (s_isp &amp;&amp; pa == 0x000000000000BFFCull)</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> br.data = 0xCAFEBEEFull; // platform() =&gt; ISP_MODEL</span></p>
 <p class="p_Normal">&nbsp;</p>
@@ -219,18 +219,18 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Why ISP is fast and silicon grinds</span></h1>
-<p class="p_Normal">The single mechanism behind the speed difference is the micro-delay. In virtual mode <span class="f_CodeExample">krn$_micro_delay</span> returns immediately; in silicon mode it busy-waits on the scaled cycle counter (RSCC) for the full requested interval. Probe and reset sequences call it constantly, so silicon mode spends millions of emulated instructions spinning where ISP mode spends none.</p>
+<h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Why ISP is fast and REAL_HW grinds</span></h1>
+<p class="p_Normal">The single mechanism behind the speed difference is the micro-delay. In virtual mode <span class="f_CodeExample">krn$_micro_delay</span> returns immediately; in REAL_HW mode it busy-waits on the scaled cycle counter (RSCC) for the full requested interval. Probe and reset sequences call it constantly, so REAL_HW mode spends millions of emulated instructions spinning where ISP mode spends none.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_CodeExample">void krn$_micro_delay (INT us) {</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> if (platform() == ISP_MODEL) return; // ISP: no delay at all</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> cpm = cycles_per_microsecond;</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> rscc(&amp;start); // CALL_PAL RSCC</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> limit = (cpm * us) + start;</span></p>
-<p class="p_Normal"><span class="f_CodeExample"> do { rscc(&amp;stop); } while (stop &lt; limit); // silicon: busy-wait on RSCC</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> do { rscc(&amp;stop); } while (stop &lt; limit); // REAL_HW: busy-wait on RSCC</span></p>
 <p class="p_Normal"><span class="f_CodeExample">}</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">EmulatR models <span class="f_CodeExample">RSCC = cycleCount/5594</span>. The faithful acceleration for silicon mode advances <span class="f_CodeExample">cpu.cycleCount</span> coherently during a recognized pure delay spin so RSCC crosses limit and the loop exits (the same approach as <span class="f_CodeExample">EMULATR_IDLEWARP</span>). It must never blindly jump the counter or write timebase state out-of-band; the quarantined <span class="f_CodeExample">EMULATR_RSCCWARP</span> did (rewriting <span class="f_CodeExample">0x3c970</span>) and corrupted the boot.</p>
+<p class="p_Normal">EMulatR models <span class="f_CodeExample">RSCC = cycleCount/5594</span>. The faithful acceleration for REAL_HW mode advances <span class="f_CodeExample">cpu.cycleCount</span> coherently during a recognized pure delay spin so RSCC crosses limit and the loop exits (the same approach as <span class="f_CodeExample">EMulatR_IDLEWARP</span>). It must never blindly jump the counter or write timebase state out-of-band; the quarantined <span class="f_CodeExample">EMulatR_RSCCWARP</span> did (rewriting <span class="f_CodeExample">0x3c970</span>) and corrupted the boot.</p>
 <p class="p_Normal">&nbsp;</p>
 <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Choosing a mode</span></h1>
 <p class="p_Normal">Virtual (ISP) is the frozen faithful-oracle-to-prompt mode: it reaches <span class="f_CodeExample">P00&gt;&gt;&gt;</span> with device presence via the topology walk, but no device datapath. REAL_HW is required for actual device discovery and, eventually, OS boot -- but it runs to completion only once the real-hardware timing loops are modeled or warped past. Any device or behavior the firmware gates behind <span class="f_CodeExample">platform() == REAL_HW</span> is invisible in ISP mode, no matter how faithfully the device itself is modeled -- so mode is the first thing to check when reading a &quot;device not discovered&quot; symptom.</p>
@@ -240,15 +240,15 @@
 <p class="p_Normal"><span class="f_CodeExample">Firmware: pc264.c:173 platform(); pc264_io.h / emulate.h ISP_MODEL;</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> krn$_micro_delay (RSCC busy-wait); dq_driver.c:435 ISP gate;</span></p>
 <p class="p_Normal"><span class="f_CodeExample"> dq_driver.c:676 dq_init_ide (prog-IF + Cypress special case).</span></p>
-<p class="p_Normal"><span class="f_CodeExample">EmulatR: pipelineLib/MemDrainer.h:458-486 (0xBFFC read-intercept +</span></p>
-<p class="p_Normal"><span class="f_CodeExample"> EMULATR_PLATFORM knob); RSCC = cycleCount/5594;</span></p>
-<p class="p_Normal"><span class="f_CodeExample"> EMULATR_IDLEWARP (coherent cycleCount advance) -- REMOVED 2026-08-01.</span></p>
+<p class="p_Normal"><span class="f_CodeExample">EMulatR: pipelineLib/MemDrainer.h:458-486 (0xBFFC read-intercept +</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> EMulatR_PLATFORM knob); RSCC = cycleCount/5594;</span></p>
+<p class="p_Normal"><span class="f_CodeExample"> EMulatR_IDLEWARP (coherent cycleCount advance) -- REMOVED 2026-08-01.</span></p>
 <p class="p_Normal"><span class="f_CodeExample">Runner: tools/run_es40_showdev.sh (PLATFORM / WARP knobs, stamped).</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Source References</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/MemDrainer.h</span><span class="f_NotesBox"> -- 0xBFFC read-intercept =&gt; 0xCAFEBEEF, EMULATR_PLATFORM knob, RSCC / IDLEWARP.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- IDE taskfile driven only on the REAL_HW path.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/BadgeMhzGauge.h</span><span class="f_NotesBox"> -- records the ISP default.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">pipelineLib/MemDrainer.h</span><span class="f_NotesBox"> -- 0xBFFC read-intercept =&gt; 0xCAFEBEEF, EMulatR_PLATFORM knob, RSCC / IDLEWARP.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/Tsunami/AtaTaskfileEngine.h</span><span class="f_NotesBox"> -- IDE taskfile driven only on the REAL_HW path.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">deviceLib/BadgeMhzGauge.h</span><span class="f_NotesBox"> -- records the ISP default.</span></p>
 <p class="p_Normal">The firmware decision points (pc264.c platform(), dq_driver.c) are DEC apisrm SSOT, external to the tree.</p>
 <p class="p_Normal">&nbsp;</p>
 
