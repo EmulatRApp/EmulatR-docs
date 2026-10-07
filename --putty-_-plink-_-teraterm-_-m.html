@@ -138,6 +138,8 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">PuTTY</span></h2>
 <p class="p_Normal">Launch PuTTY, set Host Name <span class="f_CodeExample">localhost</span> and Port <span class="f_CodeExample">10023</span>, choose Connection type <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Raw</span>, then press Open. For a remote instance use its IP in place of <span class="f_CodeExample">localhost</span>.</p>
 <p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR itself uses a saved PuTTY session named EMulatR (Local echo and Local line editing forced off, 132 columns, 20000 lines of scrollback, session logging on). Setup creates it automatically for the Windows user who ran setup. Other Windows users of the PC, or a setup approved with a different administrator account, import it by hand with <span class="f_CodeExample">reg import &quot;C:\Program Files\ASA-EmulatR\EMulatR.reg&quot;</span>. To use it by hand, load the session and give the port: <span class="f_CodeExample">putty.exe -load EMulatR -raw -P 10023 localhost</span></p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Tera Term</span></h2>
 <p class="p_Normal">New connection, select <span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">TCP/IP</span>, Host <span class="f_CodeExample">localhost</span>, TCP Port <span class="f_CodeExample">10023</span>, then connect.</p>
 <p class="p_Normal">&nbsp;</p>

@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The run directory is the folder that holds the built executable -- <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>, where <span class="f_CodeExample">&lt;tree&gt;</span> is the release tree (<span class="f_CodeExample">v5</span> or <span class="f_CodeExample">v6</span>) and <span class="f_CodeExample">&lt;config&gt;</span> is <span class="f_CodeExample">relwithdebinfo</span>, <span class="f_CodeExample">debug</span>, or <span class="f_CodeExample">release</span>. It is the runtime root: firmware, config, logs, traces, snapshots, the platform manifests, and the deployed helper scripts all live there. The project's <span class="f_CodeExample">tools/</span> folder is the source of truth for those scripts; every build copies them into the run directory, and you run from that copy.</p>
+<p class="p_Normal">The run directory is the folder that holds the built executable -- <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>, where <span class="f_CodeExample">&lt;tree&gt;</span> is the release tree (<span class="f_CodeExample">v5</span> or <span class="f_CodeExample">v6</span>) and <span class="f_CodeExample">&lt;config&gt;</span> is <span class="f_CodeExample">relwithdebinfo</span>, <span class="f_CodeExample">debug</span>, or <span class="f_CodeExample">release</span>. It is the runtime root: firmware, config, logs, traces, the platform manifests, and the deployed helper scripts all live there. The project's <span class="f_CodeExample">tools/</span> folder is the source of truth for those scripts; every build copies them into the run directory, and you run from that copy.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The model</span></h2>
 <p class="p_Normal">&lt;project&gt;/tools/ is the committed repository of run and diagnostic shell scripts, covering the execution permutations (models ds10 / ds20 / ds25 / es40 / es45, across configs and trace modes). On every build, CMake copies <span class="f_CodeExample">tools/*.sh</span> and <span class="f_CodeExample">tools/*.py</span> into <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/tools/</span>. The copy is GLOB-driven with CONFIGURE_DEPENDS, so a newly added script deploys on the next build with no hand-editing. You then run from the run directory's copy:</p>
@@ -175,7 +175,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">snapshots/</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Saved machine states (.axpsnap checkpoints).</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Legacy directory; no longer used since 3.0 (EMulatR never loads or saves a snapshot).</p>
 </td>
 </tr>
 <tr>
@@ -187,7 +187,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">config/</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR.ini (model set per run, restored on exit).</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Emulatr.ini (model set per run, restored on exit).</p>
 </td>
 </tr>
 </tbody>

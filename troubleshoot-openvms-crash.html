@@ -6,8 +6,8 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="ANALYZE/CRASH,bugcheck,crash dump,Ctrl/P,DUMPSTYLE,EMULATR_CONSOLE_SNAPSHOT,EMULATR_CSERVE_AUDIT,EMULATR_DIAG_PAL,EMULATR_HALT_DIAG,EMULATR_LOOKBACK,EMULATR_PC_GATE,EMULATR_PCTRACE,EMULATR_UART_TRACE_MARKER,hang,INVEXCEPTN,SDA,snapshot,SYSDUMP.DMP,troubleshooting" />
-   <meta name="description" content="When OpenVMS stops with a bugcheck, or hangs, the fastest route to a cause combines two views: the guest's own crash dump, analysed with SDA, and EMulatR's diagnostic settings,..." />
+   <meta name="keywords" content="ANALYZE/CRASH,bugcheck,crash dump,Ctrl/P,DUMPSTYLE,EMULATR_CSERVE_AUDIT,EMULATR_DIAG_PAL,EMULATR_HALT_DIAG,EMULATR_LOOKBACK,EMULATR_PC_GATE,EMULATR_PCTRACE,EMULATR_UART_TRACE_MARKER,hang,INVEXCEPTN,SDA,SYSDUMP.DMP,troubleshooting" />
+   <meta name="description" content="When OpenVMS stops with a bugcheck, or hangs, the fastest route to a cause combines two views: the guest's own crash dump, analyzed with SDA, and EMulatR's diagnostic settings,..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,26 +127,31 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">When OpenVMS stops with a bugcheck, or hangs, the fastest route to a cause combines two views: the guest's own crash dump, analysed with SDA, and EMulatR's diagnostic settings, which show what the emulated hardware did. This page gives the sequence and the commands for both.</p>
+<p class="p_Normal">When OpenVMS stops with a bugcheck, or hangs, the fastest route to a cause combines two views: the guest's own crash dump, analyzed with SDA, and EMulatR's diagnostic settings, which show what the emulated hardware did. This page gives the sequence and the commands for both.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">1. Keep the evidence from the start</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Keep the console output. PuTTY writes a session log in the run directory (<span class="f_CodeExample">putty_console_p&lt;port&gt;_&lt;date&gt;.log</span>), and the run log in <span class="f_CodeExample">logs/</span> mirrors every console line.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Keep the console output. PuTTY writes a session log in the system's profile folder (<span class="f_CodeExample">putty_console_p&lt;port&gt;_&lt;date-time&gt;.log</span>; with the EMulatR PuTTY session the port in the name is always 10023), and the run log in <span class="f_CodeExample">logs/</span> mirrors every console line.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Note the build (the <span class="f_CodeExample">Alpha Emulator Console</span> line in the banner), the platform, the firmware, the memory size and every <span class="f_CodeExample">EMulatR_*</span> setting you launched with.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. Arrange a crash dump before the problem happens</span></h2>
 <p class="p_Normal">Boot conversationally and choose the dump style (the device is your system disk):</p>
 <p class="p_CodeExample"><span class="f_CodeExample">P00&gt;&gt;&gt;&nbsp;b&nbsp;dka200&nbsp;-flags&nbsp;0,1</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">SYSBOOT&gt;&nbsp;SET&nbsp;DUMPSTYLE&nbsp;9</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">SYSBOOT&gt;&nbsp;CONTINUE</span></p>
 <p class="p_Normal"><span class="f_CodeExample">DUMPSTYLE 9</span> writes a compressed selective dump (system space and key processes); <span class="f_CodeExample">8</span> writes a compressed full dump. The dump file <span class="f_CodeExample">SYS$SYSTEM:SYSDUMP.DMP</span> must be large enough for the style you choose.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3a. On a bugcheck</span></h2>
 <p class="p_Normal">Copy the bugcheck block from the console: the bugcheck code and name, crash CPU, current process and image name. Wait for the dump to finish before stopping EMulatR. The console reports when the dump is complete.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">3b. On a hang</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span>Press Ctrl/P in the console to halt the CPU. The console prompt <span class="f_CodeExample">P00&gt;&gt;&gt;</span> appears.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Optional, but recommended: take an EMulatR snapshot first. It saves every register and all of memory without disturbing the run, so the state can be examined later. It needs <span class="f_CodeExample">EMulatR_CONSOLE_SNAPSHOT=1</span> at launch; at the halted prompt type <span class="f_CodeExample">set oem_string snapshot</span>.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">3.</span>Type <span class="f_CodeExample">crash</span> to force OpenVMS to write the dump. (If the hang is very early in boot, before OpenVMS has its exception handlers loaded, <span class="f_CodeExample">crash</span> cannot work; use the EMulatR diagnostics in section 6 instead.)</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Type <span class="f_CodeExample">crash</span> to force OpenVMS to write the dump. (If the hang is very early in boot, before OpenVMS has its exception handlers loaded, <span class="f_CodeExample">crash</span> cannot work; use the EMulatR diagnostics in section 6 instead.)</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">4. Analyse on a copy, never on the live disk</span></h2>
 <p class="p_Normal">Stop the emulator cleanly, then copy the whole storage folder, so the file names the platform manifest expects stay the same. Boot a second EMulatR instance from the copy, on its own environment and console port. Two emulators must never use the same disk files at once.</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cp&nbsp;-rp&nbsp;&quot;/d/EMulatR/vStorage/&lt;set&gt;/Alpha&quot;&nbsp;&quot;/d/EMulatR/vStorage/&lt;set&gt;-dump/Alpha&quot;</span></p>
 <p class="p_Normal">Point the second instance at the copy with <span class="f_CodeExample">EMulatR_DISK_DIR</span> and boot the copied system disk. A different platform model can be used for the analysis; a DS20 boots an ES40 system disk.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">5. SDA commands</span></h2>
 <p class="p_CodeExample"><span class="f_CodeExample">$&nbsp;ANALYZE/CRASH&nbsp;SYS$SYSTEM:SYSDUMP.DMP</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">SDA&gt;&nbsp;SHOW&nbsp;CRASH</span></p>
@@ -198,6 +203,7 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">6. EMulatR-side diagnostics</span></h2>
 <p class="p_Normal">These settings need the RelWithDebInfo build (they are compiled out of Release). Set them in the environment before launch. Several of them keep the JIT off and slow the run, so compare them only with runs made the same way.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -243,16 +249,18 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">7. Work one change at a time</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Reproduce once with nothing changed. That is the baseline.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Keep every condition the same between runs (build, memory size, disks, settings), and change one thing per run.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Restore the disks from a saved copy before each run, so every run starts from the same state.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Record each run: what changed, what the console printed, and where it stopped.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">8. What to include in a report</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The console capture from the boot command to the stop, including the whole bugcheck block.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The run log from <span class="f_CodeExample">logs/</span>, and the build and settings noted in step 1.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The SDA output from step 5, at least <span class="f_CodeExample">SHOW CRASH</span> and <span class="f_CodeExample">CLUE CRASH</span>.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>For a hang: where it stopped, how long you waited, and the snapshot file name if you took one.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>For a hang: where it stopped and how long you waited.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="platform-es40.html" class="topiclink">AlphaServer ES40</a></p>

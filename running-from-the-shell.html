@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="--autosnapshot,background process,bash,command line,console log,disown,EMULATR_TRACE_DIR,--firmware,forked process,--log-file,--max-cycles,--mem,--no-autoload,nohup,run directory,switches,tee,--trace" />
+   <meta name="keywords" content="background process,bash,command line,console log,disown,EMULATR_TRACE_DIR,--firmware,forked process,--log-file,--max-cycles,--mem,nohup,run directory,switches,tee,--trace" />
    <meta name="description" content="EMulatR is a console application driven from a command line. The standard execution shell is bash -- the project's own launch and trace scripts are bash, and the examples here..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -135,9 +135,8 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&lt;run&gt;/&nbsp;EMulatR.exe&nbsp;the&nbsp;emulator</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;firmware/&nbsp;SRM&nbsp;images&nbsp;(e.g.&nbsp;ds10_v7_3.exe)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;tools/&nbsp;deployed&nbsp;bash&nbsp;helpers&nbsp;(trace_halt.sh,&nbsp;...)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;config/EMulatR.ini&nbsp;settings&nbsp;(memorySize,&nbsp;paths,&nbsp;...)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;config/Emulatr.ini&nbsp;settings&nbsp;(memorySize,&nbsp;paths,&nbsp;...)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;ds10_V7_3.rom&nbsp;persisted&nbsp;NVRAM&nbsp;/&nbsp;flash</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;snapshots/&nbsp;saved&nbsp;machine&nbsp;states&nbsp;(.axpsnap)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">Run EMulatR through a model launch script in <span class="f_CodeExample">tools/</span> -- <span class="f_CodeExample">run_&lt;model&gt;.sh</span> (plain boot), <span class="f_CodeExample">run_&lt;model&gt;_trace.sh</span> (full trace), or <span class="f_CodeExample">run_&lt;model&gt;_gate.sh</span> (gated retire window). Each self-locates the run directory from its own path, cd's there, sets the firmware, model, memory and console for you, and writes output under the run-dir <span class="f_CodeExample">logs/</span> and <span class="f_CodeExample">traces/</span>. Do NOT launch the executable directly -- the scripts are the supported entry point; pass any extra emulator flags after a bare <span class="f_CodeExample">--</span> (for example <span class="f_CodeExample">./tools/run_ds10.sh -- --max-cycles 0x100000</span>).</p>
 <p class="p_Normal">&nbsp;</p>
@@ -194,24 +193,6 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">--pal-mode</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Force PAL mode at reset.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">--no-autoload</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Suppress autoload of the newest snapshot -- forces a genuine cold boot.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">--autosnapshot&nbsp;on|off</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Toggle periodic <span class="f_CodeExample">auto_*.axpsnap</span> saves (off avoids the disk cost on a long cold boot).</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_CodeExample"><span class="f_CodeExample">--snapshot-on-pc&nbsp;&lt;pc[,pc...]&gt;</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Capture a one-shot snapshot when the CPU retires at the given PC(s).</p>
 </td>
 </tr>
 <tr>

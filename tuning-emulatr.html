@@ -1,0 +1,703 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>11. Tuning EmulatR</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="EMulatR runs the guest at a CPU speed you choose. The speed sets how many cycles make one second of guest time, so it decides how the guest's clock relates to the host's wall..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "tuning-emulatr.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">11. Tuning EMulatR</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?tuning-emulatr.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      &raquo;No topics above this level&laquo;
+      </p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">11. Tuning EMulatR</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="performance-warp.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="test-settings.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EMulatR runs the guest at a CPU speed you choose. The speed sets how many cycles make one second of guest time, so it decides how the guest's clock relates to the host's wall clock. It does not change how much work EMulatR does for the guest. This chapter covers the setting, how the guest learns the speed, and what the measurements show.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Setting the CPU speed</span></h2>
+<p class="p_Normal">The speed is the <span class="f_CodeExample">cpuFrequencyHz</span> key in the <span class="f_CodeExample">[System]</span> section of <span class="f_CodeExample">Emulatr.ini</span>, in hertz. Leave it unset to use the platform's default.</p>
+<p class="p_Normal">The default is 50 MHz on the DS10, DS20 and ES40. The supported speeds are 50, 60, 75, 85 and 100 MHz, the speeds EMulatR has been tested at, and the speeds measured below. Any other value you set runs, and the run log warns that guest timing at that speed is untested. The default comes from the platform, so an existing <span class="f_CodeExample">Emulatr.ini</span> needs no change.</p>
+<p class="p_CodeExample"><span class="f_CodeExample">[System]</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cpuFrequencyHz&nbsp;=&nbsp;85000000&nbsp;;&nbsp;85&nbsp;MHz</span></p>
+<p class="p_Normal">The interval timer stays at 1024 Hz at every speed, so the speed sets the number of cycles between clock ticks (85 MHz gives 83,007 cycles per tick). EMulatR refuses a speed below 1024 Hz and uses its default instead. Every run states the speed it is using near the top of the run log:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">CPU&nbsp;clock:&nbsp;85000000&nbsp;Hz&nbsp;(ini&nbsp;[System]&nbsp;cpuFrequencyHz);&nbsp;interval&nbsp;timer&nbsp;1024&nbsp;Hz,&nbsp;83007&nbsp;cycles&nbsp;per&nbsp;tick&nbsp;+&nbsp;832/1024</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the guest learns the speed</span></h2>
+<p class="p_Normal">OpenVMS does not measure the CPU. It reads the cycle-counter frequency from the HWRPB, the table the SRM console builds for the operating system, and scales every timed wait from that one value. If the value is wrong, every timed wait in OpenVMS runs long or short by the same factor.</p>
+<p class="p_Normal">The DS10, DS20 and ES40 run the SRM console in silicon mode. In silicon mode the console measures the cycle counter against the interval timer over 100 clock ticks and publishes what it measured, so the guest is told the speed you set. The measurement resolves the cycle time in steps of 10 picoseconds, so some speeds are published slightly off. EMulatR checks the published value on every boot and logs the verdict:</p>
+<p class="p_CodeExample" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">CPU&nbsp;clock&nbsp;agreement:&nbsp;HWRPB&nbsp;CC_FREQ&nbsp;85034013&nbsp;Hz&nbsp;=&nbsp;the&nbsp;SRM&nbsp;calibration&nbsp;of&nbsp;85000000&nbsp;Hz;&nbsp;interval&nbsp;clock&nbsp;1024&nbsp;Hz&nbsp;--&nbsp;AGREE</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-style: italic;">AGREE means the console published exactly what its own measurement gives for the speed you set. MISMATCH means it did not, and the guest's timed waits will be off: report it.</span></p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Speed set</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Frequency the guest is told</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Difference</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">100,000,000 Hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">exact</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">85,034,013 Hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">+0.040%</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">75,018,754 Hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">+0.025%</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">59,988,002 Hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">-0.020%</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">50,000,000 Hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">exact</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What the speed changes</span></h2>
+<p class="p_Normal">Two times matter. Wall time is the host's clock. Guest time is the time the guest sees: the cycle count divided by the CPU speed. The time dilation is wall seconds per guest second; 1.0x means the guest's clock keeps pace with the wall clock, and 3.0x means a guest second takes three wall seconds.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Boot time does not change with the speed. EMulatR does the same work to boot the guest whatever the speed, so the wall time to the end of OpenVMS startup was 304 to 322 seconds at every speed measured, about the same as the DS20 reference boot at its previous default speed (about 301 seconds).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Idle dilation changes with the speed, in proportion. While OpenVMS waits at a prompt, its idle loop runs on every cycle, and EMulatR executes it at a steady rate that depends on the platform. On the DS20 that rate is about 23.5 million guest cycles per wall second in the build measured, so the idle dilation is the speed divided by that rate: about 3.6x at 85 MHz and 2.2x at 50 MHz. The DS10 idles at about 55 million cycles per wall second, so its idle dilation is lower (1.80x at 100 MHz, 1.53x at 85 MHz). A lower speed brings the guest's clock closer to the wall clock while the system is idle.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Why the platforms differ at idle: OpenVMS runs a different idle path on each. On the DS20 its idle loop includes a short bit-scan loop that runs about 63 times per pass; the DS10 takes the same code but branches around it. Nothing is skipped or accelerated at idle on either platform. Compare idle dilation between speeds on one platform; between platforms, compare boot times.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The guest's time of day advances in guest time. At any dilation above 1.0x the guest's clock falls behind the wall clock, and faster the higher the dilation. Elapsed-time measurements inside the guest, timeouts and timed waits are unaffected: they run in guest time and stay consistent with each other.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Measured results</span></h2>
+<p class="p_Normal">All platforms, same system disk. Each platform boots the same OpenVMS V8.3 system disk, restored to the same starting copy before every run, with the same settings: clock fixed at 1 January 2027, network off, JIT on, boot command b dka0 -flags 0. One run per speed and platform, one emulator at a time on the host. Boot time is wall time from launch to the end of OpenVMS startup; idle dilation is measured at the Username: prompt with two presses of Ctrl+/ 60 seconds apart.</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">CPU speed</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Clock check</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Boot time (wall)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Guest time at end of startup</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Boot dilation</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Idle dilation</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">282.0 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">143.2 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.97x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.80x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">325.1 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">316.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.03x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.30x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">700.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">401.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.74x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.28x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">269.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">157.5 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.71x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.53x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">310.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">330.3 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.94x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.68x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">702.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">432.4 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.62x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.68x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">258.2 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">160.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.61x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.39x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">312.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">356.8 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.88x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.23x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">710.1 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">461.3 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.54x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.30x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">257.2 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">176.3 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.46x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.12x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">306.2 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">386.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.79x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.63x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">711.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">523.2 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.36x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.63x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">249.4 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">192.9 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.29x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.96x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">315.9 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">437.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.72x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.16x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">746.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">606.4 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.23x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.23x</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Every boot published the frequency its own calibration predicts (AGREE) and none reported an error. Below about 55 MHz the DS10 idles faster than real time (0.96x at 50 MHz): while it waits at a prompt, its clock gains slightly on the wall clock instead of falling behind.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The ES40 takes longer to boot because of its console firmware, not OpenVMS. About 446 seconds pass before the console first probes the PCI bus, most of it the firmware's test of the 4 GB of memory; the OpenVMS part of the boot then takes about 221 seconds, the same as on the DS20. Configuring less memory shortens the firmware's test. The ES40 and the DS20 idle at the same rate (3.68x at 85 MHz).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The DS20 reaches the end of startup at exactly the same cycle count in this test as in the DS20 reference boot below, at both speeds: the two methods measure the same boot. The DS10 completes startup in fewer guest seconds (about 143 to 158, against 317 to 330 on the DS20), which is why its boot dilation is higher although its wall time is shorter.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">DS20 reference boot, by speed. The DS20 test configuration (the same system disk, booting automatically, no console connected until startup ends):</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span>DS20, OpenVMS V8.3, cold boot from the same disks every run, one run per speed on an otherwise idle host. Boot time is wall time from launch to the end of OpenVMS startup (the STARTUP job's <span class="f_CodeExample">job terminated at</span> message). Idle dilation is measured at the <span class="f_CodeExample">Username:</span> prompt with two presses of <span class="f_CodeExample">Ctrl+/ </span>60 seconds apart (see Measuring guest time, below).</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">CPU speed</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Clock check</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Boot time (wall)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Guest time at end of startup</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Boot dilation</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Idle dilation</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">322.5 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">316.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.02x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.47x *</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">310.1 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">330.3 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.94x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.61x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">309.1 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">356.8 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.87x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.18x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">304.0 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">386.6 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.79x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.59x</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50 MHz</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">AGREE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">318.0 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">437.7 s</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.73x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.18x</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">* Measured from the run's counters over 15 idle minutes instead of with <span class="f_CodeExample">Ctrl+/</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Conditions. </span>All figures come from the 3.0 development build (RelWithDebInfo) with the JIT and the interrupt harness at their defaults. A Release build runs faster, so expect shorter boot times and lower idle dilations from it. Each speed was run once; differences of a few percent between rows are within run-to-run variation. The build does not yet skip the guest's idle loop; when it does, idle dilation will no longer follow the speed in the same way, and this page will be updated.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Choosing a speed</span></h2>
+<p class="p_Normal">Choose a lower speed when the guest's clock matters most, for example when it should stay close to the wall clock through long idle periods. Choose a higher speed when software in the guest needs many cycles per guest second. Boot time is the same either way.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Measuring guest time</span></h2>
+<p class="p_Normal">Press <span class="f_CodeExample">Ctrl+/</span> in the console. EMulatR prints a host status line with the exact cycle count, the guest time and the dilation, and passes <span class="f_CodeExample">Ctrl/T</span> to the guest. Press it twice around anything you want to measure; the <span class="f_CodeExample">d_dil</span> field of the second line is the dilation over the interval. The fields are listed in <a href="console-control-keys.html" class="topiclink">Console Control Keys</a>; see also <a href="6_23-guest-time.html" class="topiclink">6.12 Guest Time</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">Ctrl+/</span> works from a console that connects at any time, including one that connects after the guest has started.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Guest clock against wall time (Release build)</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">These readings show how the OpenVMS clock keeps time against the wall clock while the system is idle. Each platform booted the same OpenVMS V8.3 system disk at 50 MHz with a Release build, logged in, and then sat idle at the DCL prompt for 20 minutes. The OpenVMS time (<span class="f_CodeExample">SHOW TIME</span>) and the host status line (<span class="f_CodeExample">Ctrl+/</span>) were read at the start and the end of the 20 minutes.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">OpenVMS clock rate (seconds per wall second)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Idle dilation</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Clock drift per wall hour</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.080</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.93x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">gains 4.8 minutes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.528</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.89x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">loses 28.3 minutes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.519</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.93x</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">loses 28.8 minutes</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">OpenVMS's own clock agrees exactly with EMulatR's guest time on all three platforms: every interval-timer tick is delivered and counted. The whole difference from the wall clock is dilation, that is, how fast EMulatR runs the guest on this host.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The DS10 idles slightly faster than real time at 50 MHz. The DS20 and ES40 idle at about half speed, because their firmware reports two and four processor slots, and OpenVMS on a machine with more than one slot runs an extra CPU scan on every pass of its idle loop. A real single-processor DS20 or ES40 does the same work.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

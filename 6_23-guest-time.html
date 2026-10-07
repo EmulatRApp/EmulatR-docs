@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.12 Guest Time</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="6.12 Guest Time,busy dilation,CPU speed,Ctrl+/,cycle counter,d_dil,dilation,EMULATR_TOY_FIXED_EPOCH,EMULATR_TOY_MODE,guest clock,guest time,idle collapse,idle dilation,idle pacing,idle pacing barrier,idle scan,IdleScan,interval timer,RPCC,SET TIME,time-of-year clock,TOY,wall time,warp,WARP-ACCOUNTING" />
+   <meta name="description" content="EMulatR keeps the guest's time in processor cycles, not in host time. Every clock the guest can read is driven by the emulated processor's cycle count, so the guest's sense of..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "6_23-guest-time.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.12 Guest Time</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?6_23-guest-time.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.12 Guest Time</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="6_11-cycle-harness-.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_-architecture--internals----.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="6_13-grain-composition.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EMulatR keeps the guest's time in processor cycles, not in host time. Every clock the guest can read is driven by the emulated processor's cycle count, so the guest's sense of time depends on how many instructions it has executed, not on how long the host took to execute them.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The guest's clocks</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Cycle counter.</span> The processor's cycle counter (read with <span class="f_CodeExample">RPCC</span>) advances with every cycle the guest executes.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Interval timer.</span> The interval timer interrupts the guest 1024 times per guest second. At a CPU speed of 50 MHz that is one interrupt every 48,828 cycles (and a fraction, kept exact over every 1024 ticks).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Time-of-year clock.</span> The battery-backed clock that OpenVMS reads at boot advances with guest cycles too, from the starting time set by its mode (below).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">One guest second is as many cycles as the CPU speed: 50 million at the default 50 MHz (the supported speeds are 50, 60, 75, 85 and 100 MHz). See <a href="tuning-emulatr.html" class="topiclink">11. Tuning EMulatR</a> for setting the speed and for what it changes.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Dilation</span></h2>
+<p class="p_Normal">Dilation is the number of wall-clock seconds the host takes to run one guest second. It depends on the host and on what the guest is doing: a boot, an idle prompt and a busy workload all run at different rates. At a dilation of 1.0 the guest's clock keeps pace with the wall clock; above 1.0 it falls behind, below 1.0 it gains. OpenVMS's own clock follows EMulatR's guest time exactly, so its drift against the wall clock is the dilation and nothing else. Measured figures for each platform are in <a href="tuning-emulatr.html" class="topiclink">11. Tuning EMulatR</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Waits</span></h2>
+<p class="p_Normal">When the guest waits by watching its clocks, for example a firmware delay loop that polls the cycle counter until a deadline, EMulatR can advance the clock to the end of the wait instead of executing every pass. The guest sees the same times and the same interrupts as if it had executed the wait; only the host time it takes is shorter. The <span class="f_CodeExample">WARP-ACCOUNTING</span> line at the end of the run log totals the guest cycles advanced this way.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Time-of-year clock modes</span></h2>
+<p class="p_Normal">The setting <span class="f_CodeExample">EMulatR_TOY_MODE</span> chooses where the time-of-year clock starts:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">host</span> (the default). The clock starts from the host's local time when EMulatR starts, then advances with guest time. Because the guest runs dilated, the guest's date and time gradually fall behind (or, on a fast idle platform, run ahead of) the host during a long session.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">fixed</span>. The clock starts from a fixed date (<span class="f_CodeExample">EMulatR_TOY_FIXED_EPOCH</span>) and advances with guest cycles only, so every run sees exactly the same times. Use it for repeatable test runs.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">unset</span>. The clock behaves like hardware with a dead battery: it is invalid until the guest sets it, so OpenVMS may ask for the date at boot.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">To correct the guest's time in a long session, set it from the guest, for example with the OpenVMS <span class="f_CodeExample">SET TIME</span> command.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Measuring guest time</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Measuring guest time. </span>Press <span class="f_CodeExample">Ctrl+/</span> in the console: EMulatR prints a host status line with the host time, the exact guest cycle count, the guest time and the time dilation. Press it twice around anything you want to measure; the <span class="f_CodeExample">d_dil</span> field on the second line is the dilation over that interval (host seconds per guest second). The fields are listed in <a href="console-control-keys.html" class="topiclink">Console Control Keys</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Idle pacing</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">When the guest is idle, EMulatR recognizes the idle loop and collapses it: the cycles the loop would have used are credited to the guest clock in one step, for almost no host time. Left alone, guest time can run ahead of wall time while the guest is idle. In the measured DS20 idle case the idle dilation fell to 0.35, meaning the guest clock ran about three times faster than the wall clock. Guest time running ahead of wall time in idle is not acceptable, so EMulatR paces idle guest time to wall time with an idle pacing barrier.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The barrier works at each idle collapse. A stretch is a run of collapses that are less than 20 ms apart. If the guest time that has passed since the anchor of the stretch exceeds the wall time that has passed by 2 ms or more, the host sleeps for the difference. Idle guest time therefore cannot run ahead of wall time. On the DS20 the idle dilation moved from 0.35 to 1.01. A boot is not affected: it made no sleeps.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The idle pacing barrier ships in the 3.0 Experimental release (X3.0-2) and is on by default. It works wherever IdleScan takes effect, which is the DS20 and the ES40; there the measured idle ratio of guest time to wall time is 1.00. Setting <span class="f_CodeExample">EMulatR_IDLESCAN=0</span> turns IdleScan and the barrier off.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">Known open item, DS10.</span> IdleScan does not take effect on the DS10, because no matching idle site is recognized there, so the barrier does not apply. The DS10 runs fast at idle: its guest time is not held to wall time. A general barrier for the DS10 is under review and is not part of this release.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">For how the idle loop is recognized and collapsed, and the options that control it, see <a href="6_14-idlescan.html" class="topiclink">6.14 IdleScan</a>.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

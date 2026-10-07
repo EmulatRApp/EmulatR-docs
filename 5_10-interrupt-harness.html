@@ -114,7 +114,7 @@
       
       <a href="storage-example---emular-i_o-c.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="5_-architecture--internals----.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="6_-reference------------------.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="6_11-cycle-harness-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -137,7 +137,7 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Nothing is delivered that is no longer true. The slow path reads the current level from the owner, so a level withdrawn before IACK takes the owner's spurious path (spurious IRQ7 or IRQ15), never a phantom device vector.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Masks have one copy. Delivery evaluates against the owner's register, read synchronously on the CPU thread; no CPU-local mask shadow is kept (DEC-11, HP-R1).</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><img src="embim11.png" width="480" height="275" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal"><img src="embim12.png" width="480" height="275" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Register owners</span></h3>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -207,94 +207,94 @@
 </tbody>
 </table>
 </div>
-<p class="p_Normal">Trigger-mode registers are not masks: a change re-derives the line's pending state from the current wire level.</p>
+<p class="p_Normal"><span style="font-style: italic;">Trigger-mode registers are not masks: a change re-derives the line's pending state from the current wire level.</span></p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Per-CPU structure</span></h2>
-<p class="p_Normal"><img src="embim12.png" width="480" height="275" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal"><img src="embim13.png" width="480" height="275" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Each CPU owns one set of the structures below. Only the attention word is read on the hot path; everything else is read in the slow path.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Structure</span></p>
+<th style="vertical-align:top; width:241px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Structure</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Written by</span></p>
+<th style="vertical-align:top; width:270px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Written by</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Read by</span></p>
+<th style="vertical-align:top; width:305px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Read by</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Purpose</span></p>
+<th style="vertical-align:top; width:513px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Purpose</span></p>
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">nextAttention</span> (attention word)</p>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">nextAttention</span> (attention word)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">any producer, lowered only (CAS); CPU thread re-arms in slow path</p>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">any producer, lowered only (CAS); CPU thread re-arms in slow path</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, every check (relaxed load)</p>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, every check (relaxed load)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest cycle at or after which the CPU must enter the slow path. One compare per check (I-1).</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">External flag</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">cross-thread producers (release store)</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, SP-1 (<span class="f_CodeExample">exchange(0, acquire)</span>)</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Says that some other thread has published work. Closes the lost wake-up window (5.5, A-1..A-5).</p>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest cycle at or after which the CPU must enter the slow path. One compare per check (I-1).</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Boundary raise flag</p>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">External flag</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU-thread boundary raises</p>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">cross-thread producers (release store)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread at the <span class="f_CodeExample">Machine::step</span> boundary</p>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, SP-1 (<span class="f_CodeExample">exchange(0, acquire)</span>)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Carries raises that are checked at the next instruction boundary rather than inside the block.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Deadline heap (64 entries)</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread (arm, cancel)</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Timer and device deadlines in guest cycles. Ties fire in arm order. Overflow is fatal and names capacity and count; the peak is reported at shutdown.</p>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">Says that some other thread has published work. Closes the lost wake-up window (5.5, A-1..A-5).</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Completion ring (SPSC) with credits</p>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">Boundary raise flag</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">one host producer thread</p>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU-thread boundary raises</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread at the <span class="f_CodeExample">Machine::step</span> boundary</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Carries device completions from a host thread. Ring plus staging never exceeds ring capacity; entries are never dropped.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IPI inbox (per ordered CPU pair)</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">sending CPU</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">target CPU, slow path</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Inter-processor interrupt causes.</p>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">Carries raises that are checked at the next instruction boundary rather than inside the block.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">IRQ mailbox (<span class="f_CodeExample">IrqMailbox</span>)</p>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">Deadline heap (64 entries)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">producers, <span class="f_CodeExample">fetch_or</span> of one bit per line</p>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread (arm, cancel)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A bit means &quot;re-evaluate this line&quot;, never &quot;this line is asserted&quot; (DEC-14, HP-R4).</p>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">Timer and device deadlines in guest cycles. Ties fire in arm order. Overflow is fatal and names capacity and count; the peak is reported at shutdown.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">Completion ring (SPSC) with credits</p>
+</td>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">one host producer thread</p>
+</td>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
+</td>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">Carries device completions from a host thread. Ring plus staging never exceeds ring capacity; entries are never dropped.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">IPI inbox (per ordered CPU pair)</p>
+</td>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">sending CPU</p>
+</td>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">target CPU, slow path</p>
+</td>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">Inter-processor interrupt causes.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:241px; padding:0; border:solid thin #000000;"><p class="p_Normal">IRQ mailbox (<span class="f_CodeExample">IrqMailbox</span>)</p>
+</td>
+<td style="vertical-align:top; width:270px; padding:0; border:solid thin #000000;"><p class="p_Normal">producers, <span class="f_CodeExample">fetch_or</span> of one bit per line</p>
+</td>
+<td style="vertical-align:top; width:305px; padding:0; border:solid thin #000000;"><p class="p_Normal">CPU thread, slow path</p>
+</td>
+<td style="vertical-align:top; width:513px; padding:0; border:solid thin #000000;"><p class="p_Normal">A bit means &quot;re-evaluate this line&quot;, never &quot;this line is asserted&quot; (DEC-14, HP-R4).</p>
 </td>
 </tr>
 </tbody>
@@ -310,6 +310,7 @@
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Closing writes</span></h3>
 <p class="p_Normal">A closing write is a register write that can make a pending request deliverable, for example an EOI, an unmask or a trigger-mode change. The rule: every closing write raises attention in the same operation. The PIC, the ELCR, the floppy controller and the 8042 raise on every write rather than trying to decide which writes close; this is cheap and cannot miss a case. AM-2 reports any closing change that was not raised as <span class="f_CodeExample">closeUnraised</span>.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Any write that clears an ISR bit, or changes what ISR bits block, is a closing write (HP-R3, DEC-13). It releases a level-triggered line still held at EOI and every lower-priority request that was pending behind the in-service bit. The 8259 owner already re-sets IRR at acknowledgment for a level still held; the harness adds the attention raise at the release point.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Raise sites</span></h3>
@@ -438,9 +439,9 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Chipset reset and snapshot restore</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Chipset reset</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reset / deserialize paths</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">reset path</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Boundary</p>
 </td>
@@ -452,10 +453,12 @@
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Cross-thread producers</span></h3>
 <p class="p_Normal">Phase 1 is single-threaded for the guest (DEC-6), but host threads exist. Only one of them is a producer: the SRM console thread (PR-1). Console RX used to reach the CPU only because <span class="f_CodeExample">evalDeviceIrqs</span> polled the <span class="f_CodeExample">m_rxReady</span> hint each boundary; with the poll gone, the console thread raises attention itself. The poll removal and the console-side raise land in the same change. The console carrier (MSR.DCD) is latched through a CPU-thread point, <span class="f_CodeExample">TsunamiChipset::latchConsoleCarrier()</span> (PC-4), and needs no raise today because modem-status interrupts are not implemented (PR-2). The storage pool threads are not producers (PR-3), and there is no network thread yet (PR-4).</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">A cross-thread producer publishes in this order (A-1..A-5):</p>
-<p class="p_CodeExample"><span class="f_CodeExample">record&nbsp;the&nbsp;cause&nbsp;//&nbsp;mailbox&nbsp;bit,&nbsp;ring&nbsp;entry,&nbsp;...</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">externalFlag.store(1,&nbsp;std::memory_order_release)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">lowerAttention(now)&nbsp;//&nbsp;CAS&nbsp;loop;&nbsp;only&nbsp;ever&nbsp;lowers&nbsp;nextAttention</span></p>
+<p class="p_CodeExample" style="margin: 0 0 0 13px;"><span class="f_CodeExample">record&nbsp;the&nbsp;cause&nbsp;//&nbsp;mailbox&nbsp;bit,&nbsp;ring&nbsp;entry,&nbsp;...</span></p>
+<p class="p_CodeExample" style="margin: 0 0 0 13px;"><span class="f_CodeExample">externalFlag.store(1,&nbsp;std::memory_order_release)</span></p>
+<p class="p_CodeExample" style="margin: 0 0 0 13px;"><span class="f_CodeExample">lowerAttention(now)&nbsp;//&nbsp;CAS&nbsp;loop;&nbsp;only&nbsp;ever&nbsp;lowers&nbsp;nextAttention</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The CPU consumes with <span class="f_CodeExample">externalFlag.exchange(0, std::memory_order_acquire)</span> in SP-1, then drains. When it re-arms the attention word in SP-6 it publishes with <span class="f_CodeExample">compare_exchange</span> and loops if the external flag was set in between, so a raise that lands during the slow path is never lost.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Checking attention</span></h1>
@@ -465,7 +468,7 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Delivery is at block boundaries only (H-3; O-5 / P-7 re-certified).</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Per-step duties</span></h3>
-<p class="p_Normal">Some work the old poll did on every step is not interrupt work and must keep running every step until P-2 moves it to deadlines: the stop poll, spin-skip and warp, the console <span class="f_CodeExample">rxPaceInterval</span> pacing, the snapshot request sentinel, and diagnostics. The harness must not remove these along with the interrupt poll.</p>
+<p class="p_Normal">Some work the old poll did on every step is not interrupt work and must keep running every step until P-2 moves it to deadlines: the stop poll, spin-skip and warp, the console <span class="f_CodeExample">rxPaceInterval</span> pacing, and diagnostics. The harness must not remove these along with the interrupt poll.</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Slow path</span></h3>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -493,7 +496,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SP-3</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Drain the IRQ mailbox and IPI inbox; for each bit, read the line's current level from its owner.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Drain the <span class="f_CodeExample">IRQ</span> mailbox and <span class="f_CodeExample">IPI</span> inbox; for each bit, read the line's current level from its owner.</p>
 </td>
 </tr>
 <tr>
@@ -505,7 +508,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SP-5</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Arbitrate: pending levels against masks, IPL and priority; IACK, 8259 cascade and vector generation run synchronously on the owner (DEC-12).</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Arbitrate: pending levels against masks, <span class="f_CodeExample">IPL</span> and priority; <span class="f_CodeExample">IACK</span>, 8259 cascade and vector generation run synchronously on the owner (DEC-12).</p>
 </td>
 </tr>
 <tr>
@@ -514,10 +517,16 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Re-arm <span class="f_CodeExample">nextAttention</span> to the earliest deadline with <span class="f_CodeExample">compare_exchange</span>; loop to SP-1 if the external flag is set.</p>
 </td>
 </tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">SP-7</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Lists the attention sources (<span class="f_CodeExample">IPL</span>, masks, <span class="f_CodeExample">MMIO</span>) that must raise. <span class="f_CodeExample">EOI</span> was the fifth poll-only path found by the code check and is now an SP-7 source (DEC-13).</p>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p class="p_Normal">SP-7 lists the attention sources (IPL, masks, MMIO) that must raise. EOI was the fifth poll-only path found by the code check and is now an SP-7 source (DEC-13).</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory ordering</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -889,7 +898,7 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A DS10 boot with the harness on. ES45 and DS25 follow when those platforms are ready.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Turn the harness on by default in its own commit, gated by V-1.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">After that: P-2 (device ticking and per-step duties move to deadlines), AM-7 (interrupt records), and the JIT-off and JIT-on timing owed to SPEC-JITHOST-001. The summary tear guard (HP-R5) must exist before any cross-thread publish in P-5, and cross-CPU DIM writes (HP-R6) wait on U-7.</p>
+<p class="p_Normal">After that: P-2 (device ticking and per-step duties move to deadlines), AM-7 (interrupt records), and the JIT-off and JIT-on timing owed to SPEC-JITHOST-001. The summary tear guard (HP-R5) must exist before any cross-thread publish in P-5, and cross-CPU <span class="f_CodeExample">DIM</span> writes (HP-R6) wait on U-7.</p>
 <p class="p_SeeAlso" style="page-break-after: avoid;"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal">&nbsp;</p>
 

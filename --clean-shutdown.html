@@ -137,7 +137,7 @@
 <p class="p_Normal">Or in Git Bash, from the same directory: <span class="f_CodeExample">touch EMulatR_STOP</span>.</p>
 <p class="p_Normal">The run loop polls the sentinel even mid-stall, exits within a moment, and writes the flash cleanly. The resolved sentinel path is logged at startup (grep <span class="f_CodeExample">graceful-stop run.log</span>).</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">One thing to expect afterwards: the run log will say <span class="f_CodeExample">Stop reason: MaxCyclesExceeded</span>. That is wrong, and it is a known defect in how the stop is classified rather than a sign that anything went awry. The shutdown was the clean sentinel path and the flash was flushed properly. Do not read the line as a run that overran its cycle limit.</p>
+<p class="p_Normal">Afterwards the run log says <span class="f_CodeExample">Stop reason: StopRequested</span> with the cycle count at which the run stopped, and EMulatR exits with status 0. Earlier builds reported this stop as <span class="f_CodeExample">Stop reason: MaxCyclesExceeded</span>; that label was wrong, and in those logs it does not mean the run overran its cycle limit.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">2. CALL_PAL HALT at the prompt</span></h2>
 <p class="p_Normal">Halting at <span class="f_CodeExample">&gt;&gt;&gt;</span> exits through ~Machine with a clean flush -- no sentinel touch needed.</p>

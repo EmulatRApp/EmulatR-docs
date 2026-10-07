@@ -146,7 +146,7 @@
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;Build&nbsp;&nbsp;&nbsp;│&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;Incrementing&nbsp;build&nbsp;number,&nbsp;set&nbsp;manually&nbsp;per&nbsp;release&nbsp;│</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─────────┴─────────┴─────────────────────────────────────────────────────┘</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">Release&nbsp;stage&nbsp;letters&nbsp;(DEC&nbsp;convention)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample" style="font-weight: bold;">Release&nbsp;stage&nbsp;letters&nbsp;(DEC&nbsp;convention)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┌────────┬──────────────────────────────────────────────┐</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;Letter&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meaning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span></p>
@@ -161,24 +161,24 @@
 <p class="p_Normal"><span style="width:48px;display:inline-block">&nbsp;</span> This is the same grammar a real Alpha console user knows from firmware strings such as V7.3-1, so a version shown by EMulatR reads exactly like one shown by genuine SRM firmware.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Where the version appears</span></h2>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;The version identity is emitted on the console banner when a terminal client attaches, above the emulated DEC firmware banner. That banner is EMulatR's own voice, not emulated firmware output:</p>
+<p class="p_Normal">The version identity is emitted on the console banner when a terminal client attaches, above the emulated DEC firmware banner. That banner is EMulatR's own voice, not emulated firmware output:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASA&nbsp;EMulatR&nbsp;--&nbsp;Alpha&nbsp;AXP&nbsp;(EV6&nbsp;/&nbsp;21264)&nbsp;Emulator</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alpha&nbsp;Emulator&nbsp;Console&nbsp;X1.6-15</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c)&nbsp;2026&nbsp;Timothy&nbsp;Peer&nbsp;/&nbsp;eNVy&nbsp;Systems,&nbsp;Inc.</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;The same identity is carried by the documentation set and by the distribution kit, so a support question can always be tied to one exact build.</p>
+<p class="p_Normal">The same identity is carried by the documentation set and by the distribution kit, so a support question can always be tied to one exact build.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the version is set (maintainers)</span></h2>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;There is exactly one source of truth. Both the numbers and the stage letter are declared in the project build file, and every other place the version appears is generated from it - the version is never typed in twice:</p>
+<p class="p_Normal">There is exactly one source of truth. Both the numbers and the stage letter are declared in the project build file, and every other place the version appears is generated from it - the version is never typed in twice:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CMakeLists.txt</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;project(EMulatR&nbsp;VERSION&nbsp;1.${EMulatR_TREE_VARIANT}.15&nbsp;...)&nbsp;&nbsp;&lt;-&nbsp;major&nbsp;.&nbsp;variant&nbsp;.&nbsp;build</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set(EMulatR_VERSION_STAGE&nbsp;&quot;X&quot;)&nbsp;&nbsp;&nbsp;&nbsp;&lt;-&nbsp;stage&nbsp;letter&nbsp;X&nbsp;|&nbsp;T&nbsp;|&nbsp;V</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;At build time those values are rendered into a generated header, which the console banner consumes; a build-time check confirms the badge and the header agree, so the two cannot drift apart. The build also mirrors the three numbers into this help project, so the manual and the emulator always report the same build.</p>
+<p class="p_Normal">At build time those values are rendered into a generated header, which the console banner consumes; a build-time check confirms the badge and the header agree, so the two cannot drift apart. The build also mirrors the three numbers into this help project, so the manual and the emulator always report the same build.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"> &nbsp; &nbsp; &nbsp;To raise the build number, edit the one version line and rebuild. To change release stage, flip the single stage letter: <span class="f_CodeExample">X</span> during development, <span class="f_CodeExample">T</span> for a field-test kit, <span class="f_CodeExample">V</span> at release.</p>
+<p class="p_Normal">To raise the build number, edit the one version line and rebuild. To change release stage, flip the single stage letter: <span class="f_CodeExample">X</span> during development, <span class="f_CodeExample">T</span> for a field-test kit, <span class="f_CodeExample">V</span> at release.</p>
 <p class="p_Normal">&nbsp;</p>
 
 <!--ZOOMSTOP-->

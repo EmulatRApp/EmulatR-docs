@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.13 Grain Composition</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="6.13 Grain Composition,BlockCache,BlockExecutor,ccCls,class weight,cycle cost,DecodedICache,decoded-instruction cache,Desc,dispatch kind,dispatch table,EMULATR_BLOCK_MAX,execFn,fixed-point weight,genGrains.py,grain,grain composition,GrainEntry,GrainMasterV4.tsv,GrainSem,InstructionGrain,interpreted block,JIT,leaf,leaf function,OPCDEC,p2 column,P-2 handler,PipelineDriver,PrimaryEntry,Q8,scale factor,SemanticFlags.tsv,semFlags,single step,spec,SpecTables.h" />
+   <meta name="description" content="A grain is EMulatR's unit of instruction semantics. Every Alpha instruction word the guest executes is decoded to one grain: a leaf function that implements the instruction,..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "6_13-grain-composition.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.13 Grain Composition</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?6_13-grain-composition.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.13 Grain Composition</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="6_23-guest-time.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_-architecture--internals----.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="6_14-idlescan.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">A grain is EMulatR's unit of instruction semantics. Every Alpha instruction word the guest executes is decoded to one grain: a leaf function that implements the instruction, plus the static properties the pipeline needs to run it. This page describes what a grain is made of, where its definition comes from, and how it travels from decode to execution. For the code generator that builds the tables, see <a href="--grainfactorylib.html" class="topiclink">grainFactoryLib</a> and <a href="--dispatchtables.html" class="topiclink">DispatchTables</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What a grain is composed of</span></h2>
+<p class="p_Normal">The grain appears in the code in three forms. They hold the same information at three levels.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">The table entry (GrainEntry).</span> One entry exists for each decoded operation, that is, for each (primary opcode, sub-decode) pair in the master table. It is generated at build time and never changes at run time. It has four parts:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">fn</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The executor leaf: a pointer to the function that implements the instruction (for example the Ebox leaf for ADDL or the Mbox leaf for LDQ). A leaf is a pure function from the grain and the execution context to a result record. It does not change architectural state itself: the register write, the memory effect and the PC change are applied by later pipeline stages.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">semFlags</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The semantic flag set. The pipeline stages consult these flags for every cross-cutting decision (which registers the instruction reads and writes, whether it is a load or a store, whether it changes the PC, whether it is a PAL entry) instead of switching on the opcode.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">box</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The functional box that owns the leaf: Ibox, Ebox, Fbox, Mbox, Cbox or PalBox. A routing hint.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mnemonic</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A text literal used by trace and listing output.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">The decoded slot (InstructionGrain).</span> When an instruction passes through the pipeline, the decode stage builds a small plain-data record, 32 bytes, that rides the pipeline slot until the instruction retires:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">pc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The address the instruction was fetched from. It is set at fetch and never changes. It is not the CPU's architectural PC.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">execFn</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The leaf function, copied from the table entry. It is never null: an unimplemented or unmapped encoding resolves to the OPCDEC leaf, which raises an illegal-instruction fault.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">semFlags</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The semantic flag set, copied from the table entry.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">encoded</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The raw 32-bit instruction word.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">box</span>, <span class="f_CodeExample">primaryOp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The box and the primary opcode (bits 31:26 of the word), kept for trace output.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">two reserved bytes</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unused. Reserved for future per-grain state.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The register numbers, displacement and literal are not copied onto the grain. A leaf reads them from <span class="f_CodeExample">encoded</span>, which is their single source.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">The cached reference.</span> The decoded-instruction cache and the block cache (described below) store the table entry by pointer together with the encoded word. They never store a copy of the grain.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Where the grain definition comes from</span></h2>
+<p class="p_Normal">The table entries are not written by hand. The master table <span class="f_CodeExample">GrainMasterV4.tsv</span> has one row per Alpha operation, with these columns: mnemonic, primary opcode, sub-decode value, dispatch kind, format, box, semantic flags, notes, an optional leaf base that lets several rows share one leaf, and an optional <span class="f_CodeExample">p2</span> group. The generator <span class="f_CodeExample">genGrains.py</span> checks the table against <span class="f_CodeExample">SemanticFlags.tsv</span> and emits the dispatch tables, which are then compiled in. The primary table has 64 slots, one per primary opcode. Each slot names a dispatch kind that tells the decoder which bits of the word select the sub-table entry. A slot or a sub-decode with no row resolves to the OPCDEC entry.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span class="f_CodeExample">p2</span> column marks the grains that have a specialized P-2 handler. Group A is an operation that writes one integer register and advances the PC by 4, and cannot fault, touch memory, change mode or branch. Group B is a PC-relative integer branch. The generator emits a table of these from the column. An empty column means only the faithful path exists for that grain.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How a grain flows from decode to execution</span></h2>
+<p class="p_Normal"><span style="font-weight: bold;">1. Decode.</span> The decoder takes the primary opcode from bits 31:26, indexes the primary table, and then selects the entry by the dispatch kind of that slot (the 7-bit, 11-bit, 2-bit or 16-bit sub-decode field, or a sparse lookup for PAL calls and miscellaneous operations). The result is a reference to the table entry. The lookup has no side effects.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">2. The decoded-instruction cache.</span> Fetching and decoding give the same answer every time for the same address under the same translation state, so the result is remembered. The cache has 65,536 entries, is direct-mapped on the word address, and each entry is 32 bytes (2 MB in all). An entry holds:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">key</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The full PC, including the PALmode bit, so PAL and native code never alias.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">gen</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The fetch-path generation at fill. Every event that can change the answer (translation-buffer fills and invalidates, writes to I_CTL, PAL_BASE and VA_CTL, instruction-cache flush) increments the generation, so an old entry stops matching.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">asn</span>, <span class="f_CodeExample">mode</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The address-space number and the current mode, which affect translation.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">spec</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The P-2 handler index. 0 means the faithful path; 1 to 127 select a Group A handler and 128 to 191 a Group B handler.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ccCls</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A reserved byte for the cycle-cost class of the instruction. It is not used yet.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">encoded</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The raw instruction word.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ge</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The reference to the table entry.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">An entry is a hit only if the key, generation, ASN and mode all match.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">3. Execution.</span> The grain is run by one of three paths, which give the guest the same result:</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Single step.</span> The pipeline driver fetches and decodes one instruction, or takes it from the cache, builds a pipeline slot and calls the leaf. If the cache entry has a P-2 handler index and P-2 is enabled, the specialized handler runs instead, without building a slot.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Interpreted block.</span> A block is a straight-line run of already-decoded instructions. It is built by walking the decoded-instruction cache and stops at the first instruction not yet decoded, at a page edge, at an unconditional transfer, before CALL_PAL and the hardware-format instructions, or when the block holds the limit set by <span class="f_CodeExample">EMulatR_BLOCK_MAX</span> (default 32, at most 256). Each descriptor of a block holds the table entry, the encoded word and the primary opcode (plus three reserved bytes). The block executor calls each leaf in turn and re-reads every operand from the CPU state, so it keeps no register contents between instructions.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">JIT.</span> A block that is executed often can be translated to a fused or native form from the same descriptors. Where the translation cannot handle an instruction, execution continues in the interpreter from that instruction.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Cycle cost is a property of the grain</span></h2>
+<p class="p_Normal">The cycle cost model described in the Cycle Harness topic makes the charge for an instruction a property of its grain. The weight of the grain is the 21264 hardware cycle count for the instruction, held in fixed-point units of 1/256 cycle, together with the scale factor. For a conditional branch the weight also includes the expected mispredict cost of that opcode. The weights are generated from the master table at build time, in the way the P-2 group table is. There is no cost file and no run-time setting, so the cost is a property of the compiled image. Whichever path runs the grain (single step, interpreted block or JIT), it charges the same cycles.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The charge model and its arithmetic are in <a href="6_11-cycle-harness-.html" class="topiclink">6.11 Cycle Harness</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Implementation is in progress. The current build charges one cycle for every executed instruction (Mode A) at a single charging point, and the grain does not carry a weight yet.</p>
+<p class="p_Normal">The weight is carried by the grain as a <span class="f_CodeExample">ccCls</span> byte; the charging site dereferences it once per retire. This was ruled RUL-20261004-28 and -30 (the ruling log entry).</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_SeeAlso" style="page-break-after: avoid;"><span class="f_SeeAlso">See Also. </span></p>
+<p class="p_Normal"><a href="5_8-comjit.html" class="topiclink"> JIT (Just-in-Time Execution)</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

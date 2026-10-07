@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="--autosnapshot,CLI,command line options,command-line,EmulatR.exe,firmware,--firmware,--max-cycles,--mem,--no-autoload,options,qualifiers,snapshot,--snapshot-on-pc,--trace" />
+   <meta name="keywords" content="CLI,command line options,command-line,EmulatR.exe,firmware,--firmware,--max-cycles,--mem,options,qualifiers,--trace" />
    <meta name="description" content="The launch scripts (tools/run_&lt;model&gt;.sh) pass these command-line options (qualifiers) through to the emulator -- supply them after a bare --. Options are parsed left to right;..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -127,14 +127,14 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The launch scripts (<span class="f_CodeExample">tools/run_&lt;model&gt;.sh</span>) pass these command-line options (qualifiers) through to the emulator -- supply them after a bare <span class="f_CodeExample">--</span>. Options are parsed left to right; a command-line value overrides the corresponding setting in EMulatR.ini (CLI &gt; ini). Flags use a double dash and take the next argument as their value.</p>
+<p class="p_Normal">The launch scripts (<span class="f_CodeExample">tools/run_&lt;model&gt;.sh</span>) pass these command-line options (qualifiers) through to the emulator -- supply them after a bare <span class="f_CodeExample">--</span>. Options are parsed left to right; a command-line value overrides the corresponding setting in Emulatr.ini (CLI &gt; ini). Flags use a double dash and take the next argument as their value.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">Usage:</span></p>
 <p class="p_Normal"><span class="f_CodeExample">./tools/run_&lt;model&gt;.sh -- [options]</span></p>
-<p class="p_Normal">The launch script selects its model's firmware image automatically; to override, pass <span class="f_CodeExample">--firmware &lt;path&gt;</span> after the <span class="f_CodeExample">--</span>, or rely on the [ROM] firmwareImage entry in EMulatR.ini.</p>
+<p class="p_Normal">The launch script selects its model's firmware image automatically; to override, pass <span class="f_CodeExample">--firmware &lt;path&gt;</span> after the <span class="f_CodeExample">--</span>, or rely on the [ROM] firmwareImage entry in Emulatr.ini.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Configuration precedence</span></h2>
-<p class="p_Normal">Settings resolve in this order, later winning: built-in defaults, then <span class="f_CodeExample">EMulatR.ini</span>, then the command line -- so <span class="f_CodeExample">CLI &gt; ini</span>. Environment variables (<span class="f_CodeExample">EMulatR_*</span>) are a SEPARATE, orthogonal layer: most are ENV-only diagnostic / trace toggles with no CLI or ini equivalent (see Environment Variables). The two that overlap a CLI flag -- <span class="f_CodeExample">--no-autoload</span> / <span class="f_CodeExample">EMulatR_NO_AUTOLOAD</span> and <span class="f_CodeExample">--autosnapshot</span> / <span class="f_CodeExample">EMulatR_AUTOSNAP</span> -- are combined so either source can set them, rather than one overriding the other. For run examples, background/detached execution, and the tools/ .sh helpers, see Running EMulatR from the Shell.</p>
+<p class="p_Normal">Settings resolve in this order, later winning: built-in defaults, then <span class="f_CodeExample">Emulatr.ini</span>, then the command line -- so <span class="f_CodeExample">CLI &gt; ini</span>. Environment variables (<span class="f_CodeExample">EMulatR_*</span>) are a SEPARATE, orthogonal layer: most are ENV-only diagnostic / trace toggles with no CLI or ini equivalent (see Environment Variables). No environment variable overlaps a CLI flag any longer. EMulatR never loads or saves a snapshot, so every start is a cold boot. The older options <span class="f_CodeExample">--no-autoload</span> and <span class="f_CodeExample">--autosnapshot</span> are still accepted so existing scripts run, but they do nothing; <span class="f_CodeExample">--snapshot-on-pc</span> is ignored with a message. For run examples, background/detached execution, and the tools/ .sh helpers, see Running EMulatR from the Shell.</p>
 <p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -149,7 +149,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--firmware &lt;path&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Firmware image to load (raw binary or SRM .exe). Required. If omitted, the value comes from [ROM] firmwareImage in EMulatR.ini - and if that is empty too, the run stops with a configuration error rather than choosing a default.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Firmware image to load (raw binary or SRM .exe). Required. If omitted, the value comes from [ROM] firmwareImage in Emulatr.ini - and if that is empty too, the run stops with a configuration error rather than choosing a default.</p>
 </td>
 </tr>
 <tr>
@@ -183,18 +183,6 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--autosnapshot &lt;on|off&gt;</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Periodic auto_*.axpsnap saves. Default on. Off writes only the named --snapshot-on-pc file (use for cold-boot mint runs). Env equivalent: EMulatR_AUTOSNAP=off.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--no-autoload</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Skip autoload-newest at startup, forcing a genuine cold boot instead of restoring the newest snapshot. Env equivalent: EMulatR_NO_AUTOLOAD=1.</p>
-</td>
-</tr>
-<tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--pal-mode</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Force PALmode = true regardless of the --start-pa low bit.</p>
@@ -204,18 +192,6 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--trace &lt;dec,machine&gt;</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Enable the DEC-listing and machine-parsable trace channels (PAL-window + retire-compact). Argument is the two output paths, comma-separated.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--snapshot-on-pc &lt;pc&gt;[,&lt;pc&gt;...]</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">One-shot snapshot trigger(s): the first retire at each PC writes a predig_*.axpsnap. A single PC also disables auto-save so the file stays mtime-newest for autoload; a comma-list mints several (pair with --autosnapshot off). predig_ files are never pruned.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--snapshot-name-tag &lt;s&gt;</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Base tag inserted after predig_ (e.g. gctbuild). With multiple PCs, _&lt;pchex&gt; is appended per file. Default: the hex PC.</p>
 </td>
 </tr>
 <tr>

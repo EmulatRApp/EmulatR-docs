@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="console,paste,input pacing,port 10023,RAW TCP,terminal client" />
+   <meta name="keywords" content="console,input pacing,paste,port 10023,RAW TCP,terminal client" />
    <meta name="description" content="EMulatR serves its console over a RAW TCP socket. This subsection covers what the console is, how the port is chosen, and how to attach each common terminal client." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -130,9 +130,9 @@
 <p class="p_Normal">EMulatR serves its console over a RAW TCP socket. This subsection covers what the console is, how the port is chosen, and how to attach each common terminal client.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">In this section</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Console Support -- what the console is and which clients work.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">TCP Console Overview -- the port, the auto-launch, and running multiple instances.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Terminal Clients -- step-by-step connection for PuTTY, Plink, Tera Term, MobaXterm, and netcat.</span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Console Support -- what the console is and which clients work.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>TCP Console Overview -- the port, the auto-launch, and running multiple instances.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Terminal Clients -- step-by-step connection for PuTTY, Plink, Tera Term, MobaXterm, and netcat.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Pasting into the console</span></h2>
 <p class="p_Normal">Pasting several lines at once into the guest -- into an editor such as TPU or EVE, or into a command procedure -- works from X1.6-15. Console input is delivered at a serial-plausible rate (9600 characters per second by default) instead of being handed to the guest as fast as the socket can carry it, so a paste can no longer outrun the terminal driver's typeahead buffer.</p>

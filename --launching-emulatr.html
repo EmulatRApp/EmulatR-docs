@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="--autosnapshot,cold boot,Emulatr.exe,EMULATR_NO_AUTOLOAD,--firmware,--max-cycles,--no-autoload,run.log,snapshot" />
+   <meta name="keywords" content="cold boot,Emulatr.exe,--firmware,--max-cycles,run.log" />
    <meta name="description" content="Run from your system's profile directory - the directory the launcher created, which holds firmware\, config\, logs\ and the platform manifest. The installation itself is..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -127,23 +127,18 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Run from your system's profile directory - the directory the launcher created, which holds <span class="f_CodeExample">firmware\</span>, <span class="f_CodeExample">config\</span>, <span class="f_CodeExample">logs\</span> and the platform manifest. The installation itself is read-only, so never launch with it as the working directory. A genuine cold boot (no snapshot restore), quiet, is:</p>
+<p class="p_Normal">Run from your system's profile directory - the directory the launcher created, which holds <span class="f_CodeExample">firmware\</span>, <span class="f_CodeExample">config\</span>, <span class="f_CodeExample">logs\</span> and the platform manifest. The installation itself is read-only, so never launch with it as the working directory. Every start is a cold boot; EMulatR never loads or saves a snapshot. A typical launch, quiet, is:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;'&lt;your&nbsp;profile&nbsp;directory&gt;'</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">$env:EMulatR_NO_AUTOLOAD&nbsp;=&nbsp;'1'</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe&nbsp;--autosnapshot&nbsp;off</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">Remove-Item&nbsp;Env:\EMulatR_NO_AUTOLOAD</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Omit <span class="f_CodeExample">EMulatR_NO_AUTOLOAD</span> to restore the newest snapshot instead of cold-booting. Clear it afterwards as shown - unlike a shell prefix, <span class="f_CodeExample">$env:</span> persists for the rest of the session, so leaving it set makes every later run cold-boot too. Diagnostics go to stderr; see Capturing the run log below.</p>
+<p class="p_Normal">Diagnostics go to stderr; see Capturing the run log below.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Common launch modes</span></h2>
-<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Autoload to the prompt in seconds</span> -- drop <span class="f_CodeExample">--no-autoload</span> so the newest <span class="f_CodeExample">&gt;&gt;&gt;</span> snapshot is restored:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe&nbsp;--autosnapshot&nbsp;off</span></p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Bounded headless cold boot</span> -- determinism / step-correctness over a few minutes (covers decompression and early init):</p>
 <p class="p_CodeExample"><span class="f_CodeExample">$env:EMulatR_NO_PUTTY&nbsp;=&nbsp;'1'</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe&nbsp;`</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;--no-autoload&nbsp;--autosnapshot&nbsp;off&nbsp;--max-cycles&nbsp;2000000000</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;--max-cycles&nbsp;2000000000</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">Remove-Item&nbsp;Env:\EMulatR_NO_PUTTY</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">A backtick continues a line in PowerShell; a trailing backslash does not.</p>
@@ -152,7 +147,7 @@
 <p class="p_Normal">Do not use <span class="f_CodeExample">2&gt; run.log</span> here. Windows PowerShell wraps a native program's stderr in its own error records, so the file ends up holding decorated PowerShell text instead of the emulator's lines. <span class="f_CodeExample">Start-Process</span> writes the stream untouched:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">Start-Process&nbsp;-FilePath&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;`</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;-ArgumentList&nbsp;'--firmware','firmware\ds20_v7_3.exe','--autosnapshot','off'&nbsp;`</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;-ArgumentList&nbsp;'--firmware','firmware\ds20_v7_3.exe'&nbsp;`</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample"> &nbsp;&nbsp;&nbsp;-RedirectStandardError&nbsp;run.log&nbsp;-NoNewWindow&nbsp;-Wait</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">In Git Bash the plain redirect is fine: <span class="f_CodeExample">... 2&gt; run.log</span>.</p>
@@ -162,8 +157,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">EMulatRLauncher is Supported (</span><span class="f_SeeAlso"><a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a></span><span class="f_SeeAlso" style="font-weight: bold;">)</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><img src="embim1.png" width="917" height="217" style="margin:1px;border:none" alt="" /></p>
-<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><img src="embim1.png" width="635" height="150" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="--connecting-to-the-console.html" class="topiclink">Connecting to the Console</a></p>

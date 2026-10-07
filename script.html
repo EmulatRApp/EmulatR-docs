@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">The tools topic-hive documents the developer and operator scripts that live in the EMulatR V4 source <span class="f_CodeExample">tools/</span> directory. The shell scripts are deployed beside <span class="f_CodeExample">EMulatR.exe</span> in <span class="f_CodeExample">&lt;run-dir&gt;/tools/</span> by the CMake POST_BUILD step and anchor to the run-dir root; the Python utilities run directly from the source tree. All shell scripts target Git Bash on Windows.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Most scripts locate the run-dir by anchoring to their own directory and expect <span class="f_CodeExample">EMulatR.exe</span>, the firmware, and <span class="f_CodeExample">config/EMulatR.ini</span> beside it. None of them build except where the name says so (<span class="f_CodeExample">build_test_run</span>); the rest are run-only or diagnosis-only.</p>
+<p class="p_Normal">Most scripts locate the run-dir by anchoring to their own directory and expect <span class="f_CodeExample">EMulatR.exe</span>, the firmware, and <span class="f_CodeExample">config/Emulatr.ini</span> beside it. None of them build except where the name says so (<span class="f_CodeExample">build_test_run</span>); the rest are run-only or diagnosis-only.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Build, run, and boot</span></h2>
 <p class="p_Normal"><a href="build_test_run2.html" class="topiclink">build_test_run</a> -- Rebuild (RelWithDebInfo), run the chipset halt-register doctest, then hand off to the OpenVMS boot.</p>

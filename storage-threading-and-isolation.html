@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="ADR-MIO-016,coalescing,determinism,drain,hub,isolation,L = 0,MPW writer,ordering,ownership,read worker,sequence number,snapshot,threading,vCPU,watchdog,write_cache off,write_cache ordered" />
+   <meta name="keywords" content="ADR-MIO-016,coalescing,determinism,drain,hub,isolation,L = 0,MPW writer,ordering,ownership,read worker,sequence number,threading,vCPU,watchdog,write_cache off,write_cache ordered" />
    <meta name="description" content="The pool uses a small, fixed set of host threads, each with a narrow job and a narrow view of shared state. This topic describes who does what, what each thread is allowed to..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -181,10 +181,10 @@
 <p class="p_Normal">On the direct engine there are no storage threads: <span class="f_CodeExample">FileBlockMedia</span> does its I/O on the vCPU thread.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Ownership rules</span></h2>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Every data-path call comes from the vCPU thread. Only the operator controls (resume, abort, dump, discard) and the writer-state query may be called from other threads.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">A read worker writes only a frame that is in the Filling state, and publishes it under the pool's shared lock.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The MPW writer reads only buffers captured by a queued entry. The vCPU never modifies a captured buffer again (copy-on-write), so the writer never races the guest.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Worker threads reach shared state only through a hub (a shared lock, condition variable and alive flag) held by shared ownership. If a host call never returns and the pool closes, the stuck thread finds the hub marked dead and never touches freed memory; the pool leaks that memory and those handles to the process rather than risk it.</span></p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Every data-path call comes from the vCPU thread. Only the operator controls (resume, abort, dump, discard) and the writer-state query may be called from other threads.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A read worker writes only a frame that is in the Filling state, and publishes it under the pool's shared lock.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The MPW writer reads only buffers captured by a queued entry. The vCPU never modifies a captured buffer again (copy-on-write), so the writer never races the guest.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Worker threads reach shared state only through a hub (a shared lock, condition variable and alive flag) held by shared ownership. If a host call never returns and the pool closes, the stuck thread finds the hub marked dead and never touches freed memory; the pool leaks that memory and those handles to the process rather than risk it.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Ordering</span></h2>
 <p class="p_Normal">Every guest write gets a sequence number on one machine-wide queue, across all disks. The writer makes writes durable in exactly that order, one at a time. The guarantee (MB-4g) is that after an emulator crash or a host power loss the images hold an unbroken prefix of the guest's write history: if a write is on the host, every earlier write is too.</p>
@@ -229,11 +229,6 @@
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Determinism</span></h2>
 <p class="p_Normal">Both engines complete a request inside the instruction that issued it (latency zero in guest time, MIO-1). A miss, a slow host or a pressure stall costs wall time, never guest time. Two runs are nevertheless not bit-identical: side-by-side boots on the two engines agree on console output and to within a few hundredths of a second of guest time through startup, but their executed cycle counts differ slightly. The source of that residual drift is under investigation; it is not the storage path, whose requests complete without advancing guest time.</p>
-<p class="p_Normal">&nbsp;</p>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Snapshots</span></h2>
-<p class="p_Normal">A snapshot records guest memory and device state, not the host's queue. Before saving, the machine drains the pool so every queued write is durable; if the drain fails (the writer was aborted), the snapshot is refused.</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="5_9-storage-engine.html" class="topiclink">6.9 Storage Engine</a></p>

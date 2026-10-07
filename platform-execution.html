@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="--no-autoload,[System] model,auto_*.axpsnap,cold boot,config/Emulatr.ini,debug,DS10,DS15,DS20,DS25,emulatr_launch.sh,EMULATR_DIAG,ES40,ES45,firmware stem,out/build,PuTTY console,release,relwithdebinfo,run_&lt;plat&gt;.sh,run_fw.sh,RUN_DIR,silicon ceiling,snapshot restore,three-platform gate" />
+   <meta name="keywords" content="[System] model,cold boot,config/Emulatr.ini,debug,DS10,DS15,DS20,DS25,emulatr_launch.sh,EMULATR_DIAG,ES40,ES45,firmware stem,out/build,PuTTY console,release,relwithdebinfo,run_&lt;plat&gt;.sh,run_fw.sh,RUN_DIR,silicon ceiling,three-platform gate" />
    <meta name="description" content="Every supported model is launched the same way, through one script. The model is not really a flag you choose -- it follows the firmware image the run loads." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -136,7 +136,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">- resolves <span class="f_CodeExample">firmware/&lt;stem&gt;.exe</span> and passes it as <span class="f_CodeExample">--firmware</span>;</p>
 <p class="p_Normal">- requests 4 GiB of guest memory, clamped down to that model's REAL_HW ceiling;</p>
-<p class="p_Normal">- sets the <span class="f_CodeExample">[System] model</span> line in <span class="f_CodeExample">config/EMulatR.ini</span> and restores the original on exit;</p>
+<p class="p_Normal">- sets the <span class="f_CodeExample">[System] model</span> line in <span class="f_CodeExample">config/Emulatr.ini</span> and restores the original on exit;</p>
 <p class="p_Normal">- always raises the PuTTY console -- it unsets <span class="f_CodeExample">EMulatR_NO_PUTTY</span> and sets <span class="f_CodeExample">EMulatR_CONSOLE_MIRROR</span> -- because diagnostic runs are driven by an operator at the console;</p>
 <p class="p_Normal">- writes a stem-keyed log to <span class="f_CodeExample">logs/&lt;stem&gt;_&lt;purpose&gt;_&lt;timestamp&gt;.log</span>;</p>
 <p class="p_Normal">- passes everything after <span class="f_CodeExample">--</span> to EMulatR.exe verbatim, and forwards diagnostic environment variables (<span class="f_CodeExample">EMulatR_VALUE_GATE</span> and the like) from the calling shell;</p>
@@ -147,7 +147,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Platform-named wrappers</span></h2>
 <p class="p_Normal">Six wrappers exec straight into the launcher with the platform already supplied. They hold no argument logic of their own, so there is only ever one place where the per-platform arguments are decided.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">tools/run_ds20.sh&nbsp;bgate&nbsp;--&nbsp;--no-autoload&nbsp;--autosnapshot&nbsp;off</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">tools/run_ds20.sh&nbsp;bgate</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The models</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -219,7 +219,7 @@
 <p class="p_Normal">DS15 is the newest entry and the least finished. Its wrapper exists, but no <span class="f_CodeExample">ds15_v7_3.exe</span> is staged in the run directory, so the launcher stops with a FATAL before the emulator starts; the v7.3 image is in the firmware archive and staging it is what the platform waits on. DS15 is also the one model EMulatR itself does not recognize -- see <a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Cold boots</span></h2>
-<p class="p_Normal">The launcher has no <span class="f_CodeExample">cold</span> keyword. A genuinely cold boot is requested by passing the emulator flags through: <span class="f_CodeExample">tools/run_ds20.sh cold -- --no-autoload</span>, where the first word is only the log tag. Stale <span class="f_CodeExample">auto_*.axpsnap</span> files are not purged for you, so a run that must not restore from a snapshot should pass <span class="f_CodeExample">--no-autoload</span> explicitly rather than rely on the snapshot directory being empty.</p>
+<p class="p_Normal">The launcher has no <span class="f_CodeExample">cold</span> keyword, and none is needed: EMulatR never loads or saves a snapshot, so every start is a cold boot. In a command such as <span class="f_CodeExample">tools/run_ds20.sh cold</span> the first word is only the log tag.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What the launcher does not decide</span></h2>
 <p class="p_Normal">It still rewrites the ini <span class="f_CodeExample">model</span> line, but that is belt and braces rather than the authority: the model is derived from the firmware stem whenever <span class="f_CodeExample">--firmware</span> is given, so <span class="f_CodeExample">ds10_v7_3.exe</span> means DS10 regardless of what the ini says. The rewrite covers the case where the binary in the run directory predates that rule.</p>

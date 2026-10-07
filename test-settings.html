@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>11. Test/Regression</title>
+   <title>12. Test/Regression</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,7 +95,7 @@
 <body>
 
 
-<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">11. Test/Regression</span></h1>
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">12. Test/Regression</span></h1>
 </div>
 <div id="idheader">
 <div id="idheaderbg">
@@ -107,12 +107,12 @@
       &raquo;No topics above this level&laquo;
       </p>
    
-      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">11. Test/Regression</span></h1>
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">12. Test/Regression</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="performance-warp.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="tuning-emulatr.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="test-results-2026-09-29.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -128,8 +128,10 @@
 
 <!--ZOOMRESTART-->
 <p class="p_Normal">This chapter is the regression suite for the three supported platforms: how each test environment is set up, what is run, and what counts as a pass. Run it on every build that changes execution, interrupts, devices or the console, and record the results on a dated results page.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The environments</span></h2>
-<p class="p_Normal">Each test runs in a named environment with its own console port, disk set and run directory, so the three platforms can be tested at the same time. Environments are created and launched with <span class="f_CodeExample">v2.1/tools/EMulatR_env.sh</span>.</p>
+<p class="p_Normal">Each test runs in a named environment with its own console port, disk set and run directory, so the three platforms can be tested at the same time. Environments are created and launched with <span class="f_CodeExample">v3.0/tools/EMulatR_env.sh</span>.</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -197,8 +199,10 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Golden disks</span></h2>
 <p class="p_Normal">Every boot test starts from the same disks. Before each run the two disks OpenVMS writes (<span class="f_CodeExample">dka0.vdisk</span> and <span class="f_CodeExample">dka200_vms83.vdisk</span>) are copied from the environment's golden set and checked against its SHA-256 list. A golden set is taken only from disks that were shut down cleanly (the emulator writes a disk file only when it exits).</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -230,6 +234,7 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Settings common to every boot test</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -268,26 +273,20 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">--no-autoload --autosnapshot off</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">command line</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A cold boot every time: no snapshot is resumed and none is taken unless the test asks for one.</p>
-</td>
-</tr>
-<tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_UNATTENDED=1</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">unattended runs</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No PuTTY window; the console is driven by <span class="f_CodeExample">v2.1/tools/srm_console_driver.py</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">No PuTTY window; the console is driven by <span class="f_CodeExample">v3.0/tools/srm_console_driver.py</span>.</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The eight boot tests</span></h2>
-<p class="p_Normal">Each platform runs the same eight boot tests: the interrupt harness (<span class="f_CodeExample">EMulatR_IRQ_HARNESS</span>) off and on, the JIT (<span class="f_CodeExample">EMulatR_JIT</span>) off and on, and a snapshot taken at the start of OpenVMS startup or none. The snapshot is requested by creating the file <span class="f_CodeExample">EMulatR_SNAPSHOT</span> in the run directory when the console shows <span class="f_CodeExample">%STDRV-I-STARTUP</span>; the run continues after it is saved.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The four boot tests</span></h2>
+<p class="p_Normal">Each platform runs the same four boot tests: the interrupt harness (<span class="f_CodeExample">EMulatR_IRQ_HARNESS</span>) off and on, and the JIT (<span class="f_CodeExample">EMulatR_JIT</span>) off and on. Every start is a cold boot. The earlier tests B-5 to B-8, which took a snapshot at the start of OpenVMS startup, were retired in 3.0 when snapshots were removed.</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -296,8 +295,6 @@
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Interrupt harness</span></p>
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">JIT</span></p>
-</th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Snapshot</span></p>
 </th>
 </tr>
 </thead>
@@ -309,8 +306,6 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none</p>
-</td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-2</p>
@@ -318,8 +313,6 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none</p>
 </td>
 </tr>
 <tr>
@@ -329,8 +322,6 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none</p>
-</td>
 </tr>
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-4</p>
@@ -339,69 +330,33 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-5</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">at startup</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-6</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">at startup</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-7</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">at startup</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">B-8</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">on</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">off</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">at startup</p>
-</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p class="p_Normal">In builds after X2.1-1 the JIT is on by default: the JIT-off tests must set <span class="f_CodeExample">EMulatR_JIT=off</span> explicitly. Leaving the variable unset no longer means off.</p>
+<p class="p_Normal"><span style="font-style: italic;">In builds after X2.1-1 the JIT is on by default: the JIT-off tests must set </span><span class="f_CodeExample" style="font-style: italic;">EMulatR_JIT=off</span><span style="font-style: italic;"> explicitly. Leaving the variable unset no longer means off.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What a pass means</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>OpenVMS startup completes: the STARTUP job reports <span class="f_CodeExample">job terminated at</span>.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>After a Return at the console, OpenVMS prints the <span class="f_CodeExample">Username:</span> prompt.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>No bugcheck, and no halt at the console.</p>
 <p class="p_Normal">The DS20 has one more condition, the reference count; see the DS20 page.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The console during a test</span></h2>
-<p class="p_Normal">The SRM console accepts one connection at a time. Connect before booting: on the DS10, a console that connected after the console restarted at the end of an update has been seen to receive nothing, and on the DS20 a console that connects after startup has waited several minutes for its first response. The DS10 and ES40 tests therefore keep one driver session from launch to <span class="f_CodeExample">Username:</span>; the DS20 test stays unconnected until startup ends, so that its instruction count cannot be affected (see the DS20 page).</p>
+<p class="p_Normal">The SRM console accepts one connection at a time. A console may connect at any point in a run and receives everything printed before and after it connects. Builds before 3 October 2026 did not: a console that connected after the machine had printed with no console attached received nothing at all, which was the cause of the reports that a DS10 console reconnecting after an update restart, and a DS20 console connecting after startup, saw no output. The DS10 and ES40 tests keep one driver session from launch to <span class="f_CodeExample">Username:</span>; the DS20 test stays unconnected until startup ends, so that its instruction count cannot be affected (see the DS20 page), and connects afterwards.</p>
 <p class="p_Normal">OpenVMS prints <span class="f_CodeExample">Username:</span> only after a Return. A console that shows nothing after startup is idle, not stalled.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Stopping a run</span></h2>
-<p class="p_Normal">Create <span class="f_CodeExample">EMulatR_STOP</span> in the run directory. The emulator saves the flash and exits cleanly, and writes the disk files. The exit line reads <span class="f_CodeExample">Stop reason: MaxCyclesExceeded</span> for this stop too; that label is wrong and is being fixed.</p>
+<p class="p_Normal">Create <span class="f_CodeExample">EMulatR_STOP</span> in the run directory. The emulator saves the flash and exits cleanly, and writes the disk files. The exit line reads <span class="f_CodeExample">Stop reason: StopRequested</span>.</p>
 <p class="p_CodeExample"><span class="f_CodeExample">touch&nbsp;/d/EMulatR/project/out/build/v2.1-relwithdebinfo/env-ds10x/EMulatR_STOP</span></p>
 <p class="p_Normal">Do not use the SRM <span class="f_CodeExample">init</span> command between tests. It does not reset the emulated machine, and a boot after it can halt with <span class="f_CodeExample">kernel stack not valid</span>. Stop the emulator and start it again instead.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Other tests in every regression</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The unit suite: <span class="f_CodeExample">EMulatR_tests.exe</span> in the run directory. All test cases must pass.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The Platform Editor tests: <span class="f_CodeExample">ctest -R platedit</span> in the build directory.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Results</span></h2>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><a href="test-results-2026-09-29.html" class="topiclink">Test Results: Boot Matrix, 29 September 2026</a></p>
 <p class="p_Normal"><a href="ds10-test-regression.html" class="topiclink">DS10</a></p>
 <p class="p_Normal"><a href="ds20-test-regression.html" class="topiclink">DS20</a></p>

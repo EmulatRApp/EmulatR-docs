@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="AA-00-04-00,capture filter,DECnet,display filter,dumpcap,EMULATR_DIAG_TULIP_DUMP,EMULATR_DIAG_TULIP_PCAP,EMULATR_LOG_STEM,EmulatR-EWA0,ewa0.pcap,EWA0,LANCP,LAT,MAC address,MOP,OpenVMS Cluster,packet capture,pcap,profile,SCS,tshark,Wireshark,Wireshark profile" />
+   <meta name="keywords" content="AA-00-04-00,capture filter,DECnet,display filter,dumpcap,EMULATR_DIAG_TULIP_DUMP,EMULATR_DIAG_TULIP_PCAP,EMULATR_LOG_STEM,EmulatR-EWA0,EWA0,ewa0.pcap,LANCP,LAT,MAC address,MOP,OpenVMS Cluster,packet capture,pcap,profile,SCS,tshark,Wireshark,Wireshark profile" />
    <meta name="description" content="Wireshark is the tool for seeing what the emulated DE500 adapter (EWA0) actually puts on the wire and takes off it. This page covers the two ways to capture EWA0 traffic, how..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -112,7 +112,7 @@
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="qt-creator.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="software-verify.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
       <a href="8_4-tools.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
       <a href="script.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
@@ -129,11 +129,12 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">Wireshark is the tool for seeing what the emulated DE500 adapter (EWA0) actually puts on the wire and takes off it. This page covers the two ways to capture EWA0 traffic, how to find the guest's MAC address, the Wireshark profile EMulatR supplies, and filter examples for watching one machine or one protocol.</p>
 <p class="p_Normal">Installing Wireshark and Npcap, and preparing the host adapter, are covered on <a href="networking-ewa0.html" class="topiclink">5.9 Networking (EWA0)</a>.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Two ways to capture</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">&nbsp;</span></p>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><br />
 </th>
 <th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">EMulatR's own capture</span></p>
 </th>
@@ -190,19 +191,23 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The stem is the firmware name, for example <span class="f_CodeExample">ds20_v7_3_ewa0.pcap</span>. The file has no timestamp, so the next run with the same stem overwrites it. Set <span class="f_CodeExample">EMulatR_LOG_STEM</span> to a new name to keep a capture.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Setup frames (the frames in which the operating system programs the adapter's address filter) never reach the wire, so they are not in the capture. <span class="f_CodeExample">EMulatR_DIAG_TULIP_DUMP=1</span> writes every transmitted, received and setup frame as a decoded hex dump to <span class="f_CodeExample">logs\de500dump_&lt;date&gt;_&lt;time&gt;.log</span>.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The capture has no frame check sequence. Leave Wireshark's Edit -&gt; Preferences -&gt; Protocols -&gt; Ethernet -&gt; Assume packets have FCS at Never (the default); Always removes four bytes of real data from every frame.</p>
+<p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Finding the guest's MAC address</span></h2>
 <p class="p_Normal">Every EMulatR EWA0 starts with the same hardware address, <span class="f_CodeExample">08-00-2B-E5-40-00</span>: the Digital prefix 08-00-2B, then E5-40, then the adapter number (00 for EWA0). It is fixed; there is no setting for it. The EMulatR run log does not print it. There are four places to read it.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">At the SRM console</span></h3>
 <p class="p_Normal"><span class="f_CodeExample">show device</span> lists EWA0 with its hardware address:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;show&nbsp;device</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">ewa0.0.0.11.0&nbsp;EWA0&nbsp;08-00-2B-E5-40-00</span></p>
 <p class="p_Normal">The slot number in the device name differs by model (for example <span class="f_CodeExample">ewa0.0.0.4.0</span> on the ES40, whose prompt is <span class="f_CodeExample">P00&gt;&gt;&gt;</span>).</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">In OpenVMS</span></h3>
 <p class="p_Normal">LANCP shows both the hardware address and the address the adapter is using now:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">$&nbsp;MC&nbsp;LANCP&nbsp;SHOW&nbsp;DEVICE&nbsp;EWA0&nbsp;/CHARACTERISTICS</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;08-00-2B-E5-40-00&nbsp;Default&nbsp;MAC&nbsp;address&nbsp;(Hardware&nbsp;LAN&nbsp;address)</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;AA-00-04-00-03-04&nbsp;MAC&nbsp;address&nbsp;(Current&nbsp;LAN&nbsp;address)</span></p>
 <p class="p_Normal">Watch the <span class="f_T_Emphasis">current</span> address: that is the one on the wire.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">After DECnet Phase IV starts</span></h3>
 <p class="p_Normal">DECnet Phase IV replaces the current address with one built from the node's DECnet address: <span class="f_CodeExample">AA-00-04-00-xx-yy</span>. To work it out from a node address, compute area x 1024 + node, write it as four hexadecimal digits, and put the low byte first:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -254,9 +259,11 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Guests that do not run DECnet Phase IV keep <span class="f_CodeExample">08-00-2B-E5-40-00</span>, so two of them on one LAN have the same address. Only one such guest may be on a LAN at a time.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">In a capture</span></h3>
 <p class="p_Normal">Wireshark shows Digital addresses with a vendor name in place of the prefix: <span class="f_CodeExample">08:00:2b:e5:40:00</span> appears as <span class="f_CodeExample">DigitalEquip_e5:40:00</span>, and <span class="f_CodeExample">aa:00:04:00:03:04</span> as <span class="f_CodeExample">DigitalEquip_00:03:04</span>. Statistics -&gt; Endpoints -&gt; Ethernet lists every address in the file with its frame counts; the guest is the Digital address with transmitted frames. To see raw addresses instead of names, clear View -&gt; Name Resolution -&gt; Resolve Physical Addresses.</p>
 <p class="p_Normal">Filters take the address with colons (<span class="f_CodeExample">08:00:2b:e5:40:00</span>); dashes, as OpenVMS and the console print it, also work in a single comparison.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The supplied Wireshark profile</span></h2>
 <p class="p_Normal">EMulatR ships a Wireshark configuration profile, EMulatR-EWA0, that turns a raw capture into something readable. It is in the installed tree at <span class="f_CodeExample">tools\wireshark\</span> as both a folder and a zip, and provides three things:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -292,6 +299,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">To install it: <span class="f_CodeExample">Edit -&gt; Configuration Profiles -&gt; Import -&gt; from zip file</span>, choose <span class="f_CodeExample">EMulatR-EWA0.zip</span>, then select EMulatR-EWA0 from the profile list (it also appears in the bottom-right corner of the status bar). If the import misbehaves, copy the <span class="f_CodeExample">EMulatR-EWA0</span> folder into <span class="f_CodeExample">%APPDATA%\Wireshark\profiles\</span> instead and restart Wireshark.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_T_Emphasis">The bookmark list and toolbar buttons appear only once a capture file is open.</span> On Wireshark's welcome screen the only filter box is the CAPTURE filter, which takes a different syntax (see Capture filter examples below) and rejects display filters such as <span class="f_CodeExample">eth.dst</span>. Open the file first.</p>
 <p class="p_Normal">The anomaly probes are the point of the profile. On a healthy capture each of these should find nothing:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -564,6 +572,7 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">For syntax that is guaranteed right for your Wireshark version, let Wireshark write it: click a frame, expand Ethernet II in the details pane, right-click a field and choose Apply as Filter -&gt; Selected.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Capture filter examples</span></h2>
 <p class="p_Normal">A live capture can be limited before it starts, so the file holds only what matters. These go in the capture filter box on Wireshark's welcome screen (or Capture -&gt; Options). Capture filters use a different syntax from display filters.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">

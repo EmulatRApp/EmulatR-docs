@@ -250,7 +250,7 @@
 </div>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Running a DS20</span></h2>
-<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project&nbsp;&amp;&amp;&nbsp;v2.1/tools/EMulatR_launch.sh&nbsp;ds20&nbsp;run&nbsp;--&nbsp;--no-autoload&nbsp;--autosnapshot&nbsp;off</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;/d/EMulatR/project&nbsp;&amp;&amp;&nbsp;v2.1/tools/EMulatR_launch.sh&nbsp;ds20&nbsp;run</span></p>
 <p class="p_Normal">For the fastest boot, use the Release build. The JIT is on by default; set <span class="f_CodeExample">EMulatR_JIT=off</span> to run without it.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Status</span></h2>
@@ -268,7 +268,6 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Per-CPU state.</span> Translation buffers, cycle counters, reservation state and the performance counters become per-CPU.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Idle and time skipping.</span> Idle fast-forward can only skip when every CPU is idle.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Speed.</span> With both CPUs on one host thread, each runs at about half of today's rate. SMP buys the multiprocessor code paths, not throughput.</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Snapshots.</span> A snapshot must carry every CPU's state, so the snapshot format changes.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="4_10-platform-guides.html" class="topiclink">5.10 Platform Guides</a></p>

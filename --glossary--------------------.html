@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>7. Reference &gt; Glossary</title>
+   <title>Glossary</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content=".axpsnap,acronyms,Alpha AXP,badge,Box,CSERVE,DE500,DECnet,EWA0,firmware stem,glossary,grain,HWRPB,IPR,ISP,kseg,LAT,LFU,MOP,MSCP,named system,Npcap,NVRAM,PALcode,placeholders,platform manifest,profile directory,run directory,SCS,silicon mode,SPAM,SRM,SROM,stem,TOY,Tsunami,version numbering,VIOC,warp census,XFC" />
+   <meta name="keywords" content="acronyms,Alpha AXP,badge,Box,CSERVE,DE500,DECnet,EWA0,firmware stem,glossary,grain,HWRPB,IPR,ISP,kseg,LAT,LFU,MOP,MSCP,named system,Npcap,NVRAM,PALcode,placeholders,platform manifest,profile directory,run directory,SCS,silicon mode,SPAM,SRM,SROM,stem,TOY,Tsunami,version numbering,VIOC,warp census,XFC" />
    <meta name="description" content="Placeholders, terms and acronyms used throughout this guide." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -104,17 +104,17 @@
     <td class="topichead" style="text-align:left; vertical-align:middle">
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?--glossary--------------------.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
-      
-      <a href="6_-reference------------------.html">7. Reference</a>&nbsp;&gt;</p>
+      &raquo;No topics above this level&laquo;
+      </p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Glossary</span></h1>
 
     </td>
     <td class="topichead" id="idnav">
       
-      <a href="execution-matrix.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
-      <a href="6_-reference------------------.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
-      <a href="per-cpu-halt-codes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      <a href="es40-test-regression.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1_-introduction.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="release-notes.html" title="Next Topic"><span class="hmbtnnext"></span></a>
       
     </td>
   </tr>  
@@ -128,6 +128,7 @@
 
 <!--ZOOMRESTART-->
 <p class="p_Normal">Placeholders, terms and acronyms used throughout this guide.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Placeholders</span></h2>
 <p class="p_Normal">A name in angle brackets stands for a value you substitute: type the value, not the brackets. <span class="f_CodeExample">&lt;stem&gt;.rom</span> for the DS20 firmware is <span class="f_CodeExample">ds20_v7_3.rom</span>.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -187,7 +188,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;</span>, <span class="f_CodeExample">&lt;run&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directory: the folder EMulatR is started from. It holds the firmware, configuration and platform manifests, and receives the logs, snapshots and flash NVRAM. In a build tree it is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>; for an installed kit it is the system's profile directory.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The run directory: the folder EMulatR is started from. It holds the firmware, configuration and platform manifests, and receives the logs and flash NVRAM. In a build tree it is <span class="f_CodeExample">out/build/&lt;tree&gt;-&lt;config&gt;/run/</span>; for an installed kit it is the system's profile directory.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;run-dir&gt;/tools/</span>, <span class="f_CodeExample">&lt;run-dir&gt;/logs/</span></p>
 </td>
@@ -197,7 +198,7 @@
 <tr>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;</span>, <span class="f_CodeExample">&lt;your profile directory&gt;</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A named system's profile (run) directory, chosen when the system is created in the Launcher -- anywhere you own, for example under Documents, and never under Program Files. It holds that system's <span class="f_CodeExample">EMulatR.ini</span>, disks, logs and flash NVRAM.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">A named system's profile (run) directory, chosen when the system is created in the Launcher -- anywhere you own, for example under Documents, and never under Program Files. It holds that system's <span class="f_CodeExample">Emulatr.ini</span>, disks, logs and flash NVRAM.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">&lt;profile&gt;\logs\run_launch_*.log</span></p>
 </td>
@@ -469,14 +470,6 @@
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The packet command set for optical / removable devices on an IDE channel.</p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--atapi-devices.html" class="topiclink">ATAPI Devices</a></p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">.axpsnap</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An EMulatR machine-state snapshot file, written to <span class="f_CodeExample">snapshots/</span>. The newest is restored at start-up unless <span class="f_CodeExample">--no-autoload</span> is given.</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><a href="--automatic-_-creating-_-resto.html" class="topiclink">Snapshot Operations</a></p>
 </td>
 </tr>
 <tr>

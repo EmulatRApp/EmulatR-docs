@@ -1,0 +1,834 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.11 Cycle Harness&nbsp;</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="6.11 Cycle Harness,ADDQ,AND,arithmetic trap,attribution build,BEQ,BGE,BGT,BLBC,BLBS,BLE,BLT,BNE,BR,branch mispredict,branch prediction,BranchPredictor,BSR,busy dilation,calibrated cost,calibrated mode,CALL_PAL,CC,CC_CTL,CIX,class weight,CMOV,CMOVxx,CMPxx,collapsed loop,condition number,conditional branch,COR,cost model,cost table,CPU speed,CTPOP,cycle charge,cycle charge model,cycle cost,cycle counter,cycle harness,cycles per executed instruction,Dcache,Dcache miss,decode-retired instructions,dependency stall,determinism,development test build,dilation,Divert,DTB miss,Ebox IPR,ECB,event penalty,event weight,EXCB,expected mispredict,expected-cost charging,F31,FBGT,FCMOV,FETCH,fixed-point weight,FP add,FP convert,FP divide,FP loads,FP multiply,FP square root,FP stores,FTOI,FTOIT,guest clock,guest time,host cost,HRM Table 2-1,HRM Table 2-4,HW_LD,HW_MFPR,HW_MTPR,HW_RET,HW_ST,Ibox IPR,identifiability,IdleScan,integer ALU,integer multiply,interval timer,IPR,issue cost,ITB miss,ITOF,JIT,JMP,JSR,JSR mispredict,LDA,LDAH,LDQ_U,LDx,loads,MB,Mbox IPR,Mbox order trap,Mbox replay trap,memory hints,mispredict penalty,mix matrix,Mode A,Mode B,Mode C2,Mode C2 profile,MULL,MULQ,MVI,observe mode,out-of-order,Outside the per-instruction charge,PERR,pipeline abort delay,processor cycles,Q8,R31,RC,RET,retired instruction,RPCC,RS,scale factor,serial model,SEXT,SLL,SpinSkip,stall event,STx,STx_C,sub-cycle accumulator,taken branch,time-of-year clock,tournament predictor,TRAPB,two-bit predictor,UMULH,unit cost,UNOP,VA,VA_CTL,VA_FORM,warp,weighted cost,WH64,What the harness uses,WMB" />
+   <meta name="description" content="EMulatR measures guest time in processor cycles. The cycle harness decides how many cycles each retired instruction adds to the cycle counter, and through it to the guest's..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "6_11-cycle-harness-.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.11 Cycle Harness </span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?6_11-cycle-harness-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.11 Cycle Harness </span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="5_10-interrupt-harness.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_-architecture--internals----.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="6_23-guest-time.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">EMulatR measures guest time in processor cycles. The cycle harness decides how many cycles each retired instruction adds to the cycle counter, and through it to the guest's clocks: the cycle counter the guest reads, the interval timer and the time-of-year clock.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Every retired instruction is charged the weight of its class. A block of instructions is charged the sum of what its instructions actually did; it has no separate cost. Every execution path (single step, interpreted block and the JIT) charges the same number of cycles for the same instructions, so the guest's clock does not depend on which path ran the code.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">For each instruction, the cost is its class weight (never less than 1 cycle), plus 1 if it is a conditional branch that was taken, plus any event weight.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The cost table below is the planned cost model. The current build does not apply it yet; see the end of this page for what each build uses.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Class</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Instructions</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Cycles</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Integer ALU, logic, shifts, LDA/LDAH, SEXT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ADDQ, AND, SLL, CMPxx …</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Decode-retired</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">UNOP (LDQ_U R31), TRAPB, EXCB, any R31/F31 destination</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Stores</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">STx, STx_C, HW_ST, FP stores</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Loads (Dcache hit; misses not modelled)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">LDx, LDQ_U, FP loads, HW_LD</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CMOV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CMOVxx</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Integer multiply</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MULL/MULQ/UMULH</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MVI / CIX, FTOI</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">CTPOP, PERR, FTOIT …</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BR / BSR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Conditional branch</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BEQ … FBGT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1 not taken / 2 taken</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">JMP / JSR / RET / COR, CALL_PAL, HW_RET</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">class jsr</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">HW_MFPR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Ebox IPR (CC, VA, VA_FORM, VA_CTL) / Ibox or Mbox IPR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1 / 3</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">HW_MTPR</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1 + stall event (figure OPEN, 0 for now)</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">MB</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">10 (provisional until measured)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Other memory hints</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">WMB, ECB, WH64, FETCH, RPCC, RC/RS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP add, multiply, convert, ITOF</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP divide</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">S/F 12, T/G 15</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">12 / 15</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP square root</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">S 18, T 33</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">18 / 33</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FCMOV</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8 (proposal)</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Faults (fetch or D-side), trapping /V</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1 (trap-entry class OPEN)</p>
+</td>
+</tr>
+<tr>
+<td colspan="2"  style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Divert (interrupt or exception delivery)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Outside the per-instruction charge</span></p>
+<p class="p_Normal">Some mechanisms advance the clock in one step instead of instruction by instruction. <span class="f_CodeExample">SpinSkip</span>, which skips firmware countdown loops, charges the skipped passes times the loop's weight as a single amount. The warps that skip timed waits advance the clock to the next event. No cycle is charged twice.</p>
+<p class="p_Normal">The guest's <span class="f_CodeExample">CC_CTL</span> register controls only the cycle counter the guest reads. Guest time itself always advances.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">What the harness uses:</span></p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Build</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Policy</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Status</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Current 3.0 build</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unit cost (Mode A): every instruction is charged 1 cycle. The cost table above is not applied yet.</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Default</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Development test build (not released)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Weighted (Mode B): the cost table above</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">For measurement only. On the reference DS20 boot (2 October 2026) it averaged 1.473 cycles per executed instruction (1.58 predicted); the guest clock ran 1.18 times faster and the boot reached the end of OpenVMS startup about 7% sooner.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Planned</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Calibrated (Mode C2): the cost table above multiplied by one scale factor, calibrated on a busy guest workload</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Planned</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The cycle charge model</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Under the cost model that has been ruled for the calibrated mode (Mode C2), every executed instruction is charged the processor cycles the 21264 hardware spends on it. The cycles charged for a stretch of execution are:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">C = s * ( SUM_k w_k * n_k + T + M + SUM_m P_m * E_m )</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The terms are:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">k</span> is an instruction class from the cost table above and <span class="f_CodeExample">n_k</span> is the number of class-k instructions executed.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">w_k</span> is the class weight: the latency of the class in Table 2-4 of the 21264 Hardware Reference Manual, never less than 1 cycle. The weights are fixed. They are never tuned or fitted to run data.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">T</span> is the taken-branch adder: 1 cycle for every conditional branch that was taken.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">M</span> is the expected branch-mispredict cost, described under Branch prediction below.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">P_m</span> and <span class="f_CodeExample">E_m</span> are the penalty in cycles and the number of occurrences of each modelled pipeline event (see Event penalties below).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">s</span> is the scale factor. It is a property of the compiled instruction grain: it is built in with the weights and there is no setting to change it at run time.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&gt;&gt;&gt; OPEN -- value of the scale factor s in the first Mode C2 build (the calibration taken after the M-1.3 measurement); not yet supplied &lt;&lt;&lt;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">There is no tuning lever and no cost file. The charge is a property of the compiled image of EMulatR, so two runs of the same build always charge the same cycles for the same instructions. The configured CPU speed <span class="f_CodeExample">F</span> is the only speed control. The default is 50 MHz and the supported speeds are 50, 60, 75, 85 and 100 MHz. Guest time is the cycles charged divided by the CPU speed:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">guest time (seconds) = C / F</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">For example, 5,999,609,411 cycles at 50 MHz is 120.0 seconds of guest time.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Exact arithmetic.</span> Weights are held as fixed-point numbers in units of 1/256 cycle (Q8), so a weight of 1.5 cycles is stored as 384. The product of the scale and a weight is an exact integer, and a sub-cycle accumulator carries the fractional remainder from one instruction to the next. Two instructions of weight 1.5, for example, charge 1 cycle and then 2 cycles, with the remainder of 0.5 carried between them, so the cycle count is always an exact, deterministic integer.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Collapsed loops.</span> Loops that EMulatR skips in closed form (<span class="f_CodeExample">SpinSkip</span> and the <a href="6_14-idlescan.html" class="topiclink">IdleScan</a> collapse) are charged exactly what the literal loop would have been charged, through the same weights, including the expected mispredict term. Collapsed and literal execution therefore give identical cycle counts.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Why the cost shape is fixed</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The weights are not learned from measurements of EMulatR running a guest, for two reasons.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Too many unknowns.</span> Suppose the cost of each class were fitted from the wall time of runs. Each run gives one equation, where <span class="f_CodeExample">h_k</span> is the host seconds per class-k instruction and <span class="f_CodeExample">other_r</span> is the time that no instruction accounts for:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">W_r ~= SUM_k ( h_k * n_kr ) + other_r</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">There are roughly 15 to 20 classes, so at least that many runs are needed, and they must have genuinely different instruction mixes. Stacking the runs as the rows of a matrix <span class="f_CodeExample">N</span> (runs by classes), the per-class costs can be recovered only if <span class="f_CodeExample">N</span> has full column rank, and recovered reliably only if it is well conditioned. The runs EMulatR has do not supply that:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A boot from the SRM console to the OpenVMS Username prompt executes the same code every time, so its mix is nearly identical from run to run. Fifty boots are one equation repeated fifty times. The rank of <span class="f_CodeExample">N</span> is therefore expected to be close to 1. (This is an expectation; the mix matrix has not been measured.)</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Classes move together. Loads, address arithmetic and conditional branches rise and fall as a block in almost any code. With strongly correlated columns the fit can trade cost between classes freely, for example loads at 4 cycles with ALU at 1, or loads at 3 with ALU at 1.4, and explain the totals equally well. The condition number of <span class="f_CodeExample">N</span> is expected to be very high.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Rare classes (FP divide, FP square root, MB, HW_MTPR) are a tiny fraction of the count. Noise in the large classes swamps them, and a fit can put almost any value on them.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A least-squares fit always returns numbers. They look plausible but are not stable: with one more boot or a different workload the per-class values change while the predicted total barely moves.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">The wrong quantity.</span> Even with perfect data, a fit to host wall time measures <span class="f_CodeExample">h_k</span>, how long this host takes to emulate a class, and not what the Alpha spends on it:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Class</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">21264 cost (HRM shape)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Host cost to emulate (typical)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP divide (T)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">15 cycles</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cheap: one native divide</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">FP square root (T)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">33 cycles</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cheap: one native square root</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Load, translation hit</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3 cycles</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Moderate: translation lookup and memory access</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Load, translation miss</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3 cycles plus the miss path</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Expensive: the PAL miss flow retires many instructions</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ADDQ</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1 cycle</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cheapest</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">If guest time followed the host costs, a guest that timed itself with <span class="f_CodeExample">RPCC</span> would see the host's ratios: FP-heavy code would look fast and memory-heavy code slow, the reverse of real silicon in places. The guest's sense of its own performance would also change whenever EMulatR itself got faster. Keeping the Alpha's relative costs and applying one built-in scale preserves the silicon shape: the ratio of any charge to any other is always the HRM ratio.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Event penalties</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Some pipeline events cost cycles beyond the instruction that causes them. The penalties are the pipeline abort delays in Table 2-1 of the 21264 Hardware Reference Manual. They are charged on top of the retire charge. The handler's own instructions (for example the PAL translation-miss flow) retire and are charged separately, so no cycle is counted twice.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Event</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Penalty (cycles)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Treatment</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Data translation (DTB) miss</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">13</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Charged in Mode C2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Instruction translation (ITB) miss</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Charged in Mode C2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Integer arithmetic trap</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">12</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Charged in Mode C2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Floating-point arithmetic trap</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">13 plus the instruction latency</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Charged in Mode C2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Conditional branch mispredict</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Charged as an expected value (see Branch prediction)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">JSR mispredict</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not modelled: JSR target prediction is not modelled</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Mbox order trap</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">14</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not modelled: there is no load/store-queue model</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Mbox replay trap</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">13</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not modelled: there is no load/store-queue model</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Dcache miss latency</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">-</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Not modelled: there is no Dcache model; loads are charged as hits</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Branch prediction</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The EMulatR pipeline fetches no speculative path: every branch is effectively mispredicted as far as fetch is concerned, and nothing speculative is ever squashed. The 21264 does predict, and a mispredicted conditional branch costs 7 cycles, so EMulatR needs an estimate of how often the real processor would mispredict.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Observe mode.</span> A two-bit predictor carried forward from earlier versions (<span class="f_CodeExample">cBoxLib/BranchPredictor.h</span>: 512 sets of 2 ways, two-bit saturating counters, and a backward-taken guess for branches it has not seen) runs in passive observe mode, and only in the attribution (profiling) build. At each executed conditional branch it predicts, compares its prediction with the real outcome, counts the hit or miss and updates itself. It never changes fetch, the PC, the cycles or the retire count, so it cannot alter any guest result. Unconditional BR and BSR are always predicted correctly and are not observed. Branches skipped by a collapsed loop never execute and are not observed. The predictor is an approximation: the real 21264 uses a tournament predictor (local, global and choice predictors, HRM Figures 2-3 to 2-5), and a two-bit table usually mispredicts more, so the counts lean high.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Measured mispredict rates.</span> On a DS20 boot to the end of OpenVMS startup the observer saw 388,185,559 conditional branches, of which 30,282,070 were mispredicted: 7.80%. At 7 cycles each that is 211,974,490 penalty cycles, about 1.0% of the cycles of the boot. The rate differs by opcode:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Opcode</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Mispredict rate (DS20 boot)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Expected penalty per executed branch (rate x 7 cycles)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLBC</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.02%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.421</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BEQ</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7.81%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.547</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">12.64%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.885</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">11.76%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.823</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BLBS</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8.61%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.603</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BNE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7.69%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.538</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BGE</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">9.28%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.650</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">BGT</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">9.40%</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.658</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Idle code behaves differently from the boot: in the idle loop BLBC mispredicts 31.7% of the time.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">&gt;&gt;&gt; OPEN -- expected-mispredict rates for the floating-point conditional branches (FBEQ to FBGT); no measured rates were supplied, so they are not in the table above &lt;&lt;&lt;</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Expected-cost charging.</span> The mispredict penalty is not charged by running a predictor. Each conditional-branch opcode carries an expected penalty equal to its observed mispredict rate times 7 cycles, folded into the weight that is compiled into its grain, and charged whenever that branch executes. For example a BEQ carries 0.0781 x 7 = 0.547 cycles. Nothing on the execution path predicts: the predictor stays in the attribution build, where it only refreshes the per-opcode rates.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">M = SUM over conditional-branch opcodes b of ( n_b * rate_b * 7 )</span></p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Serial and out-of-order charging</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The 21264 fetches in program order, issues up to four instructions per cycle and executes them out of order. The ruled table charges every instruction its full latency, as if each depended on the one before it. This serial model is conservative: it over-charges code made of independent instructions.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A more faithful model would split the charge into an issue cost (functional-unit throughput) and a dependency stall. A stall exists only where an instruction <span class="f_CodeExample">j</span> reads a register that an earlier instruction <span class="f_CodeExample">i</span> writes and issues within the latency of <span class="f_CodeExample">i</span>:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">stall = SUM over dependent pairs (i -&gt; j) of max(0, latency(i) - distance(i, j))</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The latency comes from Table 2-4 and the distance is the issue distance between the two instructions. Both are static for a block of instructions. This model is reserved for a future dedicated timing mode. It is not added on top of the serial table, because that would count latency twice.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">First-order Mode C2 profile</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Mode C2 is being implemented as an opt-in build. Mode A (one cycle per instruction) remains the default until Mode C2 is ruled in, and the default CPU speed will be measured again on the Mode C2 build. The figures below are a first-order estimate: the cost table applied to the instruction counts of one DS20 boot to the end of OpenVMS startup, at 50 MHz, with a wall time of 288.2 seconds.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Component</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Cycles per executed instruction</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Class weights</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.533</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Taken-branch adder</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.082</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Expected mispredict</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.059</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DTB and ITB misses</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0.002</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-weight: bold;">Total (Mode C2)</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span style="font-weight: bold;">1.677</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Treating every <span class="f_CodeExample">0x18</span> instruction as an MB at 10 cycles could add up to 0.153 more, so the total is an estimate.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-weight: bold;">Busy dilation</span> is the wall time divided by the guest time of the executed work. Warps and credited loops are skipped in closed form and take almost no wall time, so they are excluded from it. Of the 21.9 billion cycles of the boot under Mode A, 17.3 billion are warps (timer waits skipped in closed form): about 346 seconds of guest time at 50 MHz for almost no wall time.</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">CPU speed (MHz)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Busy dilation, Mode A</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Busy dilation, Mode C2</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Guest time, Mode C2 (s)</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Guest time, Mode A (s)</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.03</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">486.1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">437.7</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">60</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.83</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2.88</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">462.8</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">422.5</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">75</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.04</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3.60</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">439.5</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">407.2</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">85</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6.85</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.08</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">428.6</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">400.1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">100</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8.06</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4.80</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">416.2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">392.0</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A busy dilation of 1.0 means the guest keeps pace with the wall clock. Under Mode C2 that would need a CPU speed of about 21 MHz (20.8 MHz; Mode A would need 12.4 MHz), which is below the supported speeds. See <a href="6_23-guest-time.html" class="topiclink">6.12 Guest Time</a> for dilation and how it is measured.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

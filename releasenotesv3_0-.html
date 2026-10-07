@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Release Notes &gt; 3.0 (In Development)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="3.0,50 MHz,CC_FREQ,changelog,console status key,CPU clock,CPU clock agreement,CPU speed,cpu_speed_hz,cpuFrequencyHz,EMULATR_CONSOLE_STATUS_KEY,EMULATR_PROFILE_ALPHA_CLOCK_HZ,HWRPB,interval timer,known limitations,late console client,processor speed,release notes,silicon mode,v3.0,what's new,X3.0-2" />
+   <meta name="description" content="The full User and Developer Reference is published online at https://EMulatRapp.github.io/EMulatR-docs/. It is the same guide the kit installs as..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "releasenotesv3_0-.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">3.0 (Experimental)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?releasenotesv3_0-.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="release-notes.html">Release Notes</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">3.0 (Experimental)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="release-notes.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="release-notes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="releasenotesv2_1-.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The full User and Developer Reference is published online at https://EMulatRapp.github.io/EMulatR-docs/. It is the same guide the kit installs as <span class="f_CodeExample">documentation/EMulatRGuide.pdf</span>, and it is updated with each release.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR 3.0 is an experimental release. This page records what has changed since 2.1 was frozen on 30 September 2026 (tag <span class="f_CodeExample">v2.1-freeze</span>), and is the release notes for the 3.0 kit. Entries are added as the changes land, so the page describes the current build, whose badge is <span class="f_CodeExample">X3.0-2</span> (X marks an experimental build; the release stage is Experimental). The 2.1-1 beta kit was built before the freeze, so some changes listed on the 2.1 page are not in that kit.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Status, 30 September 2026</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Baseline:</span> 3.0 opened from the frozen 2.1 build. No 3.0 change so far adds or removes a supported system or device, so each system runs what it ran at the 2.1 freeze.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Guest behavior:</span> with <span class="f_CodeExample">[System] cpuFrequencyHz</span> unset, the certified DS20 boot retires exactly the same number of instructions, in the same number of cycles, on 3.0 as on the frozen 2.1 build. DS20 boots now log one new warning, and the DS10 is expected to as well; see Known limitations.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The status above is dated. Where the entries below differ from it, the entries below are current: the default CPU speed is now 50 MHz, and the DS10 and DS20 now tell the guest the configured speed.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Added</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">CPU speed setting.</span> A new ini key, <span class="f_CodeExample">[System] cpuFrequencyHz</span>, sets the processor's clock speed as a whole number of hertz, for example <span class="f_CodeExample">cpuFrequencyHz = 500000000</span>. It fixes how many processor cycles fall between interval-timer ticks (the speed divided by 1024); the interval timer itself stays at 1024 Hz at any speed. When the key is unset or 0, EMulatR uses the platform manifest's <span class="f_CodeExample">cpu_speed_hz</span> default, and when the manifest has none, the legacy 536,870,912 Hz (2^29), the speed 2.1 ran at. The DS10, DS20 and ES40 manifests set a default of 50 MHz (see Changed), so with the key unset the system runs at 50 MHz; leave it unset for normal use. A value below 1024 Hz is refused with a warning and the legacy speed is used; a value that is not a whole number is reported as an ini warning and ignored. If a manifest lists the supported speeds of its model (<span class="f_CodeExample">cpu_speed_hz</span> <span class="f_CodeExample">shipped</span>), an ini value outside that list still runs, and the run log warns that guest timing at that speed is untested; the DS10, DS20 and ES40 manifests list 50, 60, 75, 85 and 100 MHz, so a value that is not one of those five runs with that warning. The key is a number, so it does not take a <span class="f_CodeExample">${NAME}</span> environment reference, and there is no command-line option or environment variable for it. The <span class="f_CodeExample">config/Emulatr.ini</span> staged with a 3.0 build (the copy a 3.0 kit ships) lists it under <span class="f_CodeExample">[System]</span>, commented out; the 2.1-1 kit's copy does not, and neither does the <span class="f_CodeExample">Emulatr.ini</span> the launcher writes for a new system, so add the line yourself.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">CPU clock in the run log.</span> Every run logs the speed in use and where it came from, for example <span class="f_CodeExample">CPU clock: 50000000 Hz (platform manifest default); interval timer 1024 Hz, 48828 cycles per tick + 128/1024</span>. The source in parentheses is <span class="f_CodeExample">ini [System] cpuFrequencyHz</span>, <span class="f_CodeExample">platform manifest default</span>, <span class="f_CodeExample">legacy 2^29 default</span>, or <span class="f_CodeExample">legacy 2^29 default (requested value refused)</span>. Once per run, when the console has built its HWRPB (the table it hands to the operating system), EMulatR compares the interval clock and cycle-counter frequency the console published there with the values the configured speed implies, and logs a <span class="f_CodeExample">CPU clock agreement:</span> line ending <span class="f_CodeExample">AGREE</span> when they match, or a warning ending <span class="f_CodeExample">MISMATCH</span> when they do not. The DS10, DS20 and ES40 run the console in silicon mode, in which it measures the processor, so the line ends AGREE at each supported speed.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Console status key.</span> Press Ctrl/ (or Ctrl/_) in the console to print an EMulatR host status line -- UTC time, host elapsed time, the exact guest cycle count, guest time and time dilation, with the change since the previous press -- and send Ctrl/T to the guest at the same moment. The ret field counts every retired instruction, including those run in JIT-compiled code, and uses the same count as the MILESTONE and PROFILE lines of the run log. The setting <span class="f_CodeExample">EMulatR_CONSOLE_STATUS_KEY</span> changes the key byte (default 0x1F, Ctrl/ or Ctrl/_); 0 turns the key off and passes the byte to the guest. See <a href="console-control-keys.html" class="topiclink">Console Control Keys</a>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Late console clients.</span> A console client that connects after EMulatR has started now receives the console output that was queued before it connected and all output after. Previously a client that attached after any output had been produced with no client connected received nothing for the life of the connection.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">IdleScan and the idle pacing barrier.</span> On a platform whose SRM firmware reports more than one CPU slot (the DS20 and ES40), the OpenVMS idle routine spends most of its instructions on a loop that finds the highest set bit of the CPU mask. EMulatR now executes that loop in closed form. Every instruction is still charged and credited and every register is left as the loop would leave it, so retire counts, cycle counts and the full-boot hash are unchanged; only host work is removed. IdleScan is on by default, and <span class="f_CodeExample">EMulatR_IDLESCAN=0</span> turns it off. Because the collapse costs the host almost nothing, an idle guest ran ahead of wall time, so an idle pacing barrier now sleeps the host when idle guest time is 2 ms or more ahead of wall time; at 50 MHz the DS20 idle dilation moved from 0.35 to 1.01. At exit the run log prints an <span class="f_CodeExample">IDLESCAN:</span> line with the counts. The DS10 has one CPU slot, has no such loop and is not paced; its idle still runs ahead of wall time. See <a href="6_14-idlescan.html" class="topiclink">6.14 IdleScan</a>.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Launcher: system ini file.</span> The System group of the launcher now shows an <span class="f_CodeExample">Emulatr.ini:</span> row with the path to the selected system's ini file, as text you can select, and an Open button that opens that file in your default editor, so you can find, edit and save a system's configuration from the launcher. The button is disabled when the system has no <span class="f_CodeExample">Emulatr.ini</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Changed</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The default CPU speed is 50 MHz.</span> The DS10, DS20 and ES40 now run at 50 MHz when <span class="f_CodeExample">cpuFrequencyHz</span> is not set, instead of 536,870,912 Hz. The supported speeds are 50, 60, 75, 85 and 100 MHz, the speeds EMulatR has been tested at. Any other value runs, and the run log warns that guest timing at that speed is untested. The default comes from the platform manifest, so existing <span class="f_CodeExample">Emulatr.ini</span> files need no change, and <span class="f_CodeExample">[System] cpuFrequencyHz</span> still overrides it. Boot time does not depend on the speed, and at 50 MHz the guest's clock stays closest to the wall clock while the system is idle. See Tuning EMulatR.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The interval timer is exact at any CPU speed.</span> The interval timer used to fire each time the cycle counter crossed a power-of-two boundary, so it ran at exactly 1024 Hz only when the processor speed was 1024 times a power of two (536,870,912 Hz, the speed 2.1 ran at, is one). Tick n now falls at cycle <span class="f_CodeExample">floor(n * speed / 1024)</span>, computed in whole numbers, so any 1024 consecutive ticks span exactly the configured number of cycles and the timer stays at 1024 Hz at any speed. Wherever EMulatR jumps the clock ahead to the next tick (for example, past busy-wait loops that poll the cycle counter), it uses the same clock. At 536,870,912 Hz, the speed 2.1 ran at, every tick falls on the same cycle as before.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Build constant no longer sets the timer.</span> For builds from source: the compile-time constant <span class="f_CodeExample">EMulatR_PROFILE_ALPHA_CLOCK_HZ</span> (<span class="f_CodeExample">chipsetLib/Tsunami21272_CsrSpec.h</span>) no longer sets the interval timer's period. The period now comes only from the CPU speed (see CPU speed setting).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The untested-speed warning says so.</span> When the CPU speed is not one of the platform's tested speeds, the warning now says that the speed is untested and that the system runs anyway. It no longer claims that the speed is not one a real machine shipped at.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">DS20 cold boots skip the firmware's reset-settling delays.</span> While it resets the PCI bridges, the DS20 V7.3 PALcode waits out three fixed countdown loops. EMulatR does not need that settling time, so these three loops are now skipped by default. Each skip charges exactly the instructions and cycles the loop would have taken, so everything the guest observes, including its clocks, is unchanged, and the boot reaches OpenVMS sooner. The setting <span class="f_CodeExample">EMulatR_SPINSKIP</span> controls it: unset skips only those three DS20 loops (matched by address and by their instruction bytes, so other firmware is never affected); <span class="f_CodeExample">1</span> skips every countdown loop SpinSkip can prove safe; <span class="f_CodeExample">0</span> turns skipping off. Each run's log states the mode in use (<span class="f_CodeExample">SpinSkip: ...</span>).</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">The guest is told the configured CPU speed.</span> The DS10 and DS20 now run the console in silicon mode, as the ES40 already did. The console measures the processor and publishes the configured speed as the cycle-counter frequency in the HWRPB, so OpenVMS timed waits and timeouts are no longer stretched or shortened at a speed other than 100 MHz. The run log's <span class="f_CodeExample">CPU clock agreement:</span> line reports AGREE; every DS10, DS20 and ES40 boot in the 50 to 100 MHz speed tests did. See Tuning EMulatR.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Fixed</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Instruction-fetch faults are reported as the architecture specifies.</span> An access violation or a non-canonical address on an instruction fetch is now delivered to the console PALcode's instruction-access-violation entry (IACV, offset 0x480) instead of the data-stream fault entry (DFAULT, offset 0x380), as the 21264 hardware reference manual specifies. A fault on an instruction fetch also no longer writes the data-stream VA and MM_STAT registers; the faulting address of an instruction fetch is reported in EXC_ADDR. The check that decides whether an instruction address is canonical now follows the I_CTL VA_48 bit, as the manual specifies, instead of the VA_CTL bit used for data accesses. The console sets both bits to the same value, so a normal boot is unaffected.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Machine reset.</span> A machine reset now clears the decoded-instruction cache and the block cache, so no entry from before the reset can be used again afterwards, and it keeps the processor's assigned SMP slot instead of resetting it to 0. The normal start-up path resets before any instruction has run, so a boot behaves as before.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">A non-existent-memory error raises its interrupt at once.</span> When an access to non-existent memory latches the Cchip NXM error (DRIR bit 63), the interrupt is now raised when the error is latched. Previously a deliverable NXM interrupt could wait until some unrelated event next raised an interrupt.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">JIT break-out boundary.</span> When a device interrupt became pending during a JIT-compiled block, the block could retire one instruction more than the interpreter would have before stopping, so the interrupt boundary fell one instruction later with the JIT on than with it off. Both now stop at the same instruction.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Console typing is no longer doubled (EMulatR PuTTY session).</span> EMulatR opens the console in PuTTY as a raw connection. With PuTTY's default setting, Auto, a raw connection echoes what you type locally and holds each line until Return, so every character typed at the console appears twice (for example, system shown twice at Username:) and input reaches the guest only on Return. The kit installs a settings file, <span class="f_CodeExample">EMulatR.reg</span>, in the installation folder (by default <span class="f_CodeExample">C:\Program Files\ASA-EmulatR</span>) that creates a named PuTTY session called <span class="f_CodeExample">EMulatR</span> (registry key <span class="f_CodeExample">HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\EMulatR</span>). It no longer touches PuTTY's Default Settings. The session sets Local echo = Force off, Local line editing = Force off, Keyboard function keys = VT100+, a scrollback of 20000 lines, a width of 132 columns, and session logging of all session output to a file named <span class="f_CodeExample">putty_console_p10023_&amp;Y&amp;M&amp;D&amp;T.log</span> (PuTTY replaces <span class="f_CodeExample">&amp;Y&amp;M&amp;D&amp;T</span> with the date and time). EMulatR starts its console with <span class="f_CodeExample">putty.exe -load EMulatR -raw -P &lt;port&gt; localhost</span>, so the look and the logging come from the EMulatR session and only the per-system port is on the command line. The launcher's Open Console uses the same session (<span class="f_CodeExample">putty.exe -load EMulatR -telnet &lt;host&gt; &lt;port&gt;</span>). Setup imports <span class="f_CodeExample">EMulatR.reg</span> automatically at the end of the installation, so the session exists for the Windows user who ran setup and that user needs to do nothing. Uninstalling removes the EMulatR session and also removes the two values (Local echo and Local line editing) that the 3.0-1 kit wrote into PuTTY's Default Settings. If the EMulatR session is missing, EMulatR starts PuTTY without it and writes the log itself, as <span class="f_CodeExample">putty_console_p&lt;port&gt;_&lt;date-time&gt;.log</span>; the console then shows each typed character twice, because of PuTTY's built-in Auto echo, so import the file as described below.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">A new system gets a memory size its platform supports.</span> A system created in the launcher now gets the platform's board maximum, capped at 4 GiB: 2 GiB for a DS10, 4 GiB for a DS20 and an ES40. Before, every new system asked for 4 GiB, and a DS10 logged <span class="f_CodeExample">memory: GEOMETRY CLAMP ... memory RESET to the supported maximum</span> on every start. Existing systems keep their setting. To silence that line on a DS10 system created earlier, edit its <span class="f_CodeExample">Emulatr.ini</span> to read <span class="f_CodeExample">memorySize = 2147483648</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">To import EMulatR.reg by hand.</span> This is needed only for other Windows users of the same PC, or if setup was approved (UAC) with a different administrator account, in which case the session was created in that account's registry. Double-click <span class="f_CodeExample">EMulatR.reg</span> in the installation folder and accept the Registry Editor prompt, or run this from a command prompt:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">reg import &quot;C:\Program Files\ASA-EmulatR\EMulatR.reg&quot;</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">PuTTY reads a session only when it starts, so close any open EMulatR console window after importing. Because the file creates a named session and leaves Default Settings alone, it does not affect your other PuTTY sessions.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">Log file names.</span> The log file name contains p10023 for every system, because the session cannot know each system's port. The date and time keep the files apart, and each file is written in that system's profile folder.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">If you imported the 3.0-1 file.</span> The EMulatR.reg shipped in 3.0-1 wrote Auto (2) instead of Force off (1) into PuTTY's Default Settings, so it did not help. If you imported it, you may reset Local echo and Local line editing in Default Settings to Auto, which is PuTTY's default, or leave them as they are.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Upgrading from an earlier release</span></h2>
+<p class="p_Normal"><span class="f_T_Emphasis">EMulatR no longer loads or saves snapshots. Every start is a cold boot.</span> There is no automatic resume, no periodic save, no save on halt and no on-demand capture. The run log states this on every start: <span class="f_CodeExample">snapshots: disabled -- cold boot; no snapshot is loaded or saved</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Resuming a saved snapshot restored memory only. The guest's disks had moved on since the snapshot was taken, and on a DS10 the system disk came back offline (mount verification), so the login hung after the Username: prompt. Snapshot support was already deprecated.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The launcher's environment panel no longer lists the snapshot variables (<span class="f_CodeExample">EMULATR_AUTOSNAP</span>, <span class="f_CodeExample">EMULATR_AUTOSNAP_KEEP</span>, <span class="f_CodeExample">EMULATR_AUTOSNAP_PERIOD</span>, <span class="f_CodeExample">EMULATR_NO_AUTOLOAD</span> and <span class="f_CodeExample">EMULATR_SNAPSHOT_FILE</span>). The command-line options <span class="f_CodeExample">--no-autoload</span> and <span class="f_CodeExample">--autosnapshot</span> are still accepted so that existing scripts keep working, but they no longer do anything. The option <span class="f_CodeExample">--snapshot-on-pc</span> is ignored, and EMulatR prints a message saying so.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_T_Emphasis">What to do:</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Profiles created under an earlier release can be used as they are; they cold-boot.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The snapshots folder of such a profile is no longer used. You can delete it to reclaim disk space: each file is 2 GiB on a DS10, and a profile can hold tens of GB. The profile's disks folder is not affected, so your disk images stay as they are.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If the previous session was not shut down from OpenVMS, check the system disk after the first boot (<span class="f_CodeExample">ANALYZE/DISK_STRUCTURE</span>), as after any unclean stop.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Known limitations</span></h2>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Open item, DS10 idle timing:</span> IdleScan does not take effect on the DS10, because no matching idle site is recognized there, so the idle pacing barrier does not apply either. At idle the DS10 runs fast: guest time is not held to wall time (about 1.5 times ahead, a dilation of 0.67, at 50 MHz). The DS20 and ES40 measure 1.00. A general barrier for the DS10 is under review and is not part of this release.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The supported speeds, 50, 60, 75, 85 and 100 MHz, are the speeds the CPU-speed tests covered; they are not claimed to be the speeds of the original machines.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The CPU speed sets only the interval timer and the speed-ups that skip ahead to its ticks. Whatever the setting, the time-of-year clock still converts cycles to seconds at 1,000,000,000 cycles per second; and on the ES40, the processor speed EMulatR stores in the dual-port RAM still reads 500 MHz.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A speed other than 50, 60, 75, 85 or 100 MHz has not been tested; Tuning EMulatR gives measured figures for those five.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The Platform Editor keeps a manifest's <span class="f_CodeExample">cpu_speed_hz</span> entry unchanged. It has no dedicated control: the default appears as a generic text field, and the shipped list cannot be edited.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
+<p class="p_Normal"><a href="clock-frequency-mhz.html" class="topiclink">Clock Frequency and the MHz Reading</a> (describes the earlier build-time constant; not yet updated for 3.0)</p>
+<p class="p_Normal"><a href="platform-identity-and-geometry.html" class="topiclink">Platform Identity &amp; Memory Geometry</a></p>
+<p class="p_Normal"><a href="platform-execution-mode-isp-(e.html" class="topiclink">Platform Execution Mode: ISP vs Silicon</a></p>
+<p class="p_Normal"><a href="releasenotesv2_1-.html" class="topiclink">2.1 (In Development)</a></p>
+<p class="p_Normal"><a href="release-notes.html" class="topiclink">Release Notes</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

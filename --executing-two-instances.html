@@ -6,8 +6,8 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="concurrent instances,ds10_flash.rom,EMULATR_CONSOLE_PORT,EMULATR_FLASH_ROM,flash corruption,flash isolation,NVRAM,snapshots,two instances" />
-   <meta name="description" content="Two instances launched from the same directory share ds10_v7_3.rom and the snapshots/ directory, and concurrent NVRAM writes can corrupt the flash. Give each console its own..." />
+   <meta name="keywords" content="concurrent instances,ds10_flash.rom,EMULATR_CONSOLE_PORT,EMULATR_FLASH_ROM,flash corruption,flash isolation,NVRAM,two instances" />
+   <meta name="description" content="Two instances launched from the same directory share ds10_v7_3.rom, and concurrent NVRAM writes can corrupt the flash. Give each console its own port with EMulatR_CONSOLE_PORT,..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Two instances launched from the same directory share <span class="f_CodeExample">ds10_v7_3.rom</span> and the <span class="f_CodeExample">snapshots/</span> directory, and concurrent NVRAM writes can corrupt the flash. Give each console its own port with <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>, and if a run will write NVRAM (any <span class="f_CodeExample">set</span> or <span class="f_CodeExample">update</span> at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt), isolate its flash first.</p>
+<p class="p_Normal">Two instances launched from the same directory share <span class="f_CodeExample">ds10_v7_3.rom</span>, and concurrent NVRAM writes can corrupt the flash. Give each console its own port with <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>, and if a run will write NVRAM (any <span class="f_CodeExample">set</span> or <span class="f_CodeExample">update</span> at the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt), isolate its flash first.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">Refer&nbsp;to&nbsp;EMulatRLauncher</span></p>
 <p class="p_Normal">&nbsp;</p>

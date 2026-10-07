@@ -133,7 +133,7 @@
 <p class="p_Normal">Modeled and validated to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. DS20 is a Tsunami box that wires the Cypress CY82C693 south bridge (like the DS10) and boots the SRM console. Run with <span class="f_CodeExample">[System] model=DS20</span>.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES40</span></h2>
-<p class="p_Normal">In active bring-up. ES40 is a Typhoon (21272) box: EMulatR models the Typhoon chipset variant, the Ali M1543C south bridge with the M5229 IDE, and a REAL_HW-mode boot path. Recent work landed the TIG module-reset model. (An entry-snapshot boot acceleration was designed but is not implemented - see Boot Acceleration - Entry Snapshot.) Run with <span class="f_CodeExample">[System] model=ES40</span> and firmware <span class="f_CodeExample">es40_v7_3.exe</span> (the prepared 67CLIPPER V7.3-1 console, not HP's update file of the same name; see <a href="platform-es40.html" class="topiclink">AlphaServer ES40</a>, Console firmware); see the Ali M1543C and ES40 TIG Module Reset topics.</p>
+<p class="p_Normal">In active bring-up. ES40 is a Typhoon (21272) box: EMulatR models the Typhoon chipset variant, the Ali M1543C south bridge with the M5229 IDE, and a REAL_HW-mode boot path. Recent work landed the TIG module-reset model. Run with <span class="f_CodeExample">[System] model=ES40</span>, <span class="f_CodeExample">[System] systemStem=es40_v7_3</span> and firmware <span class="f_CodeExample">es40_cl67srm.exe</span> (the prepared 67CLIPPER V7.3-1 console, not HP's update file <span class="f_CodeExample">es40_v7_3.exe</span>; see <a href="platform-es40.html" class="topiclink">AlphaServer ES40</a>, Console firmware); see the Ali M1543C and ES40 TIG Module Reset topics.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">ES45</span></h2>
 <p class="p_Normal">Planned. ES45 (EV67 / 21264A) is a Titan (21274) box with the Ali M1543C south bridge; its compressed firmware (<span class="f_CodeExample">es45_v7_3.exe</span>) decompresses correctly via the host oracle, but the Titan chipset and device modeling around it is not yet driven to the prompt. Manifest <span class="f_CodeExample">es45_platform.json</span> is scaffolded.</p>
@@ -143,7 +143,6 @@
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="ali-m1543c-south-bridge-interf.html" class="topiclink">Ali M1543C South-Bridge Interface</a></p>
 <p class="p_Normal"><a href="--es40-tig-module-reset.html" class="topiclink">ES40 TIG Module Reset</a></p>
-<p class="p_Normal"><a href="--boot-acceleration-entry-snap.html" class="topiclink">Boot Acceleration - Entry Snapshot</a></p>
 <p class="p_Normal"><a href="--appendix---ds10.html" class="topiclink">Appendix - DS10</a></p>
 <p class="p_Normal"><a href="--current-platform-support.html" class="topiclink">Current Platform Support</a></p>
 <p class="p_Normal"><a href="decompressor-internals.html" class="topiclink">Decompressor Internals</a></p>

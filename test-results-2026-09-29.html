@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>11. Test/Regression &gt; Test Results: Boot Matrix, 29 September 2026</title>
+   <title>12. Test/Regression &gt; Test Results: Boot Matrix, 29 September 2026</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="test results,boot matrix,DS10,DS20,ES40,EMULATR_JIT,EMULATR_IRQ_HARNESS,snapshot,Username:" />
-   <meta name="description" content="Every supported platform was booted to OpenVMS V8.3 under every combination of three settings: the interrupt harness (EMULATR_IRQ_HARNESS) off and on, the JIT (EMULATR_JIT) off..." />
+   <meta name="description" content="Every supported platform was booted to OpenVMS V8.3 under every combination of three settings: the interrupt harness (EMulatR_IRQ_HARNESS) off and on, the JIT (EMulatR_JIT) off..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?test-results-2026-09-29.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="test-settings.html">11. Test/Regression</a>&nbsp;&gt;</p>
+      <a href="test-settings.html">12. Test/Regression</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Test Results: Boot Matrix, 29 September 2026</span></h1>
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">Every supported platform was booted to OpenVMS V8.3 under every combination of three settings: the interrupt harness (<span class="f_CodeExample">EMULATR_IRQ_HARNESS</span>) off and on, the JIT (<span class="f_CodeExample">EMULATR_JIT</span>) off and on, and a snapshot taken at the start of OpenVMS startup or none. Each run is unattended and starts from the same saved disks.</p>
+<p class="p_Normal">Every supported platform was booted to OpenVMS V8.3 under every combination of three settings: the interrupt harness (<span class="f_CodeExample">EMulatR_IRQ_HARNESS</span>) off and on, the JIT (<span class="f_CodeExample">EMulatR_JIT</span>) off and on, and a snapshot taken at the start of OpenVMS startup or none. Each run is unattended and starts from the same saved disks.</p>
 <p class="p_Normal">Status when this page was generated (29 September 2026 17:23): <span class="f_T_Emphasis">24 of 24 runs complete, 24 passed.</span> Runs marked Pending were still in progress.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What a pass means</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>OpenVMS startup completes (the STARTUP job reports <span class="f_CodeExample">job terminated at</span>).</p>
@@ -135,7 +135,7 @@
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>No bugcheck.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>DS20 only: the number of instructions executed up to the end of startup equals the reference count, <span class="f_CodeExample">7,434,183,226</span>. The DS20 runs use a fixed clock, no network and no console connection until startup ends, so every run must execute exactly the same instructions whatever the settings.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Build and setup</span></h2>
-<p class="p_Normal">EmulatR X2.1-1, RelWithDebInfo build of 28 September 2026. Networking off (<span class="f_CodeExample">EMULATR_NET_ADAPTER=off</span>), time-of-year clock fixed (<span class="f_CodeExample">EMULATR_TOY_MODE=fixed</span>). Boot devices: DS20 <span class="f_CodeExample">dka0</span> (auto-boot), ES40 <span class="f_CodeExample">b dka200</span>, DS10 <span class="f_CodeExample">b dka0</span>. In these runs the JIT is on only when set; from the next build it is on by default.</p>
+<p class="p_Normal">EMulatR X2.1-1, RelWithDebInfo build of 28 September 2026. Networking off (<span class="f_CodeExample">EMulatR_NET_ADAPTER=off</span>), time-of-year clock fixed (<span class="f_CodeExample">EMulatR_TOY_MODE=fixed</span>). Boot devices: DS20 <span class="f_CodeExample">dka0</span> (auto-boot), ES40 <span class="f_CodeExample">b dka200</span>, DS10 <span class="f_CodeExample">b dka0</span>. In these runs the JIT is on only when set; from the next build it is on by default.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Results</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
@@ -514,10 +514,10 @@
 </table>
 </div>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Other tests</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">Emulatr_tests.exe</span>: 867 test cases passed, 2 skipped; 68,464 assertions passed.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">EMulatR_tests.exe</span>: 867 test cases passed, 2 skipped; 68,464 assertions passed.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Platform Editor tests: 9 of 9 passed.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Found during testing</span></h2>
-<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">init after Ctrl/P does not reset the machine.</span> After OpenVMS has run, the SRM <span class="f_CodeExample">init</span> command does not return the machine to a clean state: on the DS10 it returns to the prompt without re-initialising; on the ES40 the console re-initialises but the machine underneath is not reset. A following OpenVMS boot can halt with <span class="f_CodeExample">kernel stack not valid</span>. For a clean boot, stop EmulatR and start it again.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">init after Ctrl/P does not reset the machine.</span> After OpenVMS has run, the SRM <span class="f_CodeExample">init</span> command does not return the machine to a clean state: on the DS10 it returns to the prompt without re-initialising; on the ES40 the console re-initialises but the machine underneath is not reset. A following OpenVMS boot can halt with <span class="f_CodeExample">kernel stack not valid</span>. For a clean boot, stop EMulatR and start it again.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Slow first response to a late console connection.</span> On the DS10, a console that connects after the console update receives no output at all; on the DS20, one that connected after startup ended waited several minutes for the <span class="f_CodeExample">Username:</span> prompt after pressing Return. Connect the console before booting, and keep it connected.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_T_Emphasis">Snapshots.</span> Taking a snapshot during startup did not change any run: DS20 runs with a snapshot executed exactly the reference count. Restoring a snapshot was not tested.</p>
 <p class="p_Normal">&nbsp;</p>

@@ -129,7 +129,7 @@
 <!--ZOOMRESTART-->
 <p class="p_Normal">The simplest first run is <span class="f_CodeExample">EMulatRLaunch.exe</span> from the installation: it creates a system, gives it a profile directory to run in, and starts the emulator with the right working directory. See <a href="--configuring-a-system-with-t.html" class="topiclink">Configuring a System with the Launcher</a>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">To do the same from a command line, run FROM your system's profile directory rather than from the installation - the install directory is read-only and a kit upgrade replaces it wholesale, so logs, snapshots and NVRAM must not be written there:</p>
+<p class="p_Normal">To do the same from a command line, run FROM your system's profile directory rather than from the installation - the install directory is read-only and a kit upgrade replaces it wholesale, so logs and NVRAM must not be written there:</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_CodeExample"><span class="f_CodeExample">cd&nbsp;'&lt;your&nbsp;profile&nbsp;directory&gt;'</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&amp;&nbsp;&quot;C:\Program&nbsp;Files\eNVy&nbsp;Systems,&nbsp;Inc\ASA-EMulatR\EMulatR.exe&quot;&nbsp;--firmware&nbsp;firmware\ds20_v7_3.exe</span></p>
@@ -140,11 +140,40 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">On launch the TCP console server comes up (default port <span class="f_CodeExample">10023</span>) and, unless <span class="f_CodeExample">EMulatR_NO_PUTTY</span> is set, a PuTTY session is auto-launched against it. The firmware then runs through its power-up sequence to the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. For the step-by-step walkthrough, see Quick Start; to stop cleanly, see Clean Shutdown.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Two things about that first boot are worth expecting.</p>
+<p class="p_Normal">Three things about that first boot are worth expecting.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The console may appear to type by itself. When the firmware image is an update-distribution image - the DS20 v7.3 image is one - power-up walks a console-update question and the LFU menu before it reaches the real SRM, and EMulatR answers both the way an operator would. Each answer prints one line saying what was sent, so nothing the machine appears to type is unaccounted for. See <a href="4_6-firmware-update-utility-(l.html" class="topiclink">Firmware Update Utility (LFU)</a>.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The guest does not ask you for the date. The emulated time-of-year clock is seeded from the host clock by default, so a fresh installation boots with a correct time. Setting <span class="f_CodeExample">EMulatR_TOY_MODE=unset</span> selects the faithful dead-battery lifecycle instead, and with it the boot-time date prompt returns. See <a href="time-of-year-clock-toy.html" class="topiclink">Time-of-Year Clock (TOY)</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The console may report an ISA table error. In a newly created run directory - a new installation or a new named environment - the flash NVRAM file (<span class="f_CodeExample">&lt;stem&gt;.rom</span>, for example <span class="f_CodeExample">ds20_v7_3.rom</span>) starts at its defaults. After the memory and PCI probe lines the SRM prints:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_CodeExample"><span class="f_CodeExample">probing&nbsp;PCI-to-ISA&nbsp;bridge,&nbsp;bus&nbsp;1</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">ERROR:&nbsp;ISA&nbsp;table&nbsp;corrupt!</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">Initializing&nbsp;table&nbsp;to&nbsp;defaults</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">and later <span class="f_CodeExample">type &gt;&gt;&gt;init to use these changes</span>. This is expected and harmless. The SRM finds no ISA configuration table in the empty NVRAM, builds the default one, and asks for an init so that it takes effect. It appears once for each new run directory. The same boot also prints two other lines, both harmless:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">*** keyboard not plugged in...</span> - EMulatR has no PS/2 keyboard, so the SRM uses the serial console (PuTTY). This is the intended setup.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">Flash ROM writes are disabled</span> - printed because a status register that EMulatR models reads back 0. It does not stop the SRM from saving its settings, which persist as described below.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">At the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt, type <span class="f_CodeExample">init</span>, then set the boot variables you want, and boot:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;init</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;set&nbsp;bootdef_dev&nbsp;dka0</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;set&nbsp;auto_action&nbsp;boot</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&gt;&gt;&gt;&nbsp;boot</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span class="f_CodeExample">init</span> command applies the rebuilt table in the current session only. Restarting EMulatR (a cold start) has the same effect.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On the ES40, do not type <span class="f_CodeExample">init</span>. It is not wired for the ES40 and faults with a non-existent-memory error (Known Gaps G-10). Set the variables and boot directly; restarting EMulatR is the way to apply the table on the ES40. See <a href="known-gaps.html" class="topiclink">Known Gaps</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">You can also give the device directly, as in <span class="f_CodeExample">boot dka0</span>. For the variables themselves, see <a href="--srm-environment-variables.html" class="topiclink">SRM Environment Variables</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The SRM keeps its NVRAM, which holds the ISA configuration table and the environment variables, in the NVRAM sector of the flash. EMulatR saves the whole flash to the run directory's <span class="f_CodeExample">firmware\&lt;stem&gt;.rom</span> (the stem is the system stem; for example <span class="f_CodeExample">es40_v7_3.rom</span> for <span class="f_CodeExample">es40_cl67srm.exe</span>) when no flash write has happened for a while (8,000,000 cycles) and at a clean shutdown. The save is atomic. Settings therefore persist across restarts provided EMulatR stops cleanly; a forced kill before the save loses the latest changes.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">On a new run directory the SRM rebuilds the default ISA table and saves it at once, so the message does not return on the next start. To confirm, start EMulatR a second time and check that the FlashRom &quot;restored&quot; line appears in the run log and that the ISA message is gone.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
 <p class="p_Normal"><a href="3_-quick-start----------------.html" class="topiclink">Quick Start</a></p>

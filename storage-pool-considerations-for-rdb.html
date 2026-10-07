@@ -131,7 +131,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Statements taken from the Oracle Rdb manuals carry a section reference (see Sources). </p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><img src="embim8.png" width="662" height="552" style="margin:1px;border:none" alt="" /></p>
+<p class="p_Normal"><img src="embim9.png" width="662" height="552" style="margin:1px;border:none" alt="" /></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How Rdb reaches the pool</span></h2>
 <p class="p_Normal">Rdb's storage layer reaches disk only through OpenVMS system services. It assigns a channel to each database file and issues <span class="f_CodeExample">$QIO</span> requests on it. Every Rdb I/O statistic is defined as a count of read-QIOs or write-QIOs: DBS_READS and DBS_WRITES for the storage area and snapshot files, and separate counters for the .aij, .ruj and root files (Performance and Tuning, Table 2-9).</p>

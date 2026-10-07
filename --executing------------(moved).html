@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="--autosnapshot,cold boot,EMULATR_CONSOLE_MIRROR,EMULATR_CONSOLE_PORT,EMULATR_CONSOLE_SNAPSHOT,EMULATR_FLASH_TRACE,EMULATR_IDE_TRACE,EMULATR_IIC_TRACE,EMULATR_NO_AUTOLOAD,nohup,traced boot" />
+   <meta name="keywords" content="cold boot,EMULATR_CONSOLE_MIRROR,EMULATR_CONSOLE_PORT,EMULATR_FLASH_TRACE,EMULATR_IDE_TRACE,EMULATR_IIC_TRACE,nohup,traced boot" />
    <meta name="description" content="Beyond the basic launch (see Launching EMulatR), a few run scenarios come up often. All are launched from the EMulatR root and write diagnostics to a redirected log." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -132,15 +132,14 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Traced boot</span></h2>
 <p class="p_Normal">Turn on the device trace channels and put the console on an alternate port (so it coexists with another instance). PuTTY follows <span class="f_CodeExample">EMulatR_CONSOLE_PORT</span>.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_NO_AUTOLOAD=1&nbsp;EMulatR_CONSOLE_PORT=10024&nbsp;\</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_CONSOLE_PORT=10024&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMulatR_IDE_TRACE=1&nbsp;EMulatR_IIC_TRACE=1&nbsp;EMulatR_FLASH_TRACE=1&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;./out/build/v6-release/run/EMulatR.exe&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;--firmware&nbsp;firmware/ds10_v7_3.exe&nbsp;--autosnapshot&nbsp;off&nbsp;2&gt;&nbsp;run_ide.log</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;--firmware&nbsp;firmware/ds10_v7_3.exe&nbsp;2&gt;&nbsp;run_ide.log</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Unattended (overnight) run</span></h2>
-<p class="p_Normal">Use <span class="f_CodeExample">nohup</span> so the run survives logoff; leave autosnapshot on and mirror the console to the log.</p>
-<p class="p_CodeExample"><span class="f_CodeExample">nohup&nbsp;env&nbsp;EMulatR_NO_AUTOLOAD=1&nbsp;EMulatR_CONSOLE_SNAPSHOT=1&nbsp;\</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;EMulatR_CONSOLE_MIRROR=1&nbsp;EMulatR_CONSOLE_PORT=10023&nbsp;\</span></p>
+<p class="p_Normal">Use <span class="f_CodeExample">nohup</span> so the run survives logoff; mirror the console to the log.</p>
+<p class="p_CodeExample"><span class="f_CodeExample">nohup&nbsp;env&nbsp;EMulatR_CONSOLE_MIRROR=1&nbsp;EMulatR_CONSOLE_PORT=10023&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;./out/build/v6-relwithdebinfo/run/EMulatR.exe&nbsp;--firmware&nbsp;firmware/ds10_v7_3.exe&nbsp;\</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&gt;&nbsp;run_overnight.log&nbsp;2&gt;&amp;1&nbsp;&amp;</span></p>
 <p class="p_Normal">&nbsp;</p>

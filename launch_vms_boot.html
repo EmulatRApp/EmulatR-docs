@@ -136,7 +136,7 @@
 <p class="p_Normal">Verifies <span class="f_CodeExample">EMulatR.exe</span> and the firmware are present and that the platform manifest (<span class="f_CodeExample">ds10_platform.win</span>) references the OpenVMS ISO (<span class="f_CodeExample">alpha082.iso</span>) -- otherwise <span class="f_CodeExample">dqa1</span> is not wired to OpenVMS and the script aborts.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Notes</span></h2>
-<p class="p_Normal">Launches with <span class="f_CodeExample">--no-autoload</span> (cold boot) and tees the console to <span class="f_CodeExample">boot_vms_&lt;timestamp&gt;.log</span>. The SRM console listens on TCP <span class="f_CodeExample">127.0.0.1:10023</span>. At the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt: <span class="f_CodeExample">e pmem:80130000040</span> (smir = 0), then <span class="f_CodeExample">b dqa1</span>. The triage pass greps memory, halt, and frontier lines.</p>
+<p class="p_Normal">Launches a cold boot and tees the console to <span class="f_CodeExample">boot_vms_&lt;timestamp&gt;.log</span>. The SRM console listens on TCP <span class="f_CodeExample">127.0.0.1:10023</span>. At the <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt: <span class="f_CodeExample">e pmem:80130000040</span> (smir = 0), then <span class="f_CodeExample">b dqa1</span>. The triage pass greps memory, halt, and frontier lines.</p>
 
 <!--ZOOMSTOP-->
 </div></div>

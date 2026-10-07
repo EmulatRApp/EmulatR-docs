@@ -6,8 +6,8 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="console,control keys,crash,Ctrl/\,Ctrl/],Ctrl/P,Ctrl/T,halt,SET CONTROL=T,trace hotkey" />
-   <meta name="description" content="The console is a serial line (COM1) that EMulatR carries over TCP to your terminal client. Control keys typed there travel down that line like any other character. Four of them..." />
+   <meta name="keywords" content="console,control keys,crash,Ctrl/,CPU rating,cycle count,effective MHz,executing MHz,skipped waits,Ctrl/\,Ctrl/],Ctrl/P,Ctrl/T,halt,SET CONTROL=T,status key,time dilation,trace hotkey" />
+   <meta name="description" content="The console is a serial line (COM1) that EMulatR carries over TCP to your terminal client. Control keys typed there travel down that line like any other character. Five of them..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">The console is a serial line (COM1) that EMulatR carries over TCP to your terminal client. Control keys typed there travel down that line like any other character. Four of them matter when operating EMulatR: two belong to the operating system, and two are EMulatR's own diagnostic keys.</p>
+<p class="p_Normal">The console is a serial line (COM1) that EMulatR carries over TCP to your terminal client. Control keys typed there travel down that line like any other character. Five of them matter when operating EMulatR: two belong to the operating system, one is EMulatR's status key, and two are EMulatR's own diagnostic keys.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -157,9 +157,19 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0x14</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest (OpenVMS)</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest (OpenVMS and the SRM console)</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">At a DCL session with <span class="f_CodeExample">SET CONTROL=T</span> in effect: prints a one-line status of the current process (node, time, process name, CPU time, page faults, I/O, memory). Useful to see whether a long command is still working.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">At a DCL session with <span class="f_CodeExample">SET CONTROL=T</span> in effect: prints a one-line status of the current process (node, time, process name, CPU time, page faults, I/O, memory). Useful to see whether a long command is still working. At the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt it prints the console's process table instead (see Ctrl/T: process status, below).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Ctrl/ (also Ctrl/_)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0x1F</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">EMulatR (every build), then the guest</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Prints an EMulatR host status line in your terminal (UTC time, host elapsed time, the exact guest cycle count, guest time and time dilation), then sends Ctrl/T to the guest so OpenVMS or the SRM console prints its own status too. See Ctrl/: host status and cycle count, below.</p>
 </td>
 </tr>
 <tr>
@@ -222,12 +232,195 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Ctrl/T: process status</span></h2>
 <p class="p_Normal">Ctrl/T is an OpenVMS terminal feature, off until enabled with <span class="f_CodeExample">SET CONTROL=T</span> (put it in <span class="f_CodeExample">LOGIN.COM</span> to have it always). The time it prints is the guest's clock, which runs slower than wall-clock time under EMulatR by design, so do not use two Ctrl/T lines to time something in real seconds.</p>
+<p class="p_Normal">At the SRM console prompt (<span class="f_CodeExample">&gt;&gt;&gt;</span> or <span class="f_CodeExample">P00&gt;&gt;&gt;</span>), Ctrl/T is handled by the console itself and needs no setting: it prints the console's process table -- each console task (shell, polling tasks, timer, idle) with its ID, priority, accumulated CPU time, affinity and state. It is the same list as the SRM <span class="f_CodeExample">show process</span> command, and is a quick way to see that the console is alive and what it is waiting on:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;ID&nbsp;PCB&nbsp;Pri&nbsp;CPU&nbsp;Time&nbsp;Affinity&nbsp;CPU&nbsp;Program&nbsp;State</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">--------&nbsp;--------&nbsp;---&nbsp;--------&nbsp;--------&nbsp;---&nbsp;----------&nbsp;------------------------</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000268&nbsp;3ff53180&nbsp;3&nbsp;1&nbsp;00000001&nbsp;0&nbsp;shell&nbsp;ready</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000008&nbsp;3ff26160&nbsp;5&nbsp;2&nbsp;00000001&nbsp;0&nbsp;dup_poll&nbsp;waiting&nbsp;on&nbsp;tqe&nbsp;bca7c</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000004&nbsp;0002e020&nbsp;7&nbsp;0&nbsp;ffffffff&nbsp;0&nbsp;timer&nbsp;waiting&nbsp;on&nbsp;timer</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">00000001&nbsp;001b8560&nbsp;0&nbsp;19775&nbsp;00000001&nbsp;0&nbsp;idle&nbsp;ready</span></p>
+<p class="p_Normal">At either prompt, press Ctrl/ instead of Ctrl/T to get the same output plus EMulatR's host time and cycle count above it.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Ctrl/: host status and cycle count</span></h2>
+<p class="p_Normal">Ctrl/ is EMulatR's status key. EMulatR takes the key before it reaches the emulated serial port, writes one host status line to your terminal, and then hands the guest a Ctrl/T in its place. The host line is printed first, so it appears just above the guest's own Ctrl/T output. It works at the DCL prompt and at the SRM <span class="f_CodeExample">&gt;&gt;&gt;</span> prompt. OpenVMS prints its Ctrl/T line only when <span class="f_CodeExample">SET CONTROL=T</span> is in effect; the EMulatR line is printed either way. The host line goes to your terminal only -- the guest never receives it -- and it is also written to the run log.</p>
+<p class="p_Normal">The line is a set of <span class="f_CodeExample">key=value</span> fields, so it can be read by eye or picked out of a log by a script. An example, from an idle DS20 at the DCL prompt with the CPU clock set to 50 MHz:</p>
+<p class="p_CodeExample"><span class="f_CodeExample">[EMulatR&nbsp;host]&nbsp;utc=2026-10-05T02:27:49.051Z&nbsp;tz=-07:00&nbsp;t_run=892.934&nbsp;cyc=39987484804&nbsp;ret=11173833917&nbsp;warp=22506048894&nbsp;hz=50000000&nbsp;guest_s=799.750&nbsp;dil=1.12&nbsp;mhz_eff=44.78&nbsp;mhz_exec=19.58&nbsp;mhz_warp=25.20&nbsp;ips=12513616&nbsp;d_run=36.494&nbsp;d_cyc=1821288533&nbsp;d_guest=36.426&nbsp;d_dil=1.00</span></p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Field</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Example</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">utc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2026-10-05T02:27:49.051Z</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host wall-clock time in UTC, to the millisecond.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">tz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">-07:00</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host offset from UTC (here, Pacific Daylight Time).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">t_run</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">892.934</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host seconds since EMulatR started, from a steady clock that time-of-day changes cannot move.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">cyc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">39987484804</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The guest cycle count: exact and deterministic -- the master clock of the guest. The same workload reaches the same count on every run.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ret</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">11173833917</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Instructions retired so far, including those run by the JIT. It uses the same count as the milestone and profile lines.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">warp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">22506048894</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Cycles advanced by warps (time skipped while the guest was waiting) rather than executed.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">hz</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">50000000</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The configured CPU clock (here 50 MHz, the [System] cpuFrequencyHz setting).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">guest_s</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">799.750</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest seconds since start = cyc / hz. This is how much time the guest believes has passed since power-on.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">dil</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.12</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Time dilation since start = t_run / guest_s: host seconds per guest second.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mhz_eff</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">44.78</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest cycles per host second, in millions, averaged since start (cyc / t_run).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mhz_exec</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">19.58</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The executed part of mhz_eff.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">mhz_warp</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">25.20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The warped part of mhz_eff.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">ips</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">12513616</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Instructions retired per host second, averaged since start.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">d_run</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">36.494</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Host seconds since the previous press.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">d_cyc</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1821288533</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest cycles since the previous press.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">d_guest</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">36.426</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Guest seconds since the previous press = d_cyc / hz.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">d_dil</span></p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1.00</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Time dilation over that interval = d_run / d_guest. In this example, 36.5 host seconds passed while the guest clock advanced 36.4 s, so the guest was running at about real time.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">CPU rating block. </span>After the host line, Ctrl/ prints a formatted CPU rating block. It is calculated at the moment you press the key, never read from the stored badge value. This part of the status key is in development and is not yet in a released build. An example, from an idle DS20 at the DCL prompt with the CPU clock set to 50 MHz:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_CodeExample"><span class="f_CodeExample">[EMulatR]&nbsp;CPU&nbsp;rating:&nbsp;44.8&nbsp;MHz&nbsp;effective&nbsp;=&nbsp;19.6&nbsp;MHz&nbsp;executing&nbsp;+&nbsp;25.2&nbsp;MHz&nbsp;skipped&nbsp;waits</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;(clock&nbsp;50&nbsp;MHz,&nbsp;Mode&nbsp;C2);&nbsp;last&nbsp;36.5&nbsp;s:&nbsp;49.9&nbsp;MHz&nbsp;effective,&nbsp;49.9&nbsp;MHz&nbsp;executing,&nbsp;guest&nbsp;36.4&nbsp;s&nbsp;for&nbsp;36.5&nbsp;s&nbsp;wall&nbsp;(x1.00)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;since&nbsp;power-on:&nbsp;guest&nbsp;13:20&nbsp;for&nbsp;14:53&nbsp;wall&nbsp;(x1.12)</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The terms mean the following.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">Effective MHz</span>: guest cycles per wall-clock second. It shows how fast the guest clock advances.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">Executing MHz</span>: cycles from executed instructions per wall-clock second. This is the CPU-work rating.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">Skipped waits</span>: the cycles that warps add: guest timer waits that EMulatR skips in closed form instead of executing.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">Clock</span>: the configured CPU speed.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">Mode</span>: Mode A counts one cycle per instruction. Mode C2 uses the cycle weights from the hardware reference manual. The mode is a build choice.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">last</span>: the interval since the previous Ctrl/ press. Press Ctrl/ twice a few seconds apart to read the current rate.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">(xN)</span>: wall-clock time divided by guest time. 1.00 means the guest runs in real time; a figure above 1 means the guest runs slower than real time.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #000000;">How to read it. </span><span class="f_CodeExample">dil</span> is the long-run average and includes the boot, which is mostly warped. <span class="f_CodeExample">d_dil</span> answers &quot;how slow is the guest clock right now?&quot;: press Ctrl/ twice around whatever you want to measure -- an idle prompt, a command, a copy -- and read <span class="f_CodeExample">d_dil</span> on the second line. See <a href="6_23-guest-time.html" class="topiclink">6.12 Guest Time</a> for what the figures mean and how the CPU clock setting changes them.</p>
+<p class="p_Normal">To use a different key, set <span class="f_CodeExample">EMulatR_CONSOLE_STATUS_KEY</span> to its byte value (for example <span class="f_CodeExample">0x1E</span>); <span class="f_CodeExample">0</span> turns the status key off and passes the byte to the guest. Ctrl/\ and Ctrl/] are taken by the trace hotkeys, and Ctrl/[ is the escape prefix of every arrow and function key, so do not choose those.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Ctrl/\ and Ctrl/]: the trace hotkeys</span></h2>
 <p class="p_Normal">These two are EMulatR's own keys, active only in a diagnostic build (RelWithDebInfo or Debug) started with <span class="f_CodeExample">EMulatR_DIAG_TRACE_HOTKEY=1</span>. EMulatR takes them before they reach the emulated serial port, so the guest never sees them. In a release build, or without the setting, they are ordinary characters passed to the guest; neither the SRM console nor OpenVMS uses them. Full details: <a href="console-trace-hotkey.html" class="topiclink">Console Trace Hotkey</a>.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Terminal client notes</span></h2>
-<p class="p_Normal">Some Telnet clients use Ctrl/] as their own escape key and never send it: the Windows <span class="f_CodeExample">telnet</span> command, for example, opens its own command prompt instead. Use PuTTY (Telnet or Raw) for the console, which sends Ctrl/] as a character. </p>
+<p class="p_Normal">Some Telnet clients use Ctrl/] as their own escape key and never send it: the Windows <span class="f_CodeExample">telnet</span> command, for example, opens its own command prompt instead. Use PuTTY (Telnet or Raw) for the console, which sends Ctrl/] as a character. If your keyboard layout does not deliver Ctrl/ as a control character, press Ctrl/_ (Ctrl+Shift+minus), which sends the same byte. </p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">See <a href="--putty-_-plink-_-teraterm-_-m.html" class="topiclink">Terminal Clients</a>.</p>
 <p class="p_Normal">Any key reaches the guest only while a client is connected to the system's console port; the console serves one client at a time.</p>

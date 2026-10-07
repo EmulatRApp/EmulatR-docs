@@ -171,42 +171,41 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Making a pre-decompressed image</span></h2>
-<p class="p_Normal"><span class="f_CodeExample">tools\host_firmware_decompressor.exe</span> runs the same decompression the firmware runs at every cold boot -- DEC's own algorithm, built natively -- and writes the result in the format above:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">tools\host_firmware_decompressor.exe&nbsp;cl67srmrom.exe&nbsp;--rom&nbsp;console\es40_v7_3.rom</span></p>
+<p class="p_Normal"><span class="f_CodeExample">tools\host_firmware_decompressor.exe</span> runs the same decompression the firmware runs at every cold boot -- DEC's own algorithm, built natively -- and writes the result in the format above: <span class="f_CodeExample">tools\host_firmware_decompressor.exe cl67srmrom.exe --rom firmware\es40_cl67srm.rom</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">It finds the compressed console in the file, decompresses it, takes the PAL_BASE value from the firmware's own start-up code, and writes the 16-byte header (entry PC = load address + 1, for PALmode) followed by the 2 MiB image with the console at its load address. It prints what it did:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">wrote&nbsp;console\es40_v7_3.rom&nbsp;(entry&nbsp;PC&nbsp;0x8001,&nbsp;PAL_BASE&nbsp;0x600000&nbsp;from&nbsp;stub@0x240,&nbsp;2097168&nbsp;bytes)</span></p>
+<p class="p_CodeExample"><span class="f_CodeExample">wrote&nbsp;firmware\es40_cl67srm.rom&nbsp;(entry&nbsp;PC&nbsp;0x8001,&nbsp;PAL_BASE&nbsp;0x600000&nbsp;from&nbsp;stub@0x240,&nbsp;2097168&nbsp;bytes)</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Without <span class="f_CodeExample">--rom</span> it writes only the raw decompressed console (<span class="f_CodeExample">ref_decompressed.bin</span>), for inspection. From HP's <span class="f_CodeExample">cl67srmrom.exe</span> the <span class="f_CodeExample">.rom</span> is identical, byte for byte, to <span class="f_CodeExample">cl67_decompressed.rom</span>. How to boot it, and when it is worth doing: <a href="firmware-predecompress.html" class="topiclink">Pre-decompressing the Firmware</a>.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the loader chooses</span></h2>
 <p class="p_Normal">The extension selects the loader, and <span class="f_CodeExample">--firmware-format</span> overrides it:</p>
+<p class="p_CodeExample" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">--firmware-format&nbsp;auto&nbsp;(default)&nbsp;.exe&nbsp;-&gt;&nbsp;the&nbsp;self-decompressing&nbsp;SRM&nbsp;loader&nbsp;.rom&nbsp;-&gt;&nbsp;the&nbsp;pre-decompressed&nbsp;console&nbsp;loader&nbsp;&nbsp;anything&nbsp;else&nbsp;-&gt;&nbsp;raw&nbsp;binary</span></p>
+<p class="p_CodeExample" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">--firmware-format&nbsp;srm&nbsp;force&nbsp;the&nbsp;SRM&nbsp;loader</span></p>
+<p class="p_CodeExample" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_CodeExample" style="font-family: 'Segoe UI';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_CodeExample">--firmware-format&nbsp;raw&nbsp;force&nbsp;a&nbsp;raw&nbsp;binary&nbsp;load</span></p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">--firmware-format&nbsp;auto&nbsp;(default)&nbsp;.exe&nbsp;-&gt;&nbsp;the&nbsp;self-decompressing&nbsp;SRM&nbsp;loader</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;.rom&nbsp;-&gt;&nbsp;the&nbsp;pre-decompressed&nbsp;console&nbsp;loader</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;anything&nbsp;else&nbsp;-&gt;&nbsp;raw&nbsp;binary</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">--firmware-format&nbsp;srm&nbsp;force&nbsp;the&nbsp;SRM&nbsp;loader</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">--firmware-format&nbsp;raw&nbsp;force&nbsp;a&nbsp;raw&nbsp;binary&nbsp;load</span></p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The platform manifest is keyed to the firmware STEM, so both extensions select the same device set: <span class="f_CodeExample">ds20_v7_3.exe</span> and <span class="f_CodeExample">ds20_v7_3.rom</span> alike resolve to <span class="f_CodeExample">ds20_v7_3_platform.json</span>. Model and firmware therefore cannot drift apart.</p>
+<p class="p_Normal">The platform manifest is keyed to the SYSTEM stem, not to the firmware file name. The system stem is <span class="f_CodeExample">--system-stem</span> if given, else the ini key <span class="f_CodeExample">[System] systemStem</span>, else the firmware file's own stem. So both extensions select the same device set: with <span class="f_CodeExample">systemStem = es40_v7_3</span>, <span class="f_CodeExample">es40_cl67srm.exe</span> and <span class="f_CodeExample">es40_cl67srm.rom</span> alike resolve to <span class="f_CodeExample">es40_v7_3_platform.json</span>; with neither set, <span class="f_CodeExample">ds20_v7_3.exe</span> and <span class="f_CodeExample">ds20_v7_3.rom</span> alike resolve to <span class="f_CodeExample">ds20_v7_3_platform.json</span>. Model and firmware therefore cannot drift apart.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Which flash file gets bound</span></h2>
-<p class="p_Normal">The flash backing is resolved in this order, first match wins:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMulatR_FLASH_ROM&nbsp;&gt;&nbsp;ini&nbsp;[ROM]&nbsp;flashImage&nbsp;&gt;&nbsp;&lt;firmware-stem&gt;.rom&nbsp;&gt;&nbsp;ds10_v7_3.rom</span></p>
+<p class="p_Normal">The flash backing is resolved in this order, first match wins:  <span class="f_CodeExample">EMulatR_FLASH_ROM &gt; ini [ROM] flashImage &gt; &lt;system-stem&gt;.rom &gt; ds10_v7_3.rom</span></p>
 <p class="p_Normal">So booting <span class="f_CodeExample">firmware/ds20_v7_3.exe</span> binds <span class="f_CodeExample">firmware/ds20_v7_3.rom</span> beside it without being told to, and reports which file it picked:</p>
 <p class="p_CodeExample"><span class="f_CodeExample">FlashRom:&nbsp;NVRAM&nbsp;backing&nbsp;-&gt;&nbsp;'firmware/ds20_v7_3.rom'</span></p>
-<p class="p_Normal">Give each concurrently running instance its own flash file - two machines sharing one backing file will corrupt it.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span class="f_CodeExample">&lt;system-stem&gt;.rom</span> sits beside the firmware file, and a pre-decompressed console binds it exactly as the <span class="f_CodeExample">.exe</span> does: with <span class="f_CodeExample">systemStem = es40_v7_3</span>, booting <span class="f_CodeExample">firmware/es40_cl67srm.rom</span> binds <span class="f_CodeExample">firmware/es40_v7_3.rom</span>. EMulatR refuses to use a console <span class="f_CodeExample">.rom</span> as its own flash; if the resolution would pick one, it prints <span class="f_CodeExample">FlashRom: REFUSED</span>.</p>
+<p class="p_Normal"><span style="font-style: italic;">Give each concurrently running instance its own flash file - two machines sharing one backing file will corrupt it.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What to expect if you point --firmware at a .rom</span></h2>
 <p class="p_Normal">Setting the firmware to the flash backing file is the natural mistake, because the name matches and the file is obviously firmware-shaped. It does not boot, and it fails immediately and specifically rather than misbehaving later.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The flash backing is exactly 2 MiB of device contents. The pre-decompressed loader wants a 16-byte header in front of the same-sized image, so the size check rejects it before anything is loaded:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMulatR:&nbsp;SrmLoader:&nbsp;decompressed.rom&nbsp;wrong&nbsp;size&nbsp;(got&nbsp;2097152,&nbsp;expected&nbsp;2097168):&nbsp;firmware/ds20_v7_3.rom</span></p>
+<p class="p_Normal">The flash backing is exactly 2 MiB of device contents. The pre-decompressed loader wants a 16-byte header in front of the same-sized image, so the size check rejects it before anything is loaded: <span class="f_CodeExample">EMulatR: SrmLoader: decompressed.rom wrong size (got 2097152, expected 2097168): firmware/ds20_v7_3.rom</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The emulator then exits with status 2, the firmware-load failure code. The sixteen bytes are the whole difference: 2097168 minus 2097152.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Forcing the SRM loader onto the same file fails differently, and the second message is worth recognising because it also appears when a genuinely damaged <span class="f_CodeExample">.exe</span> is offered:</p>
-<p class="p_CodeExample"><span class="f_CodeExample">EMulatR:&nbsp;SrmLoader:&nbsp;decompressor&nbsp;signature&nbsp;not&nbsp;found&nbsp;in&nbsp;first&nbsp;4096&nbsp;bytes&nbsp;of&nbsp;firmware/ds20_v7_3.rom</span></p>
+<p class="p_Normal">Forcing the SRM loader onto the same file fails differently, and the second message is worth recognizing because it also appears when a genuinely damaged <span class="f_CodeExample">.exe</span> is offered: <span class="f_CodeExample">EMulatR: SrmLoader: decompressor signature not found in first 4096 bytes of firmware/ds20_v7_3.rom</span></p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">That is not an arbitrary refusal. In a firmware update image the decompressor stub is the first thing in the file, at offset zero. In a flash backing the low addresses are erased device space - all <span class="f_CodeExample">0xFF</span> - and the console content sits far higher up, well past the 4096-byte header window the loader scans. The signature exists in the file; it is simply nowhere near the front, because a flash image is not laid out like a distribution image.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">A correctly formed pre-decompressed image, by contrast, loads with no decompression stage and no announcement: the console image goes to physical address 0 and execution starts at the entry PC from the header - typically <span class="f_CodeExample">0x8000</span> in PAL mode, with PAL_BASE <span class="f_CodeExample">0x600000</span>.</p>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_NotesBox"><span class="f_NotesBox">Booting the machine's own updated flash content directly - the way a real DS20 runs its console from flash after the update image has been run once - is tracked work, not current behaviour. Until it lands, every cold boot re-runs the update image, which is why the firmware-update prompts appear on every boot and why the console answers them for you.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>

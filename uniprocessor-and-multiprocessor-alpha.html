@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Uniprocessor and Multiprocessor Alpha Systems</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="Each Alpha system that EMulatR models was built for a fixed number of processors: the AlphaServer DS10 holds one, the DS20 up to two and the ES40 up to four. This page..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "uniprocessor-and-multiprocessor-alpha.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Uniprocessor and Multiprocessor Alpha Systems</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?uniprocessor-and-multiprocessor-alpha.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      &raquo;No topics above this level&laquo;
+      </p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">Uniprocessor and Multiprocessor Alpha Systems</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <span class="hmbtnprev"></span>
+      <a href="release-notes.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <span class="hmbtnnext"></span>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">Each Alpha system that EMulatR models was built for a fixed number of processors: the AlphaServer DS10 holds one, the DS20 up to two and the ES40 up to four. This page describes how that difference reaches the guest -- through the console firmware, the Hardware Restart Parameter Block (HWRPB) and OpenVMS -- and what it means for performance under EMulatR. For how EMulatR itself is structured to run more than one processor, see SMP (MultiProcessor) Design.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The platforms</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Processor sockets</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">HWRPB processor slots</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Processors EMulatR runs</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">EMulatR runs one processor on every platform in this release. On the DS20 and ES40 the other sockets are empty, exactly as on a real machine fitted with a single processor.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How the firmware describes processors</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The SRM console firmware is built separately for each platform family, and the build fixes the number of processor slots. That number goes into the HWRPB, the structure the firmware hands to the operating system at boot: one slot per possible processor, each holding that processor's state flags. The slot count describes the machine's capacity, not how many processors are fitted.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">At power-up every processor that is actually present starts and reports in, and the firmware marks only those slots as present and available. An empty socket leaves its slot's flags at zero. A firmware built for more than one processor also includes the code that starts, stops and coordinates secondary processors; with one processor fitted that code finds nothing to start and costs almost nothing.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The flags in each HWRPB processor slot:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Bit</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">0</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Bootstrap in progress</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Restart capable: the operating system may be restarted on this processor</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">2</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Available: present and available for use</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">3</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Present: physically present in the configuration</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">4</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Halted by operator action</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">5</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Context valid: the hardware context in this slot is valid</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">6</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PALcode valid</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">7</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PALcode memory valid</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">8</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">PALcode loaded</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A running primary processor shows <span class="f_CodeExample">1EE</span> (hexadecimal): restart capable, available, present, context valid and the three PALcode flags. An empty slot shows <span class="f_CodeExample">0</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How OpenVMS responds</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">OpenVMS reads the processor slots at boot. On every platform under EMulatR its active, configured, present, powered and tested processor sets all hold processor 0 only. What differs is the number of processors OpenVMS considers the machine able to hold: 1 on the DS10, 2 on the DS20 and 4 on the ES40, taken from the slot count.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">With more than one possible processor, OpenVMS runs its multiprocessor idle path: on every pass of the idle loop it scans its set of processors, one bit at a time. With a single processor fitted the scan finds nothing to do, but it is real guest work, and a real single-processor DS20 or ES40 performs it too. On the DS10 the same code skips the scan.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Observed on the OpenVMS V8.3 system disk used for testing (SYSGEN <span class="f_CodeExample">MULTIPROCESSING</span> = 3 on all three platforms): the DS10 and DS20 load <span class="f_CodeExample">SYSTEM_SYNCHRONIZATION_UNI</span>; the ES40 loads <span class="f_CodeExample">SYSTEM_SYNCHRONIZATION_MIN</span>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it means for performance</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The idle scan is the main reason the DS20 and ES40 idle more slowly than the DS10 under EMulatR. Each scan is a tight loop of very short code blocks, which costs EMulatR more host time per guest instruction than ordinary code. Measured at 50 MHz with a Release build, the DS10 idles at a dilation of about 0.93 and the DS20 and ES40 at about 1.9: while idle, their guest clocks run at about half the speed of the wall clock. See Tuning EMulatR for the full figures.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The ES40's longer boot has a different cause: its console firmware tests all of memory before starting the operating system, which takes several minutes for 4 GB.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Inspecting the processor configuration</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">From a privileged OpenVMS account, the DCL command <span class="f_CodeExample">SHOW CPU/FULL</span> summarises the processor configuration. For the underlying values, use the System Dump Analyzer on the running system:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">$ ANALYZE/SYSTEM</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; SHOW CPU</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXAMINE SMP$GQ_ACTIVE_SET</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXAMINE SMP$GQ_CONFIGURE_SET</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXAMINE SMP$GQ_MAX_SUPPORTED_CPUS</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXAMINE @EXE$GPQ_HWRPB+90;18</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXAMINE @EXE$GPQ_HWRPB+@(@EXE$GPQ_HWRPB+0A0)+80</span></p>
+<p class="p_Normal"><span class="f_CodeExample">SDA&gt; EXIT</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The <span class="f_CodeExample">EXAMINE @EXE$GPQ_HWRPB+90;18</span> line shows three HWRPB fields: the number of processor slots (offset 90), the size of each slot (offset 98) and the offset of the first slot (offset A0). The next line shows the state flags of slot 0; add the slot size once per slot to see the others.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

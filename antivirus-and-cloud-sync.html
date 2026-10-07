@@ -7,7 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="Add-MpPreference,antivirus,cloud sync,Dropbox,exclusion,ExclusionPath,Files On-Demand,Microsoft Defender,OneDrive,quarantine,real-time protection,run directory,Windows Security" />
-   <meta name="description" content="A running EMulatR system writes continuously to its run directory: disk images of several gigabytes, snapshots, NVRAM, logs and traces. Real-time antivirus scanners and..." />
+   <meta name="description" content="A running EMulatR system writes continuously to its run directory: disk images of several gigabytes, NVRAM, logs and traces. Real-time antivirus scanners and cloud-sync clients..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -127,7 +127,7 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">A running EMulatR system writes continuously to its run directory: disk images of several gigabytes, snapshots, NVRAM, logs and traces. Real-time antivirus scanners and cloud-sync clients both watch folders like this, and both can interfere with it. Set up the exclusions on this page BEFORE the first run.</p>
+<p class="p_Normal">A running EMulatR system writes continuously to its run directory: disk images of several gigabytes, NVRAM, logs and traces. Real-time antivirus scanners and cloud-sync clients both watch folders like this, and both can interfere with it. Set up the exclusions on this page BEFORE the first run.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What goes wrong without exclusions</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -194,7 +194,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">%USERPROFILE%\Documents\EMulatR - or the directory into which EMulatR launcher created the environment. </span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the parent of every named system: disk images, snapshots, NVRAM, logs and traces</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">the parent of every named system: disk images, NVRAM, logs and traces</p>
 </td>
 </tr>
 <tr>
@@ -242,6 +242,7 @@
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">If the path contains <span class="f_CodeExample">OneDrive</span> -- or the folder of another sync client -- choose a different location when you create a named system. The New System dialog pre-fills the Documents location; use <span class="f_T_Emphasis">Browse...</span> to pick a folder outside any synced area, for example <span class="f_CodeExample">C:\EMulatR</span>.</p>
 <p class="p_Normal">Keeping run directories out of synced folders is simpler and more reliable than excluding them from sync, which every client does differently. It also avoids OneDrive Files On-Demand, which can move a disk image to the cloud and leave only a placeholder that the emulator cannot read until it has downloaded again.</p>
+<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Exclude the new location from antivirus scanning as well.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The trade-off</span></h2>

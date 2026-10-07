@@ -6,7 +6,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
-   <meta name="keywords" content="EMULATR_JIT,EMULATR_NO_JIT,EMULATR_JIT_NO_MEMFAST,EMULATR_JIT_HOT,EMULATR_JIT_MAX_BLOCKS,EMULATR_JIT_OPS,fused JIT,memory fast path,jitShare,JITMEM,COMJit,observer,AAPCS64,AMD64 ABI,Apple Silicon,Intel,JIT,macOS/ARM,macOS/Intel,System V,Win64,x86/64" />
+   <meta name="keywords" content="AAPCS64,AMD64 ABI,Apple Silicon,COMJit,EMULATR_JIT,EMULATR_JIT_HOT,EMULATR_JIT_MAX_BLOCKS,EMULATR_JIT_NO_MEMFAST,EMULATR_JIT_OPS,EMULATR_NO_JIT,fused JIT,Intel,JIT,JITMEM,jitShare,macOS/ARM,macOS/Intel,memory fast path,observer,System V,Win64,x86/64" />
    <meta name="description" content="EMulatR can run frequently executed guest code through a JIT instead of the instruction-by-instruction interpreter. The fused JIT is on by default. It changes how the host..." />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
@@ -127,148 +127,156 @@
 <!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
 
 <!--ZOOMRESTART-->
-<p class="p_Normal">EMulatR can run frequently executed guest code through a JIT instead of the instruction-by-instruction interpreter. The fused JIT is <span class="f_T_Emphasis">on by default</span>. It changes how the host executes guest instructions, never which instructions the guest executes: every JIT change is checked against the interpreter by a differential test harness, including fault cases, and by an unchanged boot milestone.</p>
+<p class="p_Normal">EMulatR can run frequently executed guest code through a <span class="f_CodeExample">JIT</span> instead of the instruction-by-instruction interpreter. The fused <span class="f_CodeExample">JIT</span> is <span class="f_T_Emphasis">on by default</span>. It changes how the host executes guest instructions, never which instructions the guest executes: every <span class="f_CodeExample">JIT</span> change is checked against the interpreter by a differential test harness, including fault cases, and by an unchanged boot milestone.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Turning it off</span></h2>
 <p class="p_CodeExample"><span class="f_CodeExample">EMulatR_JIT=off</span></p>
-<p class="p_Normal">Set it in the environment before launching (<span class="f_CodeExample">EMulatR_JIT=0</span> is the same) to run the interpreter alone. Leaving <span class="f_CodeExample">EMulatR_JIT</span> unset, or setting <span class="f_CodeExample">fused</span> or <span class="f_CodeExample">1</span>, runs the JIT. <span class="f_CodeExample">EMulatR_NO_JIT</span> forces the JIT off whatever else is set. Earlier builds had the JIT off unless it was asked for; a script that turned it off by leaving the variable unset must now set <span class="f_CodeExample">EMulatR_JIT=off</span>. For the best speed, use the Release build.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">Set it in the environment before launching (<span class="f_CodeExample">EMulatR_JIT=0</span> is the same) to run the interpreter alone. Leaving <span class="f_CodeExample">EMulatR_JIT</span> unset, or setting <span class="f_CodeExample">fused</span> or <span class="f_CodeExample">1</span>, runs the <span class="f_CodeExample">JIT</span>. <span class="f_CodeExample">EMulatR_NO_JIT</span> forces the <span class="f_CodeExample">JIT</span> off whatever else is set. Earlier builds had the <span class="f_CodeExample">JIT</span> off unless it was asked for; a script that turned it off by leaving the variable unset must now set <span class="f_CodeExample">EMulatR_JIT=off</span>. For the best speed, use the Release build.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it does</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>A block of guest instructions that has run <span class="f_CodeExample">EMulatR_JIT_HOT</span> times (default 64) is compiled into a fused sequence of micro-operations that runs without per-instruction dispatch.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Compiled directly: integer add, subtract and scaled add/subtract, logical operations, shifts, compares, <span class="f_CodeExample">LDA</span>/<span class="f_CodeExample">LDAH</span>, branches, and the loads and stores <span class="f_CodeExample">LDL</span>, <span class="f_CodeExample">LDQ</span>, <span class="f_CodeExample">LDQ_U</span> (including the <span class="f_CodeExample">UNOP</span> form), <span class="f_CodeExample">STL</span> and <span class="f_CodeExample">STQ</span>.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Any other instruction in the block runs through the interpreter in place, and the block continues. When a compiled instruction meets a case it does not handle (a fault, a device access), it hands back to the interpreter at exactly that instruction.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>At most <span class="f_CodeExample">EMulatR_JIT_MAX_BLOCKS</span> blocks (default 4096) are compiled.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Memory fast path</span></h2>
 <p class="p_Normal">With the JIT on, ordinary loads and stores to RAM run inline instead of through the full memory path. Accesses to device space, and any access that would fault, still take the full path. <span class="f_CodeExample">EMulatR_JIT_NO_MEMFAST</span> turns off only the fast path, for comparisons. It also turns itself off while a memory watch or probe setting is active, because those settings need to see every access.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">When the JIT stays off</span></h2>
 <p class="p_Normal">The JIT does not run while a per-instruction observer is armed: a trace, a value or PC gate, checkpoints, the UART trace marker, or an <span class="f_CodeExample">EMulatR_DIAG_*</span> setting. A compiled block does not report each instruction to those observers, so running it would silently change what they record. The run log says which observer kept it off.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Reading the run log</span></h2>
 <p class="p_Normal">At start-up, one line always says what the JIT is doing:</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Line</span></p>
+<th style="vertical-align:top; width:282px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Line</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
+<th style="vertical-align:top; width:1048px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Meaning</span></p>
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (EMulatR_JIT=off)</span></p>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (EMulatR_JIT=off)</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT</span> is set to <span class="f_CodeExample">off</span> (or <span class="f_CodeExample">0</span>): the interpreter alone.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: fused (default)</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The JIT is on and <span class="f_CodeExample">EMulatR_JIT</span> is not set. With <span class="f_CodeExample">EMulatR_JIT=fused</span> (or <span class="f_CodeExample">1</span>) the line reads <span class="f_CodeExample">JIT: fused</span>.</p>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT</span> is set to <span class="f_CodeExample">off</span> (or <span class="f_CodeExample">0</span>): the interpreter alone.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (observer armed: &lt;setting&gt;)</span></p>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: fused (default)</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">An observer is armed; the setting is named.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (EMulatR_NO_JIT)</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Forced off.</p>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal">The JIT is on and <span class="f_CodeExample">EMulatR_JIT</span> is not set. With <span class="f_CodeExample">EMulatR_JIT=fused</span> (or <span class="f_CodeExample">1</span>) the line reads <span class="f_CodeExample">JIT: fused</span>.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT memfast: ON</span></p>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (observer armed: &lt;setting&gt;)</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The memory fast path is active.</p>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal">An observer is armed; the setting is named.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT memfast: OFF (&lt;reason&gt;)</span></p>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT: off (EMulatR_NO_JIT)</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The fast path is off, and why.</p>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal">Forced off.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT memfast: ON</span></p>
+</td>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal">The memory fast path is active.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:282px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">JIT memfast: OFF (&lt;reason&gt;)</span></p>
+</td>
+<td style="vertical-align:top; width:1048px; padding:0; border:solid thin #000000;"><p class="p_Normal">The fast path is off, and why.</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<p class="p_Normal">At exit, a <span class="f_CodeExample">JIT:</span> line gives the block and retire counts, including <span class="f_CodeExample">jitShare</span>, the percentage of guest instructions the JIT retired; a <span class="f_CodeExample">JITMEM:</span> line counts the loads and stores the fast path handled.</p>
+<p class="p_Normal"><span style="font-style: italic;">At exit, a </span><span class="f_CodeExample" style="font-style: italic;">JIT:</span><span style="font-style: italic;"> line gives the block and retire counts, including </span><span class="f_CodeExample" style="font-style: italic;">jitShare</span><span style="font-style: italic;">, the percentage of guest instructions the JIT retired; a </span><span class="f_CodeExample" style="font-style: italic;">JITMEM:</span><span style="font-style: italic;"> line counts the loads and stores the fast path handled.</span></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Platform status</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
+<th style="vertical-align:top; width:78px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Platform</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">JIT</span></p>
+<th style="vertical-align:top; width:1251px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">JIT</span></p>
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+<td style="vertical-align:top; width:78px; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on, Release build.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on (29 September 2026, RelWithDebInfo build).</p>
+<td style="vertical-align:top; width:1251px; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on, Release build.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+<td style="vertical-align:top; width:78px; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on and off (29 September 2026, RelWithDebInfo build).</p>
+<td style="vertical-align:top; width:1251px; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on (29 September 2026, RelWithDebInfo build).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:78px; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; width:1251px; padding:0; border:solid thin #000000;"><p class="p_Normal">Validated: boots OpenVMS V8.3 to <span class="f_CodeExample">Username:</span> with the JIT on and off (29 September 2026, RelWithDebInfo build).</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Settings</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Setting</span></p>
+<th style="vertical-align:top; width:200px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Setting</span></p>
 </th>
-<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Effect</span></p>
+<th style="vertical-align:top; width:1130px; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Effect</span></p>
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT</span></p>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Unset, <span class="f_CodeExample">fused</span> or <span class="f_CodeExample">1</span>: the JIT is on (the default). <span class="f_CodeExample">off</span> or <span class="f_CodeExample">0</span>: the interpreter alone.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_NO_JIT</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Forces the JIT off.</p>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Unset, <span class="f_CodeExample">fused</span> or <span class="f_CodeExample">1</span>: the JIT is on (the default). <span class="f_CodeExample">off</span> or <span class="f_CodeExample">0</span>: the interpreter alone.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_NO_MEMFAST</span></p>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_NO_JIT</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Turns off only the memory fast path.</p>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_HOT</span></p>
-</td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Executions before a block is compiled (default 64).</p>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Forces the JIT off.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_MAX_BLOCKS</span></p>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_NO_MEMFAST</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Most blocks compiled (default 4096).</p>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Turns off only the memory fast path.</p>
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_OPS</span></p>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_HOT</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">Diagnostic: a comma-separated list limiting which operations are compiled, e.g. <span class="f_CodeExample">AddQ,Lda,LdQ</span>.</p>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Executions before a block is compiled (default 64).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_MAX_BLOCKS</span></p>
+</td>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Most blocks compiled (default 4096).</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:200px; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR_JIT_OPS</span></p>
+</td>
+<td style="vertical-align:top; width:1130px; padding:0; border:solid thin #000000;"><p class="p_Normal">Diagnostic: a comma-separated list limiting which operations are compiled, e.g. <span class="f_CodeExample">AddQ,Lda,LdQ</span>.</p>
 </td>
 </tr>
 </tbody>
@@ -276,46 +284,28 @@
 </div>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Planned: native code emission (COMJit, release 2.2)</span></h2>
-<p class="p_Normal">The fused JIT above runs micro-operations; it does not generate host machine code. Release 2.2 adds COMJit, which emits host instructions directly. The design below describes that emitter; it is not in the current build.</p>
+<p class="p_Normal">The fused <span class="f_CodeExample">JIT</span> above runs micro-operations; it does not generate host machine code. Release 2.2 adds <span class="f_CodeExample">COMJit</span>, which emits host instructions directly. The design below describes that emitter; it is not in the current build.</p>
+<p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">5.8 Cross-Platform JIT Architecture </span><span style="font-size: 21px;">&amp; Stack Bifurcation</span></h3>
 <p class="p_Normal">To support multi-architecture targets like macOS/Intel (x86_64) and macOS/ARM (Apple Silicon) alongside the existing Windows/Linux x64 targets, the uniform execution layer introduces a stack bifurcation phase. This guarantees that regardless of the host platform, every instruction executes through a uniform, compressed call stack interface while delegating ABI-specific register spilling and frame setup to the underlying emitter backend.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">Extended Architecture Diagram</p>
-<p class="p_Normal">&nbsp;</p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------------------------------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uniform&nbsp;Block&nbsp;Decoder&nbsp;(Dispatch)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------------------------------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;(FP&nbsp;Format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;(Memory&nbsp;Format)</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------+&nbsp;&nbsp;&nbsp;+-------------------------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">|&nbsp;SSE&nbsp;/&nbsp;AVX&nbsp;Scalar&nbsp;Emitters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;`Mem`&nbsp;Operand&nbsp;Builder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">|&nbsp;(addsd,&nbsp;mulsd,&nbsp;cvtsd2ss)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;(Base,&nbsp;Index,&nbsp;Scale,&nbsp;Disp)&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------+&nbsp;&nbsp;&nbsp;+-------------------------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+-------------------+---------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------------------------------------+</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uniform-Width&nbsp;Slot&nbsp;Commit&nbsp;&amp;&nbsp;Scaffolding&nbsp;Check&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
-<p class="p_CodeExample"><span class="f_CodeExample">+-------------------------------------------------------------+</span></p>
+<p class="p_Normal"><span style="font-weight: bold;">Extended Architecture Diagram</span></p>
+<p class="p_CodeExample"><img src="embim8.png" width="434" height="237" style="margin:1px;border:none" alt="" /></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <hr style="height:1px; color:#000000; border-width:0; background-color:#000000;" /><p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Key Architectural Provisions</span></h2>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Compressed Call Stack Interface:</span></h3>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">By enforcing a uniform-depth and uniform-width slot design, the JIT minimizes frame bloat.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Local variable spills and temporary registers share a compressed layout relative to the dedicated base pointer (R11 on x64 or equivalent fixed context pointer on ARM), eliminating redundant frame-pointer setup overhead across basic blocks.</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Cross-Platform Target Bifurcation:</span></h3>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">macOS/Intel (System V AMD64 ABI):</span> Replaces the Win64 32-byte shadow space requirement with System V register-passing conventions (using RDI, RSI, RDX, RCX, R8, R9) while preserving the exact same uniform instruction slots.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span style="font-weight: bold;">macOS/ARM (Apple Silicon / AAPCS64):</span> Adapts the emission layer to translate the DEC Alpha stream into 64-bit ARM instructions, mapping scalar floating-point and memory formatting to ARM load/store pair instructions (LDP/STP) and vector registers (V0-V31).</p>
 <p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">Unified Scaffolding and Epoch Checks:</span></h3>
-<p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Epoch-based interrupt checks and memory trap handlers remain structural constants at the block boundary, ensuring deterministic bailout behavior whether running on an x86 workstation or an Apple Silicon host.</p>
 <p class="p_CodeExample"><span class="f_CodeExample">&nbsp;</span></p>
 <p class="p_Normal">&nbsp;</p>

@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>6. Architecture &amp; Internals &gt; 6.14 IdleScan</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="6.14 IdleScan,closed form,CPU slots,DS10,DS20,EMULATR_IDLESCAN,ES40,idle collapse,idle loop,idle pacing barrier,IdleScan,IDLESCAN statistics line,retire count,SCH$IDLE" />
+   <meta name="description" content="The OpenVMS idle routine, on a multiprocessor platform, spends most of its instructions on a loop that finds the highest set bit of a CPU mask. IdleScan is the EMulatR feature..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "6_14-idlescan.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.14 IdleScan</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?6_14-idlescan.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="5_-architecture--internals----.html">6. Architecture &amp; Internals</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">6.14 IdleScan</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      
+      <a href="6_13-grain-composition.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="5_-architecture--internals----.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="6_-reference------------------.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal">The OpenVMS idle routine, on a multiprocessor platform, spends most of its instructions on a loop that finds the highest set bit of a CPU mask. IdleScan is the EMulatR feature that executes that loop in one step instead of one pass at a time. It saves host work, not guest time: the guest sees exactly what it would see if the loop had run literally. This page describes the loop, how IdleScan recognizes and collapses it, what it does and does not change, and the pacing barrier that keeps an idle guest from running ahead of the wall clock. For how guest time is kept, see <a href="6_23-guest-time.html" class="topiclink">6.12 Guest Time</a>. For how cycles are charged to instructions, see <a href="6_11-cycle-harness-.html" class="topiclink">6.11 Cycle Harness</a>.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The loop</span></h2>
+<p class="p_Normal">When no process is runnable, OpenVMS enters its idle routine, SCH$IDLE. On a platform whose SRM firmware reports more than one CPU slot, the routine finds the highest set bit of a 64-bit CPU mask with a loop that shifts the mask one place on every pass. The DS20 reports two CPU slots and the ES40 reports four. The number comes from the SRM firmware and is the same whatever number of CPUs is installed. The loop is:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:66px; padding:0; border:none"><p class="p_Normal"><span class="f_CodeExample">body:</span></p>
+</td>
+<td style="vertical-align:top; width:973px; padding:0; border:none"><p class="p_Normal"><span class="f_CodeExample">ADDQ Rx,Rx,Rx ; &nbsp;Rx &lt;&lt;= 1 </span></p>
+<p class="p_Normal"><span class="f_CodeExample">LDA Ry,1(Ry) ; Ry += 1 BR test</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; width:66px; padding:0; border:none"><p class="p_Normal"><span class="f_CodeExample">test:</span></p>
+</td>
+<td style="vertical-align:top; width:973px; padding:0; border:none"><p class="p_Normal"><span class="f_CodeExample">BGE Rx, body ; top bit still clear -&gt; again</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">With only CPU 0 present, the mask has a single low bit set, so the loop takes 63 passes. That is about 252 instructions and about 126 block boundaries of pure register work in every idle pass. Real hardware runs the same loop. The DS10 reports one CPU slot, so its firmware branches around the loop and IdleScan never applies to it.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">How IdleScan collapses it</span></h2>
+<p class="p_Normal">IdleScan computes the result of the loop directly. Entering the loop body with the mask in Rx equal to x0, it forms y, which is x0 shifted left by one place.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If y is zero, the loop would never end, because zero stays zero. IdleScan refuses and the loop runs literally.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Otherwise n is 1 if the top bit of y is set, and 1 plus the number of leading zero bits of y if it is not.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The result is Rx equal to x0 shifted left by n places, Ry increased by n, and the program counter at the instruction after the BGE. The collapse retires 4n instructions: the BGE is taken n-1 times and not taken once.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">IdleScan finds the loop by its shape, not by its address. It looks for a block of exactly those three instructions whose BR target holds a BGE on the same register, back to the head of the block, where Rx and Ry are different registers and neither is R31. The site is recorded when the block executor fills the block. Before every collapse the four instruction words are checked again against the decoded instruction cache, and the processor mode must match.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">IdleScan refuses, and the loop runs literally, when the span of the collapse would cross the next interval-timer edge, the interrupt-sweep cadence, the interrupt injector or an autosave, or when the interrupt break word is set.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">What it changes and what it does not</span></h2>
+<p class="p_Normal"><span class="f_T_Emphasis">IdleScan is not a warp.</span> It skips no guest time. Every instruction is charged and credited, and every register is left exactly as the loop would leave it. Retire counts, cycle counts, the V-1 figure and the full-boot hash are therefore unchanged. A DS20 boot to the milestone reached 4,566,980,744 retires and 21,883,889,462 cycles both with and without IdleScan. What IdleScan removes is host work: the host no longer executes about 250 instructions for each idle pass.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The effect is large on the platforms it applies to. These figures come from interactive sessions of about 43 minutes each, on a Release build at 50 MHz:</p>
+<p class="p_Normal">&nbsp;</p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
+<thead>
+<tr>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Platform</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Collapses</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Instructions credited</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Per collapse</span></p>
+</th>
+<th style="vertical-align:top; background-color:#00FFFF; padding:0; border:solid thin #000000;" scope="col"><p class="p_Normal"><span style="font-weight: bold;">Share of all instructions</span></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS20</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">171,997,694</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">43,181,411,052</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">251.1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">66%</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">ES40</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">73,230,393</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">18,094,052,188</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">247.1</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">36%</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">DS10</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none (no site)</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">none</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">not applicable</p>
+</td>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">not applicable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The pacing barrier</span></h2>
+<p class="p_Normal">Because a collapse costs the host almost nothing, an idle guest with IdleScan ran ahead of real time. At 50 MHz on the DS20, the idle dilation (wall time divided by guest time) was 2.23 without IdleScan and 0.35 with IdleScan alone, which means the guest ran about 2.9 times ahead of the wall clock. The pacing barrier stops that. It paces idle guest time to wall time. It is a barrier, not a change to the model: no guest-visible quantity moves.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A stretch begins at the first collapse after more than 20 ms without one. It is anchored at the wall time and the cycle count of that collapse. At every collapse, EMulatR compares the guest time since the anchor (cycles divided by the CPU frequency) with the wall time since the anchor.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If the guest is ahead by 2 ms or more, the host sleeps for the difference. On Windows the sleep uses a high-resolution waitable timer, so it is not rounded up to the 15.6 ms system tick.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If the guest is behind, nothing happens. Busy work and boot are already behind wall time and are not touched. No sleep occurs during a boot.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">A sleep changes no cycle and no retired instruction. Only the wall time between guest events moves, and the host stops using a core to spin in idle. With the barrier, the DS20 idle dilation at 50 MHz measured 1.01.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Control and accounting</span></h2>
+<p class="p_Normal">IdleScan is on by default. Setting <span class="f_CodeExample">EMulatR_IDLESCAN=0</span> turns it off. The setting is the bisection switch and has no other purpose: use it to check whether a difference in behavior comes from IdleScan.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The pacing barrier runs only immediately after a successful collapse. With <span class="f_CodeExample">EMulatR_IDLESCAN=0</span> there are no collapses, so the barrier is off as well. A collapse that IdleScan refuses never paces either.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">At exit EMulatR prints one line:</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><span class="f_CodeExample">IDLESCAN: sites=&lt;n&gt; collapses=&lt;n&gt; credited=&lt;retires&gt; refused=&lt;n&gt; paced_sleeps=&lt;n&gt; paced_ms=&lt;ms&gt;</span></p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The fields are the number of recorded sites, the number of collapses, the retired instructions credited by them, the number of refusals, the number of pacing sleeps and the total time slept in milliseconds.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Status and open items</span></h2>
+<p class="p_Normal">IdleScan and the pacing barrier ship in the 3.0 Experimental release (X3.0-2) and are on by default. <span class="f_CodeExample">EMulatR_IDLESCAN=0</span> turns them off.</p>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal">The barrier lives at the IdleScan collapse, so a platform without the scan is not paced. The DS10 is the case: its idle measured about 1.5 times ahead of wall time, a dilation of 0.67, at 50 MHz. That comes purely from executed work: about 39.5 million instructions per second at 1.88 cycles each is 74.4 million cycles per second, against a CPU speed of 50 million. A general barrier, and an analysis of the uniprocessor and multiprocessor execution paths, are under review. Neither is settled. <span class="f_T_Emphasis">This is a known open item in 3.0-1 Beta:</span> on the DS10, IdleScan does not take effect because no matching idle site is recognized, the pacing barrier does not apply, and the DS10 runs fast at idle, with guest time not held to wall time.</p>
+<p class="p_Normal">&nbsp;</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">See also</span></h2>
+<p class="p_Normal">&nbsp;</p>
+<p class="p_Normal"><a href="6_23-guest-time.html" class="topiclink">6.12 Guest Time</a></p>
+<p class="p_Normal"><a href="6_11-cycle-harness-.html" class="topiclink">6.11 Cycle Harness</a></p>
+<p class="p_Normal"><a href="6_13-grain-composition.html" class="topiclink">6.13 Grain Composition</a></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+</body>
+</html>

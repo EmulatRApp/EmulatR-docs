@@ -164,11 +164,11 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR.ini</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.ini</span></p>
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The board view's CPUs and memory (<span class="f_CodeExample">[System]</span>) and the Configure wizard's disk folder (<span class="f_CodeExample">[Storage] diskDir</span>). An empty or relative <span class="f_CodeExample">diskDir</span> is resolved as the emulator resolves it: against the directory the emulator runs in (the ini's folder, or its parent when the ini is in a <span class="f_CodeExample">config</span> folder).</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The <span class="f_CodeExample">--ini</span> the launcher passes (the system's own ini); else <span class="f_CodeExample">EMulatR.ini</span> or <span class="f_CodeExample">config/EMulatR.ini</span> beside the manifest; else <span class="f_CodeExample">&lt;run-dir&gt;/config/EMulatR.ini</span>.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The <span class="f_CodeExample">--ini</span> the launcher passes (the system's own ini); else <span class="f_CodeExample">Emulatr.ini</span> or <span class="f_CodeExample">config/Emulatr.ini</span> beside the manifest; else <span class="f_CodeExample">&lt;run-dir&gt;/config/Emulatr.ini</span>.</p>
 </td>
 </tr>
 <tr>
@@ -190,13 +190,13 @@
 <p class="p_Normal"><span class="f_CodeExample">editors/platedit_wx.exe ds20_v7_3_platform.json</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">The launcher starts it with the system's own ini as well:</p>
-<p class="p_Normal"><span class="f_CodeExample">editors/platedit_wx.exe --ini &lt;run-dir&gt;/EMulatR.ini &lt;run-dir&gt;/ds20_v7_3_platform.json</span></p>
+<p class="p_Normal"><span class="f_CodeExample">editors/platedit_wx.exe --ini &lt;run-dir&gt;/Emulatr.ini &lt;run-dir&gt;/ds20_v7_3_platform.json</span></p>
 <p class="p_Normal">The last folder used is remembered for the next start.</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Headless self-test</span></h2>
 <p class="p_Normal"><span class="f_CodeExample">--selftest</span> loads a manifest without showing a window, prints the top of its device tree and the number of findings, and exits 0 on success or 1 if the file cannot be loaded. It is used by build checks:</p>
 <p class="p_Normal"><span class="f_CodeExample">editors/platedit_wx.exe --selftest ds20_v7_3_platform.json</span></p>
-<p class="p_Normal"><span class="f_CodeExample">--export-diagram</span> writes the board view of a manifest to a PNG without showing a window (reading the <span class="f_CodeExample">EMulatR.ini</span> found beside the manifest or in the run directory), and exits 0 on success or 1 on failure:</p>
+<p class="p_Normal"><span class="f_CodeExample">--export-diagram</span> writes the board view of a manifest to a PNG without showing a window (reading the <span class="f_CodeExample">Emulatr.ini</span> found beside the manifest or in the run directory), and exits 0 on success or 1 on failure:</p>
 <p class="p_Normal"><span class="f_CodeExample">editors/platedit_wx.exe --export-diagram ds20_v7_3_platform.json ds20_diagram.png</span></p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Environment variables</span></h2>

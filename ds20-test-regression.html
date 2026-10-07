@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   <title>11. Test/Regression &gt; DS20</title>
+   <title>12. Test/Regression &gt; DS20</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="generator" content="Help &amp; Manual" />
    <meta name="keywords" content="" />
-   <meta name="description" content="Setup Facility Setting Environment env-ds20pa, console port 10024 Disk set D:\EMulatR\vStorage\v2.1-ab-a\Alpha, restored from v2.1-ab-golden before every run Manifest ds20_" />
+   <meta name="description" content="Setup &nbsp;Facility Setting Environment env-ds20pa, console port 10024 Disk set D:\EMulatR\vStorage\v2.1-ab-a\Alpha, restored from v2.1-ab-golden before every run Manifest ds2" />
    <link type="text/css" href="default.css" rel="stylesheet" />
    <link type="text/css" href="custom.css" rel="stylesheet" />
 
@@ -105,7 +105,7 @@
       <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?ds20-test-regression.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
       <p class="crumbs"><b>Navigation:</b>&nbsp;
       
-      <a href="test-settings.html">11. Test/Regression</a>&nbsp;&gt;</p>
+      <a href="test-settings.html">12. Test/Regression</a>&nbsp;&gt;</p>
    
       <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">DS20</span></h1>
 
@@ -128,6 +128,7 @@
 
 <!--ZOOMRESTART-->
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Setup</span></h2>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -183,8 +184,10 @@
 </tbody>
 </table>
 </div>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">The reference count</span></h2>
-<p class="p_Normal">With a fixed clock, no network and no console connection, a DS20 boot is fully deterministic: it executes exactly the same instructions every time, whatever the interrupt harness, JIT or snapshot settings. The instruction count at the end of startup must equal the reference:</p>
+<p class="p_Normal">With a fixed clock, no network and no console connection, a DS20 boot is fully deterministic: it executes exactly the same instructions every time, whatever the interrupt harness or JIT settings. The instruction count at the end of startup must equal the reference:</p>
+<p class="p_Normal">&nbsp;</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
 <thead>
 <tr>
@@ -217,14 +220,19 @@
 </table>
 </div>
 <p class="p_Normal">A different count means the build changed what the guest executes. That is a failure to investigate before anything else, even if OpenVMS reaches <span class="f_CodeExample">Username:</span>.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Tests</span></h2>
+<p class="p_Normal">&nbsp;</p>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">B-1 to B-8: boot</span></h3>
 <p class="p_CodeExample"><span class="f_CodeExample">EMulatR_IRQ_HARNESS=1&nbsp;V1_RUN_UNTIL=Username:&nbsp;bash&nbsp;v2.1/tools/v1_gate_run.sh&nbsp;B-2&nbsp;out/build/v2.1-relwithdebinfo/run/EMulatR.exe&nbsp;on</span></p>
 <p class="p_Normal">For the <span class="f_CodeExample">Username:</span> check, a console connects 20 seconds after the end of startup and sends a Return; connecting any earlier would change the count. The prompt can take several minutes to appear after that Return; this is a known fault and does not fail the test.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">H-1: PC hash</span></h3>
 <p class="p_Normal">Run B-3 with <span class="f_CodeExample">EMulatR_DIAG_PCHASH=1</span> on the RelWithDebInfo build. The hash printed at the end of startup must equal the reference above.</p>
+<h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">&nbsp;</span></h3>
 <h3 class="p_Heading3" style="page-break-after: avoid;"><span class="f_Heading3">N-5 partner: DECnet</span></h3>
 <p class="p_Normal">For the ES40 networking test N-5, a DS20 runs with networking on as the second DECnet node. Give it its own IP and DECnet address; do not use <span class="f_CodeExample">env-ds20pa</span> for this, since its disks must stay identical to the golden set.</p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Pass</span></h2>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>OpenVMS startup completes: the STARTUP job reports <span class="f_CodeExample">job terminated at</span>.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span>After a Return at the console, OpenVMS prints the <span class="f_CodeExample">Username:</span> prompt.</p>

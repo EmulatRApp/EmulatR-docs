@@ -435,9 +435,9 @@
 </td>
 </tr>
 <tr>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">EMulatR.ini</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal"><span class="f_CodeExample">Emulatr.ini</span></p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CPUs (one block per active CPU) and the memory size, from <span class="f_CodeExample">[System] activeCpus</span>, <span class="f_CodeExample">cpuCount</span> and <span class="f_CodeExample">memorySize</span>. The editor reads the ini beside the manifest, else the run directory's <span class="f_CodeExample">config/EMulatR.ini</span>; if it finds none, the drawing says so.</p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">The CPUs (one block per active CPU) and the memory size, from <span class="f_CodeExample">[System] activeCpus</span>, <span class="f_CodeExample">cpuCount</span> and <span class="f_CodeExample">memorySize</span>. The editor reads the ini beside the manifest, else the run directory's <span class="f_CodeExample">config/Emulatr.ini</span>; if it finds none, the drawing says so.</p>
 </td>
 </tr>
 <tr>
@@ -462,12 +462,13 @@
 </table>
 </div>
 <p class="p_Normal">Yellow lines are buses and links: the CPU bus, the memory bus, the IIC bus and each PCI hose. Cards show a gold edge connector; drives, CD-ROMs and the network port have icons. A box's border shows the worst finding on it: red for an error, amber for a warning, blue for information.</p>
-<p class="p_Normal"><img alt="PlatformEditor_DS20_board" width="1576" height="1321" style="margin:0;width:1576px;height:1321px;border:none" src="platformeditor_ds20_board.png"/></p>
+<p class="p_Normal"><img alt="PlatformEditor_DS20_board" width="963" height="807" style="margin:0;width:963px;height:807px;border:none" src="platformeditor_ds20_board.png"/></p>
 <p class="p_Normal">The board view also warns when the ini's installed memory exceeds the board maximum, when the ini's model differs from the manifest's platform, and when a device sits at a position the board does not have (V-49).</p>
-<p class="p_Normal"><img alt="PlatformEditor_ES40_board" width="1768" height="914" style="margin:0;width:1768px;height:914px;border:none" src="platformeditor_es40_board.png"/></p>
+<p class="p_Normal"><img alt="PlatformEditor_ES40_board" width="957" height="495" style="margin:0;width:957px;height:495px;border:none" src="platformeditor_es40_board.png"/></p>
 <p class="p_Normal">The bus view draws the same devices without the board: the IIC bus on the left and each PCI hose with its slots on the right.</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal"><img alt="PlatformEditor_DS20_diagram" width="986" height="786" style="margin:0;width:986px;height:786px;border:none" src="platformeditor_ds20_diagram.png"/></p>
+<p class="p_Normal"><img alt="PlatformEditor_DS20_diagram" width="952" height="758" style="margin:0;width:952px;height:758px;border:none" src="platformeditor_ds20_diagram.png"/></p>
+<h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">&nbsp;</span></h2>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Field types</span></h2>
 <p class="p_Normal">Each field is edited with a control chosen by <span class="f_CodeExample">schema/platform_schema.json</span>. The field's type is shown in the help line under the grid.</p>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">

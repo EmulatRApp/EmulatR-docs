@@ -139,7 +139,7 @@
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The product is EMulatR; the launcher and Platform Editor are SUBSYSTEMS of it. Each namespaces its keys with a prefix -- </span><span class="f_CodeExample">launch_</span><span class="f_NotesBox"> today, with </span><span class="f_CodeExample">platedit_</span><span class="f_NotesBox"> reserved. One regedit path shows the whole product, and subsystems can never collide.</span></p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">HKCU scope, never HKLM. No administrator rights are needed, and a kit install or uninstall -- which touches Program Files and the HKLM uninstall entries -- never removes it. Named systems survive every upgrade.</span></p>
 <p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">Not keyed by version. Deliberate: an upgrade must never orphan the system catalog.</span></p>
-<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The registry is the CATALOG, not the substance. It stores names, pointers and small per-system knobs. The substance of a system -- </span><span class="f_CodeExample">EMulatR.ini</span><span class="f_NotesBox">, the platform manifest copy, disks, firmware, logs -- lives in that system's profile directory on disk. If the hive is ever lost, </span><span class="f_NotesBox" style="font-weight: bold;">Add Existing...</span><span class="f_NotesBox"> re-registers any profile directory. Nothing load-bearing exists only in the registry.</span></p>
+<p class="p_NotesBox" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NotesBox" style="display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NotesBox">The registry is the CATALOG, not the substance. It stores names, pointers and small per-system knobs. The substance of a system -- </span><span class="f_CodeExample">Emulatr.ini</span><span class="f_NotesBox">, the platform manifest copy, disks, firmware, logs -- lives in that system's profile directory on disk. If the hive is ever lost, </span><span class="f_NotesBox" style="font-weight: bold;">Add Existing...</span><span class="f_NotesBox"> re-registers any profile directory. Nothing load-bearing exists only in the registry.</span></p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal">Values are written through Qt QSettings in native format: strings land as <span class="f_CodeExample">REG_SZ</span>, integers as <span class="f_CodeExample">REG_DWORD</span>, booleans as <span class="f_CodeExample">REG_SZ</span> holding &quot;true&quot; or &quot;false&quot;, and list values as <span class="f_CodeExample">REG_MULTI_SZ</span>. The only binary blob is the saved window geometry.</p>
 <p class="p_Normal">&nbsp;</p>
@@ -203,7 +203,7 @@
 </td>
 <td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">REG_SZ</p>
 </td>
-<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">snapshot cadence: empty or <span class="f_CodeExample">safety</span> (emulator default), <span class="f_CodeExample">diagnostic</span> (dense 1B-cycle saves), <span class="f_CodeExample">off</span></p>
+<td style="vertical-align:top; padding:0; border:solid thin #000000;"><p class="p_Normal">retained for compatibility; no effect since 3.0 (EMulatR never loads or saves a snapshot)</p>
 </td>
 </tr>
 <tr>
@@ -226,7 +226,7 @@
 </table>
 </div>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal">The console port is deliberately NOT here. It lives in the profile's <span class="f_CodeExample">EMulatR.ini</span> under <span class="f_CodeExample">[SRMConsole] port</span>, because the emulator itself reads it from there. The registry never duplicates a fact the ini owns.</p>
+<p class="p_Normal">The console port is deliberately NOT here. It lives in the profile's <span class="f_CodeExample">Emulatr.ini</span> under <span class="f_CodeExample">[SRMConsole] port</span>, because the emulator itself reads it from there. The registry never duplicates a fact the ini owns.</p>
 <p class="p_Normal">&nbsp;</p>
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">launch_ui -- launcher UI state</span></h2>
 <div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0; border-collapse:collapse;">
@@ -380,7 +380,7 @@
 <h2 class="p_Heading2" style="page-break-after: avoid;"><span class="f_Heading2">Editing by hand</span></h2>
 <p class="p_Normal">Prefer the launcher UI -- every key above has a control. Hand-editing the hive is safe while the launcher is NOT running; it reads the hive at startup and on selection changes, and concurrent instances are last-writer-wins. Two rules if you do edit by hand:</p>
 <p class="p_Normal">&nbsp;</p>
-<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span><span class="f_CodeExample">runDir</span> must remain an absolute path to a directory holding an <span class="f_CodeExample">EMulatR.ini</span>. Otherwise preflight flags the system Broken -- it is never silently dropped.</p>
+<p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">1.</span><span class="f_CodeExample">runDir</span> must remain an absolute path to a directory holding an <span class="f_CodeExample">Emulatr.ini</span>. Otherwise preflight flags the system Broken -- it is never silently dropped.</p>
 <p class="p_Normal" style="text-indent: 0; padding-left: 20px; margin-left: 0;"><span class="f_Normal" style="display:inline-block;width:20px;margin-left:-20px">2.</span>Do not invent keys outside your subsystem's prefix. Unknown keys are ignored today, but the prefix IS the collision contract between subsystems.</p>
 <p class="p_Normal">&nbsp;</p>
 <p class="p_Normal"><span class="f_SeeAlso">See Also.</span></p>
